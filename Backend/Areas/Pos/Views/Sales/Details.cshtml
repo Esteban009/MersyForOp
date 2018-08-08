@@ -1,0 +1,172 @@
+﻿@model Domain.POS.Sale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle de Factura</h2>
+@using (Html.BeginForm())
+{
+<div>
+
+    <a class="btn btn-success" href="@Url.Action("index", "Sales", new {area = "Pos"})">
+        <span class="fa fa-reply"></span> Volver atras
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Pdf", "Reports", new { area = "Configurations" , Id=Model.SalesId})">
+        <span class="fa fa-print"></span> Imprimir
+    </a>
+    @*<a class="btn btn-primary" id="BtnPrint">
+        <span class="fa fa-print"></span> Imprimir
+    </a>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesInvoiceNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesInvoiceNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidDate)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTotal)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalDiscount)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCharges)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCharges)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DebtAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DebtAmount)
+        </dd>
+
+    </dl>
+</div>
+    
+    <div class="row">
+        <div class="col-md-12">
+
+            @if (Model.SalesDetails.Count==0)
+            {
+                <h2>No existen Detalles registrados aun :'(</h2>
+            }
+            else
+            {
+                <div id="DivIdToPrint">
+                    DETALLE DE FACTURA
+                    <table id="myTable" class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.SalesDetails.Where(p => p.SalesId == Model.SalesId))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.SellPrice)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

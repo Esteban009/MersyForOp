@@ -1,0 +1,140 @@
+﻿@model Backend.Areas.Pos.Models.PayPurchase
+
+@{
+    ViewBag.Title = "Pagar Compra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PurchaseId)
+        @Html.HiddenFor(model => model.StatusId)
+        @Html.HiddenFor(model => model.Remarks)
+        @*@Html.HiddenFor(model => model.PurchaseInvoiceNo)
+        @Html.HiddenFor(model => model.PurchaseDate)
+        @Html.HiddenFor(model => model.SupplierId)
+        @Html.HiddenFor(model => model.SubTotal)
+        @Html.HiddenFor(model => model.TotalDiscount) 
+        @Html.HiddenFor(model => model.TotalCharges)
+        @Html.HiddenFor(model => model.Total)
+        @Html.HiddenFor(model => model.PaidAmount)
+        @Html.HiddenFor(model => model.DebtAmount)*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseInvoiceNo,  new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.PurchaseInvoiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PurchaseInvoiceNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseDate,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierId,    new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("SupplierId", null,  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubTotal,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.SubTotal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubTotal, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalDiscount,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.TotalDiscount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalDiscount, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalCharges,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.TotalCharges, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalCharges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Total,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaidAmount,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PaidAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DebtAmount,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.DebtAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DebtAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <br/><hr/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <a class="btn btn-warning" href="@Url.Action("Index", "Purchases", new { area = "Pos" })">
+                    <span class="fa fa-times "></span> Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o "></i> Guardar
+                </button>
+
+            </div>
+        </div>
+        
+
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+
+           
+            $('#PurchaseDate,#SupplierId,#DebtAmount,#PaidAmount,#Total,#TotalCharges,#TotalDiscount,#SubTotal,#PurchaseInvoiceNo').attr('readonly', true);
+
+        });
+    </script>
+}

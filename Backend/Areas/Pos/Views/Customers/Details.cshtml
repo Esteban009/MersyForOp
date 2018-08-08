@@ -1,0 +1,275 @@
+﻿@model Domain.POS.Customer
+
+@{
+    ViewBag.Title = "Detalle de Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+
+    @*@Html.HiddenFor(model => model.PatientId)*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PersonId)
+    @Html.HiddenFor(model => model.CustomerId)
+    <p>
+        <a class="btn btn-success" href="@Url.Action("Index", "Customers", new { area = "Pos" })">
+            <span class="fa fa-reply"></span> Volver atras
+        </a>
+        <a class="btn btn-warning" href="@Url.Action("Edit", "Customers", new { area = "Pos", id = @Model.CustomerId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+
+    </p>
+    <div class="form-group">
+       
+        @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Person.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Person.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        @Html.LabelFor(model => model.Person.LastName, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Person.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Person.Email, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Person.Email, new { htmlAttributes = new { @class = "form-control" } })
+         </div>
+
+        @Html.LabelFor(model => model.Person.Tel, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Person.Tel, new { htmlAttributes = new { @class = "form-control Tel" } })
+            @Html.ValidationMessageFor(model => model.Person.Tel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DebAmount, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.DebAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DebAmount, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.CreditAmount, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.CreditAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreditAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.WastedAmount, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.WastedAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.WastedAmount, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.Person.Address, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Person.Address, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <section class="MySection">
+        <h4>Facturas</h4>
+    </section>
+    <div>
+        <a class="btn btn-primary" href="@Url.Action("Create", "Sales", new { area = "Pos", id = @Model.CustomerId })"> <span class="fa fa-plus"></span> Registrar Factura</a>
+    </div>
+
+    <div class="row">
+
+        @if (Model.Sales.Count == 0)
+        {
+            <h2>No existen Facturas registradas aun :'(</h2>
+        }
+        else
+        {
+            <div class="scroller">
+                <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                No. Factura
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+                            <th>
+                                Pagado
+                            </th>
+                            <th>
+                                Adeudado
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Sales)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-primary" href="@Url.Action("Pdf", "Reports", new {area = "Configurations", id = @item.SalesId})"> <span class="fa fa-print"></span> Imprimir</a>
+
+                                    <a class="btn btn-info" href="@Url.Action("Details", "Sales", new {area = "Pos", id = @item.SalesId})"> <span class="fa fa-info-circle"></span> Detalle</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalesInvoiceNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalesDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DebtAmount)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+<hr /><hr />
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            //   $(".Rnc").mask("999-9999999-9");
+            $('input,textarea,select').attr('disabled', true);
+            //$('table').DataTable();
+            $('#MyTable').DataTable({
+                "processing": true,
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'excel',
+                    text: 'Exportar a Excel',
+                    title: 'Datos',
+                    footer: false,
+                    exportOptions: {
+                        orthogonal: 'filter'
+                    }
+                }
+                ],
+                "order": [],
+                "footerCallback": function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    // Total over all pages
+                    var total = api
+                        .column(4)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Total over this page
+                    var pageTotal = api
+                        .column(4, { page: 'current' })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(4).footer()).html(
+                        '$' + pageTotal + ' ( $' + total + ' total)'
+                    );
+
+                    // Total over all pages
+                    //total = api
+                    //    .column(6)
+                    //    .data()
+                    //    .reduce(function (a, b) {
+                    //        return intVal(a) + intVal(b);
+                    //    }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(6, { page: 'current' })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(6).footer()).html(
+                        '$' + pageTotal
+                    );
+
+                    // Total over all pages
+                    //total = api
+                    //    .column(4)
+                    //    .data()
+                    //    .reduce(function (a, b) {
+                    //        return intVal(a) + intVal(b);
+                    //    }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(5, { page: 'current' })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(5).footer()).html(
+                        '$' + pageTotal
+                    );
+                }
+
+                // Your other options here...
+            });
+
+        });
+    </script>
+}
+
+

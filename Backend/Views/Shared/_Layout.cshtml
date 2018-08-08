@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - Mersy</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Scripts/Ps/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" id="bscss" />
+    <link href="~/Scripts/Ps/css/app.css" rel="stylesheet" id="maincss" />
+    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-8521044456540023",
+            enable_page_level_ads: true
+        });
+    </script>*@
+</head>
+
+<body>
+  
+ 
+    <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <header class="topnavbar-wrapper">
+                <nav role="navigation" class="navbar topnavbar">
+                    <div class="navbar-header">
+                        <a href="#" class="navbar-brand">
+                            <div class="brand-logo fa fa-heartbeat fa-2x">
+
+
+                            </div>
+                            <div class="brand-logo-collapsed fa fa-heartbeat fa-2x">
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="nav-wrapper">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#" data-toggle-state="aside-collapsed" class="hidden-xs">
+                                    <em class="fa fa-navicon"></em>
+                                </a>
+                                <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                                    <em class="fa fa-navicon"></em>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                @Html.Partial("_LoginPartial")
+                            </li>
+                            <li>
+                                <a>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+            </header>
+        </div>
+
+        <aside class="aside">
+            <div class="aside-inner">
+                <nav data-sidebar-anyclick-close="" class="sidebar">
+
+                    <ul class="nav">
+
+                        @if (Request.IsAuthenticated)
+                        {
+
+                            @Html.AntiForgeryToken()
+                            //General
+                            <li class="">
+                                <a href="@Url.Action("Index", "Manage", new {area = ""})">
+                                    <em class="fa fa-cog"></em>
+                                    <span>Configuracion GEN</span>
+                                </a>
+                            </li>
+                            //Pacientes
+                            <li class="">
+                                <a href="@Url.Action("MedHist", "Patients", new {area = "Medicals"})">
+                                    <em class="fa fa-user-md"></em>
+                                    <span>Historia Medica</span>
+                                </a>
+                            </li>
+                            //seguridad
+                            <li class="">
+                                <a href="#menuSeguridad" data-toggle="collapse">
+                                    <em class="fa fa-user"></em>
+                                    <span>Seguridad</span>
+                                </a>
+                                <ul id="menuSeguridad" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">Seguridad</li>
+                                    <li class="">
+                                        <a href="@Url.Action("Index", "Shops", new { area = "Pos" })">
+                                            <span>Sucursales</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="@Url.Action("Index", "Users", new {area = "Pos"})">
+                                            <span>Usuarios</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="@Url.Action("Index", "Rols", new {area = "Pos"})">
+                                            <span>Roles</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            //gastos
+                            <li class="">
+                                <a href="@Url.Action("Resume", "Clasifications", new {area = "Expenses"})">
+                                    <em class="fa fa-money"></em>
+                                    <span>Control de Gastos</span>
+                                </a>
+                            </li>
+                            //administracion
+                            <li class="">
+                                <a href="@Url.Action("OptionsList", "Users", new {area = "Pos"})">
+                                    <em class="fa fa-tasks"></em>
+                                    <span>Administracion</span>
+                                </a>
+                            </li>
+      
+                            //operaciones
+                            <li class="">
+                                <a href="#menuconfig" data-toggle="collapse">
+                                    <em class="fa fa-dollar"></em>
+                                    <span>Operaciones</span>
+                                </a>
+                                <ul id="menuconfig" class="nav sidebar-subnav collapse">
+
+                                    <li class="sidebar-subnav-header">Operaciones</li>
+                                    <li class="">
+                                        <a href="@Url.Action("Index", "Purchases", new { area = "Pos" })">
+                                            <span>Compras</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+                                        <a href="@Url.Action("Index", "Sales", new { area = "Pos" })">
+                                            <span>Ventas</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            //iguala
+                            @*<li class="">
+                                    <a href="#menuconfig2" data-toggle="collapse">
+                                        <em class="fa fa-cog"></em>
+                                        <span>Configuracion Iguala</span>
+                                    </a>
+                                    <ul id="menuconfig2" class="nav sidebar-subnav collapse">
+                                        <li class="sidebar-subnav-header">Configuracion</li>
+                                        <li class="">
+                                            <a href="@Url.Action("Index", "Business", new { area = "EqualAccounting" })">
+                                                <span>Negocios (Mis Clientes)</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>*@
+
+                        }
+                        else
+                        {
+                            <li class="">
+                                <ul class="nav navbar-nav navbar-right">
+                                    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                                    @*<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>*@
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <aside class="offsidebar hide">
+            <nav>
+                <div role="tabpanel">
+                    <ul role="tablist" class="nav nav-tabs nav-justified">
+                        <li role="presentation" class="active">
+                            <a href="#app-settings" aria-controls="app-settings" role="tab" data-toggle="tab">
+                                <em class="icon-equalizer fa-lg"></em>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#app-chat" aria-controls="app-chat" role="tab" data-toggle="tab">
+                                <em class="icon-user fa-lg"></em>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="app-settings" role="tabpanel" class="tab-pane fade in active">
+                            <h3 class="text-center text-thin">Tab 1</h3>
+                        </div>
+                        <div id="app-chat" role="tabpanel" class="tab-pane fade">
+                            <h3 class="text-center text-thin">Tab 2</h3>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <section>
+
+            <div class="content-wrapper">
+                <div class="content-heading">
+                    <div class="pull-right">
+                        <div class="btn-group">
+
+                        </div>
+                    </div>
+
+                    @ViewBag.Title &nbsp;&nbsp;&nbsp; @ViewBag.Doctor
+                </div>
+                <div class="row">
+               
+                    <div class="col-xs-12">
+                        @RenderBody()
+
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - By PraySoft</p>  <div height="50px" width="100%">
+            </div>
+
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    @RenderSection("scripts", required: false)
+
+    <link href="~/Content/DataTables/css/dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/select.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    @*<script src="~/Scripts/DataTables/dataTables.min.js"></script>*@
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+    @*<script src="~/Scripts/DataTables/dataTables.responsive.min.js"></script>*@
+    @*<script src="~/Scripts/DataTables/responsive.bootstrap.min.js"></script>*@
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+
+    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>*@
+    @*<script src="~/Scripts/Ps/js/fileupload.js"></script>*@
+
+ 
+ 
+ 
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script>
+           
+            $(document).ready(function () {
+        
+                checkSupportForInputTypeDate();
+
+                function checkSupportForInputTypeDate() {
+                    jQuery.validator.methods.date = function (value, element) {
+                        var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                        var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+                        if (isSafari || isChrome) {
+                            var d = new Date();
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        } else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                }
+
+            });
+
+
+        </script>
+
+    }
+</body>
+</html>

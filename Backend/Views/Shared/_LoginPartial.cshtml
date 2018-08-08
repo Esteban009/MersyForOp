@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage",new { area = "" },   htmlAttributes: new { title = "Manage" })
+            </li>
+            @*<span ></span>*@
+            @*<li><a class="btn-danger" href="javascript:document.getElementById('logoutForm').submit()" data-localize="dashboard.LOGOFF">Log off</a></li>*@
+   
+            <li><a class="btn-danger" href="javascript:document.getElementById('logoutForm').submit()"  >Cerrar Sesion</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+        <li>
+            @*<a data-localize="dashboard.LOGIN" class="btn-success" href="/Account/Login"> <span class=""></span>     </a>*@
+     
+            <a   class="btn-success" href="@Url.Action("Login", "Account", new { area = "" })"> <span class="">Iniciar Sesion</span> </a>
+        </li>
+        @*<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+    </ul>
+}

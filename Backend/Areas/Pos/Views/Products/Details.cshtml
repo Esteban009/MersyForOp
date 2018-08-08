@@ -1,0 +1,115 @@
+﻿@model Domain.POS.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Measure.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Measure.Code)
+        </dd>
+
+         
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BarCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BarCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BarcodeImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BarcodeImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observations)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellPrice)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Itbis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Itbis)
+        </dd>
+
+         
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,205 @@
+﻿@model IEnumerable<Domain.POS.Sale>
+
+@{
+    ViewBag.Title = "Deudas dek Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<br />
+
+<div class="scroller">
+    <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status.Name)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.SalesInvoiceNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtAmount)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                 
+                    <a class="btn btn-success" href="@Url.Action("CreatePayment", "Customers", new {area = "Pos", id = @item.SalesId})"> <span class="fa fa-check"></span> Realizar Pago</a>
+                 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesInvoiceNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesDate)
+                </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DebtAmount)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DataTables/jszip.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+
+
+    @*<link href="../../Content/IPI/General.css" rel="stylesheet" />
+        <link href="../../Content/tabs.css" rel="stylesheet" />
+
+        <link href="../../Scripts/jquery.DataTables/js/1.10.15/jquery.dataTables.css" rel="stylesheet" />
+        <link href="../../Scripts/jquery.DataTables/js/1.10.15/buttons.dataTables.min.css" rel="stylesheet" />
+
+        <script src="../../Scripts/jquery.DataTables/js/1.10.15/jszip.min.js"></script>
+        <script src="../../Scripts/jquery.DataTables/js/1.10.15/jquery.dataTables.js"></script>
+        <script src="../../Scripts/jquery.DataTables/js/1.10.15/dataTables.buttons.min.js"></script>
+        <script src="../../Scripts/jquery.DataTables/js/1.10.15/buttons.html5.min.js"></script>
+        <script src="../../Scripts/jquery.DataTables/js/1.10.15/buttons.flash.min.js"></script>*@
+
+    <script>
+
+        $(document).ready(function () {
+            $('#MyTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'excel',
+                        text: 'Exportar a Excel',
+                        title: 'Datos',
+                        footer: false,
+                        exportOptions: {
+                            orthogonal: 'filter'
+                        }
+                    }
+                ],
+                "order": [],
+                "footerCallback": function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                            i : 0;
+                    };
+
+                    // Total over all pages
+                    total = api
+                        .column(4)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(4, { page: 'current' })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(4).footer()).html(
+                        '$' + pageTotal + ' ( $' + total + ' total)'
+                    );
+                }
+
+                // Your other options here...
+            });
+
+            $('#DivRange').hide();
+
+            $('#option1').click(function () {
+                $('#DivRange').hide();
+
+                var url = '@Url.Action("Index", "Sales",new {area="Pos"})'; //   var url = '/Pos/Sales/Index/' + $('#RecipeId').val();
+                window.location.href = url + '/?id=0,error=""&searchTipe=1&dateFrom=' + $('#FromDate').val().trim() + '&dateTo=' + $('#ToDate').val().trim() + '&select=' + $('#selectOption').val();
+
+            });
+            $('#option2').click(function () {
+                $('#DivRange').hide();
+
+                var url = '@Url.Action("Index", "Sales",new {area="Pos"})'; //   var url = '/Pos/Sales/Index/' + $('#RecipeId').val();
+                window.location.href = url + '/?id=0,error=""&searchTipe=2&dateFrom=' + $('#FromDate').val().trim() + '&dateTo=' + $('#ToDate').val().trim() + '&select=' + $('#selectOption').val();
+
+            });
+            $('#option3').click(function () {
+                $('#DivRange').hide();
+                 
+                var url = '@Url.Action("Index", "Sales",new {area="Pos"})'; //   var url = '/Pos/Sales/Index/' + $('#RecipeId').val();
+                window.location.href = url + '/?id=0,error=""&searchTipe=3&dateFrom=' + $('#FromDate').val().trim() + '&dateTo=' + $('#ToDate').val().trim() + '&select=' + $('#selectOption').val();
+
+            });
+            $('#option4').click(function () {
+                $('#DivRange').show();
+            });
+
+            $('#BtnSearch').click(function () {
+
+                //$('#DivRange').hide();
+                $('#BtnSearch').attr('disabled', 'disabled');
+                if ($('#FromDate').val().trim() === '') {
+                    alert('Debe seleccionar la fecha desde cuando quiere el reporte');
+                    $('#BtnSearch').removeAttr('disabled');
+                    return;
+                }
+
+                if ($('#ToDate').val().trim() === '') {
+                    alert('Debe seleccionar la fecha hasta donde quiere el reporte');
+                    $('#BtnSearch').removeAttr('disabled');
+                    return;
+                }
+                
+                var url = '@Url.Action("Index", "Sales",new {area="Pos"})'; //   var url = '/Pos/Sales/Index/' + $('#RecipeId').val();
+                window.location.href = url + '/?id=0,error=""&searchTipe=4&dateFrom=' + $('#FromDate').val().trim() + '&dateTo=' + $('#ToDate').val().trim() + '&select=' + $('#selectOption').val();
+
+            });
+
+
+        });
+    </script>
+
+}
+

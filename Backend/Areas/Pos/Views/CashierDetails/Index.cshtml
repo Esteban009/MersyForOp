@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Domain.POS.CashierDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cashier.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndingDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cashier.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndingDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CashierDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CashierDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CashierDetailId })
+        </td>
+    </tr>
+}
+
+</table>

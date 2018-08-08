@@ -1,0 +1,3673 @@
+﻿@model Backend.Areas.Medicals.Models.AnaliticalSheetView
+@{
+    Layout = null;
+}
+@*<style type="text/css">
+
+        @@media print {
+
+            html, body {
+                height:100vh;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden;
+            }
+
+        }
+
+    </style>*@
+<style>
+    @@page {
+        size: A4;
+        margin: 1cm;
+    }
+
+    .print {
+        display: none;
+    }
+
+    @@media print {
+        div.fix-break-print-page {
+            page-break-inside: avoid;
+        }
+
+        .print {
+            display: block;
+        }
+    }
+
+    .print:last-child {
+        page-break-after: auto;
+    }
+</style>
+@*<div style="height: 11.5in;width:8.3in">*@
+@*<div style="max-width: @Model.Width; max-height: @Model.Heigh">*@
+@{
+    int counter = 0;
+}
+<div>
+    <div style="height: 12%; width: 100%">
+        <table id="TableHeader" style="font-size: 12pt; font-family: Times New Roman; font-weight: bold; text-transform: uppercase">
+            <tr>
+                <td rowspan="4" style="width: 15%">
+
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="Image" style="width: auto; height: 85px;" dir="rtl" />
+                    }
+                </td>
+                <td rowspan="4" style="width: 75%; text-align: center">
+                    @if (!string.IsNullOrEmpty(Model.Header1))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header1)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header2))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header2)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header3))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header3)
+                        </div>
+                    }
+                    <br /><br />Receta Medica
+                </td>
+                <td rowspan="4" style="width: 0"></td>
+                <td style="width: 10%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="height: 70%; width: 100%">
+        <div>
+            <hr /><br />
+
+            @if (!string.IsNullOrEmpty(Model.AnalyticalSheetDate.ToString().Substring(0, 10)))
+            {
+                <div class="row">
+                    Fecha:
+                    @Html.DisplayFor(model => model.AnalyticalSheetDate)
+                </div>
+                <br />
+            }
+            @if (!string.IsNullOrEmpty(Model.PatientName))
+            {
+                <div class="row">
+                    Paciente:
+                    @Html.DisplayFor(model => model.PatientName)
+                </div><br />
+            }
+
+            <div class="container form-group">
+
+
+
+                @if ((Model.Hemograma))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hemograma) @Html.DisplayFor(model => model.Hemograma)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.ConteodePlaquetas))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ConteodePlaquetas) @Html.DisplayFor(model => model.ConteodePlaquetas)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.ConteodeReticulocitos))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ConteodeReticulocitos) @Html.DisplayFor(model => model.ConteodeReticulocitos)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.ConteodeEosinofilos))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ConteodeEosinofilos) @Html.DisplayFor(model => model.ConteodeEosinofilos)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Eritrosedimentacion))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Eritrosedimentacion) @Html.DisplayFor(model => model.Eritrosedimentacion)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.Falcemia))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Falcemia) @Html.DisplayFor(model => model.Falcemia)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.InvdeHematozoarias))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.InvdeHematozoarias) @Html.DisplayFor(model => model.InvdeHematozoarias)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.InvdeCelulasFalciformes))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.InvdeCelulasFalciformes) @Html.DisplayFor(model => model.InvdeCelulasFalciformes)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.TiempodeSangria))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.TiempodeSangria) @Html.DisplayFor(model => model.TiempodeSangria)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.TiempodeCoagulacion))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.TiempodeCoagulacion) @Html.DisplayFor(model => model.TiempodeCoagulacion)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.RetracciondeCoagulo))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.RetracciondeCoagulo) @Html.DisplayFor(model => model.RetracciondeCoagulo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.FragilidadEntrocitica))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.FragilidadEntrocitica) @Html.DisplayFor(model => model.FragilidadEntrocitica)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.Fibrinogeno))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Fibrinogeno) @Html.DisplayFor(model => model.Fibrinogeno)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.TiempodeTrombina))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.TiempodeTrombina) @Html.DisplayFor(model => model.TiempodeTrombina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.PruebadeEmbarazo))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.PruebadeEmbarazo) @Html.DisplayFor(model => model.PruebadeEmbarazo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.UroanalisisCompleto))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.UroanalisisCompleto) @Html.DisplayFor(model => model.UroanalisisCompleto)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.Espermatograma))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Espermatograma) @Html.DisplayFor(model => model.Espermatograma)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.Cultivo))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Cultivo) @Html.DisplayFor(model => model.Cultivo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.Coprologico))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Coprologico) @Html.DisplayFor(model => model.Coprologico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+                @if ((Model.EstudiodeDigestion))
+                {
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.EstudiodeDigestion) @Html.DisplayFor(model => model.EstudiodeDigestion)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+                @*aqui van 20*@
+
+
+                @if ((Model.InvdeSangreoculta))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.InvdeSangreoculta) @Html.DisplayFor(model => model.InvdeSangreoculta)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AcidoUrico))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AcidoUrico) @Html.DisplayFor(model => model.AcidoUrico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AcidoValproico))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AcidoValproico) @Html.DisplayFor(model => model.AcidoValproico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AlfaAmilasaPancreatica))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AlfaAmilasaPancreatica) @Html.DisplayFor(model => model.AlfaAmilasaPancreatica)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Amilasa))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Amilasa) @Html.DisplayFor(model => model.Amilasa)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Bilirrubina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Bilirrubina) @Html.DisplayFor(model => model.Bilirrubina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ColesterolTotal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ColesterolTotal) @Html.DisplayFor(model => model.ColesterolTotal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Hdl))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hdl) @Html.DisplayFor(model => model.Hdl)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Tp))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tp) @Html.DisplayFor(model => model.Tp)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ttp))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ttp) @Html.DisplayFor(model => model.Ttp)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ldl))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ldl) @Html.DisplayFor(model => model.Ldl)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Vldl))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Vldl) @Html.DisplayFor(model => model.Vldl)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Creatinina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Creatinina) @Html.DisplayFor(model => model.Creatinina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Calcio))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Calcio) @Html.DisplayFor(model => model.Calcio)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.DepuraciondeCreatinina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.DepuraciondeCreatinina) @Html.DisplayFor(model => model.DepuraciondeCreatinina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Fosforo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Fosforo) @Html.DisplayFor(model => model.Fosforo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.GlucosaAyunas))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.GlucosaAyunas) @Html.DisplayFor(model => model.GlucosaAyunas)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.GlucosaPostPrandial))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.GlucosaPostPrandial) @Html.DisplayFor(model => model.GlucosaPostPrandial)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.GlucosaCurvaHoras))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.GlucosaCurvaHoras) @Html.DisplayFor(model => model.GlucosaCurvaHoras)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ggpt))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ggpt) @Html.DisplayFor(model => model.Ggpt)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+                @*aqui van 20*@
+
+                @if ((Model.Glubotinas))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Glubotinas) @Html.DisplayFor(model => model.Glubotinas)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HemoglobinaGlicosilada))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HemoglobinaGlicosilada) @Html.DisplayFor(model => model.HemoglobinaGlicosilada)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HierroCaptacionFijacion))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HierroCaptacionFijacion) @Html.DisplayFor(model => model.HierroCaptacionFijacion)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.LipidosTotales))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.LipidosTotales) @Html.DisplayFor(model => model.LipidosTotales)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Magnesio))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Magnesio) @Html.DisplayFor(model => model.Magnesio)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.MicroalbuminaCualitativa))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.MicroalbuminaCualitativa) @Html.DisplayFor(model => model.MicroalbuminaCualitativa)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Sgotast))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Sgotast) @Html.DisplayFor(model => model.Sgotast)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Sgptalt))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Sgptalt) @Html.DisplayFor(model => model.Sgptalt)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Trigiceridos))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Trigiceridos) @Html.DisplayFor(model => model.Trigiceridos)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.UreaNitrgenada))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.UreaNitrgenada) @Html.DisplayFor(model => model.UreaNitrgenada)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Acth))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Acth) @Html.DisplayFor(model => model.Acth)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AcidoFolico))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AcidoFolico) @Html.DisplayFor(model => model.AcidoFolico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+                @*aqui van 20*@
+
+                @if ((Model.Alfafetoproteina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Alfafetoproteina) @Html.DisplayFor(model => model.Alfafetoproteina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+                @if ((Model.AntiHav))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntiHav) @Html.DisplayFor(model => model.AntiHav)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AntiHaVlgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntiHaVlgM) @Html.DisplayFor(model => model.AntiHaVlgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AntiHbc))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntiHbc) @Html.DisplayFor(model => model.AntiHbc)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AntiHbe))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntiHbe) @Html.DisplayFor(model => model.AntiHbe)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AntiHbe))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntiHbe) @Html.DisplayFor(model => model.AntiHbe)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Hhcg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hhcg) @Html.DisplayFor(model => model.Hhcg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Cea))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Cea) @Html.DisplayFor(model => model.Cea)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ca125))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ca125) @Html.DisplayFor(model => model.Ca125)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ca153))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ca153) @Html.DisplayFor(model => model.Ca153)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ca199))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ca199) @Html.DisplayFor(model => model.Ca199)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ClamidialgG))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ClamidialgG) @Html.DisplayFor(model => model.ClamidialgG)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ClamidialgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ClamidialgM) @Html.DisplayFor(model => model.ClamidialgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CortisolAm))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CortisolAm) @Html.DisplayFor(model => model.CortisolAm)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CortisolPm))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CortisolPm) @Html.DisplayFor(model => model.CortisolPm)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.DimeroD))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.DimeroD) @Html.DisplayFor(model => model.DimeroD)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.DenguelgG))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.DenguelgG) @Html.DisplayFor(model => model.DenguelgG)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.DenguelgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.DenguelgM) @Html.DisplayFor(model => model.DenguelgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.EpsteinBarrlgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.EpsteinBarrlgM) @Html.DisplayFor(model => model.EpsteinBarrlgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.EpsteinBarrlgG))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.EpsteinBarrlgG) @Html.DisplayFor(model => model.EpsteinBarrlgG)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ElectroforesisdeHemoglobina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ElectroforesisdeHemoglobina) @Html.DisplayFor(model => model.ElectroforesisdeHemoglobina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ElectDeProteinas))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ElectDeProteinas) @Html.DisplayFor(model => model.ElectDeProteinas)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Estradiol))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Estradiol) @Html.DisplayFor(model => model.Estradiol)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.EstrogenosTotales))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.EstrogenosTotales) @Html.DisplayFor(model => model.EstrogenosTotales)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ferritina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ferritina) @Html.DisplayFor(model => model.Ferritina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Hiv))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hiv) @Html.DisplayFor(model => model.Hiv)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HerpesIyIIlgG))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HerpesIyIIlgG) @Html.DisplayFor(model => model.HerpesIyIIlgG)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HerpesIyIIlgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HerpesIyIIlgM) @Html.DisplayFor(model => model.HerpesIyIIlgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HormonadeCrecimientoBasal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HormonadeCrecimientoBasal) @Html.DisplayFor(model => model.HormonadeCrecimientoBasal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HormonadeCrecPostEstimulo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HormonadeCrecPostEstimulo) @Html.DisplayFor(model => model.HormonadeCrecPostEstimulo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.HbeAg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.HbeAg) @Html.DisplayFor(model => model.HbeAg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Insulina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Insulina) @Html.DisplayFor(model => model.Insulina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.InsulinaBasal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.InsulinaBasal) @Html.DisplayFor(model => model.InsulinaBasal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.InsulinaPostPandrial))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.InsulinaPostPandrial) @Html.DisplayFor(model => model.InsulinaPostPandrial)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Lh))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Lh) @Html.DisplayFor(model => model.Lh)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Progesterona))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Progesterona) @Html.DisplayFor(model => model.Progesterona)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Prolactina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Prolactina) @Html.DisplayFor(model => model.Prolactina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.T3))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.T3) @Html.DisplayFor(model => model.T3)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.T3Libre))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.T3Libre) @Html.DisplayFor(model => model.T3Libre)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.T4))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.T4) @Html.DisplayFor(model => model.T4)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.T4Libre))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.T4Libre) @Html.DisplayFor(model => model.T4Libre)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Tiroglubolina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tiroglubolina) @Html.DisplayFor(model => model.Tiroglubolina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ToxolgG))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ToxolgG) @Html.DisplayFor(model => model.ToxolgG)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.ToxolgM))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ToxolgM) @Html.DisplayFor(model => model.ToxolgM)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Transferrina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Transferrina) @Html.DisplayFor(model => model.Transferrina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.VitaminaB12))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.VitaminaB12) @Html.DisplayFor(model => model.VitaminaB12)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Tsh))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tsh) @Html.DisplayFor(model => model.Tsh)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Cetos))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Cetos) @Html.DisplayFor(model => model.Cetos)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Oh))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Oh) @Html.DisplayFor(model => model.Oh)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Fsh))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Fsh) @Html.DisplayFor(model => model.Fsh)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Vma))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Vma) @Html.DisplayFor(model => model.Vma)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AntigenosFebriles))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AntigenosFebriles) @Html.DisplayFor(model => model.AntigenosFebriles)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AsoCuantitativo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AsoCuantitativo) @Html.DisplayFor(model => model.AsoCuantitativo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.AgAustraliano))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AgAustraliano) @Html.DisplayFor(model => model.AgAustraliano)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.BhcgCuantitativo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.BhcgCuantitativo) @Html.DisplayFor(model => model.BhcgCuantitativo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Ftaabs))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ftaabs) @Html.DisplayFor(model => model.Ftaabs)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.LgGInmunoglobina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.LgGInmunoglobina) @Html.DisplayFor(model => model.LgGInmunoglobina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.LgE))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.LgE) @Html.DisplayFor(model => model.LgE)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.LgMInmunoglobina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.LgMInmunoglobina) @Html.DisplayFor(model => model.LgMInmunoglobina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.PcRdealtaSensibilidad))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.PcRdealtaSensibilidad) @Html.DisplayFor(model => model.PcRdealtaSensibilidad)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Tipificacion))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tipificacion) @Html.DisplayFor(model => model.Tipificacion)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.TestdeCommbsDirecto))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.TestdeCommbsDirecto) @Html.DisplayFor(model => model.TestdeCommbsDirecto)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.TestdeCommbsIndirecto))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.TestdeCommbsIndirecto) @Html.DisplayFor(model => model.TestdeCommbsIndirecto)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.Vdrl))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Vdrl) @Html.DisplayFor(model => model.Vdrl)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.VdrLenLcr))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.VdrLenLcr) @Html.DisplayFor(model => model.VdrLenLcr)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.BaciloscopiadeEsputo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.BaciloscopiadeEsputo) @Html.DisplayFor(model => model.BaciloscopiadeEsputo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.BaciloscopiaenOrina))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.BaciloscopiaenOrina) @Html.DisplayFor(model => model.BaciloscopiaenOrina)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CultivoSecUretral))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoSecUretral) @Html.DisplayFor(model => model.CultivoSecUretral)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CultivoSecVaginal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoSecVaginal) @Html.DisplayFor(model => model.CultivoSecVaginal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CultivoSecdeHerida))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoSecdeHerida) @Html.DisplayFor(model => model.CultivoSecdeHerida)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CultivoSecAbsceso))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoSecAbsceso) @Html.DisplayFor(model => model.CultivoSecAbsceso)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+                @if ((Model.CultivoSecSemen))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoSecSemen) @Html.DisplayFor(model => model.CultivoSecSemen)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+                @if ((Model.Coprocultivo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Coprocultivo) @Html.DisplayFor(model => model.Coprocultivo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hemocultivo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hemocultivo) @Html.DisplayFor(model => model.Hemocultivo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Urocultivo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Urocultivo) @Html.DisplayFor(model => model.Urocultivo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hba1C))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hba1C) @Html.DisplayFor(model => model.Hba1C)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Bd))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Bd) @Html.DisplayFor(model => model.Bd)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Tc))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tc) @Html.DisplayFor(model => model.Tc)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Igm))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Igm) @Html.DisplayFor(model => model.Igm)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Urea))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Urea) @Html.DisplayFor(model => model.Urea)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.ProteinasTotales))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.ProteinasTotales) @Html.DisplayFor(model => model.ProteinasTotales)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Estradial))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Estradial) @Html.DisplayFor(model => model.Estradial)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Ldh))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ldh) @Html.DisplayFor(model => model.Ldh)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Tgo))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tgo) @Html.DisplayFor(model => model.Tgo)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Trigliceridos))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Trigliceridos) @Html.DisplayFor(model => model.Trigliceridos)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Sodio))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Sodio) @Html.DisplayFor(model => model.Sodio)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hbsag))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hbsag) @Html.DisplayFor(model => model.Hbsag)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Rubeola))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Rubeola) @Html.DisplayFor(model => model.Rubeola)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Tgp))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tgp) @Html.DisplayFor(model => model.Tgp)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.BilTotal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.BilTotal) @Html.DisplayFor(model => model.BilTotal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Pcr))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Pcr) @Html.DisplayFor(model => model.Pcr)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Toxoplasmosis))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Toxoplasmosis) @Html.DisplayFor(model => model.Toxoplasmosis)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Potasio))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Potasio) @Html.DisplayFor(model => model.Potasio)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.CultivoVagin))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.CultivoVagin) @Html.DisplayFor(model => model.CultivoVagin)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Bhcg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Bhcg) @Html.DisplayFor(model => model.Bhcg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Glisemia))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Glisemia) @Html.DisplayFor(model => model.Glisemia)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Bi))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Bi) @Html.DisplayFor(model => model.Bi)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Ftabs))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ftabs) @Html.DisplayFor(model => model.Ftabs)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Igg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Igg) @Html.DisplayFor(model => model.Igg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hcg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hcg) @Html.DisplayFor(model => model.Hcg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hto))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hto) @Html.DisplayFor(model => model.Hto)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Hb))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Hb) @Html.DisplayFor(model => model.Hb)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.RtoGb))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.RtoGb) @Html.DisplayFor(model => model.RtoGb)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.AcUrico))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AcUrico) @Html.DisplayFor(model => model.AcUrico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Fal))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Fal) @Html.DisplayFor(model => model.Fal)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Proteinas))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Proteinas) @Html.DisplayFor(model => model.Proteinas)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Homa))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Homa) @Html.DisplayFor(model => model.Homa)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Tg))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Tg) @Html.DisplayFor(model => model.Tg)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Pth))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Pth) @Html.DisplayFor(model => model.Pth)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.VitD))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.VitD) @Html.DisplayFor(model => model.VitD)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.AcFolico))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.AcFolico) @Html.DisplayFor(model => model.AcFolico)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Ferremia))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Ferremia) @Html.DisplayFor(model => model.Ferremia)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.B1))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.B1) @Html.DisplayFor(model => model.B1)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.B6))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.B6) @Html.DisplayFor(model => model.B6)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+
+
+
+
+
+                @if ((Model.Zinc))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            @{counter = 0;}
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Zinc) @Html.DisplayFor(model => model.Zinc)
+                        </b>
+
+                        @{counter += 1;}
+                    </div>
+                    <br />
+                }
+
+                @if ((Model.Paratohormona))
+                {
+                    if (counter >= 20)
+                    {
+                        <div>
+                            <br /><br /><br />
+                            
+                        </div>
+
+                    }
+                    <div class="col-md-6">
+                        <b>
+                            @Html.LabelFor(m => m.Paratohormona) @Html.DisplayFor(model => model.Paratohormona)
+                        </b>
+
+                        
+                    </div>
+                    <br />
+                }
+
+            </div>
+
+            <br /><br />
+
+            @if (!string.IsNullOrEmpty(Model.Observations))
+            {
+                <div class="row">
+                    <u><b>Observación(es)</b></u>
+                </div>
+                <div class="row">
+                    @Html.DisplayFor(model => model.Observations)
+                </div>
+            }
+
+            <br />
+            <br /><br /><br /><br /><br />
+            <div class="row" style="text-align: center">
+                Firma del Medico:___________________________________
+            </div>
+        </div>
+        <br /><br />
+
+        <div style="position:fixed;text-align: center; width: 100%;bottom:0">
+            <hr />
+
+            @if (!string.IsNullOrEmpty(Model.Footer1))
+            {
+                <div>
+                    @Html.DisplayFor(model => model.Footer1)
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Footer2))
+            {
+                <div>
+                    @Html.DisplayFor(model => model.Footer2)
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Footer3))
+            {
+                <div>
+                    @Html.DisplayFor(model => model.Footer3)
+                </div>
+            }
+
+        </div>
+    </div>
+    @*<div style="position:absolute; bottom: 0; text-align: center">*@
+    @*<div style="position:absolute;position:relative; text-align: center">*@
+
+
+
+</div>
+
+<script>
+    window.onload = function () {
+
+        window.print();
+    }
+                // window.close();
+</script>

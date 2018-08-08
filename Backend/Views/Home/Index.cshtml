@@ -1,0 +1,102 @@
+﻿@model Domain.GEN.Report
+
+@{
+    ViewBag.Title = "Inicio";
+}
+@*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8521044456540023",
+        enable_page_level_ads: true
+    });
+</script>*@
+@*<div class="jumbotron">
+        <h1>Mersy: Sistema Administrativo de Informacion Digital Medica</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+@Html.HiddenFor(model => model.ReportId)
+<div class="row">
+    <div style="text-align: center;">
+
+
+        <table id="TableHeader" style="font-size: 52pt; font-family: Comic Sans MS;  font-weight: bold; text-transform: uppercase;color:aqua">
+            <tr>
+                <td rowspan="4" style="width: 40%"></td>
+                <td rowspan="4" style="width: 5%; text-align: center">
+                    @if (!string.IsNullOrEmpty(@Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="My Logo" class="LogoNormalA" dir="rtl" />
+                    }
+                    @*<img src="~/Content/Icons/bird.png" alt="App Logo" class="img-responsive LogoNormal">*@
+
+                </td>
+                <td rowspan="4" style="width: 5%">
+                    <img src="~/Content/Icons/SmallLogoMercy.jpg" alt="Mersy" class="LogoNormalA" dir="rtl" />
+
+                    
+                    @*<i class="fa fa-spinner fa-spin fa-4x fa-fw"></i>*@
+                </td>
+                <td style="width: 40%"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    @if (!string.IsNullOrEmpty(@Model.Header1))
+                    {
+                        @Model.Header1
+                    }
+                    
+                    @*Su Empresa CxA*@
+                </td>
+            </tr>
+        </table>
+
+        @*<ul class="fa-ul">
+
+                <li><i class="fa-li fa fa-spinner fa-4x fa-spin "></i></li>
+
+            </ul>*@
+    </div>
+    @*<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms"*@
+    <div style="text-align: center; width: 100px;height:100px">
+        @*<img src="~/Content/Icons/LogoMercy.jpg" alt="App Logo" class="img-responsive">*@
+        @*<iframe sandbox="allow-same-origin allow-popups allow-forms"
+            src="http://praysoft.net"
+            style="border: 0; width:1024px; height:850px"></iframe>*@
+        <iframe sandbox="allow-same-origin allow-popups allow-forms  "
+                src="http://notasti.com"
+                style="border: 0; width: 20px; height: 20px"></iframe>
+        <iframe sandbox="allow-same-origin allow-popups allow-forms  "
+                src="http://praysoft.net"
+                style="border: 0; width: 20px; height: 20px"></iframe>
+        <iframe sandbox="allow-same-origin allow-popups allow-forms  "
+                src="http://sgermosen.com"
+                style="border: 0; width: 20px; height: 20px"></iframe>
+        @*<div height="50px" width="100px">
+            <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          
+            <br />
+            <ins class="adsbygoogle" data-ad-client="ca-pub-8521044456540023" data-ad-format="auto" data-ad-slot="4506538454" style="display: block;"></ins>
+        </div>*@
+        
+    </div>
+     
+</div>
+
+
+
+
+
+
+
+
+

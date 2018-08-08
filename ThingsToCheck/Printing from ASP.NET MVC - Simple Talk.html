@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" style="" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-site-verification" content="v4FeIuwXgEi2SrU3GYFHMTLZhMn2CEi1Tk4MT7LN_lc">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<script async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a_003.html"></script><script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/305265_002.js" type="text/javascript" id="hs-script-loader"></script><script type="text/javascript" async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/heap-3441118981.js"></script><script id="hs-analytics" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/305265.js"></script><script type="text/javascript" async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/analytics.js"></script><script type="text/javascript" async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/cse.js"></script><script async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/gtm.js"></script><script>dataLayer = [];</script>
+
+	<script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/authentication.js"></script>
+	<script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/synchroniseidentity.js"></script>
+
+		<title>Printing from ASP.NET MVC - Simple Talk</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v5.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Even though we're less inclined to print web-pages nowadays, it often makes sense to save useful content from a website as a PDF file to read offline. Modern browsers give us everything we need to do that, and there is much that the website designer can do to improve the results. However, there are times that something more demanding is required, such as a properly-formatted invoice or chart, and then the web application needs a way of creating PDFs directly.">
+<link rel="canonical" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/">
+<link rel="publisher" href="https://plus.google.com/+Simple-talk/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Printing from ASP.NET MVC - Simple Talk">
+<meta property="og:description" content="Even though we're less inclined to print web-pages nowadays, it often makes sense to save useful content from a website as a PDF file to read offline. Modern browsers give us everything we need to do that, and there is much that the website designer can do to improve the results. However, there are times that something more demanding is required, such as a properly-formatted invoice or chart, and then the web application needs a way of creating PDFs directly.">
+<meta property="og:url" content="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/">
+<meta property="og:site_name" content="Simple Talk">
+<meta property="article:section" content="ASP.NET">
+<meta property="article:published_time" content="2017-01-12T11:22:02+00:00">
+<meta property="article:modified_time" content="2017-02-27T10:43:40+00:00">
+<meta property="og:updated_time" content="2017-02-27T10:43:40+00:00">
+<meta property="og:image" content="https://www.red-gate.com/simple-talk/wp-content/uploads/2017/01/d-my-articles-simpletalk-2017-pdf-fig01-png.png">
+<meta property="og:image:secure_url" content="https://www.red-gate.com/simple-talk/wp-content/uploads/2017/01/d-my-articles-simpletalk-2017-pdf-fig01-png.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Even though we're less inclined to print web-pages nowadays, it often makes sense to save useful content from a website as a PDF file to read offline. Modern browsers give us everything we need to do that, and there is much that the website designer can do to improve the results. However, there are times that something more demanding is required, such as a properly-formatted invoice or chart, and then the web application needs a way of creating PDFs directly.">
+<meta name="twitter:title" content="Printing from ASP.NET MVC - Simple Talk">
+<meta name="twitter:site" content="@simple_talk">
+<meta name="twitter:image" content="https://www.red-gate.com/simple-talk/wp-content/uploads/2017/01/d-my-articles-simpletalk-2017-pdf-fig01-png.png">
+<meta name="twitter:creator" content="@simple_talk">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Simple Talk » Feed" href="https://www.red-gate.com/simple-talk/feed/">
+<link rel="alternate" type="application/rss+xml" title="Simple Talk » Comments Feed" href="https://www.red-gate.com/simple-talk/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Simple Talk » Printing from ASP.NET MVC Comments Feed" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.red-gate.com\/simple-talk\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b===c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/wp-emoji-release.js" type="text/javascript" defer="defer"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="wgs-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/wgs.css" type="text/css" media="all">
+<link rel="stylesheet" id="wgs2-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/wgs2.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-vs2012-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/vs2012.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-courier-new-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/courier-new.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/dashicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="post-views-counter-frontend-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="cbxwpbookmarkpublic-css-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/cbxwpbookmark-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="yasrcss-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/yasr.css" type="text/css" media="all">
+<style id="yasrcss-inline-css" type="text/css">
+
+			.rateit .rateit-range {
+				background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_16.png ) left 0px;
+			}
+
+			.rateit .rateit-hover {
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_16.png ) left -21px;
+			}
+
+			.rateit .rateit-selected {
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_16.png ) left -42px;
+			}
+
+			div.medium .rateit-range {
+			    /*White*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_24.png ) left 0px;
+			}
+
+			div.medium .rateit-hover {
+			    /*Red*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_24.png ) left -29px;
+			}
+
+			div.medium .rateit-selected {
+			    /*Yellow*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_24.png ) left -58px ;
+			}
+
+			/* Creating set 32 */
+
+			div.bigstars .rateit-range {
+			    /*White*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_32.png ) left 0px ;
+			}
+
+			div.bigstars .rateit-hover{
+			    /*red*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_32.png ) left -37px ;
+			}
+
+			div.bigstars .rateit-selected
+			{
+			    /*Gold*/
+			    background: url(https://www.red-gate.com/simple-talk/wp-content/uploads/yasr/rg/stars_32.png ) left -74px ;
+			}
+
+		
+</style>
+<link rel="stylesheet" id="jquery-ui-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jquery-ui.css" type="text/css" media="all">
+<link rel="stylesheet" id="yasrcsslightscheme-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/yasr-table-light.css" type="text/css" media="all">
+<link rel="stylesheet" id="simpletalk-style-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jquery_002.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jquery-migrate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var cbxwpbookmark = {"ajaxurl":"https:\/\/www.red-gate.com\/simple-talk\/wp-admin\/admin-ajax.php","nonce":"c69d4196bc","cat_template":"\"\\r\\n            <div class=\\\"cbxbookmark-mycat-editbox\\\">\\r\\n\\r\\n                <input class=\\\"cbxbmedit-catname\\\" name=\\\"catname\\\" value=\\\"##catname##\\\" \\\/>                \\r\\n                <select class=\\\"cbxbmedit-privacy input-catprivacy\\\" name=\\\"catprivacy\\\">\\r\\n                  <option value=\\\"1\\\">Public<\\\/option>\\r\\n                  <option value=\\\"0\\\">Private<\\\/option>  \\r\\n                <\\\/select>\\r\\n                <a href=\\\"#\\\" class=\\\"cbxbookmark-btn cbxbookmark-cat-save\\\">Update <span class=\\\"cbxbm_busy\\\" style=\\\"display:none;\\\"><\\\/span><\\\/a>\\r\\n                <a href=\\\"#\\\" class=\\\"cbxbookmark-btn cbxbookmark-cat-close\\\">Close<\\\/a>\\r\\n            <\\\/div>\"","category_delete_success":"Category deleted successfully","category_delete_error":"Unable to delete the category","areyousuretodeletecat":"Are you sure you want to delete this Bookmark Category?","areyousuretodeletebookmark":"Are you sure you want to delete this Bookmark?","bookmark_failed":"Faild to Bookmark","bookmark_removed":"Bookmark Removed"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/cbxwpbookmark-public.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sendyOptions = {"ajaxUrl":"https:\/\/www.red-gate.com\/simple-talk\/wp-admin\/admin-ajax.php","lists":{".NET newsletter":"WP0iWal3XRl7637634pL0QAowg","Simple Talk":"Ww0i892QBs90gtk8qJjIW87g"},"is_user_logged_in":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/st-sendy.js"></script>
+<link rel="https://api.w.org/" href="https://www.red-gate.com/simple-talk/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.red-gate.com/simple-talk/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.red-gate.com/simple-talk/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.8">
+<link rel="shortlink" href="https://www.red-gate.com/simple-talk/?p=69551">
+<link rel="alternate" type="application/json+oembed" href="https://www.red-gate.com/simple-talk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.red-gate.com%2Fsimple-talk%2Fdotnet%2Fasp-net%2Fprinting-asp-net-mvc%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.red-gate.com/simple-talk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.red-gate.com%2Fsimple-talk%2Fdotnet%2Fasp-net%2Fprinting-asp-net-mvc%2F&amp;format=xml">
+<link rel="icon" href="https://www.red-gate.com/simple-talk/wp-content/uploads/2016/07/gatebase-favicon.png" sizes="32x32">
+<link rel="icon" href="https://www.red-gate.com/simple-talk/wp-content/uploads/2016/07/gatebase-favicon.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://www.red-gate.com/simple-talk/wp-content/uploads/2016/07/gatebase-favicon.png">
+<meta name="msapplication-TileImage" content="https://www.red-gate.com/simple-talk/wp-content/uploads/2016/07/gatebase-favicon.png">
+ <script type="text/javascript" async="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/embed.js"></script><script async="" type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/count_002.js"></script><script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/count-data.js"></script><link rel="prefetch" as="style" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a_data/lounge.css"><link rel="prefetch" as="script" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a_data/common.js"><link rel="prefetch" as="script" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a_data/lounge_002.js"><link rel="prefetch" as="script" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a_data/config.js"><script src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jsapi" type="text/javascript"></script><link type="text/css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/defaulten.css" rel="stylesheet"><link type="text/css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/minimalist.css" rel="stylesheet"><script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/defaulten.js"></script><style type="text/css">.gsc-control-cse{font-family:Arial, sans-serif;border-color:#FFFFFF;background-color:#FFFFFF}.gsc-control-cse .gsc-table-result{font-family:Arial, sans-serif}input.gsc-input{border-color:#BBBBBB}input.gsc-search-button{border-color:#000000;background-color:#333333}.gsc-tabHeader.gsc-tabhInactive{border-color:#777777;background-color:#777777}.gsc-tabHeader.gsc-tabhActive{border-color:#333333;background-color:#333333}.gsc-tabsArea{border-color:#333333}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result.gsc-promotion:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#444444}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#444444}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#444444}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#777777}.gsc-cursor-page{color:#444444}a.gsc-trailing-more-results:link{color:#444444}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#333333}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#000000}.gs-webResult div.gs-visibleUrl-short{color:#000000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#777777;background-color:#FFFFFF;color:#444444}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#333333;background-color:#333333;color:#444444}.gsc-webResult.gsc-result.gsc-promotion{border-color:#CCCCCC;background-color:#E6E6E6}.gsc-completion-title{color:#444444}.gsc-completion-snippet{color:#333333}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#444444}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#00CC00}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#333333}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#00CC00}</style></head>
+
+<body class="post-template-default single single-post postid-69551 single-format-standard wp-custom-logo grid" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N5S5ZL"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-N5S5ZL');</script>
+	<!-- End Google Tag Manager -->
+
+	
+
+<header class="band header--primary js-header-primary-collapse header--primary--collapsed"><div class="header--primary__container">
+    <nav>
+		<a href="https://www.red-gate.com/" class="header--primary__app-logo-container"><img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/redgate-logo--white.svg" alt="Redgate logo" width="94" height="23"></a>
+
+        <span class="hide-on-medium">
+            <ul class="header__nav">
+    			<li><a href="https://www.red-gate.com/products/">Products</a>
+    <ul>
+        <li>
+            <a href="https://www.red-gate.com/products/#sql-server" class="js-scroll-to" data-scroll-to-offset="-70">SQL Server</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-toolbelt">SQL Toolbelt</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-compare">SQL Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-data-compare">SQL Data Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-source-control/">SQL Source Control</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-prompt">SQL Prompt</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-monitor">SQL Monitor</a></li>
+                <li><a href="https://www.red-gate.com/products/dlm/dlm-automation/">DLM Automation</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-clone">SQL Clone</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-backup">SQL Backup Pro</a></li>
+                <li><a href="https://www.red-gate.com/products/dlm/dlm-dashboard/">DLM Dashboard</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/readyroll/">ReadyRoll Pro</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-search/">SQL Search</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-doc">SQL Doc</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-data-generator">SQL Data Generator</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-test">SQL Test</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-dependency-tracker">SQL Dependency Tracker</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-multi-script">SQL Multi Script</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-scripts-manager">SQL Scripts Manager</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-index-manager">SQL Index Manager</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-comparison-sdk">SQL Comparison SDK</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://www.red-gate.com/products/#azure" class="js-scroll-to" data-scroll-to-offset="-79">Azure</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/azure-development/data-platform-studio/">Data Platform Studio</a></li>
+                <li><a href="https://www.red-gate.com/products/azure-development/azure-explorer/">Azure Explorer (free)</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://www.red-gate.com/products/#net" class="js-scroll-to" data-scroll-to-offset="-70">.NET</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/dotnet-developer-bundle">.NET Developer Bundle</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/ants-performance-profiler">ANTS Performance Profiler</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/ants-memory-profiler">ANTS Memory Profiler</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/reflector">.NET Reflector</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/smartassembly">SmartAssembly</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/pinvoke">PInvoke .NET</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://www.red-gate.com/products/#oracle" class="js-scroll-to" data-scroll-to-offset="-70">Oracle</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/oracle-development/deployment-suite-for-oracle">Deployment Suite for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/schema-compare-for-oracle">Schema Compare for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/data-compare-for-oracle">Data Compare for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/source-control-for-oracle">Source Control for Oracle</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://www.red-gate.com/products/#mysql" class="js-scroll-to" data-scroll-to-offset="-70">MySQL</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-comparison-bundle">MySQL Comparison Bundle</a></li>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-compare">MySQL Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-data-compare">MySQL Data Compare</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="https://www.red-gate.com/solutions/database-devops/">Solutions</a>
+</li>
+<li><a href="https://productsupport.red-gate.com/hc">Support</a></li>
+<li>
+    <a href="https://www.red-gate.com/our-company/">Our Company</a>
+    <ul>
+        <li><a href="https://www.red-gate.com/our-company/careers/current-opportunities/">Careers</a></li>
+        <li><a href="https://www.red-gate.com/our-company/contact-us">Contact us</a></li>
+        <li><a href="https://www.red-gate.com/blog/">Redgate blog</a></li>
+    </ul>
+</li>
+<li>
+    <a href="https://www.red-gate.com/hub/" class=" active">Community Hub</a>
+    <ul>
+        <li><a href="https://www.red-gate.com/hub/product-learning">Product learning</a></li>
+        <li><a href="http://forum.red-gate.com/">Forums</a></li>
+        <li><a href="https://www.red-gate.com/hub/events/">Events &amp; groups</a></li>
+        <li><a href="https://www.red-gate.com/simple-talk/">Simple Talk</a></li>
+    </ul>
+</li>
+
+            </ul>
+        </span>
+
+        <span class="float-right header--primary__site-tools">
+            <span class="hide-on-medium header__account-container">
+        		<ul class="header__account dropdown js-dropdown" style="display: none;">
+                    <div class="show-on-small hide-on-max">
+                        <li><a href="https://www.red-gate.com/search?t=simpletalk">Search</a></li>
+                        <li><a href="https://www.red-gate.com/account/">My account</a></li>
+                        <li><a href="https://www.red-gate.com/dynamic/purchase/cart/summary?ref=account-nav">Shopping cart</a></li>
+                    </div>
+
+                    <li><a href="https://www.red-gate.com/dynamic/quotes/openquote?ref=account-nav" title="Quotes">Quotes</a></li>
+                </ul>
+            </span>
+
+            <ul class="hide-on-mini padded-left--tight">
+                <li><a href="https://www.red-gate.com/search?t=simpletalk" class="header--primary__icon icon--search"></a></li>
+                <li><a href="https://www.red-gate.com/account/" class="header--primary__icon icon--user"></a></li>
+                <li class="hide-on-medium"><a href="https://www.red-gate.com/dynamic/purchase/cart/summary?ref=account-nav" class="header--primary__icon icon--shopping-cart" title="View your shopping cart"> <span class="cart__num" data-href="https://www.red-gate.com/Dynamic/Cart/NumberOfItemsInCart"></span></a></li>
+            </ul>
+
+            <span class="hide-on-max show-on-medium">
+                <ul>
+                    <li><a href="#menu" class="header--primary__icon header--primary__menu-button"></a></li>
+                </ul>
+            </span>
+        </span>
+
+        
+    </nav>
+</div><span class="header--primary__menu--mobile">
+            <ul class="dropdown js-dropdown header__account--mobile">
+            </ul>
+            <ul class="js-dropdown">
+    			<li class="dropdown closed" data-arrow-added="true"><a href="https://www.red-gate.com/products/">Products</a>
+    <ul>
+        <li class="dropdown closed" data-arrow-added="true">
+            <a href="https://www.red-gate.com/products/#sql-server" class="js-scroll-to" data-scroll-to-offset="-70">SQL Server</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-toolbelt">SQL Toolbelt</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-compare">SQL Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-data-compare">SQL Data Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-source-control/">SQL Source Control</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-prompt">SQL Prompt</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-monitor">SQL Monitor</a></li>
+                <li><a href="https://www.red-gate.com/products/dlm/dlm-automation/">DLM Automation</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-clone">SQL Clone</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-backup">SQL Backup Pro</a></li>
+                <li><a href="https://www.red-gate.com/products/dlm/dlm-dashboard/">DLM Dashboard</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/readyroll/">ReadyRoll Pro</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-search/">SQL Search</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-doc">SQL Doc</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-data-generator">SQL Data Generator</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-test">SQL Test</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-dependency-tracker">SQL Dependency Tracker</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-multi-script">SQL Multi Script</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-scripts-manager">SQL Scripts Manager</a></li>
+                <li><a href="https://www.red-gate.com/products/dba/sql-index-manager">SQL Index Manager</a></li>
+                <li><a href="https://www.red-gate.com/products/sql-development/sql-comparison-sdk">SQL Comparison SDK</a></li>
+            </ul>
+        <a href="#toggle" class="arrow"></a></li>
+        <li class="dropdown closed" data-arrow-added="true">
+            <a href="https://www.red-gate.com/products/#azure" class="js-scroll-to" data-scroll-to-offset="-79">Azure</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/azure-development/data-platform-studio/">Data Platform Studio</a></li>
+                <li><a href="https://www.red-gate.com/products/azure-development/azure-explorer/">Azure Explorer (free)</a></li>
+            </ul>
+        <a href="#toggle" class="arrow"></a></li>
+        <li class="dropdown closed" data-arrow-added="true">
+            <a href="https://www.red-gate.com/products/#net" class="js-scroll-to" data-scroll-to-offset="-70">.NET</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/dotnet-developer-bundle">.NET Developer Bundle</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/ants-performance-profiler">ANTS Performance Profiler</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/ants-memory-profiler">ANTS Memory Profiler</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/reflector">.NET Reflector</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/smartassembly">SmartAssembly</a></li>
+                <li><a href="https://www.red-gate.com/products/dotnet-development/pinvoke">PInvoke .NET</a></li>
+            </ul>
+        <a href="#toggle" class="arrow"></a></li>
+        <li class="dropdown closed" data-arrow-added="true">
+            <a href="https://www.red-gate.com/products/#oracle" class="js-scroll-to" data-scroll-to-offset="-70">Oracle</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/oracle-development/deployment-suite-for-oracle">Deployment Suite for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/schema-compare-for-oracle">Schema Compare for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/data-compare-for-oracle">Data Compare for Oracle</a></li>
+                <li><a href="https://www.red-gate.com/products/oracle-development/source-control-for-oracle">Source Control for Oracle</a></li>
+            </ul>
+        <a href="#toggle" class="arrow"></a></li>
+        <li class="dropdown closed" data-arrow-added="true">
+            <a href="https://www.red-gate.com/products/#mysql" class="js-scroll-to" data-scroll-to-offset="-70">MySQL</a>
+            <ul>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-comparison-bundle">MySQL Comparison Bundle</a></li>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-compare">MySQL Compare</a></li>
+                <li><a href="https://www.red-gate.com/products/mysql/mysql-data-compare">MySQL Data Compare</a></li>
+            </ul>
+        <a href="#toggle" class="arrow"></a></li>
+    </ul>
+<a href="#toggle" class="arrow"></a></li>
+<li>
+    <a href="https://www.red-gate.com/solutions/database-devops/">Solutions</a>
+</li>
+<li><a href="https://productsupport.red-gate.com/hc">Support</a></li>
+<li class="dropdown closed" data-arrow-added="true">
+    <a href="https://www.red-gate.com/our-company/">Our Company</a>
+    <ul>
+        <li><a href="https://www.red-gate.com/our-company/careers/current-opportunities/">Careers</a></li>
+        <li><a href="https://www.red-gate.com/our-company/contact-us">Contact us</a></li>
+        <li><a href="https://www.red-gate.com/blog/">Redgate blog</a></li>
+    </ul>
+<a href="#toggle" class="arrow"></a></li>
+<li class="dropdown closed" data-arrow-added="true">
+    <a href="https://www.red-gate.com/hub/" class=" active">Community Hub</a>
+    <ul>
+        <li><a href="https://www.red-gate.com/hub/product-learning">Product learning</a></li>
+        <li><a href="http://forum.red-gate.com/">Forums</a></li>
+        <li><a href="https://www.red-gate.com/hub/events/">Events &amp; groups</a></li>
+        <li><a href="https://www.red-gate.com/simple-talk/">Simple Talk</a></li>
+    </ul>
+<a href="#toggle" class="arrow"></a></li>
+
+            </ul>
+        </span></header>
+	<nav class="nav-bar nav-bar--dark nav-bar--has-captions clearfix padded-left--tight text--center">
+    <h1 class="nav-bar__heading">
+        <a href="https://www.red-gate.com/hub/">
+            <img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/redgate-logo--white.svg" alt="Redgate logo" width="94" height="23"> 
+			Hub
+        </a>
+    </h1>
+
+    <ul class="float-right">
+        <li><a href="#menu" class="nav-bar__menu-button  icon--chevron-down"></a></li>
+    </ul>
+
+    <ul class="hide-on-large">
+        <li><a href="https://www.red-gate.com/hub/product-learning/">Product learning <span>Tips and how-to guides</span></a></li>
+        <li><a href="http://forum.red-gate.com/">Product forums <span>Ask, discuss, solve</span></a></li>
+        <li><a href="https://www.red-gate.com/hub/events/">Events &amp; Friends <span>Meet us and join in</span></a></li>
+        <li class="active"><a href="https://www.red-gate.com/simple-talk/">Simple Talk <span>Articles &amp; opinion</span></a></li>
+    </ul>
+</nav>	
+	<nav class="site-nav">
+		<nav class="nav-bar">
+			<div class="band__inner-container padded--none">
+				<ul id="menu-secondary-nav" class="site-nav"><li id="menu-item-71639" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-71639"><a href="https://www.red-gate.com/simple-talk/">Home</a></li>
+<li id="menu-item-20429" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20429"><a href="https://www.red-gate.com/simple-talk/sql/">SQL</a></li>
+<li id="menu-item-20427" class="active menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-20427"><a href="https://www.red-gate.com/simple-talk/dotnet/">.NET</a></li>
+<li id="menu-item-20428" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20428"><a href="https://www.red-gate.com/simple-talk/cloud/">Cloud</a></li>
+<li id="menu-item-20430" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20430"><a href="https://www.red-gate.com/simple-talk/sysadmin/">Sysadmin</a></li>
+<li id="menu-item-20431" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20431"><a href="https://www.red-gate.com/simple-talk/opinion/">Opinion</a></li>
+<li id="menu-item-20433" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20433"><a href="https://www.red-gate.com/simple-talk/books/">Books</a></li>
+<li id="menu-item-20432" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-20432"><a href="https://www.red-gate.com/simple-talk/blogs/">Blogs</a></li>
+</ul>
+				<!-- Account nav -->
+				<ul class="site-nav__account hide-on-medium">
+											<li>
+							<a href="https://www.red-gate.com/simple-talk/account/log-in">Log in</a>
+						</li>
+						<li>
+							<a href="https://www.red-gate.com/simple-talk/account/sign-up">Sign up</a>
+						</li>
+										<li>
+						<a href="https://www.red-gate.com/simple-talk/feed/" class="icon--rss" title="Simple Talk RSS feed">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</nav>
+
+<div class="content-wrapper" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/TechArticle">
+	<div class="band__inner-container padded-bottom--none">
+		<div class="padded-h--tight">
+			<div class="grid__row">
+				
+<!-- Desktop-width article meta column -->
+<div class="article__meta grid__col grid__col--span-2-of-12 hide-on-medium">
+	<div class="article__author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+		<div class="avatars">		<a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" class="avatar">
+			<img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/ace158af8dfab0e682dcc70d965514e5.jpg" alt="" class="avatar-80wp-user-avatar wp-user-avatar-80 alignnone photo avatar-default" width="80" height="80">		</a>
+	</div>
+<a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" title="Posts by Dino Esposito" class="author url fn" rel="author">Dino Esposito</a>	</div>
+
+	<p class="article__date spaced-bottom--none updated published" itemprop="datePublished" content="2017-01-12">12 January 2017</p>
+	
+	<ul class="list--bare">
+
+		<!-- Rating -->
+		<li class="article__meta__votes">
+			
+    <!-- ST Yasr Visitor Votes Readonly Shortcode -->
+    <div id="yasr_visitor_votes_readonly_69551" class="yasr-visitor-votes_readonly"><div class="rateit yasr_visitor_votes_stars_div" id="yasr_rateit_visitor_votes_readonly_69551" data-rateit-starwidth="16" data-rateit-starheight="16" data-rateit-value="4.2" data-rateit-step="1" data-rateit-resetable="false" data-rateit-readonly="true"><button id="rateit-reset-2" type="button" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-2" style="display: none;"></button><div id="rateit-range-2" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-2" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4.166666666666667" style="width: 80px; height: 16px;" aria-readonly="true"><div class="rateit-selected" style="height: 16px; width: 66.6667px;"></div><div class="rateit-hover" style="height:16px"></div></div></div></div>
+    <!-- End ST Yasr Visitor Votes Readonly Shortcode -->
+    			<span class="article__meta__vote-count">
+				36			</span>
+		</li>
+
+		<!-- Post view count -->
+		<li class="article__meta__post-views">
+			<p><strong>22433</strong> <small>views</small></p>		</li>
+
+		<!-- Bookmarks -->
+		
+		<!-- Disqus -->
+		<li>
+			<a class="article__meta__comments" alt="Comments" title="Comments" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/#comments"><p><span class="comment-counter disqus-comment-count" itemprop="commentCount" data-disqus-identifier="69551 https://www.simple-talk.com/?p=69551">8</span></p></a>		</li>
+
+		<!-- Sharing -->
+		<li class="padded-top--tight">
+			
+<ul class="sharing">
+	<li class="spaced-bottom--none"><a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/?view=print" id="social-share-print" class="sharing__link sharing__link--print" title="Printer friendly version"><img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/print.png" alt="Printer friendly version"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-email" class="sharing__link sharing__link--email" title="Email" href="mailto:?subject=Article%20on%20https://www.red-gate.com/simple-talk:%20Printing%20from%20ASP.NET%20MVC&amp;body=I%20found%20this%20great%20article%20on%20https://www.red-gate.com/simple-talk.%0D%0A%0D%0AIt's%20called%20Printing%20from%20ASP.NET%20MVC.%0D%0A%0D%0AYou%20can%20find%20it%20here%20https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/."></a></li>
+
+	<li class="spaced-bottom--none"><a id="social-share-twitter" class="sharing__link sharing__link--twitter" title="Twitter" target="_blank" href="https://twitter.com/share?url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/&amp;text=Printing%20from%20ASP.NET%20MVC%20@simple_talk"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-facebook" class="sharing__link sharing__link--facebook" title="Facebook" target="_blank" href="https://facebook.com/sharer.php?u=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-google-plus" class="sharing__link sharing__link--google-plus" title="Google Plus" target="_blank" href="https://plus.google.com/share?url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-linked-in" class="sharing__link sharing__link--linked-in" title="LinkedIn" target="_blank" href="https://linkedin.com/shareArticle?mini=true&amp;url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+</ul>
+		</li>
+	</ul>
+</div>
+
+<!-- Main column -->
+<div class="grid__col grid__col--span-7-of-12 grid__col--span-10-of-12--large grid__col--span-12-of-12--small">
+	<article class="article post-69551 post type-post status-publish format-standard hentry category-asp-net" itemscope="" itemtype="http://schema.org/Article">
+
+			<nav class="breadcrumbs show-on-medium hide-on-max">
+		<ul class="spaced-bottom--none">
+			<li><a href="https://www.red-gate.com/">Home</a></li>
+
+											<li>
+											<a href="https://www.red-gate.com/simple-talk/dotnet/">
+					
+						.NET
+											</a>
+									</li>
+											<li>
+											<a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/">
+					
+						ASP.NET
+											</a>
+									</li>
+			
+							<li>Printing from ASP.NET MVC</li>
+					</ul>
+	</nav>
+		<div class="hide-on-max show-on-medium">
+			<!-- Author -->
+			<div class="article__author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+				<div class="avatars">		<a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" class="avatar">
+			<img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/ace158af8dfab0e682dcc70d965514e5.jpg" alt="" class="avatar-80wp-user-avatar wp-user-avatar-80 alignnone photo avatar-default" width="80" height="80">		</a>
+	</div>
+<a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" title="Posts by Dino Esposito" class="author url fn" rel="author">Dino Esposito</a>			</div>
+
+			<!-- Date -->
+			<p class="article__date spaced-bottom--none updated published" itemprop="datePublished" content="2017-01-12">12 January 2017</p>
+			<div class="padded-v--tight clearfix">
+				<!-- Post view count -->
+				<span class="article__meta__post-views">
+					<p><strong>22433</strong> <small>views</small></p>				</span>
+
+				<!-- Rating -->
+				<span class="article__meta__votes">
+					
+    <!-- ST Yasr Visitor Votes Readonly Shortcode -->
+    <div id="yasr_visitor_votes_readonly_69551" class="yasr-visitor-votes_readonly"><div class="rateit yasr_visitor_votes_stars_div" id="yasr_rateit_visitor_votes_readonly_69551" data-rateit-starwidth="16" data-rateit-starheight="16" data-rateit-value="4.2" data-rateit-step="1" data-rateit-resetable="false" data-rateit-readonly="true"><button id="rateit-reset-3" type="button" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-3" style="display: none;"></button><div id="rateit-range-3" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-3" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4.166666666666667" style="width: 80px; height: 16px;" aria-readonly="true"><div class="rateit-selected" style="height: 16px; width: 66.6667px;"></div><div class="rateit-hover" style="height:16px"></div></div></div></div>
+    <!-- End ST Yasr Visitor Votes Readonly Shortcode -->
+    					<span class="article__meta__vote-count">
+						36					</span>
+				</span>
+
+
+				<!-- Disqus -->
+				<a class="article__meta__comments" alt="Comments" title="Comments" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/#comments"><p><span class="comment-counter disqus-comment-count" itemprop="commentCount" data-disqus-identifier="69551 https://www.simple-talk.com/?p=69551">8</span></p></a>			</div>
+		</div>
+
+
+		<h1 itemprop="name">Printing from ASP.NET MVC</h1><div class="article__excerpt"><p>Even
+ though we're less inclined to print web-pages nowadays, it often makes 
+sense to save useful content from a website as a PDF file to read 
+offline. Modern browsers give us everything we need to do that, and 
+there is much that the website designer can do to improve the results. 
+However, there are times that something more demanding is required, such
+ as a properly-formatted invoice or chart,  and then  the web 
+application needs a way of creating PDFs directly. </p>
+</div>
+
+		
+			<div class="article__content">
+				<p>Because you use the web to view and share information, you don’t 
+want to use the printer anymore, right? Yet, just because the web (and 
+software in general) is so pervasive in our life and business you might 
+still need to print information at least occasionally, or at least to 
+save the content as a PDF file. And here’s the question: what’s the most
+ effective way to print content from an ASP.NET MVC application?</p>
+<p>All browsers offer some native services to support printing. When 
+users right-click on a web page, the browser promptly offers to print 
+the content or, in some cases, save it as PDF. Additionally, the client 
+operating system such as Windows 10, or custom drivers, may also offer 
+to print any content to a PDF file.</p>
+<p>Do the native services of the browsers provide the ideal way to print business content from within a web application?</p>
+<p>Overall, I believe the answer is “No; nobody can simply rely on 
+browser native services to print application-specific content”. At the 
+very minimum, you must prepare any content you intend to print just for 
+that. This means, for example, removing or adapting stylesheets to 
+remove overlays and graphics, smooth fonts and colors. After that, the 
+physical act of printing is a mere matter of right-clicking the browser 
+window and selecting the most appropriate print driver, whether a PDF 
+driver or a regular print driver.</p>
+<p>In this article, I’ll go through the most common things to do to 
+print from an ASP.NET MVC application with a special focus on the 
+programmatic creation of PDF files.</p>
+<h1>Printer-friendly Versions of Existing Pages</h1>
+<p>In HTML, the <code>@media rule</code> allows the website designer to 
+specify a set of CSS settings that are appropriate for when the page is 
+sent to a printer driver to be printed on paper or as a PDF file. What 
+would be appropriate? Usually, you’d want a different font, and remove 
+most of the graphics and colors that make the same page quite more 
+catching to the eye. Here’s how to use the @media rule to specify 
+different CSS files for screen and print.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b2a314779543" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b2a314779543-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b2a314779543-2" style="height: 15px;">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b2a314779543-1"><span class="crayon-r ">&lt;link </span><span class="crayon-e ">rel</span><span class="crayon-o">=</span><span class="crayon-s ">"stylesheet"</span><span class="crayon-h"> </span><span class="crayon-e ">type</span><span class="crayon-o">=</span><span class="crayon-s ">"text/css"</span><span class="crayon-h"> </span><span class="crayon-e ">media</span><span class="crayon-o">=</span><span class="crayon-s ">"screen"</span><span class="crayon-h"> </span><span class="crayon-e ">href</span><span class="crayon-o">=</span><span class="crayon-s ">"your-app-core.css"</span><span class="crayon-r ">&gt;</span></div><div class="crayon-line" id="crayon-5a10d975c7b2a314779543-2"><span class="crayon-r ">&lt;link </span><span class="crayon-e ">rel</span><span class="crayon-o">=</span><span class="crayon-s ">"stylesheet"</span><span class="crayon-h"> </span><span class="crayon-e ">type</span><span class="crayon-o">=</span><span class="crayon-s ">"text/css"</span><span class="crayon-h"> </span><span class="crayon-e ">media</span><span class="crayon-o">=</span><span class="crayon-s ">"print"</span><span class="crayon-h"> </span><span class="crayon-e ">href</span><span class="crayon-o">=</span><span class="crayon-s ">"your-app-core-print.css"</span><span class="crayon-r ">&gt;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p></p>
+<p>This job of setting a different CSS file for printing is only the 
+first step of a longer process. Let’s say you present users a page with 
+some content that might be useful to print or save as PDF. The figure 
+below shows a reasonable example.</p>
+<p><img class="wp-image-69552" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/d-my-articles-simpletalk-2017-pdf-fig01-png.png" alt="D:\My Articles\SimpleTalk\2017\Pdf\Fig01.png" width="430" height="597"></p>
+<p>The figure presents the schedule of some user of some application and
+ does that in a way that attempts to be appealing to the viewer 
+on-screen. It may not be that easy or effective to just print the 
+displayed HTML. The page is quite simple and doesn’t include any rich 
+graphics as many other web pages. Nonetheless, printing a 
+screen-optimized web page rarely leads to great results. Designs that 
+work well on-screen don’t usually translate well to the printed page. 
+That’s why I usually add a PRINT button to any page with content that 
+users might want to print or save. The print button just opens up a 
+separate popup window where the content is rendered in a 
+printer-friendly way.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b32234229716" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b32234229716-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b32234229716-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b32234229716-3" style="height: 15px;">3</div><div class="crayon-num" data-line="crayon-5a10d975c7b32234229716-4" style="height: 15px;">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b32234229716-1"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">$</span><span class="crayon-sy">(</span><span class="crayon-s ">"#printButton"</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span>click<span class="crayon-sy">(</span>function<span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5a10d975c7b32234229716-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>window<span class="crayon-sy">.</span>open<span class="crayon-sy">(</span><span class="crayon-s ">"@Url.Action("</span>view<span class="crayon-s ">", "</span>season<span class="crayon-s ">")"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s ">"_blank"</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></div><div class="crayon-line" id="crayon-5a10d975c7b32234229716-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s ">"menubar=no, toolbar=no, resizable=no, top=100, left=200, width=500, height=500"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b32234229716-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p></p>
+<p>Any page with content that users might need to print should have a 
+printer-friendly version that is displayed on demand. It’s extra work 
+for sure, but the level of service for users grows significantly. 
+Furthermore, the extra work is, most of the time, no more than a simple 
+change of CSS files. Based on my own experience I wouldn’t honestly just
+ say so: When you are creating a printer-friendly version of a web page,
+ you will usually want to create a new page from scratch; albeit largely
+ based on an existing one. When, by good fortune, the structure of the 
+screen page lends itself well to be printed as-is, then you can do the 
+job with just a couple of LINK elements for screen and print, as shown 
+above.</p>
+<h1>Writing HTML Content to PDF Files</h1>
+<p>Sometimes, beyond just outputting the content of an HTML page to a 
+physical printer, you just need to create PDF files that users can then 
+print and archive conveniently. There are many libraries to create PDF 
+files, both commercial and open-source, and some of them are even usable
+ from JavaScript. The hard part is in laying out content to the PDF 
+surface. The PDF file format, originally created by Adobe over two 
+decades ago, is today the universal way to exchange documents between 
+individuals and/or organizations worldwide. The PDF format is largely 
+based on the PostScript programming language for layout and graphics. In
+ addition to the PostScript-like description of the content, a PDF file 
+contains fonts and meta information to organize and compress the 
+document content. Creating a PDF file programmatically—even with the 
+help of ad hoc libraries—is not a walk in the park. It’s probably quite 
+easy to create a text-only document, but the more sophisticated the 
+final layout of the document, the more painful and long it gets to code 
+it. It is even worse when the idea of the document you have in mind is 
+expressed with HTML. In this case, the difficulty is in switching from 
+an HTML layout to a PostScript layout.</p>
+<p>Most web applications require the content of a page to be rendered as
+ a PDF that users can then download. Through the figure above, I 
+presented a possible, fairly low-cost, strategy for achieving just this.
+ You offer to open up a printer-friendly HTML page for users, and have 
+them print it to paper or PDF using any drivers installed on the client 
+machine. It’s a simple and effective approach and, personally, I have 
+quite a long record of projects where I successfully used it. It works 
+but it doesn’t cover all possible scenarios. In some cases, in fact, you
+ need to create a physical PDF file (for example, to attach it to a 
+server-sent email message) and you would ideally do it from a HTML 
+template. In this case, the problem becomes how to 
+convert—programmatically—some HTML content to the PDF format. Before 
+discussing a couple of programmatic options, let me just mention a third
+ way—using the <code>wkHtmltoPdf</code> open-source command line utility. (See http://wkhtmltopdf.org.)</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b36563156539" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b36563156539-1" style="height: 15px;">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b36563156539-1"><span class="crayon-r ">wkhtmltopdf</span><span class="crayon-h"> </span><span class="crayon-sy">[</span>url<span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-sy">[</span>pdf<span class="crayon-o">-</span>file<span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p></p>
+<p>You deploy the file to the server, configure permissions properly so 
+that a new file can be created and then launch the executable 
+programmatically:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b39974524452" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b39974524452-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b39974524452-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b39974524452-3" style="height: 15px;">3</div><div class="crayon-num" data-line="crayon-5a10d975c7b39974524452-4" style="height: 15px;">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b39974524452-1"><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">exe</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">Process</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b39974524452-2"><span class="crayon-v">exe</span><span class="crayon-sy">.</span><span class="crayon-v">StartInfo</span><span class="crayon-sy">.</span><span class="crayon-e ">FileName</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"wkhtmltopdf.exe"</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b39974524452-3"><span class="crayon-v">p</span><span class="crayon-sy">.</span><span class="crayon-v">StartInfo</span><span class="crayon-sy">.</span><span class="crayon-e ">Arguments</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"/pdf/create yourfile.pdf"</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b39974524452-4"><span class="crayon-v">p</span><span class="crayon-sy">.</span><span class="crayon-e">Start</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp; </span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0009 seconds] -->
+<p></p>
+<p>The value assigned to the Arguments property is the URL serving the 
+HTML that the utility will convert to PDF. If you embed this code in a 
+custom application, the URL will be a method exposed by some controller 
+class.</p>
+<h1>Using the SelectPdf Library</h1>
+<p>There are many libraries out there that help to create PDF files 
+programmatically and in many cases they also convert HTML content to 
+PDF. Most of these libraries are commercial products that require a 
+monthly subscription. Overall, it’s no big deal for a high-traffic web 
+site or any web site where the creation of PDF files is a crucial 
+feature. It might be too expensive, however, for those sites where 
+having PDF files created is only an enhancement, and the customer is not
+ necessarily willing to pay even a small extra price for it.</p>
+<p>There are also many open-source and free PDF libraries but, as far as
+ I know, none of them supports HTML-to-PDF conversions, with one notable
+ exception: the SelectPDF library. (See <a href="http://www.selectpdf.com/">http://www.selectpdf.com</a>
+ or install it via Nuget.) SelectPDF is a fully-featured commercial 
+product that also offers a free community edition with some limitations 
+such as the fact that no processed documents are allowed to have more 
+than five pages. Here’s a code snippet that shows how to integrate the 
+library in the implementation of a controller action method.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b3c293949372" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -25px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-3" style="height: 15px;">3</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-4" style="height: 15px;">4</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-5" style="height: 15px;">5</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-6" style="height: 15px;">6</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-7" style="height: 15px;">7</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-8" style="height: 15px;">8</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-9" style="height: 15px;">9</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-10" style="height: 15px;">10</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-11" style="height: 15px;">11</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-12" style="height: 15px;">12</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-13" style="height: 15px;">13</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-14" style="height: 15px;">14</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-15" style="height: 15px;">15</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-16" style="height: 15px;">16</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-17" style="height: 15px;">17</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-18" style="height: 15px;">18</div><div class="crayon-num" data-line="crayon-5a10d975c7b3c293949372-19" style="height: 15px;">19</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-1"><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-e">ActionResult </span><span class="crayon-e">Pdf</span><span class="crayon-sy">(</span><span class="crayon-c">/* some input arguments */</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-2"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">htmlString</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">GetHtmlToConvert</span><span class="crayon-sy">(</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-4">&nbsp;</div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">fullFileName</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">;</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">try</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">baseUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Request</span><span class="crayon-sy">.</span><span class="crayon-v">Url</span><span class="crayon-sy">.</span><span class="crayon-e">GetLeftPart</span><span class="crayon-sy">(</span><span class="crayon-v">UriPartial</span><span class="crayon-sy">.</span><span class="crayon-v">Authority</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">fullFileName</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Server</span><span class="crayon-sy">.</span><span class="crayon-e">MapPath</span><span class="crayon-sy">(</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">UrlHelper</span><span class="crayon-sy">.</span><span class="crayon-e">GenerateContentUrl</span><span class="crayon-sy">(</span><span class="crayon-s">"~/assets/yourfile.pdf), HttpContext));</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-11"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PdfService.Create(htmlString, fullFileName, baseUrl);</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-12"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-13"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;catch(Exception ex)</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-14"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;{</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-15"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Content(ex.Message);</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-16"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-17">&nbsp;</div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-18"><span class="crayon-s">&nbsp;&nbsp;&nbsp;&nbsp;return File(fullFileName, "</span><span class="crayon-v">application</span><span class="crayon-o">/</span><span class="crayon-i">pdf</span><span class="crayon-s">", "</span><span class="crayon-v">yourfile</span><span class="crayon-sy">.</span><span class="crayon-i">pdf</span>"<span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3c293949372-19"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0007 seconds] -->
+<p></p>
+<p>The wrapper class <code>PdfService</code> receives the HTML string to convert and the full server-side file name to create. The third parameter—<code>baseUrl</code>—is
+ optional but required if the HTML string references external resources 
+such as images, stylesheets or script files. The good news is that <code>baseUrl</code> works well even with a localhost base server. Here’s the code necessary to actually create the PDF file with <code>SelectPDF</code>.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b3e381547789" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -25px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-3" style="height: 15px;">3</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-4" style="height: 15px;">4</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-5" style="height: 15px;">5</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-6" style="height: 15px;">6</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-7" style="height: 15px;">7</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-8" style="height: 15px;">8</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-9" style="height: 15px;">9</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-10" style="height: 15px;">10</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-11" style="height: 15px;">11</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-12" style="height: 15px;">12</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-13" style="height: 15px;">13</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-14" style="height: 15px;">14</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-15" style="height: 15px;">15</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-16" style="height: 15px;">16</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-17" style="height: 15px;">17</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-18" style="height: 15px;">18</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-19" style="height: 15px;">19</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-20" style="height: 15px;">20</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-21" style="height: 15px;">21</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-22" style="height: 15px;">22</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-23" style="height: 15px;">23</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-24" style="height: 15px;">24</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-25" style="height: 15px;">25</div><div class="crayon-num" data-line="crayon-5a10d975c7b3e381547789-26" style="height: 15px;">26</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-1"><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">Create</span><span class="crayon-sy">(</span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-v">html</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-v">filename</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-v">baseUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-2"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">converter</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">HtmlToPdf</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">DrawBackground</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-t">true</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">EmbedFonts</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-t">true</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">PdfPageSize</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">PdfPageSize</span><span class="crayon-sy">.</span><span class="crayon-v">A4</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">PdfPageOrientation</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">PdfPageOrientation</span><span class="crayon-sy">.</span><span class="crayon-v">Portrait</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">WebPageWidth</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">WebPageHeight</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">CssMediaType</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">HtmlToPdfCssMediaType</span><span class="crayon-sy">.</span><span class="crayon-v">Screen</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Options</span><span class="crayon-sy">.</span><span class="crayon-v">DisplayFooter</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-t">true</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-12">&nbsp;</div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">footer</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">PdfTextSection</span><span class="crayon-sy">(</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">10</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"{page_number} / {total_pages}"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">Font</span><span class="crayon-sy">(</span><span class="crayon-s">"Arial"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">8</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">HorizontalAlign</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">PdfTextHorizontalAlign</span><span class="crayon-sy">.</span><span class="crayon-i">Right</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-v">Footer</span><span class="crayon-sy">.</span><span class="crayon-e">Add</span><span class="crayon-sy">(</span><span class="crayon-v">footer</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-19">&nbsp;</div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">// Save PDF document (plus optional document information)</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">doc</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">converter</span><span class="crayon-sy">.</span><span class="crayon-e">ConvertHtmlString</span><span class="crayon-sy">(</span><span class="crayon-v">html</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">baseUrl</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-v">DocumentInformation</span><span class="crayon-sy">.</span><span class="crayon-v">Author</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Your name"</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-v">DocumentInformation</span><span class="crayon-sy">.</span><span class="crayon-v">CreationDate</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">DateTime</span><span class="crayon-sy">.</span><span class="crayon-v">Now</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-e">Save</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-e">Close</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5a10d975c7b3e381547789-26"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0011 seconds] -->
+<p></p>
+<p>The minimal code that is strictly required to create a PDF is three 
+lines: create the converter, create the document and save it to disk. 
+However, you might want to specify a bunch of options—for example to 
+enable printing of backgrounds graphics and fonts—and create a footer. 
+When creating a footer, <code>page_number</code> and <code>total_pages</code>
+ are two pseudo variables you use to instruct the library to create the 
+text you wish printed. When deploying a solution based on <code>SelectPdf</code>, in addition to the <code>Select.HtmlToPdf</code> DLL you also must deploy the HTML engine. It’s a pretty large file (about 45 MB) named <code>Select.Html.dep</code>.</p>
+<p>Using a library to convert HTML to PDF in the context of a web 
+application is extremely efficient from a development perspective. You 
+don’t need at all to learn about PostScript and the internal PDF 
+rendering logic. You stay focused on HTML and HTML layout logic and just
+ rely on an external tool to make the conversion. At any rate, using a 
+built-in tool to save to PDF doesn’t save you the burden of thinking 
+about a printer-friendly layout for any content to be saved. Compared to
+ the approach summarized by the figure above, using a library like 
+SelectPDF only saves users from right-clicking on a popup window and 
+printing through a PDF driver.</p>
+<h1>Creating PDF Files from JavaScript</h1>
+<p>I confess that I was shocked when I first heard about the possibility
+ of creating PDF files through JavaScript libraries. Yet, it’s not 
+simply a possibility; it’s a concrete reality. You can achieve that in 
+two main ways. First, you can use a low-level JavaScript PDF writer and 
+compose the PDF file using the native PDF rendering logic. This 
+capability is offered by the jsPDF library. (See 
+http://parall.ax/products/jspdf.) In this way, you create a rendering 
+surface and start adding writing instructions. Here’s the bare minimum 
+code you need.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b41792695412" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b41792695412-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b41792695412-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b41792695412-3" style="height: 15px;">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b41792695412-1"><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">pdf</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">jsPDF</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b41792695412-2"><span class="crayon-v">pdf</span><span class="crayon-sy">.</span><span class="crayon-e">text</span><span class="crayon-sy">(</span><span class="crayon-cn">50</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">50</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"PDF from JavaScript!"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b41792695412-3"><span class="crayon-v">pdf</span><span class="crayon-sy">.</span><span class="crayon-e">save</span><span class="crayon-sy">(</span><span class="crayon-s">"demo.pdf"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p></p>
+<p>It’s easy and effective as long as the template of the final document
+ is fairly simple—it allows to specify fonts, colors, position, even 
+simple shapes and images. However, if you need to add more sophisticated
+ layout structures like tables—and even more if you want to use HTML as 
+your layout language—the direct use of jsPDF loses much of its original 
+appeal.</p>
+<p>The jsPDF library supports plugins and a plugin exists that tries to 
+render HTML tables to PDF. The plugin is jsPdf.autotable.js and you can 
+find it here: http://simonbengtsson.github.io/jsPDF-AutoTable. While it 
+works in some way, though, it is far from being the foundation of a true
+ fully-fledged client-side HTML-to-PDF converter.</p>
+<p>Another approach to creating PDF files you might want to try is to 
+pass through the HTML5 canvas element. The idea is that you use an ad 
+hoc library to take an existing segment of the DOM and render it to a 
+HTML5 Canvas element. Then, using the native interface of Canvas you 
+save it to a PNG or JPG image and add it to a PDF file created with 
+jsPDF. The <code>HTML2Canvas</code> conversion library can be found at: <a href="http://html2canvas.hertzen.com/">http://html2canvas.hertzen.com</a>.
+ As the home page of the site clearly states, that’s mostly a way to 
+capture web screenshots using JavaScript. However, once you’ve done just
+ that you can easily save it to PDF.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5a10d975c7b44375198374" class="crayon-syntax crayon-theme-vs2012 crayon-font-courier-new crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover disable-anim wrap" style="margin-top: 15px; margin-bottom: 15px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a10d975c7b44375198374-1" style="height: 15px;">1</div><div class="crayon-num" data-line="crayon-5a10d975c7b44375198374-2" style="height: 15px;">2</div><div class="crayon-num" data-line="crayon-5a10d975c7b44375198374-3" style="height: 15px;">3</div><div class="crayon-num" data-line="crayon-5a10d975c7b44375198374-4" style="height: 15px;">4</div><div class="crayon-num" data-line="crayon-5a10d975c7b44375198374-5" style="height: 15px;">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a10d975c7b44375198374-1"><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">canvas</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">html2canvas</span><span class="crayon-sy">(</span><span class="crayon-sy">$</span><span class="crayon-sy">(</span><span class="crayon-s">"#yourDiv"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b44375198374-2"><span class="crayon-t">var</span><span class="crayon-h"> </span><span class="crayon-v">img</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">canvas</span><span class="crayon-sy">.</span><span class="crayon-e">toDataUrl</span><span class="crayon-sy">(</span><span class="crayon-s">"image/png"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b44375198374-3"><span class="crayon-v">doc</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">jsPDF</span><span class="crayon-sy">(</span><span class="crayon-s">"px"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"a4"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b44375198374-4"><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-e">addImage</span><span class="crayon-sy">(</span><span class="crayon-v">img</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"png"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">50</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">50</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5a10d975c7b44375198374-5"><span class="crayon-v">doc</span><span class="crayon-sy">.</span><span class="crayon-e">save</span><span class="crayon-sy">(</span><span class="crayon-s">"demo.pdf"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p></p>
+<p>The main drawback with this approach is the quality of the resulting 
+print. Because all you print is an image it might not be zoomed in with 
+great results.</p>
+<h1>Wrapping Up</h1>
+<p>Creating PDF files from within web applications, including ASP.NET 
+MVC applications, is an increasingly common task, yet it is a highly 
+specialized task with plenty of commercial products to help out. In this
+ article, I summarized a couple of options that won’t cost money but 
+still present some limitations. As usual in this business, any solution 
+you work out is a trade-off between what you need and what you want to 
+pay. In my vision of the world, the ideal is when you’re able to pay a 
+reasonable price for exactly what you need: no more no less.</p>
+<script type="application/ld+json">{"@context":"http:\/\/schema.org\/","@type":"BlogPosting","datePublished":"2017-01-12T11:22:02+00:00","headline":"Printing from ASP.NET MVC","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.red-gate.com\/simple-talk\/dotnet\/asp-net\/printing-asp-net-mvc\/"},"author":{"@type":"Person","name":"Dino Esposito"},"publisher":{"@type":"Organization","name":"Simple Talk","logo":{"@type":"ImageObject","url":"https:\/\/www.simple-talk.com\/wp-content\/uploads\/2016\/07\/gatebase-favicon.png","width":300,"height":300}},"dateModified":"2017-02-27T10:43:40+00:00","image":{"@type":"ImageObject","url":"https:\/\/www.simple-talk.com\/wp-content\/uploads\/2016\/07\/gatebase-favicon.png","width":300,"height":300},"name":"Printing from ASP.NET MVC","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.2","ratingCount":"37"}}</script>			</div>
+			</article>
+</div>
+				<section class="sidebar grid__col grid__col--span-3-of-12 hide-on-large">
+					<div class="padded-left">
+							    <nav class="nav--vertical nav--vertical--right nav--vertical--thin">
+        <ul>
+            	<li class="cat-item cat-item-27"><a href="https://www.red-gate.com/simple-talk/dotnet/net-development/" title="Deep dives into .NET development, with detailed looks at key concepts.">.NET Development</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="https://www.red-gate.com/simple-talk/dotnet/net-editors-corner/" title=".NET topics from the Simple-Talk editors.">.NET Editor's Corner</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="https://www.red-gate.com/simple-talk/dotnet/net-framework/" title="Optimize the performance of the .NET Framework with detailed articles covering all aspects of .NET coding.">.NET Framework</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="https://www.red-gate.com/simple-talk/dotnet/net-performance/" title=".NET performance tips and in-depth articles to help you get the most out of the framework.">.NET Performance</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="https://www.red-gate.com/simple-talk/dotnet/net-tools/" title="Articles focusing on tools and technologies to help with .NET development.">.NET Tools</a>
+</li>
+	<li class="cat-item cat-item-21 current-cat"><a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/" title="Learn how to create websites and web services in Microsoft ASP.NET.">ASP.NET</a>
+</li>
+	<li class="cat-item cat-item-19699"><a href="https://www.red-gate.com/simple-talk/dotnet/c-programming/" title="Learn the C# programming language with in-depth tutorials covering all aspects of C#, including performance and testing.">C# programming</a>
+</li>
+	<li class="cat-item cat-item-50436"><a href="https://www.red-gate.com/simple-talk/dotnet/il/">IL</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="https://www.red-gate.com/simple-talk/dotnet/software-tools/" title="Articles on third-party tools and plugins for SQL and .NET development.">Software Tools</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="https://www.red-gate.com/simple-talk/dotnet/visual-studio/" title="Articles on working with Microsoft Visual Studio.">Visual Studio</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="https://www.red-gate.com/simple-talk/dotnet/windows-forms/" title="Articles and worked examples for creating applications with Windows Forms.">Windows Forms</a>
+</li>
+        </ul>
+    </nav>
+
+<div class="sidebar__newsletter"><div class="newsletter-signup__sidebar">
+<h2>Subscribe for more articles</h2>
+<p class="padded-bottom--tight">Fortnightly newsletters help sharpen your skills and keep you ahead, with articles, ebooks and opinion to keep you informed.</p>
+</div>
+<div class="newsletter-signup__post-article">
+<h3>Subscribe to our fortnightly newsletter</h3>
+</div>
+<form method="post" action="" class="newsletter-signup"><ul class="list--bare padded-bottom--tight subscription-controls"><li><input class="hc-checkbox subscription-control" name="newsletters[]" id="form-1--list-WP0iWal3XRl7637634pL0QAowg" value="WP0iWal3XRl7637634pL0QAowg" type="checkbox"> <label class="hc-checkbox hc-checkbox--small" for="form-1--list-WP0iWal3XRl7637634pL0QAowg"><span>.NET newsletter</span></label></li><li><input class="hc-checkbox subscription-control" name="newsletters[]" id="form-1--list-Ww0i892QBs90gtk8qJjIW87g" value="Ww0i892QBs90gtk8qJjIW87g" type="checkbox"> <label class="hc-checkbox hc-checkbox--small" for="form-1--list-Ww0i892QBs90gtk8qJjIW87g"><span>Simple Talk</span></label></li></ul><label for="email">Email</label><input id="email" type="email"><input value="Subscribe" type="submit"></form></div>
+						</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="grid__row">
+	
+<div class="band__inner-container">
+	<div class="grid__row article__footer">
+
+		<!-- Desktop-width article meta column -->
+		<div class="article__meta grid__col grid__col--span-2-of-12 hide-on-medium">
+			<ul class="list--bare">
+
+				<!-- Rating -->
+				<li class="article__meta__votes">
+					
+    <!-- ST Yasr Visitor Votes Readonly Shortcode -->
+    <div id="yasr_visitor_votes_readonly_69551" class="yasr-visitor-votes_readonly"><div class="rateit yasr_visitor_votes_stars_div" id="yasr_rateit_visitor_votes_readonly_69551" data-rateit-starwidth="16" data-rateit-starheight="16" data-rateit-value="4.2" data-rateit-step="1" data-rateit-resetable="false" data-rateit-readonly="true"><button id="rateit-reset-4" type="button" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-4" style="display: none;"></button><div id="rateit-range-4" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-4" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4.166666666666667" style="width: 80px; height: 16px;" aria-readonly="true"><div class="rateit-selected" style="height: 16px; width: 66.6667px;"></div><div class="rateit-hover" style="height:16px"></div></div></div></div>
+    <!-- End ST Yasr Visitor Votes Readonly Shortcode -->
+    					<span class="article__meta__vote-count">
+						36					</span>
+				</li>
+
+				<!-- Post view count -->
+				<li class="article__meta__post-views">
+					<p><strong>22433</strong> <small>views</small></p>				</li>
+
+				<!-- Bookmarks -->
+				
+				<!-- Sharing -->
+				<li class="padded-top--tight">
+					
+<ul class="sharing">
+	<li class="spaced-bottom--none"><a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/?view=print" id="social-share-print" class="sharing__link sharing__link--print" title="Printer friendly version"><img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/print.png" alt="Printer friendly version"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-email" class="sharing__link sharing__link--email" title="Email" href="mailto:?subject=Article%20on%20https://www.red-gate.com/simple-talk:%20Printing%20from%20ASP.NET%20MVC&amp;body=I%20found%20this%20great%20article%20on%20https://www.red-gate.com/simple-talk.%0D%0A%0D%0AIt's%20called%20Printing%20from%20ASP.NET%20MVC.%0D%0A%0D%0AYou%20can%20find%20it%20here%20https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/."></a></li>
+
+	<li class="spaced-bottom--none"><a id="social-share-twitter" class="sharing__link sharing__link--twitter" title="Twitter" target="_blank" href="https://twitter.com/share?url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/&amp;text=Printing%20from%20ASP.NET%20MVC%20@simple_talk"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-facebook" class="sharing__link sharing__link--facebook" title="Facebook" target="_blank" href="https://facebook.com/sharer.php?u=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-google-plus" class="sharing__link sharing__link--google-plus" title="Google Plus" target="_blank" href="https://plus.google.com/share?url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+	<li class="spaced-bottom--none"><a id="social-share-linked-in" class="sharing__link sharing__link--linked-in" title="LinkedIn" target="_blank" href="https://linkedin.com/shareArticle?mini=true&amp;url=https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/"></a></li>
+</ul>
+				</li>
+			</ul>
+		</div>
+
+		
+		<!-- Main column -->
+		<div class="grid__col grid__col--span-7-of-12 grid__col--span-10-of-12--large grid__col--span-12-of-12--medium">
+			<div class="grid">
+				<div class="grid__col grid__col--span-4-of-12">
+					<div class="spaced-bottom">
+						<h3>Rate this article</h3>
+						
+        <!--Yasr Visitor Votes Shortcode-->
+        <div id="yasr_visitor_votes_69551" class="yasr-visitor-votes"><div class="rateit medium yasr_visitor_votes_stars_div" id="yasr_rateit_visitor_votes_69551" data-postid="69551" data-rateit-starwidth="24" data-rateit-starheight="24" data-rateit-value="4.2" data-rateit-step="1" data-rateit-resetable="false" data-rateit-readonly="false"><button id="rateit-reset-5" type="button" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-5" style="display: none;"></button><div id="rateit-range-5" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-5" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4.166666666666667" style="width: 120px; height: 24px;" aria-readonly="false"><div class="rateit-selected" style="height: 24px; width: 100px;"></div><div class="rateit-hover" style="height:24px"></div></div></div><span class="yasr-total-average-container" id="yasr-total-average-text_69551">
+                    [Total: 37 &nbsp; &nbsp;Average: 4.2/5]
+                </span></div>
+        <!--End Yasr Visitor Votes Shortcode-->
+        					</div>
+				</div>
+				<div class="grid__col grid__col--span-8-of-12">
+					<div class="spaced-bottom">
+						<div class="sidebar__newsletter"><div class="newsletter-signup__sidebar">
+<h2>Subscribe for more articles</h2>
+<p class="padded-bottom--tight">Fortnightly newsletters help sharpen your skills and keep you ahead, with articles, ebooks and opinion to keep you informed.</p>
+</div>
+<div class="newsletter-signup__post-article">
+<h3>Subscribe to our fortnightly newsletter</h3>
+</div>
+<form method="post" action="" class="newsletter-signup"><ul class="list--bare padded-bottom--tight subscription-controls"><li><input class="hc-checkbox subscription-control" name="newsletters[]" id="form-2--list-WP0iWal3XRl7637634pL0QAowg" value="WP0iWal3XRl7637634pL0QAowg" type="checkbox"> <label class="hc-checkbox hc-checkbox--small" for="form-2--list-WP0iWal3XRl7637634pL0QAowg"><span>.NET newsletter</span></label></li><li><input class="hc-checkbox subscription-control" name="newsletters[]" id="form-2--list-Ww0i892QBs90gtk8qJjIW87g" value="Ww0i892QBs90gtk8qJjIW87g" type="checkbox"> <label class="hc-checkbox hc-checkbox--small" for="form-2--list-Ww0i892QBs90gtk8qJjIW87g"><span>Simple Talk</span></label></li></ul><label for="email">Email</label><input id="email" type="email"><input value="Subscribe" type="submit"></form></div>					</div>
+				</div>
+			</div>
+
+			
+
+
+
+
+
+<div class="author-bio media padded scheme--lightest-grey spaced-bottom padded-bottom--none">
+	
+	<span class="" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+		<div class="media__image clearfix">
+			<a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" class="avatar">
+				<img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/ace158af8dfab0e682dcc70d965514e5_002.jpg" alt="" class="avatar-96wp-user-avatar wp-user-avatar-96 alignnone photo avatar-default" width="96" height="96">			</a>
+		</div>
+
+		<div class="media__body spaced-bottom--tight">
+			<h3><a href="https://www.red-gate.com/simple-talk/author/dino-esposito/" class="fn" itemprop="url"><span itemprop="name">Dino Esposito</span></a></h3>
+			<p>A long-time trainer and consultant, Dino is the author of many 
+popular books for Microsoft Press for .NET developers, and the CTO of 
+Crionet, a firm specializing in Web-based and mobile solutions for sport
+ events across Europe (<a href="http://www.crionet.com/">http://www.crionet.com</a>),
+ at the moment Dino is also technical evangelist for JetBrains, where he
+ focuses on Android and Kotlin development, and member of the team that 
+manages WURFL—the database of mobile devices used by organizations such 
+as Google and Facebook. Follow Dino through his blog at <a href="http://software2cents.wordpress.com/">http://software2cents.wordpress.com</a> or at <a href="http://twitter.com/despos">http://twitter.com/despos</a>. Check out Dino’s latest book <a href="http://www.microsoftpressstore.com/store/microsoft-.net-architecting-applications-for-the-enterprise-9780735685352">“Microsoft .NET: Architecting Applications for the Enterprise”</a>.</p>
+
+			<p><a href="https://www.red-gate.com/simple-talk/author/dino-esposito/">View all articles by Dino Esposito</a></p>		</div>
+	</span>
+</div>
+		</div>
+
+					<div id="comments">
+				
+<div id="disqus_thread"><iframe id="dsq-app9429" name="dsq-app9429" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 1518px !important;" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/a.html" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+
+			</div>
+		<meta itemprop="url" content="https://www.red-gate.com/simple-talk/dotnet/asp-net/printing-asp-net-mvc/">
+<meta itemprop="headline" content="Printing from ASP.NET MVC">
+
+<span itemscope="" itemprop="publisher" itemtype="http://schema.org/Organization">
+    <span itemprop="name" content="Simple Talk"></span>
+    <span itemprop="logo" content=""></span>
+</span>
+	</div>
+</div>
+
+<section class="scheme--lightest-grey article__related-posts">
+	<div class="band__inner-container">
+				<section class="widget_related_posts band grid padded-v--tight">
+				<h1 class="beta">Related articles</h1>
+				<!-- Related posts by tag -->
+				
+				<!-- Related posts by category -->
+														
+							<div class="grid__col grid__col--span-4-of-12">
+								<div class="padded-h--tight">
+									<h2 class="zeta">Also in <a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/">ASP.NET</a></h2>
+									<h3><a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/asp-net-core-tag-helpers-bootstrap/">ASP.NET Core Tag Helpers for Bootstrap</a></h3>
+									 The ASP.NET Core tag helpers improve on the HTML templated 
+helpers in ASP.NET MVC 5. ASP.NET Core  comes with some useful stock tag
+ helpers for common tasks such as creating custom elements or extending 
+existing HTML elements, but their use can be extended to making a 
+framework such as Bootstrap easier to work with.  Dino shows how helpers
+ are used, and demonstrates a Bootstrap Modal Tag Helper…									<a href="https://www.red-gate.com/simple-talk/dotnet/asp-net/asp-net-core-tag-helpers-bootstrap/">Read more</a>
+								</div>
+							</div>
+
+																
+		</section>
+	<div class="article__meta__tags"></div>	</div>
+</section></div>
+
+<footer class="site-footer grid scheme--black">
+    <div class="band__inner-container--tight">
+        <div class="grid__col grid__col--span-12-of-12">
+            <h2 class="text--redgate"><a href="https://www.red-gate.com/simple-talk">Simple Talk</a></h2>
+
+            
+            <ul id="menu-footer" class="site-footer__footer-nav"><li id="menu-item-20436" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20436"><a href="https://www.red-gate.com/simple-talk/faq/">FAQ</a></li>
+<li id="menu-item-20633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20633"><a href="https://www.red-gate.com/simple-talk/sitemap/">Sitemap</a></li>
+<li id="menu-item-20632" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20632"><a href="https://www.red-gate.com/simple-talk/write-for-us/">Write For Us</a></li>
+<li id="menu-item-66859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66859"><a href="https://www.red-gate.com/simple-talk/contact-us/">Contact Us</a></li>
+</ul>
+            <p class="site-footer__custom_text"></p>
+        </div>
+    </div>
+</footer>
+
+<footer class="background-color--grey--2">
+    <div class="band__inner-container grid">    
+        <div class="grid__row">
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4><a href="https://www.red-gate.com/products/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label="Products">Products</a></h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#sql-server" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label="SQL Server">SQL Server</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#azure" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label="Azure">Azure</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#net" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label=".NET">.NET</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#oracle" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label="Oracle">Oracle</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#mysql" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Products" data-ga-track-label="MySQL">MySQL</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4><a href="https://productsupport.red-gate.com/hc" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Support">Support</a></h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="https://forums.red-gate.com/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Forums">Forums</a></li>
+                    <li><a class="color--grey--5" href="https://productsupport.red-gate.com/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Contact product support">Contact product support</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/dynamic/account" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Find my serial numbers">Find my serial numbers</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/old-versions" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Download older versions">Download older versions</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/support/security" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Support" data-ga-track-label="Report security issue">Report security issue</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4><a href="https://www.red-gate.com/solutions/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Solutions" data-ga-track-label="Solutions">Solutions</a></h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/solutions/database-devops/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Solutions" data-ga-track-label="Database DevOps">Database DevOps</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/training/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Solutions" data-ga-track-label="Training">Training</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4><a href="https://www.red-gate.com/our-company/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Our Company" data-ga-track-label="Our Company">Our Company</a></h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/our-company/careers/current-opportunities" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Our Company" data-ga-track-label="Careers">Careers</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/our-company/contact-us" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Our Company" data-ga-track-label="Contact us">Contact us</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/blog/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Our Company" data-ga-track-label="Blog">Redgate Blog</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/our-company/careers/culture" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Our Company" data-ga-track-label="Culture">Our Culture</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4><a href="https://www.red-gate.com/hub/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Community &amp; Learning">Community &amp; Learning</a></h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/hub/product-learning" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Product Learning">Product Learning</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/hub/events/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Events &amp; Friends">Events &amp; Friends</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/simple-talk" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Simple Talk">Simple Talk</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/hub/books/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Books">Books</a></li>
+                    <li><a class="color--grey--5" href="https://forums.red-gate.com/" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Community &amp; Learning" data-ga-track-label="Forums">Forums</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-2-of-12">
+                <h4>Partners</h4>
+                <ul class="list--bare">
+                    <li><a class="color--grey--5" href="http://www.sqlservercentral.com/" target="_blank" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Partners" data-ga-track-label="SQL Server Central">SQL Server Central</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/#partner-products" target="_blank" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Partners" data-ga-track-label="Partner products">Partner products</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/products/resellers" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Partners" data-ga-track-label="Resellers">Resellers</a></li>
+                    <li><a class="color--grey--5" href="https://www.red-gate.com/training/find-a-consultant" data-ga-track="" data-ga-track-category="Footer" data-ga-track-action="Partners" data-ga-track-label="Consulting partners">Consulting partners</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid__row padded-top">
+            <div class="grid__col grid__col--span-6-of-12">
+                <ul class="list--bare list--horizontal">
+                    <li>Copyright 1999 - 2017 Red Gate Software Ltd</li>
+                    <li class="padded-left--tight"><a href="https://www.red-gate.com/website/legal">Privacy and cookies</a></li>
+                    <li class="padded-left--tight"><a href="https://www.red-gate.com/website/accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+
+            <div class="grid__col grid__col--span-6-of-12">
+                <a href="http://www.dbta.com/Editorial/Trends-and-Applications/DBTA-100-2017---The-Companies-That-Matter-Most-in-Data-118003.aspx" class="link-image">
+                    <img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/dbta-100.png" title="Database Trends and Applications Top 100">
+                </a>
+
+                <a href="http://sdtimes.com/sd-times-100/sd-times-100-2017-youve-arrived/" class="link-image padded-left--tight">
+                    <img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/sd-times-2017.png" title="SD Times Top 100 2017">
+                </a>
+
+                <img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/oracle-gold-partner.png" title="Oracle Gold Partner" class="padded-left--tight">
+
+                <img src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/microsoft-gold-partner.png" title="Microsoft Gold Partner" class="padded-left--tight">
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<link rel="stylesheet" id="crayon-css" href="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/crayon.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var scriptParams = {"google_search_engine_id":"002272417707427032016:mpxi5hqackc"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/google_cse_v2.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/infinite.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/dropdown.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jquery_003.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/core.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/widget.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/progressbar.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/position.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/tooltip.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var yasrCommonData = 
+{"postid":"69551","ajaxurl":"https:\/\/www.red-gate.com\/simple-talk\/wp-admin\/admin-ajax.php","loggedUser":"","visitorStatsEnabled":"no","tooltipValues":["bad","poor","ok","good","super"],"loaderHtml":"<div
+ id=\"loader-visitor-rating\" >\u00a0 Loading, please wait <img 
+src=https:\/\/www.red-gate.com\/simple-talk\/wp-content\/plugins\/yet-another-stars-rating\/img\/loader.gif
+ title=\"yasr-loader\" alt=\"yasr-loader\"><\/div>"};
+var yasrVisitorsVotesData = {"nonceVisitor":"6c2cfbcabc"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/yasr-front.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/polyfill.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpOptions = {"siteurl":"https:\/\/www.red-gate.com\/simple-talk"};
+/* ]]> */
+</script>
+<script type="text/javascript">
+if ( typeof $ !== "function" && typeof jQuery === "function" ) { window.$ = jQuery; }
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/script.js"></script>
+<script type="text/javascript">
+var Redgate = Redgate || {}; Redgate.Hub = Redgate.Hub || {}; Redgate.Hub.isHubSubPage = true;
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/nav.js"></script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/wp-embed.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = 
+{"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/www.red-gate.com\/simple-talk\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var
+ CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to 
+Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/crayon.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var embedVars = 
+{"disqusConfig":{"platform":"wordpress@4.8","language":"","remote_auth_s3":"W10=
+ 4dbb27688f0ad07bb4589943ac85c64497dd23a1 
+1511053686","api_key":"PdEcftjqQxIsV3NwcBYKFkOmzPru3MJsixpbMeAAxi28QtGQ1LI5tjrfD7nlLmya","sso":{"name":"Simple
+ 
+Talk","button":false,"url":"https:\/\/www.red-gate.com\/simple-talk\/wp-login.php","logout":"https:\/\/www.red-gate.com\/simple-talk\/wp-login.php?action=logout","width":"800","height":"700"}},"disqusIdentifier":"69551
+ 
+https:\/\/www.simple-talk.com\/?p=69551","disqusShortname":"simpletalk","disqusTitle":"Printing
+ from ASP.NET 
+MVC","disqusUrl":"https:\/\/www.red-gate.com\/simple-talk\/dotnet\/asp-net\/printing-asp-net-mvc\/","options":{"manualSync":false},"postId":"69551"};
+/*
+ ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/disqus.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"simpletalk"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/count.js"></script>
+
+
+
+<script type="text/javascript" id="" src="Printing%20from%20ASP.NET%20MVC%20-%20Simple%20Talk_files/jquery.js"></script><iframe style="display: none;"></iframe>    <script type="text/javascript" id="">window.heap=window.heap||[];
+heap.load=function(e,d){window.heap.appid=e;window.heap.config=d=d||{};var
+ 
+a=d.forceSSL||"https:"===document.location.protocol,b=document.createElement("script");b.type="text/javascript";b.async=!0;b.src=(a?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);for(var
+ b=function(a){return 
+function(){heap.push([a].concat(Array.prototype.slice.call(arguments,0)))}},a="addEventProperties
+ addUserProperties clearEventProperties identify removeEventProperty 
+setEventProperties track unsetEventProperty".split(" "),c=
+0;c<a.length;c++)heap[a[c]]=b(a[c])};heap.load("3441118981");</script></body></html>

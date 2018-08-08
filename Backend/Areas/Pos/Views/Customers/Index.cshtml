@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Domain.POS.Customer>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("OptionsList", "Users", new { area = "Pos" , id=@ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Customers", new {area = "Pos"})"> <span class="fa fa-plus"></span> Registrar Nuevo Cliente </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Patients", new {area = "Medicals"})"> <span class="fa fa-user-md"></span> Registrar Nuevo Paciente </a>
+
+
+</p>
+<div class="scroller">
+    <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th>
+                   Nombre
+                </th>
+                
+                <th>
+                 Tel
+                </th>
+                <th>
+                  Adeudado
+                </th>
+                <th>
+                   Credito (Saldo a Favor)
+                </th>
+                
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                     
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Person.Name) &nbsp; @Html.DisplayFor(modelItem => item.Person.LastName)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Person.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DebAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreditAmount)
+                    </td>
+                     
+                    <td>
+                        @if (@item.DebAmount > 0)
+                        {
+                            <a class="btn btn-info" href="@Url.Action("IndexDebs", "Customers", new {area = "Pos", id = @item.CustomerId})"> <span class="fa fa-check"></span> Administrar Deudas</a>
+                        }
+                        @*<a class="btn btn-success" href="@Url.Action("Edit", "Customers", new {area = "Pos", id = @item.CustomerId})"> <span class="fa fa-money"></span> Notas CR/DB</a>*@
+
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Customers", new {area = "Pos", id = @item.CustomerId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                        <a class="btn btn-info" href="@Url.Action("Details", "Customers", new {area = "Pos", id = @item.CustomerId})"> <span class="fa fa-info"></span> Detalle </a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Customers", new {area = "Pos", id = @item.CustomerId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Domain.SEG.UserRol>
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Index", "Users", new { area = "Pos"  })"> <span class="fa fa-reply"></span> Volver Atras</a>
+
+    <a class="btn btn-primary" href="@Url.Action("CreateRolForUser", "Users", new {area = "Pos", id = ViewBag.UserId})"> <span class="fa fa-plus"></span> Registrar Nuevo Rol</a>
+
+</p>
+<table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Undefined)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rol.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Undefined)
+                </td>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("EditRolForUser", "Users", new {area = "Pos", id = @item.UserRolId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                    <a class="btn btn-danger" href="@Url.Action("DeleteRolForUser", "Users", new {area = "Pos", id = @item.UserRolId })" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable({
+                "order": []
+                // Your other options here...
+            });
+        });
+    </script>
+
+}

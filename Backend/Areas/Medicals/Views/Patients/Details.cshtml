@@ -1,0 +1,389 @@
+﻿@model Backend.Areas.Medicals.Models.PatientView
+
+@{
+    ViewBag.Title = "Detalle de Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*datos del paciente*@
+
+    <div>
+
+        <div class="form-horizontal">
+            <div class="row">
+                @Html.LabelFor(model => model.Record2, new {@class = "control-label col-md-2"})
+                <div class="col-md-2">
+                    @Html.TextBoxFor(model => model.Record2, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Record2, "", new {@class = "text-danger"})
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="Image" class="LogoMedio"/>
+                    }
+                </div>
+                @Html.LabelFor(model => model.Record, new {@class = "control-label col-md-1"})
+                <div class="col-md-1">
+                    @Html.TextBoxFor(model => model.Record, new {@class = "form-control", disabled = "disabled", @readonly = "readonly"})
+                </div>
+                @Html.LabelFor(model => model.Rnc, "Cedula", new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Rnc, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+                @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-1"})
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.FullName, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Age, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Age, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+                @Html.LabelFor(model => model.GenderId, new {@class = "control-label col-md-1"})
+                <div class="col-md-1">
+                    @Html.DropDownList("GenderId", null, new {@class = "form-control"})
+                </div>
+
+
+                @Html.LabelFor(model => model.CountryId, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.DropDownList("CountryId", null, new {@class = "form-control"})
+                </div>
+                @Html.LabelFor(model => model.OcupationId, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.DropDownList("OcupationId", null, new {@class = "form-control"})
+                </div>
+
+            </div>
+
+            <div class="row">
+                <label class="control-label col-md-1"> TS</label>
+                @*@Html.LabelFor(model => model.BloodTypeId, new { @class = "control-label col-md-1" })*@
+                <div class="col-md-2">
+                    @Html.DropDownList("BloodTypeId", null, new {@class = "form-control"})
+                </div>
+                <label class="control-label col-md-1"> Est. Civ.</label>
+                <div class="col-md-1">
+                    @Html.DropDownList("MaritalSituationId", null, new {@class = "form-control"})
+                </div>
+                @Html.LabelFor(model => model.ReligionId, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.DropDownList("ReligionId", null, new {@class = "form-control"})
+                </div>
+                <label class="control-label col-md-1"> Niv. Esc.</label>
+                <div class="col-md-2">
+                    @Html.DropDownList("SchoolLevelId", null, new {@class = "form-control"})
+                </div>
+
+            </div>
+
+            <div class="row">
+                <label class="control-label col-md-1"> Seguro</label>
+                <div class="col-md-3">
+                    @Html.DropDownList("InsuranceId", null, new {@class = "form-control"})
+                </div>
+                @Html.LabelFor(model => model.Tel, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Tel, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+                <div class="col-md-1">
+                </div>
+                @Html.LabelFor(model => model.Cel, new {@class = "control-label col-md-1"})
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Cel, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-1"})
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+                @Html.LabelFor(model => model.Address, new {@class = "control-label col-md-1"})
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Address, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br/>
+
+
+@*Acciones*@
+    <div class="row">
+
+        <div class="col-md-3">
+            <a class="btn btn-success" href="@Url.Action("Index", "Patients", new {area = "Medicals"})" width="60" height="60">
+                <span class="fa fa-reply" width="60" height="60"> Volver al Listado de Pacientes</span>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+
+            <a class="btn btn-warning" href="@Url.Action("Edit", "Patients", new {area = "Medicals", id = @Model.PatientId})" width="60" height="60">
+                <span class="fa fa-edit" width="60" height="60"> Editar Paciente</span>
+            </a>
+        </div>
+
+    </div>
+    <hr/>
+
+@*opciones*@
+    <div class="row">
+        @*@foreach (var userrol in Model.Person.Author.Users.FirstOrDefault(p => p.UserId == ViewBag.UserId).UserRols)
+        {
+
+            foreach (var optionrol in userrol.Rol.OptionRols.Where(p => p.Option.ParentOption.Name == "Pacientes"))
+            {*@
+        @if (Model.Person.Author.Plan.AuthorPlanOptions.Count > 0)
+        {
+            foreach (var option in Model.Person.Author.Plan.AuthorPlanOptions)
+            {
+
+                <div class="col-md-4" style="padding-bottom: 10px">
+                    <a style="width: 100%; text-align: left" href="@Url.Action(option.Option.Action, option.Option.Controller, new {area = option.Option.Area, id = @Model.PatientId})" class="@option.Option.Class">
+                        <img alt="" src="@option.Option.Icon" width="60" height="60" align="middle">
+                        <span> @option.Option.Description</span>
+                    </a>
+                </div>
+
+            @*switch (optionrol.Option.Name)
+                {
+                    case "CitasNotificaciones":
+                        <div class="col-md-3">
+
+                            <a style="width: 100%;text-align: left" href="@Url.Action("IndexAppointments", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+                                <img alt="" src="~/Content/Icons/appoint.png" width="60" height="60" align="middle">
+                                <span> Citas & Notificaciones</span>
+                            </a>
+                        </div>
+                        break;
+                    case "CitasNotificaciones2":
+                        <div class="col-md-3">
+
+                            <a style="width: 100%;text-align: left" href="@Url.Action("IndexAppointments", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+                                <img alt="" src="~/Content/Icons/appoint.png" width="60" height="60" align="middle">
+                                <span> Citas & Notificaciones</span>
+                            </a>
+                        </div>
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+
+                }*@
+
+
+            }
+        }
+        else
+        {
+            <div style="color: red; text-align: center; font-weight: bold">Usted no tiene opciones asignadas, Porfavor, contacte con su Administrador de sistemas.</div>
+        }
+
+    </div><hr>
+ 
+@*<div class="row">
+        @foreach (var userrol in Model.Person.Author.Users.FirstOrDefault(p => p.UserId == ViewBag.UserId).UserRols)
+        {
+
+            foreach (var optionrol in userrol.Rol.OptionRols.Where(p => p.Option.ParentOption.Name == "Pacientes"))
+            {
+
+                <div class="col-md-4" style="padding-bottom:10px">
+                    <a style="width: 100%; text-align: left" href="@Url.Action(optionrol.Option.Action, optionrol.Option.Controller, new {area = optionrol.Option.Area, id = @Model.PatientId})" class="@optionrol.Option.Class">
+                        <img alt="" src="@optionrol.Option.Icon" width="60" height="60" align="middle">
+                        <span> @optionrol.Option.Description</span>
+                    </a>
+                </div>
+            }
+        }
+    </div>*@
+ 
+
+@*<div class="row" style="padding-bottom: 10px">
+    <div class="col-md-4">
+        &nbsp;
+
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexAppointments", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/appoint.png" width="60" height="60" align="middle">
+            <span> Citas & Notificaciones</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        &nbsp;
+    </div>
+</div>*@
+
+@*<div class="form-group" style="padding-bottom: 10px">
+
+
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("DetailsGeneral", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/general.png" width="60" height="60" align="middle">
+            <span> Historia General</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexGeneralAfections", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Historia Diagnostica/Consultas</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("DetailsPediatric", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/vacines.png" width="60" height="60" align="middle">
+            <span> Historia Terapeutica/Tratamientos</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("DetailsGynecology", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/ginecology.png" width="60" height="60" align="middle">
+            <span> Historia Ginecologica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexObstetrics", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/obstetric.png" width="60" height="60" align="middle">
+            <span> Historia Obstetrica (Pre Natal)</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("DetailsPediatric", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/pediatric.png" width="60" height="60" align="middle">
+            <span> Historia Pediatrica</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexCardiologies", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cardiograma.png" width="60" height="60" align="middle">
+            <span> Historia Cardiologica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexEndocrines", "Patients", new {area = "Medicals", id = @Model.PatientId})" c class="btn btn-default">
+            <img alt="" src="~/Content/Icons/endocrine2.png" width="60" height="60" align="middle">
+            <span> Historia Endocrino</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexBariatrics", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/diet.png" width="60" height="60" align="middle">
+            <span> Historia Nutricional</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexAnesthetics", "Patients", new {area = "Medicals", id = @Model.PatientId})" c class="btn btn-default">
+            <img alt="" src="~/Content/Icons/anestesia.png" width="60" height="60" align="middle">
+            <span> Historia Anestesica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexSurgeries", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/surgery.png" width="60" height="60" align="middle">
+            <span> Historia Quirurgica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexBariatrics", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/bariatric.png" width="60" height="60" align="middle">
+            <span> Historia Bariatrica</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexOrthopedics", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/ortopeda.png" width="60" height="60" align="middle">
+            <span> Historia Ortopedica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexUrologys", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/urology.png" width="60" height="60" align="middle">
+            <span> Historia Urologica</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexPsychiatrys", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/psiquiatric.png" width="60" height="60" align="middle">
+            <span> Historia Psiquiatrica</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexLaboratoryResultsOld", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/histanaliticold.png" width="60" height="60" align="middle">
+            <span> Historia Analitica (Resultados) Old</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexLaboratoryResults", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/histanalitic.png" width="60" height="60" align="middle">
+            <span> Historia Analitica (Resultados)</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexAnalyticalSheets", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/lab.png" width="60" height="60" align="middle">
+            <span> Analitica (Pruebas de Lab.)</span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexRecipes", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/receta.png" width="60" height="60" align="middle">
+            <span> Recetas </span>
+        </a>
+    </div>
+    <div class="col-md-4">
+
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexMedicalCertificates", "Patients", new {area = "Medicals", id = @Model.PatientId})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/licence.png" width="60" height="60" align="middle">
+            <span> Certificado Medico</span>
+        </a>
+    </div>
+
+</div>*@
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function() {
+            $("#Tel,#Cel").mask("(999) 999-9999");
+            $("#Rnc").mask("999-9999999-9");
+            $('input,textarea,select').attr('disabled', true);
+        });
+
+    </script>
+}
+
+

@@ -1,0 +1,344 @@
+﻿@model Backend.Areas.Medicals.Models.PatientView
+
+@{
+    ViewBag.Title = "Editar Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+@using (Html.BeginForm("Edit", "Patients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AuthorId)
+    @Html.HiddenFor(model => model.StatusId)
+    @Html.HiddenFor(model => model.PersonId)
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.Imagen)
+    @Html.HiddenFor(model => model.Record)
+
+    <div class="form-group">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.Imagen))
+            {
+                <img src="@Url.Content(Model.Imagen)" alt="Image" class="LogoNormal" />
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Record2, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.TextBoxFor(model => model.Record2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Record2, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Record, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+
+            @Html.TextBoxFor(model => model.Record, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Record, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+        </div>
+        @Html.LabelFor(model => model.Rnc, "Cedula", new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Rnc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Rnc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BornDate, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.BornDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.BornDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-1">
+        </div>
+
+        @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GenderId, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.DropDownList("GenderId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GenderId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+        </div>
+        @Html.LabelFor(model => model.CountryId, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.DropDownList("CountryId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaritalSituationId, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.DropDownList("MaritalSituationId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaritalSituationId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-1">
+        </div>
+        @Html.LabelFor(model => model.OcupationId, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.DropDownList("OcupationId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.OcupationId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReligionId, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.DropDownList("ReligionId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ReligionId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-1">
+        </div>
+        @Html.LabelFor(model => model.SchoolLevelId, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.DropDownList("SchoolLevelId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SchoolLevelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BloodTypeId, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.DropDownList("BloodTypeId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.BloodTypeId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-1">
+        </div>
+        @Html.LabelFor(model => model.InsuranceId, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.DropDownList("InsuranceId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.InsuranceId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tel, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control Tel" } })
+            @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-1">
+        </div>
+        @Html.LabelFor(model => model.Cel, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cel, new { htmlAttributes = new { @class = "form-control Tel" } })
+            @Html.ValidationMessageFor(model => model.Cel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+
+
+        @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            <div class="file-input-new">
+                <div class="input-group" style="width:280px">
+                    <div tabindex="500" class="form-control file-caption">
+                        <div class="file-caption-name" id="NombreArchivo">
+                        </div>
+                    </div>
+                    <div class="input-group-btn" style="height:auto">
+                        <div tabindex="500" class="btn btn-primary  btn-file">
+                            <i class="glyphicon glyphicon-folder-open "></i>
+
+                            @Html.TextBoxFor(modelo => modelo.ImageFile, new { type = "file", id = "files" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*@Html.LabelFor(model => model.Imagen, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            </div>*@
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <a class="btn btn-warning" href="@Url.Action("Details", "Patients", new { area = "Medicals" ,id=Model.PatientId })">
+                <span class="fa fa-times "></span> Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-floppy-o "></i> Guardar
+            </button>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            $("#Rnc").mask("999-9999999-9");
+        });
+        $("#BornDate").focusout(function (e) {
+            // e.preventDefault();
+            //var today = new Date();
+            //var mydate = $('#BornDate').val();
+            //var birthDate = new Date($('#BornDate').val());
+            //var age = today.getFullYear() - birthDate.getFullYear();
+            //var m = today.getMonth() - birthDate.getMonth();
+            //if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            //    age--;
+            //}
+            return $('#Age').val(getAge($('#BornDate').val()));
+
+            //  $("#Age").val(getAge($("#BornDate").val()));
+
+        });
+        function getAge(dateString) {
+            var now = new Date();
+            var today = new Date(now.getYear(), now.getMonth(), now.getDate());
+
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(3, 5) - 1,
+                dateString.substring(0, 2)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+            var dayString = "";
+            var monthAge;
+            var dateAge;
+            var yearAge;
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            if (age.years > 1) yearString = " Años";
+            else yearString = " Año";
+            if (age.months > 1) monthString = " Meses";
+            else monthString = " Mes";
+            if (age.days > 1) dayString = " Dias";
+            else dayString = " Dia";
+
+
+            //if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+            //    ageString = age.years + yearString + ", " + age.months + monthString + ", y " + age.days + dayString + "";
+            //else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
+            //    ageString = "" + age.days + dayString + "";
+            //else if ((age.years > 0) && (age.months == 0) && (age.days == 0))
+            //    ageString = age.years + yearString + "";
+            //else if ((age.years > 0) && (age.months > 0) && (age.days == 0))
+            //    ageString = age.years + yearString + " y " + age.months + monthString + "";
+            //else if ((age.years == 0) && (age.months > 0) && (age.days > 0))
+            //    ageString = age.months + monthString + " y " + age.days + dayString + "";
+            //else if ((age.years > 0) && (age.months == 0) && (age.days > 0))
+            //    ageString = age.years + yearString + " y " + age.days + dayString + "";
+            //else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
+            //    ageString = age.months + monthString + "";
+            //else ageString = "Oops! Escoja una fecha inferior a la del dia!";
+
+            if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+                ageString = age.years + yearString;
+            else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
+                ageString = age.days + dayString;
+            else if ((age.years > 0) && (age.months == 0) && (age.days == 0))
+                ageString = age.years + yearString;
+            else if ((age.years > 0) && (age.months > 0) && (age.days == 0))
+                ageString = age.years + yearString;
+            else if ((age.years == 0) && (age.months > 0) && (age.days > 0))
+                ageString = age.months + monthString;
+            else if ((age.years > 0) && (age.months == 0) && (age.days > 0))
+                ageString = age.years + yearString;
+            else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
+                ageString = age.months + monthString;
+            else ageString = "Oops! Escoja una fecha inferior a la del dia!";
+
+            return ageString;
+        }
+
+    </script>
+}
+}

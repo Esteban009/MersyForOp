@@ -1,0 +1,73 @@
+﻿@model Domain.SEG.User
+@{
+
+    ViewBag.Title = "Modulo de Historia Clinica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+
+
+@*<div class="form-group">
+    @foreach (var userrol in Model.UserRols)
+    {
+
+        foreach (var optionrol in userrol.Rol.OptionRols.Where(p => p.Option.ParentOption.Name == "Pacientes"))
+        {
+            <div class="col-md-4" style="padding-bottom:10px">
+                <a style="width: 100%; text-align: left" href="@Url.Action(optionrol.Option.Action, optionrol.Option.Controller, new {area = optionrol.Option.Area})" class="@optionrol.Option.Class">
+                    <img alt="" src="@optionrol.Option.Icon" width="60" height="60" align="middle">
+                    <span> @optionrol.Option.Description</span>
+                </a>
+            </div>
+        }
+    }
+</div>*@
+<div class="form-group">
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("IndexAppointmentsAll", "Patients", new {area = "Medicals"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/apoint.png" width="60" height="60" align="middle">
+            <span style="font-size:x-large"> Adm. Citas del Dia </span>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("Index", "Laboratories", new {area = "Medicals"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/labadm.png" width="60" height="60" align="middle">
+            <span style="font-size:x-large"> Adm. Pruebas Lab.</span>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("Details", "Reports", new {area = "Configurations"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/reporte.png" width="60" height="60" align="middle">
+            <span style="font-size:x-large"> Conf. Mi Reporte General</span>
+        </a>
+    </div>
+ 
+    <div class="col-md-4">
+        <a style="width: 100%; text-align: left" href="@Url.Action("Index", "Patients", new {area = "Medicals"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/patienthist.png" width="60" height="60" align="middle">
+            <span style="font-size:x-large"> Adm. Pacientes </span>
+        </a>
+    </div>
+    @*<div class="col-md-4">
+            <a style="width: 100%; text-align: left" href="@Url.Action("Details", "Reports", new {area = "Configurations"})" class="btn btn-default">
+                <img alt="" src="~/Content/Icons/reporte.png" width="60" height="60" align="middle">
+               <span style="font-size:x-large"> Conf. Mi Reporte General</span>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a style="width: 100%; text-align: left" href="@Url.Action("Laboratories", "Patients", new {area = "Medicals"})" class="btn btn-default">
+                <img alt="" src="~/Content/Icons/labadm.png" width="60" height="60" align="middle">
+               <span style="font-size:x-large"> Adm. Pruebas Lab.</span>
+            </a>
+        </div>*@
+
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

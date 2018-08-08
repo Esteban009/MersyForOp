@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Domain.POS.Purchase>
+
+@{
+    ViewBag.Title = "Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Purchases", new { area = "Pos"   })"> <span class="fa fa-plus"></span> Registrar Nueva Compra </a>
+
+
+</p>
+<div class="scroller">
+    <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseInvoiceNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseDate)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.PaidDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubTotal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GeneralDiscount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalDiscount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GeneralCharges)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalCharges)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                  Monto Pagado
+                </th>
+                <th>
+                   Monto Adeudado
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Supplier.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseInvoiceNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseDate)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.PaidDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubTotal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GeneralDiscount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalDiscount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GeneralCharges)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalCharges)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaidAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DebtAmount)
+                    </td>
+                    <td>
+                        @if (@item.StatusId == 6)
+                        {
+                            <a class="btn btn-success" href="@Url.Action("Pay", "Purchases", new {area = "Pos", id = @item.PurchaseId})"> <span class="fa fa-money"></span> Realizar Pago</a>
+
+                        }
+                         
+                        @*<a class="btn btn-warning" href="@Url.Action("Edit", "Purchases", new { area = "Pos" , id=@item.PurchaseId })"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                        <a class="btn btn-info" href="@Url.Action("Details", "Purchases", new { area = "Pos" , id=@item.PurchaseId })"> <span class="fa fa-info"></span> Detalle </a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Purchases", new { area = "Pos" , id=@item.PurchaseId })" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>*@
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+          //  $('table').DataTable();
+            $('table').DataTable( {
+                "order": []
+                // Your other options here...
+            } );
+        });
+    </script>
+
+}
+

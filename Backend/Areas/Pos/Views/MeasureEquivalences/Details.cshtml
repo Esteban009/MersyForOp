@@ -1,0 +1,43 @@
+﻿@model Domain.GEN.MeasureEquivalence
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MeasureEquivalence</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasureMasterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasureMasterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasureSlaveId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasureSlaveId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equivalence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equivalence)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MeasureEquivalenceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

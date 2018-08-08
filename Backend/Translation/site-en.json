@@ -1,0 +1,33 @@
+{
+  "dashboard": {
+    "WELCOME": "Welcome!",
+    "LOGOFF": "Log Off!",
+    "LOGIN": "Log In!",
+    "CONFIG": "Configuration",
+    "OPTIONS": "Options"
+
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Type and hit enter..."
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Welcome",
+    "START": "Home",
+    "ABOUTI": "About Us",
+    "MYACCOUNT": "My Account",
+    "PATIENTS": "Patients",
+    "HISTORY": "History",
+    "heading": {
+      "HEADER": "Options Available"
+    },
+    "nav": {
+      "SINGLEVIEW": "Single View",
+      "menu": {
+        "MENU": "Menu",
+        "SUBMENU": "Sub Menu"
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+﻿@model Domain.POS.CashierDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CashierDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cashier.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cashier.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndingDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CashierDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Domain.MED.Patient>
+
+@{
+    ViewBag.Title = string.Format("Pacientes de {0}", @Model.FirstOrDefault()?.Person.Author.Name);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("MedHist", "Patients", new { area = "Medicals" })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Patients", new { area = "Medicals"   })"> <span class="fa fa-user-plus"></span> Registrar Paciente </a>
+    @*<a class="btn btn-info" href="@Url.Action("IndexAppointmentsAll", "Patients", new { area = "Medicals"   })"> <span class="fa fa-calendar"></span> Administrar Citas del Dia</a>*@
+</p>
+<div style="color:green;  font-weight: bold">
+    1. En el campo de Texto, que dice "Criterio de Busqueda", 
+    escriba algo que le sirva para actualizar el contenido de la lista.
+    <br/>
+    2. Seleccione algun criterio, ya sea nombre, apellido, expediente etc.
+    <br/>
+    3. Haga clic en el boton "Buscar" para que se muestren los pacientes que no se ven en la lista actualmente.
+</div>
+<div>
+    <label for="option0"> Buscar:  &nbsp; &nbsp;</label>
+    <input type="text" id="option0" placeholder="Criterio de Busqueda"> &nbsp;
+
+    <input type="radio" id="option5" name="ddd" value="5" checked="checked">
+    <label for="option5"> por Expediente  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option4" name="ddd" value="4">
+    <label for="option4"> por Cedula  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option1" name="ddd" value="1">
+    <label for="option1"> por Nombre  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option2" name="ddd" value="2">
+    <label for="option2"> por Apellido  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option3" name="ddd" value="3">
+    <label for="option3"> por Correo  &nbsp; &nbsp;</label>
+    
+    <a class="btn btn-primary" id="BtnSearch" href="@Url.Action("PatientFilter", "Patients",new {area="Medicals"})">
+        <span class="fa fa-search"></span> Buscar
+    </a>
+
+</div>
+ 
+<div id="tableHolder">
+    @Html.Partial("_PatientsTablePartial", Model)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            //$('table').DataTable({ "sSearch": "Filtrar por: " });
+            $('table').DataTable({
+                "searching": false
+            } );
+            //$('input[type=radio]').change(function () {
+            //    var $radio = $(this);
+            //    var $btnSearch = $('#BtnSearch');
+            //    var urlBase = $btnSearch.attr('href').split('?')[0];
+            //    urlBase += "?";
+            //    urlBase += ("opParam=" + $radio.val() + "&");
+            //    urlBase += ("param=" + $('#option0').val());
+            //    $btnSearch.attr('href', urlBase);
+            //    console.log(urlBase);
+            //});
+
+            $('#BtnSearch').click(function(e) {
+                e.preventDefault();
+                $.get($(this).attr('href'),
+                    {
+                        opParam: $('input[type=radio]:checked').val(),
+                        param: $('#option0').val()
+                    },
+                    function(result) {
+                       // console.log(result);
+                        $('#tableHolder').html(result.Table);
+                        $('table').DataTable({
+                            "searching": false
+                        });
+                    },
+                    'json');
+            });
+        });
+    </script>
+
+}
+
+
+
+
+

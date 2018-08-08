@@ -1,0 +1,33 @@
+{
+  "dashboard": {
+    "WELCOME": "Bienvenido!",
+    "LOGOFF": "Cerrar Sesion!",
+    "LOGIN": "Iniciar Sesion!",
+    "CONFIG": "Configuracion",
+    "OPTIONS": "Opciones"
+
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Digite y Presione Enter..."
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Bienvenido",
+    "START": "Inicio",
+    "ABOUTI": "Quienes Somos",
+    "HISTORY": "Historia",
+    "MYACCOUNT": "Mi Cuenta",
+    "PATIENTS": "Pacientes",
+    "heading": {
+      "HEADER": "Opciones Disponibles"
+    },
+    "nav": {
+      "SINGLEVIEW": "Vista Simple",
+      "menu": {
+        "MENU": "Menu",
+        "SUBMENU": "Sub Menu"
+      }
+    }
+  }
+}

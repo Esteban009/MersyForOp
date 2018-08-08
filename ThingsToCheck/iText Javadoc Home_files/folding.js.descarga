@@ -1,0 +1,16 @@
+$(function () {
+  $("ul:first>li").each(function () {
+    var list = $("ul", this), li = this;
+    $("strong", this).click(function () {
+      if (li.closed) {
+        li.closed = false;
+        list.slideDown("fast");
+      } else {
+        li.closed = true;
+        list.slideUp("fast");
+      }
+    }).css("cursor", "pointer");;
+    list.hide();
+    li.closed = true;
+  });
+});

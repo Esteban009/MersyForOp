@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Domain.POS.Cashier>
+
+@{
+    ViewBag.Title = "Cajas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Cashiers", new { area = "Pos"   })"> <span class="fa fa-plus"></span> Registrar Nueva Caja </a>
+
+
+</p>
+<div class="scroller">
+    <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Author.Code)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Shop.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                  Usuario Asignado
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.StartBalance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CurrentBalance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndBalance)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Author.Code)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shop.Name)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CashiersdDetails.FirstOrDefault(x=>x.CashierId==item.CashierId && x.Cashier.StatusId==3).User.Email)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.StartBalance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentBalance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndBalance)
+                        </td>*@
+                    <td>
+                        @if (@item.StatusId == 4)
+                        {
+                            <a class="btn btn-success" href="@Url.Action("OpenCashier", "Cashiers", new {area = "Pos", id = @item.CashierId})"> <span class="fa fa-pencil-square-o"></span> Abrir Caja</a>
+
+                        }
+                        else
+                        {
+                            <a class="btn btn-warning" href="@Url.Action("CloseCashier", "Cashiers", new {area = "Pos", id = @item.CashierId})"> <span class="fa fa-sign-out"></span> Cerrar Caja</a>
+
+                        }
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Cashiers", new {area = "Pos", id = @item.CashierId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                        @*<a class="btn btn-info" href="@Url.Action("Details", "Cashiers", new {area = "Pos", id = @item.CashierId})"> <span class="fa fa-info"></span> Detalle </a>*@
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Cashiers", new {area = "Pos", id = @item.CashierId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+

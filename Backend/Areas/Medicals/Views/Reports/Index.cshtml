@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Domain.GEN.Report>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainHeader)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainFooter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Footer1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Footer2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Footer3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Heigh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainHeader)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Header1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Header2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Header3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainFooter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Footer1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Footer2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Footer3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Heigh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReportId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReportId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReportId })
+        </td>
+    </tr>
+}
+
+</table>

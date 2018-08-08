@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Domain.POS.Inventory>
+@*@model System.Threading.Tasks.Task<IList<Domain.POS.Inventory>>*@
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@using (Html.BeginForm("ExportToExcel", "Inventories", FormMethod.Post))
+{*@
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create", "Purchases", new {area = "Pos"})"> <span class="fa fa-plus"></span> Registrar Nuevo Inventario </a>
+        <a class="btn btn-success" href="@Url.Action("ExportToExcel", "Inventories", new {area = "Pos"})"> <span class="fa fa-file-excel-o"></span> Exportar a Excel </a>
+        @*<a class="btn btn-info" id="BtnPrintA4">
+            <span class="fa fa-print"></span> Imprimir (A4)
+        </a>*@
+        @*<input type="submit" value="Export to Excel" class="button" />*@  
+    </p>
+    <div class="scroller">
+        <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shop.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Brand.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Category.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shop.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Brand.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+
+                    <td>
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Inventories", new {area = "Pos", id = @item.InventoryId})"> <span class="fa fa-pencil-square-o"></span> Ajustar Manualmente</a>
+                        <a class="btn btn-info" href="@Url.Action("Details", "Inventories", new {area = "Pos", id = @item.InventoryId})"> <span class="fa fa-info"></span> Detalle </a>
+                        @*<a class="btn btn-danger" href="@Url.Action("Delete", "Inventories", new {area = "Pos", id = @item.ProductId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>*@
+
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+@*}*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+

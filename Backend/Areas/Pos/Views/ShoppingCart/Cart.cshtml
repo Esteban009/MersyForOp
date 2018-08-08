@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+@using Backend.Areas.Pos.Controllers
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Action</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+        </tr>
+        @{ decimal s = 0;}
+
+        @foreach (Item item in( List<Item>) Session["cart"])
+        {
+            s  = s +  item.Pr.SellPrice * item.Quantity;
+            <tr>
+                <a class="btn btn-warning" href="@Url.Action("Delete", "ShoppingCart", new {area = "Pos", id = @item.Pr.ProductId})"> <span class="fa fa-pencil-square-o"></span> Delete</a>
+                      
+                <td>@item.Pr.ProductId</td>
+                <td>@item.Pr.Name</td>
+                <td>@item.Pr.SellPrice</td>
+                <td>@item.Pr.Stock</td>
+                <td>@(item.Pr.Stock * item.Pr.SellPrice)</td>
+            </tr>
+
+        }
+        <tr>
+            <td align="right" colspan="5">Sum
+                
+            </td>
+            <td>@s</td>
+
+        </tr>
+    </table>
+</body>
+</html>
+

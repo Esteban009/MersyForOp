@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Domain.POS.Product>
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Products", new { area = "Pos"   })"> <span class="fa fa-plus"></span> Registrar Nuevo Producto </a>
+
+
+</p>
+<div class="scroller">
+    <table id="MyTable" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Name)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Measure.Code)
+                    </th>*@
+
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Shop.Name)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.BarCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                @*<th>
+                        @Html.DisplayNameFor(model => model.BarcodeImage)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Stock)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Observations)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.BuyPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SellPrice)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.SellPrice2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SellPrice3)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Itbis)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Imagen)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Measure.Code)
+                        </td>*@
+
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Shop.Name)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BarCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.BarcodeImage)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ImageUrl)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        </td>*@
+                    @*    <td>
+                            @Html.DisplayFor(modelItem => item.Observations)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BuyPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SellPrice)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.SellPrice2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SellPrice3)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Itbis)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Imagen)
+                        </td>*@
+                    <td>
+                        @*@Html.ActionLink("Order Now","OrderNow","ShoppingCart", new { area = "Pos", id=item.ProductId})*@
+                        @*<a class="btn btn-warning" href="@Url.Action("OrderNow", "ShoppingCart", new {area = "Pos", id = @item.ProductId})"> <span class="fa fa-pencil-square-o"></span> Ordenar Ahora</a>*@
+
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Products", new {area = "Pos", id = @item.ProductId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                        @*<a class="btn btn-info" href="@Url.Action("Details", "Products", new {area = "Pos", id = @item.ProductId})"> <span class="fa fa-info"></span> Detalle </a>*@
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Products", new {area = "Pos", id = @item.ProductId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+

@@ -1,0 +1,144 @@
+﻿@model Domain.POS.CashierDetail
+
+@{
+    ViewBag.Title = "Abrir Caja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userList = ViewBag.Users;
+    // var userList = Session["Users"];
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CashierId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartingDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartBalance, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.StartBalance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartBalance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("Users", new SelectList(userList, "UserId", "Email"), "-- Seleccionar un Usuario --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2"> </div>
+            <div class="col-md-9" style="color: blue;font-weight:bold">
+                Aqui solo salen los usuarios que tienen habilitado el rol de cajero  (con nivel 4) y que pertenezcan a la sucursal de la caja que se esta abriendo
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+
+                <a id="submit2" class="btn btn-warning" href="@Url.Action("Index", "Cashiers", new {area = "Pos"})">
+                    <span class="fa fa-times "></span> Cancelar
+                </a>
+
+                <a class="btn btn-primary" id="submit">
+                    <span class="fa fa-save "></span> Guardar
+                </a>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+
+
+        $(document).ready(function () {
+            // PurchaseItems = [];
+            //Add button click function
+
+            //Save button click function
+            $('#submit').click(function () {
+                var isAllValid = true;
+
+
+                if ($('#StartingDate').val().trim() == '') {
+                    alert('Seleccione una fecha de apertura!!!.');
+                    isAllValid = false;
+                    return;
+                }
+
+
+
+
+                if ($('#Users').val().trim() == '') {
+                    alert('Seleccione un usuario!!!.');
+                    isAllValid = false;
+                    return;
+                }
+
+
+                //Save if valid
+                if (isAllValid) {
+                    var data = {
+                        CashierDetailId: 0,
+                        CashierId: $('#CashierId').val(),
+                        StartBalance: $('#StartBalance').val(),
+                        CurrentBalance: $('#StartBalance').val(),
+                        EndBalance: 0,
+                        StartingDate: $('#StartingDate').val().trim(),
+                        EndingDate: $('#StartingDate').val().trim(),
+                        UserId: $("#Users option:selected").val()
+                    }
+
+                    $(this).val('Espere...');
+
+                    $.ajax({
+                        url: '@Url.Action("SaveOpenCashier", "Cashiers")',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Caja Abierta satisfactoriamente!!!.');
+                                var baseUrl = "@Url.Action("Index","Cashiers")";
+                                window.location.href = baseUrl;
+                                // $('#submit2').trigger('click');
+                            }
+                            else {
+                                alert('Error al intentar Guardar');
+                            }
+                            $('#submit').val('Guardar');
+                        },
+                        error: function () {
+                            alert('Error. Porfavor intente de nuevo.');
+                            $('#submit').val('Guardar');
+                        }
+                    });
+                }
+
+            });
+
+
+        });
+
+    </script>
+}

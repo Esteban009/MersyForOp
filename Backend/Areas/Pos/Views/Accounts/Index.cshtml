@@ -1,0 +1,168 @@
+﻿@*@model  Domain.TRK.Account*@
+
+@{
+    ViewBag.Title = "Asociacion de cuentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<section class="MySection">
+    <h4>Asociar Cuentas de Ventas</h4>
+</section>
+<div class="row">
+
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Details", "Accounts", new {area = "Pos", id=1})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta Pagada en Efectivo</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta a Credito</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta Pagada con Tarjeta de Credito</span>
+        </a>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span>Venta Pagada con Cheque</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta Pagada con Bonos</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta Pagada con Orden de Compra</span>
+        </a>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span>Venta Pagada Online</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Venta Pagada con Transferencia Electronica</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> ...........</span>
+        </a>
+    </div>
+
+
+</div>
+<hr />
+<section class="MySection">
+    <h4>Asociar Cuentas de Compras (Inventario)</h4>
+</section>
+<div class="row">
+
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra Pagada en Efectivo</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra a Credito</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra Pagada con Tarjeta de Credito</span>
+        </a>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span>Compra Pagada con Cheque</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra Pagada con Bonos</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra Pagada con Orden de Compra</span>
+        </a>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span>Compra Pagada Online</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> Compra Pagada con Transferencia Electronica</span>
+        </a>
+    </div>
+    <div class="col-md-3">
+
+        <a style="width: 100%;text-align: left" href="@Url.Action("Index", "Accounts", new {area = "Pos"})" class="btn btn-default">
+            <img alt="" src="~/Content/Icons/cie.png" width="60" height="60" align="middle">
+            <span> ...........</span>
+        </a>
+    </div>
+
+
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

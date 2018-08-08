@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design -->
+<html style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Customer Invoicing System/Applying Visitor Design Pattern using ASP.NET MVC5 and  C#  - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/Main.min.css">
+
+	
+<meta http-equiv="content-language" content="en-US">
+
+<meta name="Description" content="This article shows you how to apply Visitor Design pattern in real life software scenario. Also this article covers various features of ASP.NET MVC-5, Entity Framework and C# language features.; Author: Gokuldas; Updated: 7 Jun 2015; Section: Design and Architecture; Chapter: Development Lifecycle; Updated: 7 Jun 2015">
+<meta name="Keywords" content="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,Design and Architecture,Development Lifecycle,Free source code, tutorials">
+<meta name="Author" content="Gokuldas">
+<meta name="Rating" content="General">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="https://ajax.googleapis.com/"> 
+
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="https://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="https://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="https://www.codeproject.com/webservices/LoungeRSS.aspx">
+<meta name="robots" content="index, follow">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="https://www.codeproject.com/info/OpenSearch.xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.codeproject.com/favicon/apple-touch-icon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.codeproject.com/favicon/favicon-32x32.png"> 
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.codeproject.com/favicon/favicon-16x16.png"> 
+<link rel="manifest" href="https://www.codeproject.com/favicon/manifest.json"> 
+<link rel="mask-icon" href="https://www.codeproject.com/favicon/safari-pinned-tab.svg" color="#ff9900">
+	
+<script src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/osd.js.descarga"></script><script src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/ads"></script><script src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pubads_impl_rendering_168.js.descarga"></script><script src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/ads(1)"></script><script async="" type="text/javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/gpt.js.descarga"></script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "TechArticle",
+  "headline": "Customer Invoicing System/Applying Visitor Design Pattern using ASP.NET MVC5 and  C# ",
+  "url": "https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design",
+  "discussionUrl": "https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design",
+  "isFamilyFriendly": "true",
+  "image": "https://www.codeproject.com/KB/architecture/998560/Thumb-998560.png",
+  "keywords": "C# (C#3.5), HTML, .NET (.NET4.5), LINQ, SQL-server-2012, VS2013, Architect, Dev, Design",
+  "commentCount": "8",
+  "editor" : {
+    "@type" : "Person",
+    "name" : "Gokuldas",
+    "url" : "https://www.codeproject.com/script/Membership/View.aspx?mid=909310"
+  },
+  "license": "http://www.codeproject.com/info/cpol10.aspx",
+  "publisher" : {
+    "@type" : "Organization",
+    "name" : "CodeProject"
+  }
+  "description": "This article shows you how to apply Visitor Design pattern in real life software scenario. Also this article covers various features of ASP.NET MVC-5, Entity Framework and C# language features.",
+  "upvoteCount": "9",
+  "articleSection": "Design and Architecture",
+  "author" : [{
+      "@type" : "Person",
+      "name" : "Gokuldas",
+      "url" : "https://www.codeproject.com/script/Membership/View.aspx?mid=909310"
+    }],
+  "datePublished": "2015-06-07",
+  "dateCreated": "2015-06-07",
+  "dateModified": "2015-06-07",
+  "aggregateRating" : {
+    "@type" : "aggregateRating",
+    "ratingValue" : 4.48,
+    "ratingCount" : 9,
+    "bestRating" : 5,
+    "worstRating" : 1
+  },
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item" : {
+      "@id" : "/Chapters/11/Development-Lifecycle.aspx",
+      "name" : "Development Lifecycle"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item" : {
+      "@id" : "/KB/architecture/",
+      "name" : "Design and Architecture"
+    }
+  }]
+}
+</script>
+	<!--<base target="_top">--><base href="." target="_top">
+	<script type="text/javascript" language="Javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/jquery.min.js.descarga"></script><script type="text/javascript">//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='%2fscript%2fJS%2fjquery-2.2.4.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+function defrm () { /* thanks twitter */ document.write = ''; window.top.location = window.self.location;  setTimeout(function() { document.body.innerHTML = ''; }, 0);  window.self.onload = function(evt) { document.body.innerHTML = ''; }; }if (window.top !== window.self) {  try {  if (window.top.location.host) { /* will throw */ } else { defrm(); /* chrome */ }  } catch (ex) { defrm(); /* everyone else */ } }if (typeof(DemoUrl)!='undefined')   document.write(unescape('%3Cme')+'ta http'+'-equiv="re'+'fresh"                  con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+$(document).ready(function(){
+    $('#__EVENTVALIDATION').attr('autocomplete', 'off');
+});
+
+//]]>
+</script>
+
+	
+
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script><script type="text/javascript" async="" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/ga.js.descarga"></script>
+
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/main_es.js.descarga"></script><script type="text/javascript" charset="UTF-8" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/element_main.js.descarga"></script><link rel="preload" href="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/integrator.js.descarga" as="script"><script type="text/javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/integrator.js.descarga"></script><script src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pubads_impl_168.js.descarga" async=""></script><link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"></head>	
+
+<body class="chrome chrome62" style="position: relative; min-height: 100%; top: 0px;">
+
+<a class="access-link" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#Main"><img alt="Click here to Skip to main content" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+<div class="alert-bar  overlay " style="">
+	<a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" class="close-notify">×</a>
+	<div>Sign up for our free weekly <a href="https://www.codeproject.com/feature/web-newsletter">Web Developer Newsletter</a>.</div>
+</div>
+
+	
+    <div id="ctl00_STM" class="site-top-menu fixed">
+        <div class="main-content">
+            
+
+<div class="container memberbar clearfix">
+
+	<div id="ctl00_MemberMenu_GenInfo" class="float-left">13,249,401 members (30,639 online)</div>
+
+	<div class="float-left">
+		
+	</div>
+
+	<div class="float-right">
+
+		
+
+		
+
+		
+
+			<script type="text/javascript">//<!--
+			function doSubmit(secure)
+			{
+				if (secure)
+					document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design"
+				else
+					document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design"
+				document.subForm.submit();
+				return true;
+			}//-->
+			</script>
+
+			<a name="SignUp"></a>
+			<span class="member-signin tooltip openable">
+				<span><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design">Sign in</a></span>
+
+				<div class="tooltip-flyout">
+					<form name="subForm" id="subForm" action="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design" method="post" class="tight">
+
+						
+						<input id="FormName" name="FormName" value="MenuBarForm" type="hidden">
+
+						<div>Email</div>
+						<div><input class="small-text" type="email" name="Email" id="Email"></div>
+						<div>Password</div>
+						<div><input class="small-text" type="password" name="Password" id="Password"></div>
+						<div class="action">
+							
+                                  <input id="joinBtn" type="button" class="create hidden" onclick="return Join();" value="Join" style="visibility: visible;">
+                                  <input type="hidden" name="fld_quicksign" value="true">
+                                  <script type="text/javascript">
+                                  function simpleMask(str, key) {
+                                      var result = ''; 
+                                      for (var i = 0; i < str.length; ++i)
+                                          result += String.fromCharCode(key ^ str.charCodeAt(i));
+                                      return result;
+                                  }
+                                  function Join() {
+                                      var url = 'https://www.codeproject.com/script/Membership/Modify.aspx';
+document.location.href=url;
+                                      return false;
+                                  }
+                                  $('#joinBtn').css('visibility', 'visible');
+                                  </script>
+							<input type="submit" value="Sign in" class="signin" onclick="return doSubmit(false);">
+						</div>
+
+						<div class="container">
+							
+							&nbsp;
+							<a id="ctl00_MemberMenu_SendPassword" class="forgot float-right" href="https://www.codeproject.com/script/Membership/SendPassword.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Forgot your password?</a>
+						</div>
+					</form>
+
+					<hr class="divider-dark">
+
+					Sign in with <a class="oauth" title="Sign in using Github" href="https://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=GitHub"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/octicons_github.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Linkedin" href="https://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=LinkedIn"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/linkedin.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Facebook" href="https://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Facebook"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/facebook.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Google" href="https://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Google"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/google-plus.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+<a class="oauth" title="Sign in using Microsoft" href="https://www.codeproject.com/script/Membership/OAuthLogOn.aspx?auth=Microsoft"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/microsoft.png" style="vertical-align:middle;padding-right:3px;border:0;"></a>
+
+				</div>
+            </span>
+		
+	</div>
+</div>
+        </div>
+    </div>
+
+	
+    <div id="ctl00_SH" class="site-header fixed">
+        <div class="main-content">
+            <div class="logo"><a href="https://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/logo250x135.gif" alt="Home" style="height:135px;width:250px;border-width:0px;"></a></div>
+            <div class="promo"><div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/Design-Patterns" data-tags="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,rating4"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=728x90&amp;c=711540"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=728x90&amp;c=711540"  width="728px" height="90px" target="_blank"/&gt;&lt;/a&gt;</noscript></div></div>
+        </div>
+    </div>
+
+	<a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#Main"><img alt="Click here to Skip to main content" class="access-link" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t.gif"></a>
+
+	
+	<div id="ctl00_TPR" class="sub-headerbar clearfix fixed">
+    <div class="float-right">
+		
+
+<div class="searchbar">
+
+<form method="get" action="https://www.codeproject.com/search.aspx?sbo=kw" name="Search" class="tight">
+
+
+<table border="0" cellspacing="0" cellpadding="0" class="search"><tbody><tr><td><input tabindex="2" class="search  subdue" id="sb_tb" value="" name="q"></td><td><input type="image" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/search.gif"></td></tr></tbody></table>
+
+<div class="hover-container">
+	<div id="SearchFilter" class="search-advanced small-text align-left" style="display: none;">
+	<b>Search within:<br></b>
+		
+		<input type="radio" id="sb_kw" name="sbo" value="kw" checked="true"><label for="sb_kw">Articles</label><br>
+<input type="radio" id="sb_qa" name="sbo" value="qa"><label for="sb_qa">Quick Answers</label><br>
+<input type="radio" id="sb_fm" name="sbo" value="fm"><label for="sb_fm">Messages</label><br>
+
+
+		
+		
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+    </div>
+    <div class="float-left">
+		
+
+<div class="navbar clearfix">
+<ul class="navmenu openable">
+
+<li class="desktop-only"><a id="ctl00_TopNavBar_Home" href="https://www.codeproject.com/">home</a>
+
+
+</li><li class="openable"><a id="ctl00_TopNavBar_Art" class="down selected" href="https://www.codeproject.com/script/Articles/Latest.aspx">articles</a>
+
+	<ul>
+		<li class="openable"><a id="ctl00_TopNavBar_ArtTopicList" class="fly" onmouseover="navBarMenu.ShowMap(this, &#39;ctl00_TopNavBar_MapFlyout&#39;);" href="https://www.codeproject.com/script/Content/SiteMap.aspx">Chapters and Sections<span class="has-submenu">&gt;</span></a><ul id="ctl00_TopNavBar_MapFlyout">
+			<li>
+				<div id="siteMap">
+					<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/loading48.gif" alt="loading" style="margin:150px;width:100px;height:100px;">
+				</div>
+			</li>
+			</ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="https://www.codeproject.com/search.aspx?sbo=kw">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="https://www.codeproject.com/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="https://www.codeproject.com/script/Articles/Latest.aspx?at=6">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="https://www.codeproject.com/script/Articles/TopArticles.aspx?ta_so=5">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="https://www.codeproject.com/search.aspx?sbo=kw?aidlst=152&amp;sa_us=True">Beginner Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="https://www.codeproject.com/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="https://www.codeproject.com/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtHelpForum" class="fly" href="https://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly break" href="https://www.codeproject.com/script/Contests/CurrentCompetitions.aspx?cmpTpId=3">Article Competition</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly highlight1" href="https://www.codeproject.com/script/Articles/Submit.aspx">
+			<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/write13.png" width="13px" height="13px"> Submit an article or tip
+			</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly highlight2" href="https://www.codeproject.com/script/Articles/BlogFeed.aspx">
+			<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/write13.png" width="13px" height="13px"> Post your Blog
+			</a></li>		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class="openable">
+<a id="ctl00_TopNavBar_Answers" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active">
+    <span class="desktop-only tablet-only">quick answers</span><span class="mobile-only">Q&amp;A</span>
+</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight1" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#_comments">
+			<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/write13.png" width="13px" height="13px"> Ask a Question about this 
+			article</a>
+		</li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly highlight2" href="https://www.codeproject.com/Questions/ask.aspx"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/write13.png" width="13px" height="13px"> Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81" style="padding-left:30px">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85" style="padding-left:30px">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842" style="padding-left:30px">VB.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=93" style="padding-left:30px">SQL questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="https://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=87" style="padding-left:30px">Javascript questions</a></li>
+			
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Forums" href="https://www.codeproject.com/script/Forums/List.aspx">
+        <span class="desktop-only tablet-only">discussions</span><span class="mobile-only">forums</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="https://www.codeproject.com/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li class="openable"><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="https://www.codeproject.com/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="https://www.codeproject.com/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="https://www.codeproject.com/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="https://www.codeproject.com/Forums/3304/Work-Issues.aspx">Work  Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="https://www.codeproject.com/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="https://www.codeproject.com/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1827460/Objective-C-and-Swift.aspx">Objective-C and Swift</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1725/Database.aspx">Database</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="https://www.codeproject.com/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1848626/Android.aspx">Android</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1876716/iOS.aspx">iOS</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1540733/SharePoint.aspx">SharePoint</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1640/Web-Development.aspx">Web Development</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="https://www.codeproject.com/Forums/1652005/Spam-and-Abuse-Watch.aspx">Spam and Abuse Watch</a>
+</li>
+
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+<li class="openable desktop-only"><a id="ctl00_TopNavBar_Features" href="https://www.codeproject.com/Feature/">features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="https://www.codeproject.com/script/Contests/CurrentCompetitions.aspx?cmpTpId=3&amp;awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="https://www.codeproject.com/script/News/List.aspx">News</a></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="https://www.codeproject.com/Feature/Insider/">The Insider Newsletter</a></li>
+    	<li><a id="ctl00_TopNavBar_DailyBuild" class="fly" href="https://www.codeproject.com/Feature/DailyBuild">The Daily Build Newsletter</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="https://www.codeproject.com/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="https://www.codeproject.com/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Showcase" class="fly" href="https://www.codeproject.com/KB/showcase/">Product Showcase</a></li>
+		<li><a id="ctl00_TopNavBar_Research" class="fly" href="https://www.codeproject.com/script/ResearchLibrary/Index.aspx">Research Library</a></li>
+
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly" href="https://www.codeproject.com/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Lounge" href="https://www.codeproject.com/Lounge.aspx">
+            <span class="desktop-only tablet-only">community</span><span class="mobile-only">lounge</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="https://www.codeproject.com/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly break" href="https://www.codeproject.com/script/Contests/MVPWinners.aspx">Most Valuable Professionals</a></li>
+		
+
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly highlight2" href="https://www.codeproject.com/Lounge.aspx">The Lounge &nbsp;</a></li>
+		<li><a id="ctl00_TopNavBar_InsiderLnk" class="fly" href="https://www.codeproject.com/Insider.aspx">The Insider News</a></li>
+		<li><a id="ctl00_TopNavBar_WeirdWonderful" class="fly" href="https://www.codeproject.com/Feature/WeirdAndWonderful.aspx">The Weird &amp; The Wonderful</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="https://www.codeproject.com/Forums/1536756/The-Soapbox.aspx">The Soapbox</a></li>
+		<li><a id="ctl00_TopNavBar_PRLnk" class="fly break" href="https://www.codeproject.com/Forums/1738007/Press-Releases.aspx">Press Releases</a></li>
+
+		
+		<li class="openable"><a class="fly" href="https://www.codeproject.com/Forums/1580229/Hindi.aspx">Non-English Language
+			<span class="has-submenu">&gt;</span></a>
+		<ul>
+		<li><a class="fly" href="https://www.codeproject.com/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="https://www.codeproject.com/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li><li class="last"></li>
+		
+	</ul>
+
+</li>
+
+
+<li class="openable desktop-only tablet-only" style="margin-left:20px"><a id="ctl00_TopNavBar_Help" href="https://www.codeproject.com/KB/FAQs/">help</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="https://www.codeproject.com/info/guide.aspx">What is 'CodeProject'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly break" href="https://www.codeproject.com/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly break highlight2" href="https://www.codeproject.com/Questions/ask.aspx">Ask a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="https://www.codeproject.com/suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpArticles" class="fly" href="https://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="https://www.codeproject.com/script/Content/SiteMap.aspx">Site Map</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://developermedia.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutAds" class="fly" href="https://www.codeproject.com/info/AboutOurAds.aspx">About our Advertising</a></li>
+		<li><a id="ctl00_TopNavBar_HelpJobs" class="fly" href="https://www.codeproject.com/info/Jobs/">Employment Opportunities</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly" href="https://www.codeproject.com/info/about.aspx">About Us</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+    </div>
+	<div class="sub-headerbar-divider"></div>
+	</div>		
+	
+
+	<div id="A" class="container-content-wrap fixed"> 
+	<div class="container-content">
+
+
+		<div class="clearfix">
+			<div class="container-breadcrumb float-left ">
+				<div><a href="https://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="https://www.codeproject.com/Chapters/11/Development-Lifecycle.aspx">Development Lifecycle</a> » <a href="https://www.codeproject.com/KB/architecture/">Design and Architecture</a> » <a href="https://www.codeproject.com/KB/architecture/#Design+Patterns">Design Patterns</a></div>
+			</div>
+
+            
+
+			<div class="edit-links float-right">
+				
+
+
+
+ 
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+			</div>
+
+			<div class="article-nav float-right">
+                
+				
+
+<div style="display:inline-block;position:relative;top:-6px;margin-right:20px">
+    
+</div>
+
+
+
+<a id="ctl00_ActionLinks_BookmarkMd_ImgBt" title="Bookmark" alternatetext="Bookmark" name="bm_998560_2" onclick="return bookmarkMe(998560,2,&#39;/script/Bookmarks/Ajax/Add.aspx?obid=998560&amp;obtid=2&amp;bio=true&amp;bis=medium&#39;,&#39;medium&#39;);" href="https://www.codeproject.com/script/Bookmarks/Add.aspx?obid=998560&amp;obtid=2&amp;bio=true&amp;bis=medium" style="display:inline-block;height:24px;width:24px;"><img title="Bookmark" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/bookmark24.png" alt="" style="border-width:0px;"></a>
+
+
+<span id="ctl00_ActionLinks_BookmarkMd_StatusMsg" class="tiny-text" style="display:none" name="bm_998560_2"></span>
+<a id="ctl00_ActionLinks_PrintMd" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?display=Print">
+	    <img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/print48.png" title="Print" width="24px" height="24px" style="border:0">
+    </a>
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px" class="article-wing-left">
+
+			<div id="ctl00_Nav" class="container-article-tabs stuck" style="position: fixed; top: 10px; left: 145.5px;">
+    			
+
+<div class="tabs">
+	<div class="selected">Article</div><div class="unselected"><a href="https://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=998560">Browse Code</a></div><div class="unselected"><a href="https://www.codeproject.com/script/Articles/Statistics.aspx?aid=998560">Stats</a></div><div class="unselected"><a href="https://www.codeproject.com/script/Articles/ListVersions.aspx?aid=998560">Revisions (4)</a></div><div class="unselected"><a href="https://www.codeproject.com/script/Articles/ListAlternatives.aspx?aid=998560">Alternatives</a></div>
+
+	<div class="unselected"><a href="https://www.codeproject.com/Articles/998560/WebControls/#_comments" id="ctl00_ArticleTabs_CommentLink" class="anchorLink">Comments 
+        <span id="ctl00_ArticleTabs_CmtCnt">(8)</span></a>
+	</div>
+</div>	
+
+
+				<a id="ctl00_AddAlternative" title="Write a related article about upgrades or translate this into a different language." class="add-item" href="https://www.codeproject.com/script/Articles/SubmissionWizard.aspx?at=1&amp;apid=998560">Add your own<br>alternative version</a>
+
+			    <div>
+                    <h4>Tagged as</h4>
+			        <span id="ctl00_TagList_TagWrp" class="tags vertical">
+
+	
+	
+
+	
+	<span id="ctl00_TagList_VisibleTags"><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/C--hash--" data-id="81">C#</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/.NET" data-id="98">.NET</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/HTML" data-id="104">HTML</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/Architect" data-id="116">Architect</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/Dev" data-id="118">Dev</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/Design" data-id="148">Design</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/LINQ" data-id="151">LINQ</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/Intermediate" data-id="153">Intermediate</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/C--hash--3.5" data-id="377">C#3.5</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/.NET4.5" data-id="2119">.NET4.5</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/SQL-server-2012" data-id="2250">SQL-server-2012</a></div><div class="t"><a rel="tag" href="https://www.codeproject.com/Tags/VS2013" data-id="2768">VS2013</a></div></span> 
+
+	
+	
+</span>
+
+
+			    </div>
+
+                <div class="stats">
+                <h4>Stats</h4>
+                <div id="ctl00_ArtStats"><div class="stats"><div>31.9K views</div><div>1.9K downloads</div><div>28 bookmarked</div></div></div>
+                </div>
+
+                <div class="subdue padded-top" title="Date First posted">Posted 
+                    7 Jun 2015</div>
+
+                <div title="Licence">
+                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
+                </div>
+
+                
+			</div>
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fixed"> 
+
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design" id="aspnetForm" style="margin:0;padding:0">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="lkkC7lnyI5VoUCqBvqmdnI7vBm9vfY/v02B9uT24pd9noJ68SEzoMdOD5DEnBnGWjuBqSZPI45Lsk2mBQe6wQibGaU1eyH3tA2Mx/SuMpC/bAcnsHJoEDR213+AejLyxmxXcHpCE5LlnR4X2oOJHK+RCOhOzdhWTk/sAcuUSgQKToq6uXrToZHMDQeChw7sXFck0DSu7LZsZWarm7s7PzNJ2DIEUwjffE7scIEOt8IDQaWWIJI0jBU4ofKtfPSrRvQwEJomayczP+5ro3ZaMGLaqjSP1kMDx0ICvkprv5zFFajYJ5h3LpqS1fccs8hmhvxXyT3k9mzbOUepbEqnl/irhTezAUjBTL+yhaSegITXk14lcEE4GKm+K1oM0jptHeD/91nkHrFUz/U5jXvCnSIvuTSBuocCSH7dWxftUXhXwI+LXN+qnAZDP+G1vXaQkJ/6EaoYwxY5LZTeTr+BEc4Zo5nGX+d2S1w1hGkf4guS4nMKyg3phgVfD27jCrGXOQvKXt9X01612rTlNFBVV3gBevFnb9V60Kc9aATXe1RiMTthWE5j4GMUbxoAWmnSAcEjAAX73pFetSN50j+5IZxPqUn1Pl5+wTJCusQVLPeNg1Qh2q/Oq+snJ3IaHlpxnWvt2jhkLk7RTS8VIbVxdfRVJx8QOGTYtytwzIaUaFZK0birG7Xi8bPhuXVqu2+ztaLam3fUXGn9KT/b7U6xZmPXMhqm6lILRKeNuFBibmj0dZHLs46uISEB1KEy13u5jCSw374hW7MfPtVcXeZQGf6HlZob5ZkBtyOI0qW1id/UnqwZfqH86ZUuBKKWGE3CYMW4hyP+2cFwlqS/NtLh11OXsGzBcRlR/LF0UAoAPm//VHIZCw7v7XlbGFBWahODWm3/qYTe0f0Dh93zDWQQsNCMMxXKjyFWLqQRx0ukPIgN3v1GOKANMpPK2nxOOw+MDpN1yk/eKJnoLrQIPBYOb9cOngyfs1dXjVyOoR/b52jH3x981xih2CfxuYL7Es6pLmiNYnr+tB47ikkve4pzbXAn4Nb2o6ymKWJMT0No5Z3kqtET8PAzc6PEwZrRvaljy4760naQdEI46uIWQx3tVHReopByHEP4//shNzGRloo/M/P5B0gkfQOjLjNr+uafaqXNxAaAC6cpv3ICQYQi5EVUea2WQrCZVci4xy2lodpkZyZIer+xyu0Xn5Fim1424BxG5nd8cpwb4ZxewaS3Fkg5ilVz1HyLPcQER4o2D4KHIth851tUaK01Uh3VTyLmzJzllF9yDgb4tlKg4XDaRiOqcyP+WUp8LPaADG6DiKFMdvh+Na28zMZnPckxZEj7A8jOmcMXzo0YopKqmI0nGiUsp2jua5R/blGwOmaYV4XJPZrvfeDjn6E7FTKy2n41y/t6QRHC4bQpWJOKF53WSk2oTCf2IHWd5UHMvUx6exPItg2PlOVhmYvrURgIBDHIQHvdjOpd+BVL/PsAiVZ427ht9nIYQfscwD5rVEg//kbMzmfjWQwqWaLCpk39KcHF23TLdXG5scR51htLZXdFhaXWRBZ3cNQT2VKPhjV+BpenKHyzlMe/K67riC50io4+VCW0K75Pvc8Iar/4uXEvbh6GFMgS8x7vJN7Op0dO8p/zGqNJgDNbBauOF7SYL52pHSRrTKI+DCG50XyCWrPZtTswLlQVzJv4zQxmATP5DbedIZtDbQRdFs5ZXRc+EmWB71UCk/OGaXssAKLvjP6KGVo5em7naDGVcoqJ0itrwl67AyHjyHPOq27GCPBPHBKLYo3Zz6xz1/yLGjAyMCZlVox0zkZSUroq2w9FAtER3SvyqyyzicEuOWTybKf9GmF69AA0ZVY6Ji36S4P8D65s3zdku4MT4l8KF2QXUaS+5Jci19bJKB1LVchJ4qGwfktH389+k+h6YNvh55hU8NjehcrGzQh1yWNGrpl84G76Vyc0eR7abthW/ibDc3zK5yg5J3Bm8jlz2+vSylyl0imBj7eIcJpccvBtrFgwPt3pfsacMVejY0dLDiywdCG2VvzGwaQnT6Nnia3KW5HPKkUPUOhgr1sy/0uKQg4sYf81mPMc9YwWhtuKjgfWyuiHswmmNW5iJxW5fXfuMBucr0n6gtqYkG1UAKj3SQTDhNJBBeIDJS1eLTEZ1KkxwyUqpz+USEWy5/SxkDTsQzJEFjpFQTDsCNcSLvuNwP5Ay/ugAxzgEvM6riGlaILukXIxY2gSbNOxVlNPxeepL4uFGYLTmOnA1cJ47jkMwQhnt/hi8BRk7/cwPX2TewEj3BKZvILnly+aYfaHDLkJZZzDZsrM+YJT7Wd0Hi3iVCm9v0e7lnN5umLdLvDtdqCG6N3L8DY2tsKWRRB+2MXv4GlMkwi6QyCEB43owExFxzg6PUxX0TRJ2SCI4">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        <h1 id="ctl00_ArticleTitle">Customer Invoicing System/Applying Visitor Design Pattern using ASP.NET MVC5 and  C# </h1>
+					    </div>
+
+                        <div style="height:34px">
+					        
+					        <div class="entry float-left">
+
+                                <img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/{168b2a1b-50f6-4278-bcfb-cf54ec4a8e8d}.png" id="ctl00_avatar" class="float-left avatar">
+
+                                <div class="float-left">
+                                    <div>
+						                <span class="author"><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=909310" rel="author">Gokuldas</a></span>, 
+						                <span class="date" title="Date last updated">
+							            7 Jun 2015</span>
+			                        </div>
+
+                                    
+						            <div id="ctl00_RateArticleRow" class="float-left align-right" style="margin-top:5px">
+
+					                    <div id="ctl00_CurRat" class="tooltip anchorLink column" style="cursor:pointer;margin:2px 20px 0 0" name="CurRat_998560">
+				
+							                
+
+<table id="ctl00_ArticleRating_RatingTable" cellpadding="0" cellspacing="0" class="small-text">
+	<tbody><tr>
+		<td class="nowrap">
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-medium" style="height:18px;width:80px;position:relative;">
+			<div class="clipped align-left float-left" style="height:16px;width:71px;">
+				<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/stars-fill-md.png" style="border-width:0px;">
+			</div><div class="clipped" style="height:16px;width:9px;position:relative;">
+				<img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/stars-empty-md.png" style="border-width:0px;position:absolute;top:0;right:0;">
+			</div>
+		</div>
+		</span>
+
+		
+	</td>
+		<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;4.48 (9 votes)</span>
+		
+	</td>
+	</tr>
+</tbody></table>
+
+<span id="ctl00_ArticleRating_RatingText"></span>
+
+
+							                <div id="ctl00_RB" class="speech-bubble-container-up">
+								                <div class="speech-bubble-up" style="width:150px !important">
+									                            
+<div>
+<table class="feature" width="100%" height="50px" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><div><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pollcol.gif" width="20pxpx" height="8px" border="0px" alt="1 vote, 11.1%" title="1 vote, 11.1%"></div><span title="1 vote">3</span></td>
+<td class="chart-column"><div><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pollcol.gif" width="20pxpx" height="16px" border="0px" alt="2 votes, 22.2%" title="2 votes, 22.2%"></div><span title="2 votes">4</span></td>
+<td class="chart-column"><div><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pollcol.gif" width="20pxpx" height="50px" border="0px" alt="6 votes, 66.7%" title="6 votes, 66.7%"></div><span title="6 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.48/5 - 9 votes</div><div class="small-text align-center subdue">μ 4.48, σ<sub>a</sub> 1.03 [<a href="https://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								                </div>
+								                <div class="speech-bubble-pointer-up">
+									                <div class="speech-bubble-pointer-up-inner"></div>
+								                </div>
+							                </div>
+
+						                </div>
+                                        <div class="column">
+                                        <div id="ctl00_RateArticle_RateItemWrapper" class="small-text" name="RateItem_998560">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="small-text">
+	<tbody><tr>
+		<td id="ctl00_RateArticle_VoteResultDiv" class="rating-result align-right">
+			<span class="align-right"></span>
+			<img class="loading invisible" width="16px" alt="loading..." height="16px" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/loading16.gif"> 
+		</td>
+
+	
+		<td class="voteTbl" style="white-space:nowrap" align="right">
+			<table class="small-text">
+			<tbody><tr>
+				<td id="ctl00_RateArticle_RateText" class="rating-prompt">
+					Rate this:
+				</td>
+
+				
+				<td id="ctl00_RateArticle_VoteFormDiv" class="nowrap rating-stars-voter-medium">
+					
+
+					<span id="ctl00_RateArticle_RB" class="tooltip ajaxHist radio voting">
+						<span id="ctl00_RateArticle_VoteRBL"><input id="ctl00_RateArticle_VoteRBL_0" type="radio" name="ctl00$RateArticle$VoteRBL" value="1" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_1" type="radio" name="ctl00$RateArticle$VoteRBL" value="2" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_2" type="radio" name="ctl00$RateArticle$VoteRBL" value="3" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_3" type="radio" name="ctl00$RateArticle$VoteRBL" value="4" style="display: none;"><input id="ctl00_RateArticle_VoteRBL_4" type="radio" name="ctl00$RateArticle$VoteRBL" value="5" style="display: none;"></span> 
+
+						
+					<div class="rating-star-block"><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" rating="1" class="star outline" title="vote 1">vote 1</a><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" rating="2" class="star outline" title="vote 2">vote 2</a><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" rating="3" class="star outline" title="vote 3">vote 3</a><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" rating="4" class="star outline" title="vote 4">vote 4</a><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" rating="5" class="star outline" title="vote 5">vote 5</a></div></span>
+
+				</td>
+
+				
+				<td style="padding-left:5px">	
+					<input type="submit" name="ctl00$RateArticle$SubmitRateBtn" value="Vote!" id="ctl00_RateArticle_SubmitRateBtn" class="button" style="display: none;">
+				</td>
+			</tr>
+			</tbody></table>
+			
+		</td>
+	</tr>
+	</tbody></table>
+	<div class="hover-container">
+		
+        <div id="ctl00_RateArticle_RSU" class="rating-comment align-left float-right">
+            <div class="padded">
+            Please <a id="ctl00_RateArticle_SignUp" href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design">Sign up or sign in</a> to vote.
+            </div>
+        </div>
+	</div>
+</div>
+                                        </div>
+                                    
+                                    </div>
+    						        	
+
+                                </div>
+
+    	                        	
+                                <div class="float-left" style="margin: 25px 0 0 10px;">
+	                                
+	                            </div>
+                         	    	
+    
+					        </div>
+
+                            
+
+						    
+
+                        </div>
+
+                        <div id="ctl00_description" class="summary">This article shows you how to apply Visitor Design pattern in real life software scenario. Also this article covers various features of ASP.NET MVC-5, Entity Framework and C# language features.</div><span id="ctl00_thumbnailUrl" class="date" content="https://www.codeproject.com/KB/architecture/998560/Thumb-998560.png"></span>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text">
+						
+
+
+
+<ul class="download">
+	<li><a href="http://xsai-smartapp.com/products/visitordemo.zip">Download Full Package-50MB</a></li>	<li><a href="https://www.codeproject.com/KB/architecture/998560/VisitorDemo.zip">Download only Source code - 458 Kb </a></li></ul>
+
+<p><img alt="Visitor Demo Screenshot" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/visitordemomain.png"></p>
+
+<h2>Background</h2>
+
+<p>Recently I published here an article on <code>Observer</code> design pattern. My purpose was to show application of <code>Observer</code> design pattern in real life scenario. Those who may be interested in this article can read it here. <a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Real Time StockFeed Dashboard (Applying Observer Design Pattern using WPF and C#)</a></p>
+
+<p>In this article I will be exploring one more popular design pattern <code>Visitor</code> and demonstrate it's practical application. The application I have developed for this is based on <code>Northwind</code> database. It is Customer Invoicing Application for a fictitious company <code>ABC LTD</code>. and it is used to track the list of customers and it's orders. It also helps you to generate the invoice against any order and you can save the Invoice in XML format for future reference.This application is being developed using asp.net MVC. I have used Visual Studio 2013 to develop this application.</p>
+
+<p>Visitor design pattern is a way of separating an algorithm from an object structure on which it operates. A practical result of this separation is an ability to add new operations to existing object structures without modifying those structures. It is one way to follow the open/closed principle. For more details on this design pattern please refer this <a href="http://en.wikipedia.org/wiki/Visitor_pattern">link</a>.</p>
+
+<h2>Introduction</h2>
+
+<p>Purpose of this article is to demonstrate the application of Visitor Design pattern in real life scenario. In this article I have taken an example of Customer Invoicing System where you can track list of customers and their orders.Since this is an invoicing system you can generate the Invoice against any order and send it to the customer. The application also enables you to save the invoice in XML format. I have used two types of visitors in this application as shown below</p>
+
+<ul>
+	<li>Visitor to Generate Invoice</li>	<li>Visitor to save Invoice in XML format</li></ul>
+
+<p>This article will provide detailed implementation of this pattern using ASP.NET MVC and C#. I will also explore other features such as</p>
+
+<ul>
+	<li>Implement Generic <code>PagedList&lt;T&gt;</code> class to implement paging</li>	<li>Features of <a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Bootstrap.CSS</a></li>	<li>Entity Framework</li>	<li>Lambda Expressions</li></ul>
+
+<h2>Design Overview</h2>
+
+<p>I have prepared two class diagrams to explain the key classes and their roles in this application. One diagram would have looked cluttered so I have logically grouped them based on their responsibilities. Figure 1a shows the first class diagram which contains key classes which are related to Generation of Invoice and saving of Invoice in XML format. There are two key interfaces defined <code>InvoiceElement</code> and <code>IVisitor</code>. The detailed explanation is given below.</p>
+
+<p><img alt="Class Diagram of Customer Invoicing System" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/classdiagram1.png"></p>
+
+<h4>Figure 1a. Class Diagram of Customer Invoicing System</h4>
+
+<p>From the above class diagram you can see that <code>Invoice</code> is a conceptual class responsible for defining the structure of an invoice. It implements <code>InvoiceElement</code> interface and also maintains list of all invoice components. Invoice for this example contains three key InvoiceElements namely <code>HeaderElement</code>, <code>OrderElement</code> and <code>FooterElement</code>. Each of these classes implements <code>InvoiceElement</code> interface. <code>InvoiceElement</code> interface expose one method <code>accept()</code> which accepts <code>IVisitor</code> as its parameter. All the concrete visitor classes must implement this interface. This method enables to extend the functionality of the original class, <code>Invoice</code> in our case by implementing different types of visitors without doing changes to these classes. Hence <code>Invoice</code> class clearly simplify its functionality by delegating the implementation of its extended features to different types of visitors.</p>
+
+<p><code>IVisitor</code> interface exposes <code>visit()</code> method and has several overloaded versions of it so that it can accept different types of <code>InvoiceElement</code> as its paramters. So concrete implementation of visitor can operate based on specific types of <code>InvoiceElement</code> passed to it and take appropriate action. In this example we have two concrete visitor classes namely <code>InvoiceController</code> and <code>SaveInvoiceInXML</code>. I have used <code>InvoiceController</code> as one of the concrete visitor because I want to generate Invoice and render it in html. It has all the suitable references and infrastructure to interact with <code>View</code> and <code>Partial views</code>. I will cover detailed implementation in later section. <code>SaveInvoiceInXML</code> is a visitor responsible for saving the <code>Invoice</code> and its components in XML format.</p>
+
+<p>Figure 1b shows another class diagram of customer invoicing system. This contains key controller classes <code>CustomerController</code>,<code>OrderController</code> and Business layer classes and other helper classes. These are explained below.</p>
+
+<p><img alt="Class Diagram of Customer Invoicing System" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/classdiagram2.png"></p>
+
+<h4>Figure 1b. Class Diagram of Customer Invoicing System</h4>
+
+<p><code>CustomerController</code> is a controller class and is responsible for the interaction with <code>Customer</code> view. It also implements paging by using <code>PagedList&lt;Customer&gt;</code> list using generic custom class <code>PagedList&lt;T&gt;</code>. This class enables to wrap the list of any reference type entity and exposes key methods and properties required to implement paging functionality. <code>OrderController</code> class is responsible for interaction with <code>Order</code> view. It also implements paging by using <code>PagedList&lt;Order&gt;</code>. <code>BONorthWindFacade</code> class acts as a facade and provides an unified interface between controller classes and data layer. It exposes two key methods <code>GetCustomers()</code> and <code>GetOrdersForTheCustomer(string customerID)</code>. The data layer has been implemented using Entity Framework and <code>NorthWindEntities</code> is a key class which provides a data context and access to key entitities such as <code>Customer</code>,<code>Order</code>,<code>Product</code> and <code>Order_Details</code>.</p>
+
+<h2>Business Layer</h2>
+
+<p>Business layer consists of key domain entities such as <code>Customer</code>,<code>Order</code> and <code>Product</code>. <code>BONorthwindFacade</code> is a class which act as a facade and provides unified interface for interaction with the data layer and controllers.The next section will explain the data layer and the detailed implementation of <code>Invoice</code> class, visitor classses and other functionality features are covered in later sections.</p>
+
+<h2>Data Layer</h2>
+
+<p>Data layer is implemented using Entity Framework. <code>NorthwindEntities</code> is a key class which acts as a data context and provides access to all key to the entities such as <code>Customer</code>, <code>Order</code>,<code>Product</code>,<code>Order_Details</code>. The entity diagram is shown in figure 2. All the data layer classes are auto generated using Visual Studio. Please refer the source code for more details.</p>
+
+<p><img alt="Class Diagram of Customer Invoicing System" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/northwind_er.png"></p>
+
+<h4>Figure 2. ER diagram of Customer Invoicing System</h4>
+
+<h2>Implementation of Visitors</h2>
+
+<p>Since this article is to explain the application of the visitor design pattern I will first cover the detailed implementation of the following classes <code>Invoice</code>, <code>InvoiceController</code> and <code>SaveInvoiceInXML</code>.</p>
+
+<h3>Implementation of Invoice Class</h3>
+
+<p><code>Invoice</code> class is a conceptual class and holds the structure of the invoice and all its components. This class implements <code>InvoiceElement</code> interface and has following key methods.</p>
+
+<ul>
+	<li><code>initInvoiceElements()</code></li>	<li><code>accept(IVisitor visitor).</code></li></ul>
+
+<p>Below code shows the details of this class.</p>
+
+<div class="pre-action-link" id="premain693985" style="width:100%;display:block;"><span id="prehide693985" onclick="processCodeBlocks.togglePre(693985);">Hide</span>  &nbsp; <span id="preShrink693985" onclick="processCodeBlocks.shrinkExpand(693985);">Shrink</span> <img id="preimg693985" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(693985);">  &nbsp; <span id="copycode693985" onclick="return processCodeBlocks.copyCode(693985);">Copy Code</span></div><pre id="pre693985" processed="true" class="notranslate" style="margin-top: 0px;">    <span class="code-keyword">public</span> <span class="code-keyword">class</span> Invoice:InvoiceElement
+    {
+        
+        <span class="code-keyword">private</span> List
+&lt;InvoiceElement&gt; _invoiceElements;
+        <span class="code-keyword">public</span> Invoice(Order o){
+        
+            InitInvoice(o);
+        }
+
+        <span class="code-keyword">private</span> HeaderVM InitHeader(){
+            HeaderVM vm = <span class="code-keyword">new</span> HeaderVM();
+            vm.Name = <span class="code-string">"</span><span class="code-string">ABC PLC"</span>;
+            vm.Address1=<span class="code-string">"</span><span class="code-string">121,J.B.Road"</span>;
+            vm.Address2 = <span class="code-string">"</span><span class="code-string">Fleet Street"</span>;
+            vm.City = <span class="code-string">"</span><span class="code-string">London"</span>;
+            vm.Zip = <span class="code-string">"</span><span class="code-string">LS0 5TQ"</span>;
+            vm.Country = <span class="code-string">"</span><span class="code-string">UK"</span>;
+            vm.Email = <span class="code-string">"</span><span class="code-string">sales@abcplcltd.com"</span>;
+            vm.Website = <span class="code-string">"</span><span class="code-string">http://www.abcplc.co.uk"</span>;
+            <span class="code-keyword">return</span> vm;
+        }
+        <span class="code-keyword">private</span> <span class="code-keyword">void</span> InitInvoice(Order o)
+        {
+ 	        _invoiceElements = <span class="code-keyword">new</span> List&lt;InvoiceElementgt;();
+            HeaderElement header= <span class="code-keyword">new</span> HeaderElement(InitHeader());
+            _invoiceElements.Add(header);
+            OrderElement orderElemt = <span class="code-keyword">new</span> OrderElement(o);
+            _invoiceElements.Add(orderElemt);
+            FooterElement footElement = <span class="code-keyword">new</span> FooterElement(<span class="code-string">"</span><span class="code-string">Thank you for doing Business with us!"</span>);
+            _invoiceElements.Add(footElement);
+        }
+        <span class="code-comment">//</span><span class="code-comment"> Implementation of InvoiceElement Interface.</span>
+        <span class="code-keyword">public</span> <span class="code-keyword">void</span> accept(IVisitor visitor)
+        {
+     
+            _invoiceElements.ForEach(ie =<span class="code-keyword">&gt;</span> ie.accept(visitor));
+        }
+    }</pre>
+
+<p>From the above code you can see that <code>Invoice</code> class maintains list of other <code>InvoiceElement</code> components. It's constructor accept instance of <code>Order</code> entity as its parameter and then invokes <code>InitInvoice()</code> method inside the constructor. This method initialises all Invoice components and adds them to the list. The main method is <code>accept()</code> which in turn invokes <code>accept()</code> method of all <code>InvoiceElement</code> initialised earlier. Please see the use of lambda expression. Please refer source code for more details of the implementation details of <code>HeaderElement</code>,<code>OrderElement</code> and <code>FooterElement</code>.</p>
+
+<h2>Implementing InvoiceController visitor</h2>
+
+<p><code>InvoiceController</code> class is a concrete visitor which is responsible to generate Invoice. Since we are generating the Invoice in <code>HTML</code> format and as the controller class has all the suitable infrastructure to interact with the views, I have just extended this class by implementing <code>IVisitor</code> interface. This class maintains a list of <code>HTML</code> strings. These html is returned from <code>Partial Views</code> and is rendered by <code>visit()</code> method by operating on different <code>InvoiceElement</code> components. Please see the code below for the details.</p>
+
+<div class="pre-action-link" id="premain644129" style="width:100%;display:block;"><span id="prehide644129" onclick="processCodeBlocks.togglePre(644129);">Hide</span>  &nbsp; <span id="preShrink644129" onclick="processCodeBlocks.shrinkExpand(644129);">Shrink</span> <img id="preimg644129" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(644129);">  &nbsp; <span id="copycode644129" onclick="return processCodeBlocks.copyCode(644129);">Copy Code</span></div><pre id="pre644129" processed="true" class="notranslate" style="margin-top: 0px;"><span class="code-keyword">public</span> <span class="code-keyword">class</span> InvoiceController : Controller,IVisitor
+ {
+     <span class="code-comment">//</span><span class="code-comment"></span>
+     <span class="code-comment">//</span><span class="code-comment"> Define data context</span>
+     <span class="code-keyword">private</span> NORTHWNDEntities _dbContext = <span class="code-keyword">new</span> NORTHWNDEntities();
+
+     <span class="code-comment">//</span><span class="code-comment">  list of all htmlsection</span>
+     <span class="code-keyword">private</span> List&lt;string&gt; _htmlsectionList = <span class="code-keyword">new</span> List&lt;string&gt;();
+
+
+      <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>      <span class="code-summarycomment">///</span><span class="code-comment"> Method:Index
+</span>      <span class="code-summarycomment">///</span><span class="code-comment"> Purpose:Returns the Invoice view
+</span>      <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>      <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="id"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>      <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">returns</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/returns</span><span class="code-summarycomment">&gt;</span>
+</span>
+     <span class="code-keyword">public</span> ActionResult Index(<span class="code-keyword">int</span> id=<span class="code-digit">0</span>)
+     {
+         Order od = _dbContext.Orders.Find(id);
+         <span class="code-keyword">if</span> (od == <span class="code-keyword">null</span>)
+             <span class="code-keyword">return</span> HttpNotFound();
+         Invoice newInvoice = <span class="code-keyword">new</span> Invoice(od);
+         ViewBag.CustomerID = od.CustomerID;
+         newInvoice.accept(<span class="code-keyword">this</span>);
+         ViewBag.OrderID = id;
+         <span class="code-keyword">return</span> View(_htmlsectionList);
+     }
+
+
+     <span class="code-keyword">public</span> ActionResult BackToOrder(<span class="code-keyword">string</span> id, <span class="code-keyword">int</span> page = <span class="code-digit">1</span>)
+     {
+         <span class="code-keyword">return</span> RedirectToAction(<span class="code-string">"</span><span class="code-string">Index"</span>, <span class="code-string">"</span><span class="code-string">Order"</span>, <span class="code-keyword">new</span> { id = id, page = page });
+
+     }
+
+     <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>     <span class="code-summarycomment">///</span><span class="code-comment"> Method:Save
+</span>     <span class="code-summarycomment">///</span><span class="code-comment"> Purpose:Handler to save the Invoice in XML format
+</span>     <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>     <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="id"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>     <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">returns</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/returns</span><span class="code-summarycomment">&gt;</span>
+</span>
+     <span class="code-keyword">public</span> ActionResult Save(<span class="code-keyword">int</span> id=<span class="code-digit">0</span>)
+     {
+         Order od = _dbContext.Orders.Find(id);
+         <span class="code-keyword">if</span> (od == <span class="code-keyword">null</span>)
+             <span class="code-keyword">return</span> HttpNotFound();
+         Invoice newInvoice = <span class="code-keyword">new</span> Invoice(od);
+         SaveInvoiceInXML saveVisitor = <span class="code-keyword">new</span> SaveInvoiceInXML();
+         newInvoice.accept(saveVisitor);
+         <span class="code-keyword">string</span> filePath = <span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">{0}Order_{1}_{2}.xml"</span>, Request.PhysicalApplicationPath, od.CustomerID, od.OrderID);
+         <span class="code-keyword">try</span>
+         {
+             <span class="code-keyword">if</span>(System.IO.File.Exists(filePath))
+             {
+                 System.IO.File.Delete(filePath);
+             }
+             saveVisitor.InvoiceRoot.Save(filePath);
+         }
+         <span class="code-keyword">catch</span> (Exception ex) {
+
+             <span class="code-keyword">throw</span> ex;
+         }
+         <span class="code-keyword">return</span> View(od);
+     }
+
+
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(HeaderElement headerElement)
+     {
+
+         _htmlsectionList.Add(RenderRazorViewToString(<span class="code-string">"</span><span class="code-string">_Header"</span>, headerElement.Header));
+     }
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(OrderElement orderElement)
+     {
+         _htmlsectionList.Add(RenderRazorViewToString(<span class="code-string">"</span><span class="code-string">_Order"</span>, orderElement.CurrentOrder));
+     }
+
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(FooterElement footerElement)
+     {
+         _htmlsectionList.Add(RenderRazorViewToString(<span class="code-string">"</span><span class="code-string">_Footer"</span>, footerElement));
+     }
+
+
+     <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(InvoiceElement invoiceElement)
+     {
+         <span class="code-comment">//</span><span class="code-comment">Do nothing...  //throw new NotImplementedException();</span>
+     }
+
+     <span class="code-keyword">public</span> <span class="code-keyword">string</span> RenderRazorViewToString(<span class="code-keyword">string</span> viewName, <span class="code-keyword">object</span> model)
+     {
+         ViewData.Model = model;
+         <span class="code-keyword">using</span> (<span class="code-keyword">var</span> sw = <span class="code-keyword">new</span> StringWriter())
+         {
+             <span class="code-keyword">var</span> viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+             <span class="code-keyword">var</span> viewContext = <span class="code-keyword">new</span> ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+             viewResult.View.Render(viewContext, sw);
+             viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+             <span class="code-keyword">return</span> sw.GetStringBuilder().ToString();
+         }
+     }
+ }
+</pre>
+
+<p>From the above code you can see that each version of <code>visit()</code> method operates on specific <code>InvoiceElement</code> and returns appropriate <code>Html</code> markup from partial view and adds to the <code>_htmlSectionList</code> collection. <code>RenderRazorViewToString()</code> method is an important one as it converts the <code> PartialViewResult</code> as html string. The <code>Index()</code> method is simple but interesting method. It first finds the <code>Order</code> based on <code> id</code> passed. It then creates the instance of <code>Invoice</code> class and then invokes it's <code>accept()</code> method. It's this method which in turn invokes respective <code>visit()</code> method to populate the <code>_htmlSectionList</code> collection. Finally it returns the <code>Invoice</code> view by passing <code>_htmlSectionList</code> collection as model to the <code>Index</code> view. The implementation of this view is very simple as it renders all the <code>partial views</code> passed to it via <code>_htmlSectionList</code> collection. The code for the index view is shown below.</p>
+
+<div class="pre-action-link" id="premain777723" style="width:100%;display:block;"><span id="prehide777723" onclick="processCodeBlocks.togglePre(777723);">Hide</span>  &nbsp; <span id="copycode777723" onclick="return processCodeBlocks.copyCode(777723);">Copy Code</span></div><pre id="pre777723" class="notranslate" style="margin-top: 0px;">@model List&lt;string&gt;
+@{
+    ViewBag.Title = <span class="code-string">"</span><span class="code-string">Invoice"</span>;
+}
+&lt;div <span class="code-keyword">class</span>=<span class="code-string">"</span><span class="code-string">container"</span><span class="code-keyword">&gt;</span>
+   
+   @foreach (<span class="code-keyword">var</span> item <span class="code-keyword">in</span> Model) { 
+       
+       @Html.Raw(item);
+       
+   }
+
+&lt;div id=<span class="code-string">"</span><span class="code-string">footer"</span><span class="code-keyword">&gt;</span>
+    &lt;ul <span class="code-keyword">class</span>=<span class="code-string">"</span><span class="code-string">nav nav-pills"</span><span class="code-keyword">&gt;</span>
+
+        &lt;li&gt;
+            @Html.ActionLink(<span class="code-string">"</span><span class="code-string">Back To Orders"</span>, <span class="code-string">"</span><span class="code-string">BackToOrder"</span>, <span class="code-keyword">new</span> { id = ViewBag.CustomerID, page = <span class="code-digit">1</span> })
+
+
+        <span class="code-keyword">&lt;/</span><span class="code-leadattribute">li</span><span class="code-keyword">&gt;</span>
+        &lt;li&gt;
+            @Html.ActionLink(<span class="code-string">"</span><span class="code-string">Save"</span>, <span class="code-string">"</span><span class="code-string">Save"</span>, <span class="code-keyword">new</span> { id = ViewBag.OrderID })
+
+
+        <span class="code-keyword">&lt;/</span><span class="code-leadattribute">li</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;/</span><span class="code-leadattribute">ul</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;/</span><span class="code-leadattribute">div</span><span class="code-keyword">&gt;</span></pre>
+
+<p>Above code is simple. All it does is render the html using <code>Html.Raw()</code> method. Rest of the code is to show links and handler associated with it. See the use of <code>Bootstrap.CSS</code>. The sample <code>Invoice</code> output is shown in Figure 3.</p>
+
+<p><img alt="Sample Invoice" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/invoice.png"></p>
+
+<h4>Figure 3. Sample Invoice</h4>
+
+<h3>Implementation of SaveInvoiceInXML visitor</h3>
+
+<p><code>SaveInvoiceInXML</code> is another visitor which is used to save the invoice in XML format. It's <code>visit()</code> methods operate on respective <code>InvoiceElement</code> and saves it's content in XML format. You need to ensure the read/write permission on the folder where it saves the XML file. Below code shows the details of this class.</p>
+
+<div class="pre-action-link" id="premain735555" style="width:100%;display:block;"><span id="prehide735555" onclick="processCodeBlocks.togglePre(735555);">Hide</span>  &nbsp; <span id="preShrink735555" onclick="processCodeBlocks.shrinkExpand(735555);">Shrink</span> <img id="preimg735555" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(735555);">  &nbsp; <span id="copycode735555" onclick="return processCodeBlocks.copyCode(735555);">Copy Code</span></div><pre id="pre735555" processed="true" class="notranslate" style="margin-top: 0px;"><span class="code-keyword">public</span> <span class="code-keyword">class</span> SaveInvoiceInXML:IVisitor
+    {
+        <span class="code-keyword">private</span> XElement _root = <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">invoice"</span>);
+        <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(InvoiceElement invoiceElement)
+        {
+            <span class="code-comment">//</span><span class="code-comment">throw new NotImplementedException();</span>
+        }
+
+        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> Method:visit
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> Purpose:save headerElement in XML format.
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="headerElement"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(HeaderElement headerElement)
+        {
+            _root.Add(<span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">header"</span>,
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">company"</span>,headerElement.Header.Name),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">address1"</span>,headerElement.Header.Address1),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">address2"</span>,headerElement.Header.Address1),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">city"</span>,headerElement.Header.City),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">country"</span>,headerElement.Header.Country),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">zip"</span>,headerElement.Header.Zip),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">email"</span>,headerElement.Header.Email),
+                            <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">website"</span>,headerElement.Header.Website)
+
+                        ));
+        }
+
+        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> Method:visit
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> purpose:Saves the order content in XML format.
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="orderElement"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>
+        <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(OrderElement orderElement)
+        {
+            <span class="code-comment">//</span><span class="code-comment"> Add order and orderElement</span>
+         
+            Decimal orderAmount = orderElement.CurrentOrder.Order_Details.Sum(odet=<span class="code-keyword">&gt;</span>(odet.UnitPrice*odet.Quantity));
+            Decimal taxAmount = <span class="code-digit">0</span>.20M*orderAmount;
+            orderAmount +=taxAmount;
+            _root.Add( <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">order"</span>,
+                       <span class="code-keyword">new</span> XAttribute(<span class="code-string">"</span><span class="code-string">orderid"</span>,orderElement.CurrentOrder.OrderID),
+                       <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">orderdate"</span>,<span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">{0:d}"</span>,orderElement.CurrentOrder.OrderDate)),
+                       <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">shipping_details"</span>,
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">contact_person"</span>,orderElement.CurrentOrder.Customer.ContactName),
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">company"</span>,orderElement.CurrentOrder.Customer.CompanyName),
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">address"</span>,orderElement.CurrentOrder.ShipAddress),
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">city"</span>,orderElement.CurrentOrder.ShipCity),
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">zip"</span>,orderElement.CurrentOrder.ShipPostalCode),
+                           <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">country"</span>,orderElement.CurrentOrder.ShipCountry)
+                           ),
+                        <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">orderdetails"</span>,
+                            <span class="code-sdkkeyword">from</span> odet <span class="code-keyword">in</span> orderElement.CurrentOrder.Order_Details
+                            <span class="code-sdkkeyword">select</span> <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">order_detail"</span>,
+                                <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">productid"</span>, odet.ProductID),
+                                <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">description"</span>,odet.Product.ProductName),
+                                <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">unitprice"</span>,odet.UnitPrice),
+                                <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">quantity"</span>,odet.Quantity)
+                                )
+                            ),
+                        <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">vat"</span>,<span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">{0:0.00}"</span>,taxAmount)),
+                        <span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">totalamount"</span>,<span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">{0:0.00}"</span>,orderAmount))
+                        
+                ));
+        }
+
+        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> Method:visit
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> Purpose:Saves footer.
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="footerElement"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-keyword">public</span> <span class="code-keyword">void</span> visit(FooterElement footerElement)
+        {
+           _root.Add(<span class="code-keyword">new</span> XElement(<span class="code-string">"</span><span class="code-string">footer"</span>,footerElement.Footer));
+        }
+
+        <span class="code-keyword">public</span> XElement InvoiceRoot { <span class="code-keyword">get</span> { <span class="code-keyword">return</span> _root; } }
+    }</pre>
+
+<p>From the above code you can see that the <code>_root</code> variable is a root of the XML and it of type <code>XElement</code>. Each <code>visit()</code> method then adds the content of each type of <code>InvoiceElement</code> to this root element. <code>Save()</code> handler method in <code>InvoiceController</code> class initialises this visitor and passes to <code>accept()</code> method of <code>Invoice</code> class which does the trick to populate the XML. Figure 4 shows XML format of the invoice.</p>
+
+<p><img alt="Sample Invoice XML" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/samplexml.png"></p>
+
+<h4>Figure 4. Sample Invoice XML</h4>
+
+<h2>Implementation of Other Controllers and PagedList&lt;T&gt; class</h2>
+
+<p><code>CustomerController</code> and <code>OrderController</code> classes are responsible to display the <code>Customer</code> and <code>Order</code> views. Both these views implement paging feature and this is achieved thru custom <code>PagedList&lt;T&gt;</code> class. I decided to built this feature from scratch instead of using any third party control for this purpose. This class and some of the pagination features of <code>Bootstrap.CSS</code> simplify implementing this feature.</p>
+
+<h3>Implementation of PagedList&lt;T&gt;</h3>
+
+<p><code>PagedList&lt;T&gt;</code> is a generic class which holds an original collection of any reference type and exposes some properties and methods required for paging. It exposes following key methodes and properties.</p>
+
+<ul>
+	<li><code>getListFromPage(int page)</code></li>	<li><code>NoOfPages</code></li>	<li><code>CurrentPage</code></li></ul>
+
+<p>Implementation of this class is simple and the code is shown below.</p>
+
+<div class="pre-action-link" id="premain615751" style="width:100%;display:block;"><span id="prehide615751" onclick="processCodeBlocks.togglePre(615751);">Hide</span>  &nbsp; <span id="preShrink615751" onclick="processCodeBlocks.shrinkExpand(615751);">Shrink</span> <img id="preimg615751" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(615751);">  &nbsp; <span id="copycode615751" onclick="return processCodeBlocks.copyCode(615751);">Copy Code</span></div><pre id="pre615751" processed="true" class="notranslate" style="margin-top: 0px;"><span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>    <span class="code-summarycomment">///</span><span class="code-comment"> Generic PagedList class
+</span>    <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>    <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">typeparam</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="T"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/typeparam</span><span class="code-summarycomment">&gt;</span>
+</span>    <span class="code-keyword">public</span> <span class="code-keyword">class</span> PagedList&lt;T&gt; <span class="code-sdkkeyword">where</span> T:<span class="code-keyword">class</span>
+    {
+        <span class="code-keyword">private</span> List&lt;T&gt; _orgList;
+        <span class="code-keyword">private</span> <span class="code-keyword">int</span> _noPages;
+        <span class="code-keyword">private</span> <span class="code-keyword">int</span> _pageSize;
+        <span class="code-keyword">private</span> <span class="code-keyword">int</span> _minPage = <span class="code-digit">1</span>;
+        <span class="code-keyword">private</span> <span class="code-keyword">int</span> _lastPage = <span class="code-digit">1</span>;
+        
+        <span class="code-keyword">public</span> PagedList (List&lt;T&gt; tlist,<span class="code-keyword">int</span> pageSize){
+    
+                _orgList =tlist;
+                _pageSize = pageSize;
+                <span class="code-keyword">if</span> (tlist.Count % _pageSize == <span class="code-digit">0</span>) {
+                    _noPages = tlist.Count / _pageSize;
+                }
+                <span class="code-keyword">else</span>
+                {
+                    _noPages = tlist.Count / _pageSize + <span class="code-digit">1</span>;
+                }
+            }
+
+        <span class="code-keyword">public</span> <span class="code-keyword">int</span> CurrentPage { <span class="code-keyword">get</span> { <span class="code-keyword">return</span> _lastPage; } <span class="code-keyword">set</span> { _lastPage = <span class="code-sdkkeyword">value</span>; } }
+        <span class="code-keyword">public</span> <span class="code-keyword">int</span> NoPages { <span class="code-keyword">get</span> { <span class="code-keyword">return</span> _noPages; } }
+       <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>       <span class="code-summarycomment">///</span><span class="code-comment"> Method:GetListFromPage
+</span>       <span class="code-summarycomment">///</span><span class="code-comment"> Purpose:Returns subset based on page index.
+</span>       <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/summary</span><span class="code-summarycomment">&gt;</span>
+</span>       <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">param</span><span class="code-summarycomment"> </span><span class="code-summarycomment">name="pageNo"</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/param</span><span class="code-summarycomment">&gt;</span>
+</span>       <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">returns</span><span class="code-summarycomment">&gt;</span><span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/returns</span><span class="code-summarycomment">&gt;</span>
+</span>        <span class="code-keyword">public</span> List&lt;T&gt; GetListFromPage(<span class="code-keyword">int</span> pageNo) {
+            <span class="code-keyword">int</span> pageCount = _pageSize;
+            <span class="code-keyword">if</span> (pageNo <span class="code-keyword">&lt;</span> _minPage)
+            {
+                pageNo = _minPage;
+            }
+            <span class="code-keyword">if</span> (pageNo <span class="code-keyword">&gt;</span>= _noPages)
+            {
+                pageNo = _noPages;
+                pageCount = _orgList.Count - (_pageSize * (pageNo - <span class="code-digit">1</span>));
+            }
+            _lastPage = pageNo;
+            <span class="code-keyword">return</span> _orgList.Skip(_pageSize * (pageNo - <span class="code-digit">1</span>)).Take(pageCount).ToList&lt;T&gt;();
+        }
+        
+    }</pre>
+
+<p>From the above code you can see that the constructor of <code>PagedList&lt;T&gt;</code> class accept any generic list holding collection of reference types and also you can specify the size of the page. Based on this it computes <code>NoOfPages</code>. <code>GetListFromPage()</code> method return subset of collection based on page index. Please the use of <code>Skip()</code> and <code>Take()</code> extension methods provided by <code>System.Linq.Enumerable</code> class.</p>
+
+<h3>Implementation of CustomerController and OrderController classes</h3>
+
+<p>Please refer to source code for detailed implementation of these classes.</p>
+
+<h2>Points of Interest</h2>
+
+<p>If you are interested to know more about <code>Bootstrap</code> css then you visit their site <a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">here</a>. Also below I am sharing few links which may of interest to you.</p>
+
+<p>Those who are interested in other design patterns then you use below links for more details.</p>
+
+<ul>
+	<li><a href="http://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612">Gang of Four (Book on Design Patterns) </a></li>	<li><a href="http://pnp.azurewebsites.net/en-us/">Microsoft Patterns and Practices Website </a></li>	<li><a href="https://northwinddatabase.codeplex.com/">Download Link for NorthWind Database.</a></li></ul>
+
+<h2>Conclusion</h2>
+
+<p>Design patterns provide solution to recurring problems faced in software development. <code>Visitor</code> is popular design pattern and I hope this article will provide you the insight of how this pattern works and its application in real life scenarios. I hope you will enjoy reading this article. If you have any queries and need more information then you can <a>e-mail</a> me. Thank you.</p>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin:20px 0 0 10px;border:1px solid #ccc">
+						<div class="msg-300x250" data-format="300x250" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/Design-Patterns" data-loadonview="true" data-tags="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,rating4"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=300x250&amp;c=867934"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=300x250&amp;c=867934"  width="300px" height="250px" target="_blank"/&gt;&lt;/a&gt;</noscript></div>
+						</div>
+                        
+                        
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						<h2>Share</h2>
+				        <div class="share-list">
+					        
+
+<ul class="rrssb-buttons clearfix rrssb-1">
+    
+    <li id="ctl00_SocialLike_Twitter" class="twitter" data-initwidth="20" data-size="47" style="width: calc(50% - 63px);">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="http://twitter.com/home?status=Customer+Invoicing+System%2fApplying+Visitor+Design+Pattern+using+ASP.NET+MVC5+and++C%23++-+CodeProject+-+https%3a%2f%2fwww.codeproject.com%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32
+                    c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155
+                    C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965
+                    C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683
+                    c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851
+                    C26.275,7.229,25.39,8.196,24.253,8.756z"></path>
+                </svg>
+            </span>
+            <span class="text">twitter</span>
+        </a>
+    </li>
+
+    <li id="ctl00_SocialLike_Facebook" class="facebook" data-initwidth="20" data-size="56" style="width: calc(50% - 63px);">
+        <!-- Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: 
+        https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.codeproject.com%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434
+                        c0,2.427,2.181,4.608,4.608,4.608H14V17.379h-3.379v-4.608H14v-1.795c0-3.089,2.335-5.885,5.192-5.885h3.718v4.608h-3.726
+                        c-0.408,0-0.884,0.492-0.884,1.236v1.836h4.609v4.608h-4.609v10.446h4.916c2.422,0,4.608-2.188,4.608-4.608V4.783z"></path>
+                </svg>
+            </span>
+            <span class="text">facebook</span>
+        </a>
+    </li>
+
+    
+
+    <li id="ctl00_SocialLike_LinkedIn" class="linkedin small" data-initwidth="20" data-size="51" style="width: 42px;">
+        <!-- Replace href with your meta and URL information -->
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.codeproject.com%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design&amp;title=Customer+Invoicing+System%2fApplying+Visitor+Design+Pattern+using+ASP.NET+MVC5+and++C%23++-+CodeProject&amp;summary=&amp;source=codeproject.com" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
+                        c-0.129,0.315-0.162,0.753-0.162,1.194v8.216h-4.899c0,0,0.066-13.349,0-14.731h4.899v2.088c-0.01,0.016-0.023,0.032-0.033,0.048
+                        h0.033V11.69c0.65-1.002,1.812-2.435,4.414-2.435C23.008,9.254,25.424,11.361,25.424,15.887z M5.348,2.501
+                        c-1.676,0-2.772,1.092-2.772,2.539c0,1.421,1.066,2.538,2.717,2.546h0.032c1.709,0,2.771-1.132,2.771-2.546
+                        C8.054,3.593,7.019,2.501,5.343,2.501H5.348z M2.867,24.334h4.897V9.603H2.867V24.334z"></path>
+                </svg>
+            </span>
+            <span class="text">linkedin</span>
+        </a>
+    </li>
+    <li id="ctl00_SocialLike_Reddit" class="reddit small" data-initwidth="20" data-size="39" style="width: 42px;">
+        <a href="http://www.reddit.com/submit?url=https%3a%2f%2fwww.codeproject.com%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design&amp;title=Customer+Invoicing+System%2fApplying+Visitor+Design+Pattern+using+ASP.NET+MVC5+and++C%23++-+CodeProject">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve"><g>
+                <path d="M11.794 15.316c0-1.029-0.835-1.895-1.866-1.895c-1.03 0-1.893 0.865-1.893 1.895s0.863 1.9 1.9 1.9 C10.958 17.2 11.8 16.3 11.8 15.316z"></path>
+                <path d="M18.1 13.422c-1.029 0-1.895 0.864-1.895 1.895c0 1 0.9 1.9 1.9 1.865c1.031 0 1.869-0.836 1.869-1.865 C19.969 14.3 19.1 13.4 18.1 13.422z"></path>
+                <path d="M17.527 19.791c-0.678 0.678-1.826 1.006-3.514 1.006c-0.004 0-0.009 0-0.014 0c-0.004 0-0.01 0-0.015 0 
+                c-1.686 0-2.834-0.328-3.51-1.005c-0.264-0.265-0.693-0.265-0.958 0c-0.264 0.265-0.264 0.7 0 1 c0.943 0.9 2.4 1.4 
+                4.5 1.402c0.005 0 0 0 0 0c0.005 0 0 0 0 0c2.066 0 3.527-0.459 4.47-1.402 c0.265-0.264 0.265-0.693 0.002-0.958C18.221 
+                19.5 17.8 19.5 17.5 19.791z"></path><path d="M27.707 13.267c0-1.785-1.453-3.237-3.236-3.237c-0.793 0-1.518 0.287-2.082 
+                0.761c-2.039-1.295-4.646-2.069-7.438-2.219 l1.483-4.691l4.062 0.956c0.071 1.4 1.3 2.6 2.7 2.555c1.488 0 2.695-1.208 
+                2.695-2.695C25.881 3.2 24.7 2 23.2 2 c-1.059 0-1.979 0.616-2.42 1.508l-4.633-1.091c-0.344-0.081-0.693 0.118-0.803 
+                0.455l-1.793 5.7 C10.548 8.6 7.7 9.4 5.6 10.75C5.006 10.3 4.3 10 3.5 10.029c-1.785 0-3.237 1.452-3.237 3.2 c0 1.1 0.6 
+                2.1 1.4 2.69c-0.04 0.272-0.061 0.551-0.061 0.831c0 2.3 1.3 4.4 3.7 5.9 c2.299 1.5 5.3 2.3 8.6 2.325c3.228 0 6.271-0.825 
+                8.571-2.325c2.387-1.56 3.7-3.66 3.7-5.917 c0-0.26-0.016-0.514-0.051-0.768C27.088 15.5 27.7 14.4 27.7 13.267z M23.186 
+                3.355c0.74 0 1.3 0.6 1.3 1.3 c0 0.738-0.6 1.34-1.34 1.34s-1.342-0.602-1.342-1.34C21.844 4 22.4 3.4 23.2 3.355z M1.648 
+                13.3 c0-1.038 0.844-1.882 1.882-1.882c0.31 0 0.6 0.1 0.9 0.209c-1.049 0.868-1.813 1.861-2.26 2.9 C1.832 14.2 1.6 13.8 1.6 
+                13.267z M21.773 21.57c-2.082 1.357-4.863 2.105-7.831 2.105c-2.967 0-5.747-0.748-7.828-2.105 
+                c-1.991-1.301-3.088-3-3.088-4.782c0-1.784 1.097-3.484 3.088-4.784c2.081-1.358 4.861-2.106 7.828-2.106 c2.967 0 5.7 
+                0.7 7.8 2.106c1.99 1.3 3.1 3 3.1 4.784C24.859 18.6 23.8 20.3 21.8 21.57z M25.787 14.6 
+                c-0.432-1.084-1.191-2.095-2.244-2.977c0.273-0.156 0.59-0.245 0.928-0.245c1.035 0 1.9 0.8 1.9 1.9 
+                C26.354 13.8 26.1 14.3 25.8 14.605z"></path></g></svg>
+            </span>
+            <span class="text">reddit</span>
+        </a>
+    </li>
+    <li id="ctl00_SocialLike_GooglePlus" class="googleplus small" data-initwidth="20" data-size="52" style="width: 42px;">
+        <!-- Replace href with your meta and URL information.  -->
+        <a href="https://plus.google.com/share?url=https%3a%2f%2fwww.codeproject.com%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M14.703,15.854l-1.219-0.948c-0.372-0.308-0.88-0.715-0.88-1.459c0-0.748,0.508-1.223,0.95-1.663
+                                c1.42-1.119,2.839-2.309,2.839-4.817c0-2.58-1.621-3.937-2.399-4.581h2.097l2.202-1.383h-6.67c-1.83,0-4.467,0.433-6.398,2.027
+                                C3.768,4.287,3.059,6.018,3.059,7.576c0,2.634,2.022,5.328,5.604,5.328c0.339,0,0.71-0.033,1.083-0.068
+                                c-0.167,0.408-0.336,0.748-0.336,1.324c0,1.04,0.551,1.685,1.011,2.297c-1.524,0.104-4.37,0.273-6.467,1.562
+                                c-1.998,1.188-2.605,2.916-2.605,4.137c0,2.512,2.358,4.84,7.289,4.84c5.822,0,8.904-3.223,8.904-6.41
+                                c0.008-2.327-1.359-3.489-2.829-4.731H14.703z M10.269,11.951c-2.912,0-4.231-3.765-4.231-6.037c0-0.884,0.168-1.797,0.744-2.511
+                                c0.543-0.679,1.489-1.12,2.372-1.12c2.807,0,4.256,3.798,4.256,6.242c0,0.612-0.067,1.694-0.845,2.478
+                                c-0.537,0.55-1.438,0.948-2.295,0.951V11.951z M10.302,25.609c-3.621,0-5.957-1.732-5.957-4.142c0-2.408,2.165-3.223,2.911-3.492
+                                c1.421-0.479,3.25-0.545,3.555-0.545c0.338,0,0.52,0,0.766,0.034c2.574,1.838,3.706,2.757,3.706,4.479
+                                c-0.002,2.073-1.736,3.665-4.982,3.649L10.302,25.609z"></path>
+                            <polygon points="23.254,11.89 23.254,8.521 21.569,8.521 21.569,11.89 18.202,11.89 18.202,13.604 21.569,13.604 21.569,17.004
+                                23.254,17.004 23.254,13.604 26.653,13.604 26.653,11.89      "></polygon>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+            <span class="text">google+</span>
+        </a>
+    </li>
+
+    
+
+    
+
+</ul>
+<!-- Buttons end here -->
+
+				        </div> 
+    			        
+                        <h2 id="ctl00_AboutHeading">About the Author</h2>
+						    
+
+<div class="author-wrapper">
+
+    <div class="pic-wrapper"> 
+        <img id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhoto" class="profile-pic" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/{168b2a1b-50f6-4278-bcfb-cf54ec4a8e8d}.png" style="border-width:0px;transform:rotate(-2deg);">
+
+    </div>
+
+    <div class="container-member">  
+        <b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" class="author" href="https://www.codeproject.com/Members/Gokuldas">Gokuldas</a></b>
+
+        <table class="extended">
+        <tbody><tr>
+            <td rowspan="2" nowrap="" valign="middle">
+            
+            </td>
+            <td width="100%">
+                <div class="company">
+                    <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle">Software Developer (Senior)</span>
+	                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation">United Kingdom <img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/GB.gif" alt="United Kingdom" width="16px" height="11px"></span>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+    <div class="description">
+        I am Solution Architect with 20+ years of IT experience in the field of real time,embedded,client/server and web based applications and Business Intelligence . I am currently working as Senior Consultant for Infor.
+
+        
+    </div>
+
+</div><br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top:8px">
+							
+						</div>
+
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				<div class="bottom-promo"> 
+				    <div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/Design-Patterns" data-loadonview="true" data-tags="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,rating4,pos_bottom"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=728x90&amp;c=867934"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=728x90&amp;c=867934"  width="728px" height="90px" target="_blank"/&gt;&lt;/a&gt;</noscript></div>
+				</div>
+				
+
+                
+        <h2 id="ctl00_AlsoRead_RelatedResults_ctl00_Header" class="also-read">You may also be interested in...</h2>
+        <table class="spaced content-list also-read">
+    
+	    <tbody><tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl01_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl01_Thumbnail" href="https://www.codeproject.com/ResearchLibrary/262/A-Solution-Blueprint-for-DevOps"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/LibraryItemThumbnail_262_100x129.png" alt="" style="border-width:0px;"></a>
+            <div class="pro-badge">Pro</div></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl01_Link" href="https://www.codeproject.com/ResearchLibrary/262/A-Solution-Blueprint-for-DevOps">A Solution Blueprint for DevOps</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl02_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl02_Thumbnail" href="https://www.codeproject.com/ResearchLibrary/264/Building-Reactive-Apps"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/LibraryItemThumbnail_264_100x130.png" alt="" style="border-width:0px;"></a>
+            <div class="pro-badge">Pro</div></div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl02_Link" href="https://www.codeproject.com/ResearchLibrary/264/Building-Reactive-Apps">Building Reactive Apps</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl03_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl03_Thumbnail" href="https://www.codeproject.com/Articles/438922/Design-Patterns-of-Structural-Design-Patterns"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/Thumb-438922.jpg" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl03_Link" href="https://www.codeproject.com/Articles/438922/Design-Patterns-of-Structural-Design-Patterns">Design Patterns 2 of 3 - Structural Design Patterns</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl04_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl04_Thumbnail" href="https://www.codeproject.com/Articles/1214738/Get-Started-Intel-Cyclone-LP-FPGA-kit"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/article100x80.png" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl04_Link" href="https://www.codeproject.com/Articles/1214738/Get-Started-Intel-Cyclone-LP-FPGA-kit">Get Started: Intel® Cyclone® 10 LP FPGA kit</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl05_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl05_Thumbnail" href="https://www.codeproject.com/Articles/455228/Design-Patterns-of-Behavioral-Design-Patterns"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/Thumb-455228.jpg" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl05_Link" href="https://www.codeproject.com/Articles/455228/Design-Patterns-of-Behavioral-Design-Patterns">Design Patterns 3 of 3 - Behavioral Design Patterns</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" width="50%" valign="top">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl06_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl06_Thumbnail" href="https://www.codeproject.com/Articles/1214739/Intel-Cyclone-LP-FPGA-Board-How-to-Program-Your-Fi"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/article100x80.png" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl06_Link" href="https://www.codeproject.com/Articles/1214739/Intel-Cyclone-LP-FPGA-Board-How-to-Program-Your-Fi">Intel® Cyclone® 10 LP FPGA Board - How to Program Your First FPGA</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+		</tbody></table>
+	
+
+
+
+				
+				
+
+					<h2>Comments and Discussions</h2>
+					<a class="float-left" name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoardctl00_MessageBoard" onclick="return forumControl48960262.SwitchMessage(event, null)">
+<table id="ForumTable" class="forum relaxed" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="header1"><div class="callout">
+	<b>You must <a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design%3ffid%3d1885864%26df%3d90%26mpp%3d25%26prof%3dTrue%26sort%3dPosition%26view%3dNormal%26spc%3dRelaxed">Sign In</a> to use this message board.</b>
+</div></td>
+</tr><tr>
+<td><table width="100%" border="0" cellpadding="3px" cellspacing="0">
+<tbody><tr class="header1">
+<td colspan="2" style="white-space:nowrap;"><div class="container">
+<div class="float-right">
+<form action="https://www.codeproject.com/Search.aspx?sbo=fm" method="get" class="searchbar">
+<input type="hidden" name="fid" value="1885864"><input type="hidden" name="sbo" value="fm"><input id="search_forumControl48960262" type="search" class="search subdue" name="qf"><input type="image" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/search.gif">
+</form>
+</div>
+</div></td>
+</tr><tr class="header2">
+<td></td><td style="width:100%;"><div style="text-align:right;">
+<form action="https://www.codeproject.com/script/Forums/SetOptions.aspx?fid=1885864&amp;df=90&amp;mpp=25&amp;prof=True&amp;sort=Position&amp;view=Normal&amp;spc=Relaxed&amp;floc=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design" method="get" style="margin:0;padding:0;">
+<input type="hidden" name="fid" value="1885864"><input type="hidden" name="currentQS" value="fid=1885864&amp;df=90&amp;mpp=25&amp;prof=True&amp;sort=Position&amp;view=Normal&amp;spc=Relaxed&amp;floc=%2fArticles%2f998560%2fCustomer-Invoicing-System-Applying-Visitor-Design"><input type="hidden" name="floc" value="/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Spacing<select size="1" class="dropdown" name="spc">
+<option selected="" value="Relaxed">Relaxed</option><option value="Compact">Compact</option><option value="Tight">Tight</option>
+</select>&nbsp;&nbsp;Layout<select size="1" class="dropdown" name="view">
+<option selected="" value="Normal">Normal</option><option value="Topic">Open Topics</option><option value="Expanded">Open All</option><option value="Thread">Thread View</option>
+</select>&nbsp;&nbsp;Per page<select size="1" class="dropdown" name="mpp">
+<option value="10">10</option><option selected="" value="25">25</option><option value="50">50</option>
+</select>&nbsp;&nbsp;&nbsp;<input type="submit" value="Update" name="SetOpt" class="button">
+</form>
+</div></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="navbar">
+<td></td><td style="text-align:right;width:50%;"></td><td style="text-align:right;white-space:nowrap;"><span class="nav-link disabled">First</span> <span class="nav-link disabled">Prev</span> <span class="nav-link disabled">Next</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%" class="fixed-layout blank-background">
+<tbody><tr id="F5432154_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5432154xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" alt="Question" title="Question"></td><td class="subject hover-container"><a class="message-link" name="5432154" parent="0" thread="5432154" href="https://www.codeproject.com/Messages/5432154/full-package-not-working.aspx">full package not working</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Member 10504873</span><span class="date">5-Sep-17  20:59</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=10504873">Member 10504873</a></span></td><td class="date"><span>5-Sep-17  20:59&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5432154_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="10504873" msgid="5432154" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">*1* Undefined CLR namespace. The 'clr-namespace' URI refers to a namespace 'AdventureWorks.WPF' that is not included in the assembly.	<br>
+*2* The type 'local:ConcatNamesConverter' was not found. Verify that you are not missing an assembly reference and that all referenced assemblies have been built.	<br>
+these errors Iam getting<br>
+Actually I am a beginner in wpf i want to develop a small inventory application,In master form creations i have done properly, But I dont know the invoicing form which grid I use and how to make it so will you help me or share me some sample source code for study purpose<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5432154" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5432154/full-package-not-working.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5432154" data-ref="3_5432154" class="rating-label" name="RateItem_5432154" style="white-space:nowrap;"><span class="rating-result"><span></span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5412639_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5412639xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" alt="Question" title="Question"></td><td class="subject hover-container"><a class="message-link" name="5412639" parent="0" thread="5412639" href="https://www.codeproject.com/Messages/5412639/full-packget-not-work.aspx">full packget not work</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">yunuskose</span><span class="date">5-Jul-17  3:54</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=7789181">yunuskose</a></span></td><td class="date"><span>5-Jul-17  3:54&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5412639_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="7789181" msgid="5412639" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="pre-action-link" id="premain975410" style="width:100%;display:block;"><span id="prehide975410" onclick="processCodeBlocks.togglePre(975410);">Hide</span>  &nbsp; <span id="preShrink975410" onclick="processCodeBlocks.shrinkExpand(975410);">Shrink</span> <img id="preimg975410" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(975410);">  &nbsp; <span id="copycode975410" onclick="return processCodeBlocks.copyCode(975410);">Copy Code</span></div><pre id="pre975410" class="notranslate" style="margin-top: 0px;"><span class="code-string">"</span><span class="code-string">Download Full Package-50MB"</span> link does not work.</pre><br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5412639" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5412639/full-packget-not-work.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5412639" data-ref="3_5412639" class="rating-label" name="RateItem_5412639" style="white-space:nowrap;"><span class="rating-result"><span></span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5229724_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5229724xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" alt="Question" title="Question"></td><td class="subject hover-container"><a class="message-link" name="5229724" parent="0" thread="5229724" href="https://www.codeproject.com/Messages/5229724/Download-Link-Not-Working.aspx">Download Link Not Working</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Member 12345250</span><span class="date">12-Apr-16  3:10</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=12345250">Member 12345250</a></span></td><td class="date"><span>12-Apr-16  3:10&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5229724_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="12345250" msgid="5229724" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Download Link Not Working<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5229724" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5229724/Download-Link-Not-Working.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5229724" data-ref="3_5229724" class="rating-label" name="RateItem_5229724" style="white-space:nowrap;"><span class="rating-result"><span>5.00/5 (1 vote)</span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5190146_h0" class="header hover-row root">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5190146xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_general.gif" alt="General" title="General"></td><td class="subject hover-container"><a class="message-link" name="5190146" parent="0" thread="5190146" href="https://www.codeproject.com/Messages/5190146/this-code-is-work-perfectly-thank-you.aspx">this code is work perfectly thank you</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Lasith Herath</span><span class="date">20-Jan-16  23:06</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=10577901">Lasith Herath</a></span></td><td class="date"><span>20-Jan-16  23:06&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5190146_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="10577901" msgid="5190146" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="pre-action-link" id="premain237471" style="width:100%;display:block;"><span id="prehide237471" onclick="processCodeBlocks.togglePre(237471);">Hide</span>  &nbsp; <span id="preShrink237471" onclick="processCodeBlocks.shrinkExpand(237471);">Shrink</span> <img id="preimg237471" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(237471);">  &nbsp; <span id="copycode237471" onclick="return processCodeBlocks.copyCode(237471);">Copy Code</span></div><pre lang="C#" id="pre237471" class="notranslate" style="margin-top: 0px;"><span class="code-keyword">this</span> code <span class="code-keyword">is</span> work perfectly thank you</pre><br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5190146" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5190146/this-code-is-work-perfectly-thank-you.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5190146" data-ref="3_5190146" class="rating-label" name="RateItem_5190146" style="white-space:nowrap;"><span class="rating-result"><span></span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5072038_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5072038xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" alt="Question" title="Question"></td><td class="subject hover-container"><a class="message-link" name="5072038" parent="0" thread="5072038" href="https://www.codeproject.com/Messages/5072038/picture-unclear.aspx">picture unclear</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">jia6235</span><span class="date">10-Jun-15  0:39</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=7389926">jia6235</a></span></td><td class="date"><span>10-Jun-15  0:39&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5072038_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="7389926" msgid="5072038" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">pic is to blur  too unclear<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5072038" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5072038/picture-unclear.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5072038" data-ref="3_5072038" class="rating-label" name="RateItem_5072038" style="white-space:nowrap;"><span class="rating-result"><span>5.00/5 (1 vote)</span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5071342_h0" class="header hover-row root">
+<td class="subject-line normal  vote-hi" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="20px" class="indent"><a name="xx5071342xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" alt="Question" title="Question"></td><td class="subject hover-container"><a class="message-link" name="5071342" parent="0" thread="5071342" href="https://www.codeproject.com/Messages/5071342/source-code-file-link-broken.aspx">source code file link broken</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Tridip Bhattacharjee</span><span class="date">8-Jun-15  22:49</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-pro-16.png" title="professional" alt="professional" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=525007">Tridip Bhattacharjee</a></span></td><td class="date"><span>8-Jun-15  22:49&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5071342_h1" class="content root selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><span class="voteform vertical" ownerid="525007" msgid="5071342" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="20px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">hey source code file link broken <img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/smiley_frown.gif" align="top" alt="Frown | :("> <br>
+<div class="signature">tbhattacharjee</div><br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5071342" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5071342/source-code-file-link-broken.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5071342" data-ref="3_5071342" class="rating-label" name="RateItem_5071342" style="white-space:nowrap;"><span class="rating-result"><span>5.00/5 (1 vote)</span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5071380_h0" class="header hover-row">
+<td class="subject-line normal " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td width="38px" class="indent"><a name="xx5071380xx"></a><img height="16px" width="16px" align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_answer.gif" alt="Answer" title="Answer"></td><td class="subject hover-container"><a class="message-link" name="5071380" parent="5071342" thread="5071342" href="https://www.codeproject.com/Messages/5071380/Re-source-code-file-link-broken.aspx">Re: source code file link broken</a> <a onclick="return forumControl48960262.Pin(this);" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#" title="Click to pin message"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/pin.png" border="0" align="top" alt="Pin" width="13px" height="13px"></a><div class="mobile-only">
+	<span class="author">Gokuldas</span><span class="date">8-Jun-15  23:47</span>
+</div></td><td class="icon"><img border="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/icn-member-16.gif" title="member" alt="member" height="16px"></td><td class="author"><span><a href="https://www.codeproject.com/script/Membership/View.aspx?mid=909310">Gokuldas</a></span></td><td class="date"><span>8-Jun-15  23:47&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5071380_h1" class="content selected" style="display:none;">
+<td class="normal" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:38px;"><span class="voteform vertical" ownerid="909310" msgid="5071380" votingtype="GoodOrBad"></span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/t(1).gif" height="1px" width="38px" alt=""></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="parent"><a rel="nofollow" onclick="return forumControl48960262.SwitchMessage(null,5071342);" href="https://www.codeproject.com/Messages/5071342/source-code-file-link-broken.aspx"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/arrow-up24.png" title="Go to Parent" style="width:16px;height:16px;border:0"></a></div>Hi,<br>
+Thanks. I have fixed this link now.<br>
+Regards,<br>
+Gokul<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Sign In</a>·<wbr><a href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;tid=5071342" title="View Thread">View&nbsp;Thread</a>·<wbr><a href="https://www.codeproject.com/Messages/5071380/Re-source-code-file-link-broken.aspx" title="Get permanent link">Permalink</a></td><td style="text-align:right;"><span id="MVF5071380" data-ref="3_5071380" class="rating-label" name="RateItem_5071380" style="white-space:nowrap;"><span class="rating-result"><span></span></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table width="100%" cellpadding="2px" cellspacing="0">
+<tbody><tr class="footer">
+<td><span class="last-visit desktop-only tablet-only">Last Visit: 31-Dec-99  19:00 &nbsp; &nbsp; Last Update: 19-Nov-17  2:23</span></td><td><a rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;prof=True&amp;view=Normal">Refresh</a></td><td style="text-align:right;white-space:nowrap;"><input id="_mbnUrl" type="hidden" value="/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?fid=1885864&amp;df=90&amp;mpp=25&amp;sort=Position&amp;spc=Relaxed&amp;prof=True&amp;view=Normal&amp;fr=8"><span class="nav-link selected">1</span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+</div><p class="small-text"><img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_general.gif" width="16px" height="16px" alt="General"> General &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_news.gif" width="16px" height="16px" alt="News"> News &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_idea.gif" width="16px" height="16px" alt="Suggestion"> Suggestion &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_question.gif" width="16px" height="16px" alt="Question"> Question &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_bug.gif" width="16px" height="16px" alt="Bug"> Bug &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_answer.gif" width="16px" height="16px" alt="Answer"> Answer &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_joke.gif" width="16px" height="16px" alt="Joke"> Joke &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_kudos.gif" width="16px" height="16px" alt="Praise"> Praise &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_rant.gif" width="16px" height="16px" alt="Rant"> Rant &nbsp;&nbsp; <img align="top" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/msg_admin.gif" width="16px" height="16px" alt="Admin"> Admin &nbsp;&nbsp; </p><p class="small-text">Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to switch threads, Ctrl+Shift+Left/Right to switch pages.</p>
+				
+
+			</div>
+			
+		</td>
+		<td width="170px" class="article-wing-right">
+			<div id="ctl00_RightSideBar" class="container-article-info">
+
+                <div id="RHSticky" class="container-article-info-sticky stuck" style="position: fixed; top: 10px; left: 1013.5px;">
+        			
+
+<div class="article-summary">
+
+    
+
+    
+
+</div>
+
+				    <div id="ctl00_SectionSponsor" class="padded-top">
+					    <div class="msg-160x200" data-format="160x200" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/Design-Patterns" data-tags="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,rating4"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=160x200&amp;c=647516"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=160x200&amp;c=647516"  width="160px" height="200px" target="_blank"/&gt;&lt;/a&gt;</noscript><div id="div-gpt-ad-lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns-4" data-google-query-id="CITc4I7z2dcCFZBjwQodz2MCAA" style="height: 0px; width: 0px; box-sizing: border-box; border: 0px; font-size: 0px; display: none;"><div id="google_ads_iframe_/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns_0" title="3rd party ad content" name="google_ads_iframe_/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns_0" width="160" height="200" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/saved_resource.html"></iframe></div></div></div>
+				    </div>
+
+				    <div style="width:160px;margin: 10px auto;">
+					    <div class="msg-160x600" data-format="160x600" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Development-Lifecycle/Design-and-Architecture/Design-Patterns" data-tags="C#, .NET, HTML, Architect, Dev, Design, LINQ, Intermediate, C#3.5, .NET4.5, SQL-server-2012, VS2013,rating4"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=160x600&amp;c=647516"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns&amp;sz=160x600&amp;c=647516"  width="160px" height="600px" target="_blank"/&gt;&lt;/a&gt;</noscript><div id="div-gpt-ad-lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns-5" data-google-query-id="CIX2447z2dcCFeN7wQodI80MgA" style="height: 600px; width: 160px; box-sizing: border-box; border: 0px; font-size: 0px;"><div id="google_ads_iframe_/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns_1__container__" style="border: 0pt none; display: inline-block; width: 160px; height: 600px;"><iframe frameborder="0" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/container.html" id="google_ads_iframe_/6839/lqm.codeproject.site/Development-Lifecycle/Design-and-Architecture/Design-Patterns_1" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="160" height="600" data-is-safeframe="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" style="border: 0px; vertical-align: bottom;"></iframe></div></div></div>
+				    </div>
+
+                    
+
+				    
+
+				    
+
+				    
+
+                    <div class="anchorLink gototop" id="gototop">
+                        <a id="ctl00_GoToTop" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design#_articleTop">Go to top</a>
+                    </div>
+
+				</div>
+
+			</div>
+		</td>
+		</tr></tbody></table>
+
+		
+		<div class="theme1-background" style="height:2px" id="stickyStop"></div>
+
+		<div class="extended tiny-text">
+			<div class="row">
+				<div class="float-left">
+					<a id="ctl00_PermaLink" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design">Permalink</a> | 
+					<a id="ctl00_AdvertiseLink" href="http://developermedia.com/">Advertise </a> |
+					<a id="ctl00_PrivacyLink" href="https://www.codeproject.com/info/privacy.aspx">Privacy</a> |
+                    <a id="ctl00_TermsOfUseLink" href="https://www.codeproject.com/info/TermsOfUse.aspx">Terms of Use</a> |
+					<a id="ctl00_Mobile">Mobile</a>
+					<br>
+								
+					
+					Web01 |
+					2.8.171114.1 |
+					Last Updated 7 Jun 2015								
+				</div>
+
+                <div id="ctl00_GoogleTranslate" class="translate float-left"><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage" class="goog-te-gadget-simple" style="white-space: nowrap;"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/cleardot.gif" class="goog-te-gadget-icon" alt="" style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;"><span style="vertical-align: middle;"><a aria-haspopup="true" class="goog-te-menu-value" href="javascript:void(0)"><span>Seleccionar idioma</span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/cleardot.gif" alt="" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/cleardot.gif" alt="" width="1" height="1"><span aria-hidden="true" style="color: rgb(118, 118, 118);">▼</span></a></span></div></div></div>      
+
+				<div class="float-right align-right">
+					Article Copyright 2015 by Gokuldas<br>Everything else
+					Copyright © <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2017 <br>
+				</div>
+
+				
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" class=" active" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="https://www.codeproject.com/Articles/998560/Customer-Invoicing-System-Applying-Visitor-Design?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+			</div>
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<img id="ctl00_Audience" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/DFPAudiencePixel" style="border-width:0px;height:1px;width:1px;">
+
+
+
+<script type="text/javascript" language="Javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/article.min.js.descarga"></script>
+<script type="text/javascript" language="Javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/element.js.descarga"></script>
+<script type="text/javascript" language="Javascript" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/MemberProfilePopup.min.js.descarga"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+$(document).ready(function () { processCodeBlocks.Initialise('#contentdiv'); });
+function googleTranslateElementInit() {  new google.translate.TranslateElement({   pageLanguage: 'en',   layout: google.translate.TranslateElement.InlineLayout.SIMPLE,   autoDisplay: false,   gaTrack: true,   gaId: 'UA-1735123-1'},  'ctl00_GoogleTranslate');}
+$(document).ready(function() { anchorAnimate();
+$('#RHSticky').sticky($('#stickyStop'));
+$('#ctl00_Nav').sticky($('#stickyStop'));
+});
+$(document).ready(function() {   $('.alert-bar').fadeIn('slow');   $('.alert-bar a.close-notify').click(function() {      $('.alert-bar').fadeOut('fast');        return false;    });});
+$(function ()
+                {
+                    $('.oauth').click(function () {
+                        $this = $(this);
+                        href = $this.attr('href');
+                        var myWindow = window.open(href, 'popup',
+                                    'width=800,height=600,location=0,menubar=0,resizeable=0,scrollbars=0,toolbar=0');
+                        myWindow.focus();
+                        var timer = setInterval(function () {
+                                        if (myWindow.closed) {
+                                            clearInterval(timer);
+                                            // window.location.reload(); // May do a POST reload, shows a warning
+                                            window.location = window.location; // force a GET reload
+                                        }
+                                    }, 200);
+                        return false;
+                    });
+                });
+var retrievalService=function(n){var t=!1;n=n||{};var r=n.RetrievalServiceUrl||"/script/content/webservices/RetrieveContent.aspx/GetContent",u=n.RetrievalServiceRetries||3,f=n.RetrievalServiceTimeout||5e3,e=function(){t||(t=!0,$(window).bind("resize scroll",i),i())},i=function(){if(typeof DMAds=="undefined"){var n=$('[data-type="ad"]');n.each(function(){var n=$(this),u=n.attr("data-format")||"",f=n.attr("data-publisher")||"",e=n.attr("data-zone")||"",t=n.attr("data-loadonview"),i=n.attr("data-noadx"),h=n.attr("data-tags")||"",c=n.find("iframe").length!==0||n.find("img").length!==0,r=n.attr("data-processed");t=typeof t=="string"&&t.toLowerCase()==="true";i=typeof i=="string"&&i.toLowerCase()==="true";r=typeof r=="string"&&r.toLowerCase()==="true";r||c||t&&!s(this)||(o(n,u,f,e,i,h),n.attr("data-processed","true"))})}},o=function(n,t,i,e,o,s){var h=new $.Deferred,c=JSON.stringify({format:t,publisherCode:i,zone:e,noAdX:o,keywords:s});$.ajax({url:r,cache:!1,type:"POST",data:c,contentType:"application/json; charset=utf-8",dataType:"json",tryCount:0,retryLimit:u,timeout:f}).done(function(t){var i=t?t.d:null;h.resolve(i); i && i.html && n.html(i.html)}).fail(function(n,t){h.reject(t)})},s=function(n){var t,f,e,o;if(!h(n))return!1;var u=!1,i=0,r=0;try{t=n.getBoundingClientRect();typeof innerWidth=="number"?(i=window.innerWidth,r=window.innerHeight):document.documentElement&&(document.documentElement.clientWidth||document.documentElement.clientHeight)?(i=document.documentElement.clientWidth,r=document.documentElement.clientHeight):document.body&&(document.body.clientWidth||document.body.clientHeight)&&(i=document.body.clientWidth,r=document.body.clientHeight);f=-200;t.top===t.bottom&&(f+=n.height*-1);e=t.top>=0&&t.top-200<=r||t.top<=0&&t.top>=f;o=i>t.left&&t.right>=0;u=e&&o}catch(s){u=!0}return u},h=function(n){var t=!1,i;return n&&n.style.position!=="fixed"&&n.offsetParent?t=!0:n&&n.style.position==="fixed"&&(i=window.getComputedStyle(n),t=i&&i.display!=="none"),t&&c()},c=function(){var t=!0,n="";return typeof document.hidden!="undefined"?n="hidden":typeof document.mozHidden!="undefined"?n="mozHidden":typeof document.msHidden!="undefined"?n="msHidden":typeof document.webkitHidden!="undefined"&&(n="webkitHidden"),n!==null&&document[n]&&(t=!1),t};return{init:e}};$(document).ready(function(){var n=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("MSXML2.XMLHTTP"),t;n.onreadystatechange=function(){try{if(n.readyState==4)if(n.status==200){var t=document.createElement("script");t.type="text/javascript";t.innerHTML=n.responseText;document.getElementsByTagName("body")[0].appendChild(t)}else(new retrievalService).init()}catch(i){(new retrievalService).init()}};try{t=('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn2.developermedia.com/a.min.js';n.open("GET",t,!0);n.send()}catch(i){(new retrievalService).init()}});
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ if(InitWatermark)InitWatermark('sb_tb', 'Search for articles, questions, tips');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide(); sfilter.removeClass('open');
+  sbar.blur(function() {
+ if (!oSrchFlt) {sfilter.hide(); sfilter.removeClass('open');}
+ srchBoxFoc=false;
+ });
+  sbar.focus(function() {
+ oSrchFlt=false; srchBoxFoc=true;
+ sfilter.show(); sfilter.addClass('open');
+ });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox) { sfilter.hide(); sfilter.removeClass('open'); }});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$('#clear-rate_ctl00_RateArticle_RSU').click(function () {    $('#ctl00_RateArticle_RSU').hide(); return false;});$("#ctl00_RateArticle_RateItemWrapper")   .removeClass("container-rating")   .hover( function() { $('#ctl00_RateArticle_RSU').fadeIn('fast'); },            function() { $('#ctl00_RateArticle_RSU').fadeOut('fast'); } );
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(null, 998560,2,1,true,true,0,'MediumStars', null, ratingAjaxCallback);
+}
+
+                        function getVotesHistogram(objectId, objectTypeId, containerId, loadingId) {
+                            if (!$('#' + containerId).attr('alreadyRequested')){
+                                $.ajax({
+                                    url: '/script/Ratings/Ajax/Histogram.aspx?obid=' + objectId + '&obtid='+objectTypeId,
+                                    success: function (data) {
+                                        $('#' + containerId).html(data);
+                                        $('#' + loadingId).hide();
+                                    }
+                                });
+                                $('#' + containerId).attr('alreadyRequested', 'true');
+                            }
+                        }
+$(document).ready(function() {
+  new starRating('#ctl00_RateArticle_RateItemWrapper', PostBack_ctl00_RateArticle_RateItemWrapper,'ctl00_RateArticle');
+  $('#ctl00_RateArticle_RB').mouseenter(function() {     getVotesHistogram(998560,2   ,'ctl00_RateArticle_Histogram','ctl00_RateArticle_Loading');
+  });
+})
+
+$(document).ready(function() {
+  $('#ctl00_RateArticle_SubmitRateBtn').hide();
+});
+
+$(document).ready(function() {
+  $('#ctl00_RateArticle_SubmitRateBtn').hide();
+});
+function ChkRtctl00_RateArticle(){}
+
+var config48960262 = {
+    objectName          : 'forumControl48960262',
+    messageTypeId       : 3,
+    searchPrompt        : 'Search Comments',
+    smoothScroll        : true,
+    allowReporting      : false,
+    allowRating         : false,
+    allowRatingDisplay  : true,
+    forumDir            : '/script/Forums/',
+    staticServer        : 'https://codeproject.global.ssl.fastly.net',
+    switchMsgCallback   : null,
+    getVoteFormMethod   : getVoteFormHtml,
+    getReportFormMethod : getReportFormHtml,
+    voteHiThreshold     : 5 - 0.5,
+    getRatingUrl        : '/script/Ratings/Ajax/GetRatings.aspx',
+    getRatingRefKey     : 'obrs',
+    reportOptions       : [
+       { reportTypeId : 19, name : 'Abusive / Trolling'},
+       { reportTypeId : 20, name : 'Inappropriate'},
+       { reportTypeId : 5, name : 'Spam'},
+    ],
+};
+var forumControl48960262 = new ForumControl(config48960262, -1);
+$(document).ready(function() {
+    forumControl48960262.Initialise();
+});
+
+
+//]]>
+</script>
+
+
+
+<canvas id="cv1" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><canvas id="cv2" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><div id="MemberProfilePopupDiv" class="raised box" style="display: none; position: absolute;"></div><style type="text/css">.copied::after {  position: absolute;  display: inline-block;  content: 'copied'; color: #fff; background-color: #f90;  border-radius: 3px; padding:1px 3px; opacity: 0;  will-change: opacity, transform; animation: showcopied 1.5s ease; } @keyframes showcopied { 0% { opacity: 0; transform: translateX(-100%); } 70% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; } } </style><style type="text/css">.copied::after {  position: absolute;  display: inline-block;  content: 'copied'; color: #fff; background-color: #f90;  border-radius: 3px; padding:1px 3px; opacity: 0;  will-change: opacity, transform; animation: showcopied 1.5s ease; } @keyframes showcopied { 0% { opacity: 0; transform: translateX(-100%); } 70% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; } } </style><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/translate_24dp.png" width="20" height="20" alt="Google Traductor de Google"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Texto original</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Sugiere una traducción mejor</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><script type="text/javascript">var googletag;if(typeof DMAds=="undefined"){var SendSearchTermsToServer=!0,CodeProjectPublisherId="lqm.codeproject.site",EnableMutableAds=!0,EnableViewOnScroll=!0,adServer=adServer||window.location.protocol+"//ads.DeveloperMedia.com/",SearchTermUrl=window.location.protocol+"//apps.developermedia.com/Ads/PageTerms/GetTerms",AdClickUrl=window.location.protocol+"//apps.developermedia.com/Ads/PageTerms/LogClick",DownvoteUrl=window.location.protocol+"//apps.developermedia.com/Ads/AdVote/DownvoteByFingerprint",UndoDownvoteUrl=window.location.protocol+"//apps.developermedia.com/Ads/AdVote/UndoDownvote",ReportAdUrl=window.location.protocol+"//apps.developermedia.com/Ads/AdVote/ReportAd",CloseAdImageUrl=window.location.protocol+"//apps.developermedia.com/Content/images/undo.png",UndoCloseAdImageUrl=window.location.protocol+"//apps.developermedia.com/Content/images/redo.png",DmLogoImageUrl=window.location.protocol+"//apps.developermedia.com/Content/images/dm-logo-150x23.png",GlobalIdUrl=window.location.protocol+"//apps.developermedia.com/Ads/GlobalUserIdentification/",PIIViolatingUrls=["http://www.aspsnippets.com/handlers/comments.ashx","codeproject.com/script/membership/sendpassword.aspx","http://www.dailyfreecode.com/userlogin.aspx","codeproject.com/script/membership/modify.aspx","dotnetspider.com/account/login.aspx","codeproject.com/script/membership/logon.aspx"],DMAdXHelper=function(){var i=[],n={},s=!1,r=!1,v=0,f=null,y=function(n){try{var i=p(n),t=w(n),r=b(n);t.insertBefore(r,t.children[0]);n.closeAdButton=i;n.reportAdDiv=t;n.adContainer.appendChild(i);n.adContainer.parentNode.appendChild(t);n.reportButton=t.getElementsByClassName("reportButton")[0];n.reportButton.disabled=!0;n.reportButton.onclick=function(){return l(n),!1}}catch(u){console.log(u)}},p=function(t){var i=document.createElement("input");return i.type="image",i.src=n.CloseAdImageUrl,i.title="Report Ad",i.align="left",i.style.cssText="z-index:1000; position:relative; left:0px; top:-"+t.height+"px;margin-top: 0px; margin-left: 0px; display:block; font-size:0px; border: 0px; padding: 0px; height:14px; width:14px",i.onclick=t.width==125&&t.height==125?function(){return c(t),l(t),!1}:function(){return c(t),!1},i},w=function(n){var t=n.width,i=n.height,r=document.createElement("div"),u="<select class='reportReason' style='max-width:150px !important; padding: 0px !important'><option>Offensive<\/option><option>Abusive<\/option><option>Off topic<\/option><option>Don't like the Ad<\/option><option>Wrong language<\/option><\/select>",f="<input type='button' disabled class='reportButton' style='padding: 0px !important' value='Report'><\/input>";return t==728&&i==90?k(r,u,f):t==300&&i==250?d(r,u,f):t==160&&i==600?g(r,u,f):t==125&&i==125&&nt(r),(t==728&&i==90||t==300&&i==250||t==160&&i==600)&&tt(n,r),r},b=function(t){var i=document.createElement("input");return i.type="image",i.src=n.UndoCloseAdImageUrl,i.title="Show Ad",i.style.cssText="z-index:1000; position:relative; left:0px; top:0px; width:14px; height:14px;margin-top: 0px; margin-left: 0px; font-size:0px; display:block; padding: 0px; border: 0px",i.onclick=function(){return h(t),!1},i},k=function(t,i,r){t.innerHTML="<div class='sendReportContainer' style='padding-left: 2px; display:block; line-height:initial !important'><div style='display:inline-block; font:14px/18px \"Segoe UI\", Arial'><b>Don't like this Ad?<\/b><\/div><div class='dropzone' contenteditable='true' style='margin-left:10px; height:60px; width: 250px; background-color:lightgray; border-style:dotted; border-color:black; border-radius: 5px; border-width: 2px; text-align: center; display:inline-block; white-space:normal'>1. Hit the refresh icon to show the ad again and take a screenshot. 2. Drag and Drop or paste the screenshot here<\/div><div style='margin-left:10px; display:inline-block; font:14px/18px \"Segoe UI\", Arial;'> "+i+"&nbsp;"+r+"<\/div><\/div><div class='reportSentContainer' style='display:none; padding: 15px 20px; font:14px/18px \"Segoe UI\", Arial;'><span style='color:#999'>Thank you for the report!<\/span><\/div><a href='http://www.developermedia.com/' target='_blank'><img src='"+n.DmLogoImageUrl+"' style='max-width:100%;position:absolute; right:10px; top:10px;'><\/a>";t.style.cssText="display:none; width:728px; height:90px; z-index:100; text-align:left;border-style:solid; border-width:1px; position:relative; background-color:white;box-sizing:border-box; top:0px; left:0px"},d=function(t,i,r){t.innerHTML="<div class='sendReportContainer' style='padding: 5px 5px; display:block; line-height:initial !important'><div style='padding-bottom:5px; font:14px/18px \"Segoe UI\", Arial;'><b>Don't like this Ad?<\/b><\/div><div class='dropzone' contenteditable='true' style='height:100px; width: 290px; margin-top:20px; margin-bottom: 20px; background-color:lightgray; border-style:dotted; border-color:black; border-radius: 5px; border-width: 2px; text-align: center; box-sizing:border-box; white-space:normal'>1. Hit the refresh icon to show the ad again so you can take a screenshot <br/>2. Drag and Drop or paste the screenshot here<\/div><div style='margin-top:5px; font:14px/18px \"Segoe UI\", Arial; '> "+i+"<\/div><div style='margin-top:5px; display:block; font:14px/18px \"Segoe UI\", Arial;'>"+r+"<\/div><\/div><div class='reportSentContainer' style='display:none; padding: 15px 20px; font:14px/18px \"Segoe UI\", Arial; '><span style='color:#999;'>Thank you for the report!<\/span><\/div><a href='http://www.developermedia.com/' target='_blank'><img src='"+n.DmLogoImageUrl+"' style='max-width:100%;position:absolute; right:20px; bottom:10px;'><\/a>";t.style.cssText="display:none; width:300px; height:250px; z-index:100; text-align:left;border-style:solid; border-width:1px; position:relative; background-color:white;box-sizing:border-box; top:0px; left:0px"},g=function(t,i,r){t.innerHTML="<div class='sendReportContainer' style='padding: 20px 15px; display:block; line-height:initial !important'><div style='padding-bottom:20px; display:block; font:14px/18px \"Segoe UI\", Arial;'><b>Don't like this Ad?<\/b><\/div><div class='dropzone' contenteditable='true' style='height:180px; width: 130px; margin-top:20px; margin-bottom: 20px; background-color:lightgray; border-style:dotted; border-color:black; border-radius: 5px; border-width: 2px; text-align: center; box-sizing:border-box; white-space:normal'>1. Hit the refresh icon to show the ad again so you can take a screenshot <br/><br/>2. Drag and Drop or paste the screenshot here<\/div><div style='padding-bottom:10px; padding-top: 10px display:block; font:14px/18px \"Segoe UI\", Arial;'> "+i+"<\/div><div style='font:14px/18px \"Segoe UI\", Arial;'>"+r+"<\/div><\/div><div class='reportSentContainer' style='display:none; padding: 15px 20px; font:14px/18px \"Segoe UI\", Arial;'><span style='color:#999;'>Thank you for the report!<\/span><\/div><a href='http://www.developermedia.com/' target='_blank'><img src='"+n.DmLogoImageUrl+"' style='max-width:120px;position:absolute; right:20px; bottom:20px;'><\/a>";t.style.cssText="display:none; width:160px; height:600px; z-index:100; text-align:left;border-style:solid; border-width:1px; position:relative; background-color:white;box-sizing:border-box; top:0px; left:0px"},nt=function(n){n.innerHTML="<div class='reportSentContainer' style='padding: 5px 5px;font:14px/18px \"Segoe UI\", Arial; width: 100px; height: 100px'><span style='color:#999;'>Thank you for the report!<\/span><\/div>";n.style.cssText="display:none; width:125px; height:125px; z-index:100; text-align:left;border-style:solid; border-width:1px; position:relative; background-color:white;box-sizing:border-box; top:0px; left:0px"},tt=function(n,t){var i=t.getElementsByClassName("dropzone")[0];i.dropzoneFor=n.adContainer.id;n.dropzone=i;s&&(i.ondragenter=function(n){n.currentTarget.style.backgroundColor="yellow";n.currentTarget.innerHTML="<br/><br/>Drag and Drop the ad here"},i.ondragleave=function(n){n.currentTarget.style.backgroundColor="lightgray";u(n.currentTarget.dropzoneFor)},i.ondragover=function(n){n.stopPropagation();n.preventDefault();n.currentTarget.style.backgroundColor="yellow"},i.ondrop=function(n){n.currentTarget.style.backgroundColor="lightgreen";rt(n)});r?f?f.observe(i,{childList:!0}):i.addEventListener("DOMSubtreeModified",function(){a(i)}):i.addEventListener("paste",it,!1)},h=function(n){n.reportAdDiv.style.display==="none"?(n.reportAdDiv.style.display="table",n.closeAdButton.style.display="none",n.adContainer.style.display="none",n.dropzone.focus()):(n.reportAdDiv.style.display="none",n.closeAdButton.style.display="block",n.adContainer.style.display="block")},e=function(n){var i=t(n),r=i.dropzone;r.style.backgroundColor="lightgreen";r.innerHTML=i.width==160&&i.height==600?"<br/> Your screenshot has been received – thanks! <br/><br/> Next step: What’s wrong with the ad":i.width==300&&i.height==250?"<br/> Your screenshot has been received – thanks! <br/><br/> Next step: What’s wrong with the ad":i.width==728&&i.height==90?"Your screenshot has been received – thanks! Next step: What’s wrong with the ad":"Ad info received. Press Report to submit"},o=function(n){var i=t(n);i.reportButton.disabled=!1},u=function(n){var i=t(n);i.reportButton.disabled=!0},c=function(n){h(n)},l=function(t){var r=t.reportAdDiv.getElementsByClassName("reportReason")[0],s=r&&r.options[r.selectedIndex].value||"Unspecified",u=t.reportAdDiv.getElementsByClassName("sendReportContainer")[0],f=t.reportAdDiv.getElementsByClassName("reportSentContainer")[0];u&&(u.style.display="none");f&&(f.style.display="block");try{var e=new XMLHttpRequest,i=new FormData,h=DMUserIdentityHelper&&DMUserIdentityHelper.getGlobalUserId()||0,o=null;t.fileList&&t.fileList.length>0&&(o=t.fileList[0]);e.open("POST",n.DownvoteUrl,!0);i.append("adScreenshot",o);i.append("reason",s);i.append("DmGlobalUserId",h);e.send(i)}catch(c){console.log(c)}},it=function(n){var i,h,l,s,c,a,f,v;if(!r){if(n.preventDefault(),i=[],h=!1,window.clipboardData)i=window.clipboardData.files,h=!0;else if((n.clipboardData||n.originalEvent.clipboardData)&&(l=n.clipboardData||n.originalEvent.clipboardData,s=l&&l.items||[],i=[],s&&s.length>0))for(h=!0,c=0;c<s.length;c++)a=s[c],a.kind==="file"&&(i[i.length]=a.getAsFile());f=n.currentTarget.dropzoneFor;i&&i.length>0?(v=t(f),v.fileList=i,o(f),e(f)):h?(n.currentTarget.innerHTML="<br/><br/> No files found on clipboard <br/>",u(f)):(n.currentTarget.innerHTML="<br/><br/> Paste not supported on your browser <br/>",u(f))}},rt=function(n){var f,r,i;if(n.stopPropagation(),n.preventDefault(),f=t(n.currentTarget.dropzoneFor),r=[],n.dataTransfer.files&&n.dataTransfer.files.length>0)for(i=0;i<n.dataTransfer.files.length;i++)n.dataTransfer.files[i].type&&n.dataTransfer.files[i].type.indexOf("image")>=0&&(r[r.length]=n.dataTransfer.files[i]);r.length>0?(f.fileList=r,e(n.currentTarget.dropzoneFor),o(n.currentTarget.dropzoneFor)):(n.currentTarget.style.backgroundColor="yellow",n.currentTarget.innerHTML="<br/><br/>The dropped item was not an image",u(n.currentTarget.dropzoneFor))},a=function(n){for(var t,i=0;i<n.children.length;i++)t=n.children[i],t.nodeName.toLowerCase()==="img"&&t.style.display!="none"&&t.src&&(t.style.display="none",ut(t.src,n))},ut=function(n,i){if(n){var f=n.indexOf(","),r=n.substring(0,f),s=r.indexOf(":"),h=r.indexOf(";"),c=r.substring(s+1,h),l=n.substring(f+1),a=ot(l,c,512),u=i.dropzoneFor,v=t(u);v.fileList=[a];e(u);o(u)}},ft=function(){var n=document.createElement("div");return"draggable"in n||"ondragstart"in n&&"ondrop"in n},et=function(){return navigator.userAgent.toLowerCase().indexOf("firefox")>-1},t=function(n){for(var r,t=0,u=i.length;t<u;t++)if(i[t].adContainer.id==n){r=i[t];break}return r},ot=function(n,t,i){var e,o,r,f,s,u,h;for(t=t||"",i=i||512,e=atob(n),o=[],r=0;r<e.length;r+=i){for(f=e.slice(r,r+i),s=new Array(f.length),u=0;u<f.length;u++)s[u]=f.charCodeAt(u);h=new Uint8Array(s);o.push(h)}return new Blob(o,{type:t})};return{appendAd:function(n){i.push(n)},init:function(t,u){i=t;n=u;s=ft();r=et();r&&window.MutationObserver&&(f=new MutationObserver(function(n){n.forEach(function(n){a(n.target)})}))},showAdReportingInterface:function(n){var i=t(n);i&&y(i)},setGlobalUserId:function(n){v=n}}}(),DMUserIdentityHelper=function(){var r,t,u="dmaduid",f="dmaduid_confirm",e,o,i=[],n=0,l=function(){return navigator.cookieEnabled!=void 0?navigator.cookieEnabled:(document.cookie="testcookie=test; max-age=10000",document.cookie.indexOf("testcookie=test")>=0)},a=function(){var t=document.location.hostname,n=/([^.]+\.[^.]{3,})$/i.exec(t);return n!=null?n[1]:(n=/([^.]+\.[^.]+\.[^.]{2})$/i.exec(t),n!=null?n[1]:t)},s=function(n,t,i,r,u,f){var e="",o;e=n+"="+t;i>0&&(o=new Date,o.setTime(o.getTime()+i*864e5))&&(e+="; expires="+o.toGMTString());r&&(e+="; path="+r);u&&u.indexOf(".")!=-1&&(e+="; domain="+u);f&&(e+="; secure");document.cookie=e},h=function(n){var r=document.cookie,u=null,t,i;if(r!="")for(t=r.split(";"),index=0;index<t.length;index++)if(i=t[index].replace(/^\s+/,""),i.substring(0,n.length+1)==n+"="){u=i.substring(n.length+1);break}return u},v=function(n){var t=document.createElement("IFRAME");return t.width=1,t.height=1,t.src=e,t.id="DMGlobalUserIdetifierIFRAME",t.name="DMGlobalUserIdetifierIFRAME",t.style.display="none",document.body.appendChild(t),t.onload=n,t},y=function(){var i,l,n,a,e;if(r)if(i=h(u),l=h(f),!l&&JSON){if(n={},n.sender=location.href,n.Id=Math.random(),a=function(){o.contentWindow.postMessage(JSON.stringify(n),GlobalIdUrl)},e=function(i){var r=null,e;try{r=JSON.parse(i.data)}catch(o){}r&&r.Id&&r.Id===n.Id&&(e=r.DmGlobalUserId,s(u,e,365,"/",t,!1),s(f,r.DmGlobalUserConfirmResponse,365,"/",t,!1),c(e))},window.addEventListener)window.addEventListener("message",e,!1);else try{window.attachEvent("message",e)}catch(y){}o=v(a)}else i&&c(i)},c=function(t){for(n=t;i.length>0;){var r=i.pop();typeof r=="function"&&r()}};return{init:function(n){e=n;r=l();t=a();y()},getGlobalUserId:function(t){return n!=0?n:t?(i.push(t),n):void 0}}}(),DMAds={SetQueryTerms:function(){function u(n){for(var i,u="",t=0;t<r.length;t++)if(i=r[t],n.indexOf(i.d)>=0){u=i.q;break}return u}function f(n,t){var r=t.toLowerCase().indexOf(n),u,i;return r<0||r+n.length>=t.length?"":(u=t.indexOf("&",r),u<0&&(u=t.length),i=t.substring(r+n.length,u),i=i.replace(/\+/gi," "),i=decodeURIComponent(i),i.replace(/\"/gi,""))}function e(n){if(n===undefined)return"";var t=n.replace(/^\s+|\s+$/gi,"");return t?(t=t.replace(/\bAND\b|\bNOT\b|^NOT\b|\bOR\b|[^A-Z0-9\+\-\#\._\s]+|\b[A-Z0-9]+:/gi," "),t.replace(/\s+/g," ")):""}var r=[{d:"www.google.",q:"q="},{d:"www.bing.com",q:"q="},{d:"search.live.com",q:"q="},{d:"search.yahoo.com",q:"p="},{d:"codeproject.com",q:"q="},{d:"msdn.microsoft.com",q:"query="},{d:"www.ask.com",q:"q="},{d:"yandex.com",q:"text="},{d:"yandex.ru",q:"text="},{d:"www.baidu.com",q:"wd="},{d:"localhost",q:"q="},{d:"mkyong.com",q:"q="},{d:"codeplex.com",q:"query="},{d:"aspsnippets.com",q:"q="},{d:"trirand.com",q:"s="}],i="",n=document.URL,t=u(n);t!==""&&(i=e(f(t,n)));i==""&&(n=document.referrer.toLocaleLowerCase(),n&&(t=u(n),t!=""&&(i=e(f(t,n)))));DMAds.PageQueryTerms=i},SetPageTagsAndPixels:function(n){var t,i,r,u;if(JSON){if(DMAds.GetTermsCalled){n&&n();return}}else return;DMAds.GetTermsCalled=!0;t=document.URL;t.indexOf("?")>0&&(t=t.substring(0,t.indexOf("?")));try{i=top.document.title}catch(f){i="FAILED TO GET DOCUMENT TITLE"}r={terms:DMAds.PageQueryTerms,title:i,url:t,publisher:DMAds.PublisherCode,DmGlobalUserId:DMUserIdentityHelper&&DMUserIdentityHelper.getGlobalUserId()||0,numberOfAdsOnPage:DMAds.Ads.length};u=function(t){if(t){var i;try{i=JSON.parse(t)}catch(r){}i&&(i.SearchTerms&&(DMAds.PageTags=i.SearchTerms),i.PublisherPageViewGuid&&(DMAds.PublisherPageViewGuid=i.PublisherPageViewGuid),i.aid&&i.aid.length&&i.aid.length>0&&DMAds.InsertAudiencePixels(i.aid))}DMAds.PublisherPageViewGuid||(DMAds.PublisherPageViewGuid=1);n&&n()};DMAds.POSTJson(SearchTermUrl,r,u,!0,500)},InsertAudiencePixels:function(n){var t,i;try{for(t=0,i=n.length;t<i;t++){var r=Math.random()+"",u=r*1e13,f=new Image;f.src="https://pubads.g.doubleclick.net/activity;dc_iu=/6839/DFPAudiencePixel;ord="+u+";dc_seg="+n[t]+"?"}}catch(e){}},GetRandom:function(n,t){for(var u,i="",r=0;r<n;r++)u=Math.floor(Math.random()*t).toString(t).toUpperCase(),i=i+u;return i},POSTJson:function(n,t,i,r,u){var f;if(JSON&&(f=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("MSXML2.XMLHTTP"),f)){var s=!1,o=function(n){s||(s=!0,i&&i(n))},e=null;r&&(e=setTimeout(function(){try{f.abort()}catch(n){}o(null)},u));f.onreadystatechange=function(){try{f.readyState==4&&(e&&clearTimeout(e),f.status==200?o(f.responseText):o(null))}catch(n){e&&clearTimeout(e);o(null)}};try{f.open("POST",n,!0);f.setRequestHeader("Content-Type","application/json");f.send(JSON.stringify(t))}catch(h){e&&clearTimeout(e);o(null)}}},SignalSuccess:function(n){window.top&&window.top.postMessage&&setTimeout(function(){window.top.postMessage(n?"DM-enabled":"DM-disabled","*")},1e3)},PageQueryTerms:null,PageTags:null,Tile:1,CurrentDocument:null,PublisherCode:null,PublisherPageViewID:0,PublisherPageViewGuid:null,CreateAdsCalled:!1,GetTermsCalled:!1,Ads:[],GPTRenderingMode:-1,ShowAd:function(n){var t=DMAds.Ads,i;if(n&&(DMAds.GPTRenderingMode!=1||!DMAds.PublisherPageViewGuid))t.push(n),DMAds.GetTermsCalled||(DMAds.PublisherCode=n.sitename,DMAds.SetPageTagsAndPixels(DMAds.ShowAd));else if(DMAds.GPTRenderingMode==1&&DMAds.PublisherPageViewGuid){while(t&&t.length>0)i=t.pop(),DMAds.RequestQueuedAd(i);n&&DMAds.RequestQueuedAd(n)}},InitGPTLibrary:function(){var n=function(){typeof googletag.pubadsReady=="undefined"?(googletag.pubads().enableSingleRequest(),googletag.pubads().disableInitialLoad(),googletag.pubads().enableAsyncRendering(),googletag.enableServices(),DMAds.GPTRenderingMode=1,googletag.pubads().addEventListener("slotRenderEnded",function(n){DMAds.OnSlotRendered(n)})):DMAds.GPTRenderingMode=2};googletag.apiReady?n():googletag.cmd.push(function(){n()})},BuildIFrameTag:function(n){var t=document.createElement("IFRAME"),i;return t.allowtransparency=!1,t.id="dm-gpt-iframe-"+n.tile,t.width=n.width,t.height=n.height,t.marginWidth=0,t.marginHeight=0,t.frameBorder=0,t.scrolling="no",i=encodeURIComponent(location.href),i.length<2048&&(t.dc_ref=i),t},BuildInlineGPTTagScript:function(n){var t="div-gpt-ad-"+n.publisher+"-"+n.zone+"-"+n.tile,i="/6839/"+n.publisher+"/"+n.zone,r="["+n.width+", "+n.height+"]",u=(n.tags||"")+","+(DMAds.PageSearchTerms||"")+","+(DMAds.PageQueryTerms||""),f="<div id='"+t+"'>     <script type='text/javascript'>         googletag.cmd.push(function() {             googletag.defineSlot('"+i+"', "+r+",'"+t+"')                 .addService(googletag.pubads())                 .setTargeting('kw', '"+u+"');             googletag.enableServices();             googletag.display('"+t+"');         });     <\/script> <\/div>";return"<script type='text/javascript'> var googletag = googletag || {}; googletag.cmd = googletag.cmd || []; (function() {     var gads = document.createElement('script');     gads.async = true;     gads.type = 'text/javascript';     var useSSL = 'https:' == document.location.protocol;     gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';     var node =document.getElementsByTagName('script')[0];     node.parentNode.insertBefore(gads, node); })(); <\/script>"+f},BuildGPTTag:function(n){var t=document.createElement("DIV"),i;t.style.height=n.height+"px";t.style.width=n.width+"px";t.style.boxSizing="border-box";t.style.border="0px";t.style.fontSize="0px";i="div-gpt-ad-"+n.publisher+"/"+n.zone+"-"+n.tile;t.id=i;t.adIndex=n.index;n.theAdDiv.appendChild(t);n.adContainer=t;googletag.cmd.push(function(){var u="/6839/"+n.publisher+"/"+n.zone,r=(n.tags||"")+","+(DMAds.PageSearchTerms||"")+","+(DMAds.PageQueryTerms||""),t;r=DMAds.EscapeSpecialCharacters({tags:r});t=googletag.defineSlot(u,[n.width,n.height],i).setTargeting("kw",r);n.articleid&&n.articleid>0&&t.setTargeting("articleid",n.articleid);t.addService(googletag.pubads());n.collapse_empty&&t.setCollapseEmptyDiv(!0,!0);googletag.display(i);googletag.pubads().refresh([t],{changeCorrelator:!1})})},RequestQueuedAd:function(n){googletag.cmd.push(function(){var r="/6839/"+n.sitename+"/"+n.zonename,i=(n.tags||"")+","+(DMAds.PageSearchTerms||""),t;i=DMAds.EscapeSpecialCharacters({tags:i});t=googletag.defineSlot(r,[n.width,n.height],n.targetDivId).setTargeting("kw",i);n.articleid&&n.articleid>0&&t.setTargeting("articleid",n.articleid);t.addService(googletag.pubads());n.collapse_empty&&t.setCollapseEmptyDiv(!0,!0);googletag.display(n.targetDivId);googletag.pubads().refresh([t],{changeCorrelator:!1})})},BuildInlineGPTTag:function(n){var t=DMAds.BuildIFrameTag(n),i;n.theAdDiv.appendChild(t);i=t.contentDocument||t.contentWindow.document||t.contentWindow.window.document;i.write(DMAds.BuildInlineGPTTagScript(n))},EscapeSpecialCharacters:function(n){var t=n.tags,i;t=t.replace(/\+/gi,"{plus}");t=t.replace(/\#/gi,"{sharp}");t=t.replace(/\./gi,"{dot}");t=t.replace(/[\#\*\.\(\)\+\<\>\[\]]/gi,"");for(var r=t.split(","),u=[];r.length>0;)i=r.shift(),/[^\u0020-\u007f]/.test(i)||u.push(i);return u.join(",")},GetArticleId:function(n){var t=0,i,r;if(n&&n==CodeProjectPublisherId)try{i="Articles";r=window.location.href.indexOf(i);r>=0&&(t=window.location.href.substring(r+i.length+1),t=t.substring(0,t.indexOf("/")),t=parseInt(t),isNaN(t)&&(t=0))}catch(u){t=0}return t},IsPagePIICompliant:function(){var t=!0,i,n,r;try{for(i=window.location.href.toLowerCase(),n=0,r=PIIViolatingUrls.length;n<r&&t;n++)t=!(i.indexOf(PIIViolatingUrls[n])>=0)}catch(u){}return t},OnSlotRendered:function(n){if(window.location.href&&window.location.href.includes("show_creative_id=1")&&n&&n.creativeId&&console.log(n.creativeId),EnableMutableAds&&n&&!n.isEmpty&&(!n.lineItemId||n.lineItemId&&n.lineItemId==0))DMAdXHelper.showAdReportingInterface(n.slot.getSlotElementId());else if(n&&n.isEmpty){var t=document.getElementById(n.slot.getSlotElementId());t.style.width="0px";t.style.height="0px";t.style.display="none"}DMAds.SignalSuccess(!0)},DetermineTagSize:function(n){if(n.format){var t=n.format.split("x");t.length==2&&(n.width=parseInt(t[0]),n.height=parseInt(t[1]))}},AdjustForCodePlex:function(n){n.site&&(n.publisher="lqm.codeplex.site",n.zone=n.charity?"donated2charity":n.site.toLowerCase())},GetElementsByAttr:function(n,t,i,r){var o=[],u,e;i==null&&(i=document);r==null&&(r="*");var f=i.getElementsByTagName(r),s=f.length,h=new RegExp("(^|\\s)"+t+"(\\s|$)");for(u=0,e=0;u<s;u++)h.test(f[u].getAttribute(n))&&(o[e]=f[u],e++);return o},GetElementsByClass:function(n,t,i){var e=[],r,f;t==null&&(t=document);i==null&&(i="*");var u=t.getElementsByTagName(i),o=u.length,s=new RegExp("(^|\\s)"+n+"(\\s|$)");for(r=0,f=0;r<o;r++)s.test(u[r].className)&&(e[f]=u[r],f++);return e},SetAdRequestData:function(){var n=DMAds.GetElementsByAttr("data-type","ad",document,"div"),t;for((n==null||n.length<=0)&&(n=DMAds.GetElementsByClass("lqm_ad",document,"div")),t=0;t<n.length;t++)DMAds.Ads[DMAds.Ads.length]=DMAds.GetDivRequestData(n[t],t)},GetDivRequestData:function(n,t){for(var r,f,u,o=n.attributes,s=o.length,i={},e=0;e<s;e++)r=o.item(e),r.nodeName.indexOf("lqm_")==0&&(f=r.nodeName.slice(4),i[f]=r.value||r.nodeValue),r.nodeName.indexOf("data-")==0&&(f=r.nodeName.slice(5),i[f]=r.value||r.nodeValue);return u={height:0,width:0,publisher:i.publisher,zone:i.zone||"ros",site:i.site,tags:i.tags,sitename:undefined,zonename:undefined,target:"_blank",format:i.format,index:t,tile:t+1,type:i.type,noadx:i.noadx,collapse_empty:i.collapse_empty,displayOverride:i.display||i.loadOnView,sticky:i.sticky,charity:i.charity,theAdDiv:n},u.tags&&(u.tags=decodeURIComponent(u.tags)),DMAds.DetermineTagSize(u),DMAds.AdjustForCodePlex(u),u.articleid=DMAds.GetArticleId(u.publisher),u}};if(typeof DMAds.CreateAds!="function"&&(DMAds.CreateAds=function(n){var y=this;this.PageRandomNumber=this.GetRandom(32,16);var e=function(n){var t=DMAds.Ads[n];t.rendered=!0;DMAds.GPTRenderingMode==1?DMAds.BuildGPTTag(t):DMAds.BuildInlineGPTTag(t)},l=function(n){var e=DMAds.Ads[n],h=e.theAdDiv,u=!1,i=0,r=0,t,f,o,s;try{t=h.getBoundingClientRect();typeof innerWidth=="number"?(i=window.innerWidth,r=window.innerHeight):document.documentElement&&(document.documentElement.clientWidth||document.documentElement.clientHeight)?(i=document.documentElement.clientWidth,r=document.documentElement.clientHeight):document.body&&(document.body.clientWidth||document.body.clientHeight)&&(i=document.body.clientWidth,r=document.body.clientHeight);f=-200;t.top==t.bottom&&(f+=e.height*-1);o=t.top>=0&&t.top-200<=r||t.top<=0&&t.top>=f;s=i>t.left&&t.right>=0;u=o&&s}catch(c){u=!0}return u},t=function(){for(var t,i=0,n=0;n<DMAds.Ads.length;n++)t=DMAds.Ads[n],!t.rendered&&l(n)&&u(n)&&e(n),t.rendered&&(i++,t.sticky&&!t.stickySettings&&(t.stickySettings=s(t)),c(n));i==DMAds.Ads.length&&clearInterval(f)},o=function(){var n=function(){for(var s,i,r,o=EnableViewOnScroll,n=0;n<DMAds.Ads.length;n++)s=DMAds.Ads[n],s.rendered=!1,i=s.displayOverride,i==="onscroll"||i==="true"?o=!0:(i==="always"||i==="false")&&(o=!1),!o&&u(n)&&e(n);if(t(),window.addEventListener)window.addEventListener("resize",function(){t();h()},!1),window.addEventListener("scroll",t,!1);else try{window.attachEvent("onresize",function(){t();h()});window.attachEvent("onscroll",t)}catch(c){}for(a(),r=!1,n=0;n<DMAds.Ads.length&&!r;n++)r=!u(n);r&&(f=setInterval(t,100))};DMAds.GPTRenderingMode==-1?googletag.cmd.push(function(){n()}):n()},a=function(){var n=null;typeof document.hidden!="undefined"?n="visibilitychange":typeof document.mozHidden!="undefined"?n="mozvisibilitychange":typeof document.msHidden!="undefined"?n="msvisibilitychange":typeof document.webkitHidden!="undefined"&&(n="webkitvisibilitychange");n&&document.addEventListener(n,t,!1)},s=function(n){var u=null,i,t;return n.adContainer&&(i=r(n.adContainer),t={},t.isStickyRequired=n.sticky&&n.sticky=="top",t.absoluteTop=i.y,t.absoluteLeft=i.x,t.absoluteTop!=-1&&(t.originalPosition=n.theAdDiv.style.position,u=t)),u},h=function(){for(i=0;i<DMAds.Ads.length;i++){var n=DMAds.Ads[i];n.stickySettings&&n.adContainer&&(n.adContainer.style.position=n.stickySettings.originalPosition,n.stickySettings=s(n),c(i))}},c=function(n){var t=DMAds.Ads[n].adContainer,i=DMAds.Ads[n].stickySettings,e=DMAds.Ads[n].theAdDiv,u,h,s,c,f,o;i&&i.isStickyRequired&&t.getBoundingClientRect&&document.getElementsByClassName&&(u=document.getElementsByClassName("sticky-stop")[0],u&&(h=r(u),s=u.getBoundingClientRect()),c=r(t),f=t.getBoundingClientRect(),u&&c.y+f.height+Math.abs(f.top)>h.y&&s.top<f.height?o=s.top-f.height+"px":window.pageYOffset+10>=i.absoluteTop&&(o="10px"),o?(t.style.position="fixed",t.style.top=o,t.style.left=i.absoluteLeft-window.pageXOffset+"px",e.clientHeight===0&&(e.style.height=t.clientHeight+"px"),e.clientWidth===0&&(e.style.width=t.clientWidth+"px")):t.style.position=i.originalPosition)},r=function(n){var t={};if(t.x=-1,t.y=-1,n.getBoundingClientRect){var r=n.getBoundingClientRect(),i=document.documentElement,u=window.pageYOffset||i.scrollTop||document.body.scrollTop||0,f=window.pageXOffset||i.scrollLeft||document.body.scrollLeft||0,e=i.clientTop||document.body.clientTop||0,o=i.clientLeft||document.body.clientLeft||0;t.y=r.top+u-e;t.x=r.left+f-o}return t},u=function(n){var t=DMAds.Ads[n].theAdDiv,i=!1,r;return t&&t.style.position!="fixed"&&t.offsetParent?i=!0:t&&t.style.position=="fixed"&&(r=window.getComputedStyle(t),i=r&&r.display!="none"),i&&v()},v=function(){var t=!0,n="";return typeof document.hidden!="undefined"?n="hidden":typeof document.mozHidden!="undefined"?n="mozHidden":typeof document.msHidden!="undefined"?n="msHidden":typeof document.webkitHidden!="undefined"&&(n="webkitHidden"),n!=null&&document[n]&&(t=!1),t},f=f||null;n||DMAds.CreateAdsCalled?n&&(DMAds.Ads[DMAds.Ads.length]=DMAds.GetDivRequestData(n,DMAds.Ads.length-1),DMAds.PublisherCode=DMAds.Ads[0].publisher,DMAds.SetPageTagsAndPixels(o)):(DMAds.CreateAdsCalled=!0,DMAds.SetAdRequestData(),DMAds.Ads.length>0&&(DMAds.PublisherCode=DMAds.Ads[0].publisher,DMAds.SetPageTagsAndPixels(o)))}),!window.googletag&&DMAds.IsPagePIICompliant()&&(googletag=googletag||{},googletag.cmd=googletag.cmd||[],function(){var n=document.createElement("script"),i,t;n.async=!0;n.type="text/javascript";i="https:"==document.location.protocol;n.src=(i?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)}()),DMAds.IsPagePIICompliant())if(DMAds.InitGPTLibrary(),DMAds.SetQueryTerms(),DMAdXHelper.init(DMAds.Ads,{DownvoteUrl:DownvoteUrl,UndoDownvoteUrl:UndoDownvoteUrl,ReportAdUrl:ReportAdUrl,CloseAdImageUrl:CloseAdImageUrl,UndoCloseAdImageUrl:UndoCloseAdImageUrl,DmLogoImageUrl:DmLogoImageUrl}),DMUserIdentityHelper.init(GlobalIdUrl),document.readyState==="complete")DMAds.CreateAds();else if(window.addEventListener)window.addEventListener("DOMContentLoaded",function(){DMAds.CreateAds()},!1),window.addEventListener("load",function(){DMAds.CreateAds()},!1);else try{document.attachEvent("onreadystatechange",function(){DMAds.CreateAds()});window.attachEvent("onload",function(){DMAds.CreateAds()})}catch(e){DMAds.CreateAds()}}</script><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe frameborder="0" class="goog-te-menu-frame skiptranslate" title="Widget de idiomas del Traductor" style="visibility: visible; box-sizing: content-box; width: 957px; height: 263px; display: none;" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/saved_resource(1).html"></iframe><span id="buffer-extension-hover-button" style="display: none; position: absolute; z-index: 8675309; width: 100px; height: 25px; background-image: url(&quot;chrome-extension://noojglkidnpfjbincgijbaiedldjfbhh/data/shared/img/buffer-hover-icon@1x.png&quot;); background-size: 100px 25px; opacity: 0.9; cursor: pointer;"></span><iframe id="google_osd_static_frame_5024096045729" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./Customer Invoicing System_Applying Visitor Design Pattern using ASP.NET MVC5 and C# - CodeProject_files/saved_resource(2).html"></iframe></body></html>
