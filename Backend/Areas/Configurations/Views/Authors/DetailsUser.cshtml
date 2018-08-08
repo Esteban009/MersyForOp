@@ -1,0 +1,100 @@
+﻿@model Domain.SEG.User
+
+@{
+    ViewBag.Title = "Roles del Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cliente Ps: @Model.Author.Name</h2>
+<h3>Usuario: @Model.Email</h3>
+
+
+<p>
+    
+    <a class="btn btn-success" href="@Url.Action("Details", "Authors", new { area = "Configurations" , id=@Model.AuthorId })">
+        <span class="fa fa-reply"></span> Retornar a los Clientes
+    </a>
+    
+    <a class="btn btn-primary" href="@Url.Action("CreateRolForUser", "Authors", new { area = "Configurations" , id=@Model.UserId })">
+        <span class="fa fa-plus"></span> Asignar Rol
+    </a>
+    
+    <a class="btn btn-info" href="@Url.Action("CreateDoctorInformation", "Authors", new { area = "Configurations" , id=@Model.UserId })">
+        <span class="fa fa-pencil-square-o"></span> Modificar Datos Medicos
+    </a>
+    
+    @*<a class="btn btn-info" href="@Url.Action("ResetPass", "Authors", new { area = "Configurations" , id=@Model.UserId })">
+        <span class="glyphicon glyphicon-plus glyphicon glyphicon-edit "></span> Resetear Contraseña
+    </a>*@
+
+    <a class="btn btn-danger" href="@Url.Action("ResetPass", "Authors", new {area = "Configurations", id=@Model.UserId})" onclick="return confirm('Esta seguro que desea Resetear la Contraseña de este Usuario?')"> <span class="fa fa-pencil-square-o"></span> Resetear Contraseña </a>
+
+</p>
+ 
+<h3 style="color:red">@ViewBag.Msg</h3>
+@if (Model.UserRols.Count == 0)
+{
+    <h3>No hay roles asignadas a este usuario</h3>
+
+}
+else
+{
+    <table class="table">
+        <tr>
+
+
+            <th>
+                Rol
+            </th>
+            
+            <th>
+                Desde
+            </th>
+            <th>
+
+                Hasta
+            </th>
+            <th>
+                Indefinido?
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.UserRols.OrderBy(m => m.Rol.Name))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rol.Name)
+                </td>
+                 
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Undefined)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("EditRolForUser", "Authors", new { area = "Configurations" , id=@item.UserRolId })">
+                        <span class="fa fa-info-circle"></span>
+                    </a>
+                    <a class="btn btn-danger" href="@Url.Action("DeleteRolForUser", "Authors", new { area = "Configurations" , id=@item.UserRolId })"
+                       onclick="return confirm('Esta seguro que desea eliminar este registro?')">
+                        <span class="fa fa-trash"></span>
+                    </a>
+                           </td>
+            </tr>
+        }
+
+    </table>
+}

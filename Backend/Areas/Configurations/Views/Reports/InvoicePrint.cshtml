@@ -1,0 +1,124 @@
+﻿@model Domain.GEN.Report
+  
+<style type="text/css" media="print">
+    #page {
+        si: legalauto; /* auto is the initial value */
+        margin: 0; /* this affects the margin in the printer settings */
+    }
+</style>
+<body>
+
+@Html.HiddenFor(model => model.ReportId)
+
+<input type="button" id="btnImprimir" name="btnImprimir" tabindex="1" value="Imprimir" class="col-sm-2 col-sm-offset-4 btn btn-primary" />
+<input type="button" id="btnCerrar" name="btnCerrar" tabindex="2" value="Cerrar" class="col-sm-2 btn btn-primary" style="margin-left: 0.5em;" />
+<div id="Div2" style="position: relative;width: @Model.Width; height: @Model.Heigh;">
+    @*<div id="Div2" style="position: relative;width: '@Model.Width'; height: '@Model.Heigh';">*@
+    <div>
+        <table id="TableHeader" style="font-size: 12pt; font-family: Times New Roman;  font-weight: bold; text-transform: uppercase">
+            <tr>
+                <td rowspan="4" style="width: 15%">
+
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="Image" style="width: auto; height: 107px;" dir="rtl" />
+                    }
+                </td>
+                <td rowspan="4" style="width: 75%; text-align: center">
+                    @if (!string.IsNullOrEmpty(Model.Header1))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header1, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header2))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header2, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header3))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header3, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                </td>
+                <td rowspan="4" style="width: 0"></td>
+                <td style="width: 10%"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    @if (!string.IsNullOrEmpty(@ViewBag.MyDescription))
+                    {
+                        <div>
+                            @ViewBag.MyDescription
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div>
+        <table id="TableBody" style="font-size: 12pt; font-family: Times New Roman; ">
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(@ViewBag.MyBody))
+                    {
+                        <div>
+                            @Html.Raw(ViewBag.MyBody)
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="position:absolute; bottom: 0; text-align: center">
+        @*<div style="position:relative; text-align: center">*@
+        @*<div style="text-align:center ">*@
+        <table id="TableFooter" style="font-size: 12pt; font-family: Times New Roman;">
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(Model.Footer1))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Footer1, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Footer2))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Footer2, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Footer3))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Footer3, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        document.querySelector("#btnImprimir").style.display = "none";
+        document.querySelector("#btnCerrar").style.display = "none";
+        window.print();
+    }
+    // window.close();
+</script>
+</body>
