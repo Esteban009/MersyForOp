@@ -1,0 +1,166 @@
+﻿@model Domain.MED.Analytical
+
+@{
+    ViewBag.Title = "Editar Pruebas y Resultados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.AnalyticalId)
+        @Html.HiddenFor(model => model.PatientId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RefNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.RefNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RefNumber, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.RealizationDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.RealizationDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.RealizationDate, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.ResultDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.ResultDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.ResultDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeliveredDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.DeliveredDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.DeliveredDate, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.StatusId, "Status", new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.DropDownList("StatusId", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.MedRef, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MedRef, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MedRef, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <a class="btn btn-warning" href="@Url.Action("DetailsAnalyticals", "Patients", new { area = "Medicals" , id=Model.AnalyticalId })">
+                    <span class="fa fa-times "></span> Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o "></i> Guardar
+                </button>
+            </div>
+
+        </div>
+        
+        <section class="MySection">
+            <h4>Resultados</h4>
+        </section>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("CreateAnalyticalDetails", "Patients", new { area = "Medicals", id = @Model.AnalyticalId })"> <span class="fa fa-plus"></span>   Registrar Resultado</a>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (Model.AnalyticalDetails.Count == 0)
+                {
+                    <h2>No existen Resultados registradas aun :'(</h2>
+                }
+                else
+                {
+                    <div class="scroller">
+                        <table class="table">
+                            <thead>
+                            <tr><th></th>
+                                <th>
+                                    Codigo
+                                </th>
+                                <th>
+                                    Prueba
+                                </th>
+                                <th>
+                                    Resultado
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.AnalyticalDetails)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-warning" href="@Url.Action("EditAnalyticalDetails", "Patients", new { area = "Medicals", id = @item.AnalyticalDetailId })"> <span class="fa fa-pencil-square-o "></span> Editar</a>
+                                        <a class="btn btn-danger" href="@Url.Action("DeleteAnalyticalDetails", "Patients", new { area = "Medicals", id = @item.AnalyticalDetailId })" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LaboratoryDetail.Laboratory.Code)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LaboratoryDetail.Laboratory.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LaboratoryDetail.Result)
+                                    </td>
+                          
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+        </div>
+        <hr /><hr />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function() {
+            $('#RefNumber,#RealizationDate').prop('readonly', true);
+           // $('#RefNumber,#RealizationDate').attr('disabled', true);
+
+            $("#DeliveredDate").change(function () {
+                $("#StatusId").val('11');
+            });
+
+            $("#StatusId").change(function () {
+                if ($("#StatusId").val() != '11') {
+                    $("#DeliveredDate").val('');
+                }
+            });
+        });
+
+    </script>
+}
+
+

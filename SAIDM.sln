@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{757EA5DA-63FD-4EAF-9623-3A4373FD8D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsTools", "..\PsCore\PsTools\PsTools.csproj", "{6654312B-5E6F-4C22-B2A1-9665825975BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{757EA5DA-63FD-4EAF-9623-3A4373FD8D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{757EA5DA-63FD-4EAF-9623-3A4373FD8D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{757EA5DA-63FD-4EAF-9623-3A4373FD8D31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6654312B-5E6F-4C22-B2A1-9665825975BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6654312B-5E6F-4C22-B2A1-9665825975BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6654312B-5E6F-4C22-B2A1-9665825975BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6654312B-5E6F-4C22-B2A1-9665825975BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

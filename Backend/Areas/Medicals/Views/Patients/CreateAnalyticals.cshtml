@@ -1,0 +1,638 @@
+﻿@model Domain.MED.Analytical
+
+@{
+    ViewBag.Title = "Nuevos Resultados de Analitica (Pruebas de Laboratorio)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productList = ViewBag.Products;
+    var clasificationList = ViewBag.Clasifications;
+    //var generatedBarcode = ViewBag.BarcodeGenerated;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.AuthorId)
+    <div class="container panel panel-default">
+        @*<div class="panel-heading">
+
+                <h2>Información de la Compra @Html.Hidden("BarcodeGenerated", (string) ViewBag.generatedBarcode)</h2>
+            </div>*@
+        <div class="panel-body">
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <label>Fecha de Muestra</label>
+                    </td>
+                    <td>
+                        <div class="col-md-5">
+                            <input type="text" id="RealizationDate" class="form-control PsDates" />
+                            <span class="error">Se requiere una fecha valida</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <label>Fecha de Resultados</label>
+                    </td>
+                    <td>
+                        <div class="col-md-5">
+                            <input type="text" id="ResultDate" class="form-control PsDates" />
+                            <span class="error">Se requiere una fecha valida</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Medico que Solicita</label>
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                            @*@Html.DropDownList("Suppliers", new SelectList(supplierList, "SupplierId", "Name"), "-- Seleccionar un Suplidor --", new { @class = "form-control col-md-2" })*@
+                            @*<span class="error">Campo requerido</span>*@
+                            <input type="text" id="DoctorName" class="form-control" style="width: 100%" />
+                        </div>
+
+                    </td>
+                    <td>
+                        <label>Observaciones</label>
+                    </td>
+                    <td>
+
+                        <div class="col-md-8">
+                            @*@Html.DropDownList("Shops", new SelectList(shopList, "ShopId", "Name"), "-- Seleccionar una Sucursal --", new { @class = "form-control col-md-2" })*@
+                            @*<span class="error">Campo requerido</span>*@
+                            <textarea id="Remarks" style="width: 100%" class="form-control col-md-3"></textarea>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+            <hr />
+            <table style="width: 98%">
+                <tr id="controlCrit">
+                    <td>
+                        <label></label>
+                    </td>
+                    <td width="25%">
+                        @*<a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="xxx" ,patientId=Model.PatientId, fromCreate=true})">
+                                <span class="fa fa-plus"></span> Añadir Pruebas?
+                            </a>*@
+                        <a class="btn btn-link" id="createTest">
+                            <span class="fa fa-plus"></span> Añadir una Prueba que no esta en la lista?
+                        </a>
+                    </td>
+
+                    <td>
+                        <label></label>
+                    </td>
+                    <td>
+                        <label></label>
+                    </td>
+                    <td>
+                        <label></label>
+                    </td>
+                    <td width="20%">
+                        @*<a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="xxx" ,patientId=Model.PatientId, fromCreate=true})">
+                                <span class="fa fa-plus"></span> Añadir Resultados?
+                            </a>*@
+                        <input type="radio" id="option1" name="ddd" value="1" checked="checked">
+                        <label for="option1"> Sel. Result. Frec.  &nbsp; &nbsp;</label>
+                        <br />
+                        <input type="radio" id="option2" name="ddd" value="2">
+                        <label for="option2"> Digitar Result.  &nbsp; &nbsp;</label>
+                        @*<a class="btn btn-link" id="createTest">
+                                <span class="fa fa-plus"></span> Añadir Resultados que no esta en la lista?
+                            </a>*@
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>Code</label>
+                    </td>
+                    <td width="25%">
+                        <label>Prueba (Nomb.)</label>
+                    </td>
+
+                    <td>
+                        <label>Unidades</label>
+                    </td>
+                    <td>
+                        <label>Metodo</label>
+                    </td>
+                    <td>
+                        <label>Rango (Val. Ref.)</label>
+                    </td>
+                    <td width="20%">
+                        <label>Resultado</label>
+                    </td>
+
+                </tr>
+                <tr id="AddingTest">
+                    <td>
+                        <input type="text" id="Barcode" class="form-control" />
+                        <span class="error">Barcode es requerido</span>
+                    </td>
+                    <td>
+                        @Html.DropDownList("Products", new SelectList(productList, "LaboratoryId", "Name"), "-- Seleccione una Prueba --", new { @class = "form-control MasterDdl" })
+                        <span class="error">Producto Requerido</span>
+                    </td>
+
+                    <td>
+                        <input type="text" id="Units" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" id="Method" class="form-control" />
+
+                    </td>
+                    <td>
+                        <input type="text" id="Range" class="form-control" />
+
+                    </td>
+                    <td>
+                        @Html.DropDownList("Result", new SelectList(productList, "LaboratoryId", "Name"), "-- Seleccione un Resultado --", new { @class = "form-control DetailDdl" })
+
+                        <input type="text" id="Result2" class="form-control" />
+                        <span class="error">un Resultado es requerido</span>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-warning" id="add">
+                            <span class="fa fa-plus "></span> Agregar
+                        </a>
+                        @*<input type="button" id="add" value="Añadir Registro" class="btn btn-warning fa fa-plus"/>*@
+                    </td>
+                </tr>
+                <tr id="newTest">
+                    <td>
+                        <input type="text" id="code" class="form-control" />
+                        <span class="error">El codigo es requerido</span>
+                    </td>
+                    <td>
+                        <input type="text" id="testName" class="form-control" />
+                        <span class="error">El Nombre de la Prueba es Requerido</span>
+                    </td>
+
+                    <td>
+                        <input type="text" id="testUnits" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" id="testMethod" class="form-control" />
+
+                    </td>
+                    <td>
+                        <input type="text" id="testRange" class="form-control" />
+                    </td>
+                    <td>
+                        @Html.DropDownList("testCategory", new SelectList(clasificationList, "LabClasificationId", "Name"), "-- Seleccione una Clasificación --", new { @class = "form-control" })
+                        <span class="error">La Categoria es Requerida</span>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-warning" id="addTest">
+                            <span class="fa fa-plus "></span> Crear Prueba
+                        </a><br/>
+                        <a class="btn btn-info" id="cancelNewTest">
+                            <span class="fa fa-close "></span> Cancelar
+                        </a>
+                        @*<input type="button" id="add" value="Añadir Registro" class="btn btn-warning fa fa-plus"/>*@
+                    </td>
+                </tr>
+            </table>
+            <hr />
+            <div id="PurchaseItems" class="tablecontainer table table-striped table-hover">
+
+            </div>
+            <br /><br />
+            <div style="padding: 10px 0; text-align: right">
+                @*<input id="submit" type="button" value="Guardar" class="btn btn-success fa fa-times" style="padding: 10px 20px" />*@
+                <a style="padding: 10px 20px" class="btn btn-primary" id="submit">
+                    <span class="fa fa-save "></span> Guardar
+                </a>
+                <a style="padding: 10px 20px" class="btn btn-warning" id="submit2">
+                    <span class="fa fa-times "></span> Cancelar (Limpiar Form.)
+                </a>
+                <a style="padding: 10px 20px" class="btn btn-success" href="@Url.Action("IndexAnalyticals", "Patients", new { area = "Medicals", id=Model.PatientId })">
+                    <span class="fa fa-reply "></span> Volver al Listado de Pruebas de este Paciente
+                </a>
+                <a style="padding: 10px 20px" class="btn btn-success" href="@Url.Action("Index", "Patients", new { area = "Medicals" })">
+                    <span class="fa fa-reply "></span> Volver Al Principio
+                </a>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script>
+
+            var Urls = '@Url.Action("GetLabPosibleResults", "Laboratories")';
+
+            $(document).ready(function () {
+                PurchaseItems = [];
+
+                $('#newTest,#Result2').hide();
+
+                $('#addTest').click(function () {
+                    $('#addTest').attr('disabled', 'disabled');
+                    var isValidItem = true;
+                    if ($('#code').val().trim() == '') {
+                        isValidItem = false;
+                        $('#code').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#code').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    if ($('#testName').val().trim() == '') {
+                        isValidItem = false;
+                        $('#testName').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#testName').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    if (!($('#testUnits').val().trim() != '')) {
+                        isValidItem = false;
+                        $('#testUnits').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#testUnits').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    if (!($('#testMethod').val().trim() != '')) {
+                        isValidItem = false;
+                        $('#testMethod').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#testMethod').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    if (!($('#testRange').val().trim() != '')) {
+                        isValidItem = false;
+                        $('#testRange').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#testRange').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    if (!($('#testCategory').val().trim() != '')) {
+                        isValidItem = false;
+                        $('#testCategory').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#testCategory').siblings('span.error').css('visibility', 'hidden');
+                    }
+
+                    if (isValidItem) {
+                        var data = {
+                            Code: $('#code').val(),
+                            Name: $('#testName').val(),
+                            Unids: $('#testUnits').val(),
+                            Methods: $('#testMethod').val(),
+                            Reference: $('#testRange').val(),
+                            LabClasificationId: $("#testCategory option:selected").val(),
+                            Comentary: ''
+                        }
+
+                        $(this).val('Espere...');
+
+                        $.ajax({
+                            url: '@Url.Action("SaveLaboratoryTest", "Patients")',
+                            type: "POST",
+                            data: JSON.stringify(data),
+                            dataType: "JSON",
+                            contentType: "application/json",
+                            success: function (d) {
+                                //check is successfully save to database
+                                if (d.status == true) {
+
+                                    //populate data
+                                    var  newUrls = '@Url.Action("GetLabTests", "Laboratories")';
+
+                                    $(".MasterDdl").empty();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: newUrls,
+                                        dataType: "json",
+                                        data: { id: 0 },
+                                        success: function (list) {
+                                              @*@productList = ViewBag.Products;*@
+                                            $.each(list,
+                                                function (i, item) {
+                                                    $(".MasterDdl").append('<option value="' + item.Id + '">' + item.Name + "</option>");
+                                                });
+                                        },
+                                        error: function (ex) {
+                                            alert("Error al intentar traer los datos." + ex);
+                                        }
+                                    });
+
+
+                                }
+                                else {
+                                    alert('Error al intentar Guardar');
+                                }
+                                $('#addTest').val('Crear Prueba');
+                                $('#addTest').removeAttr('disabled');
+
+                            },
+                            error: function () {
+                                alert('Error. Porfavor intente de nuevo.');
+                                $('#addTest').val('Crear Prueba');
+                                $('#addTest').removeAttr('disabled');
+                            }
+                        });
+
+                        $('#AddingTest').show();
+                        $('#newTest').hide();
+                        $('#Products').val('').focus();
+                        $('#testCategory,#testName,#testMethod,#testRange,#testUnits,#code').val('');
+                      
+                       
+
+                    }
+                    else { $('#addTest').removeAttr('disabled');}
+                    //populate order items
+                    $('#Units,#Method,#Range,#Result,#Discount,#Barcode,#Result2').val('');
+                    $('#Products').val('').focus();
+
+                });
+
+                $('input[type=radio]').change(function () {
+                    var $radio = $(this);
+                    if ($radio.val() == 1) {
+                        $('#Result2').hide();
+                        $('#Result').show();
+                    } else {
+                        $('#Result2').show();
+                        $('#Result').hide();
+                    }
+                     
+                });
+                // //Add button click function
+                $('#add').click(function () {
+                    //Check validation of order item
+                    var isValidItem = true;
+                    if ($('#Products').val().trim() == '') {
+                        isValidItem = false;
+                        $('#Products').siblings('span.error').css('visibility', 'visible');
+                    }
+                    else {
+                        $('#Products').siblings('span.error').css('visibility', 'hidden');
+                    }
+                    var result = '';
+                    var resultId = 0;
+                    if ($('input[type=radio]:checked').val() == 1) {
+                        //result = $('#Result').val();
+                        result = $("#Result option:selected").text();
+                        resultId = $("#Result option:selected").val();
+                    } else {
+                         result = $('#Result2').val();
+                    }
+
+                    if (!(result.trim() != '' )) {
+                        isValidItem = false;
+                        alert('Debe Digitar o Seleccionar un Resultado');
+                    }
+
+
+                    //    //Add item to list if valid
+                    if (isValidItem) {
+                        PurchaseItems.push({
+                            LaboratoryDetailId: resultId ,
+                            LaboratoryId: $("#Products option:selected").val(),
+                            ProductName: $("#Products option:selected").text(),
+                            //  Barcode: parseInt($('#BarcodeGenerated').val().trim()\),
+                            Units: ($('#Units').val().trim()),
+                            Method: ($('#Method').val().trim()),
+                            Range: ($('#Range').val().trim()),
+                            Result: result,
+                            ResultText: result
+                        });
+
+                        //Clear fields
+                        $('#Products').val('').focus();
+                        $('#Units,#Method,#Range,#Result,#Discount,#Barcode,#Result2').val('');
+
+                    }
+                    //populate order items
+                    GeneratedItemsTable();
+
+                });
+
+                $('#createTest').click(function () {
+                    $('#AddingTest').hide();
+                    $('#newTest').show();
+                });
+
+                $('#cancelNewTest').click(function () {
+                    $('#AddingTest').show();
+                    $('#newTest').hide();
+                });
+
+                $('#submit2').click(function () {
+                    //validation of order
+                    //clear form
+                    PurchaseItems = [];
+                    $('#RealizationDate').val('');
+                    $('#ResultDate').val('');
+                    $('#Suppliers').val('');
+                    $('#Shops').val('');
+                    // $('#Remarks').val('');
+                    $('#PurchaseItems').empty();
+
+                });
+
+                $("#Products").change(function () {
+                    $("#Barcode").val($("#Products option:selected").val());
+
+                    $.ajax({
+                        url: '@Url.Action("GetLaboratoryInfo", "Patients")',
+                        type: 'GET',
+                        data: 'id= ' + $("#Barcode").val(),
+                        success: function (data) {
+                            $("#Barcode").val(data[0]);
+                            $("#Units").val(data[1]);
+                            $("#Method").val(data[2]);
+                            $("#Range").val(data[3]);
+                            $("#Result,#Result2").val('');
+                        },
+                        error: function () {
+                            alert('Articulo no encontrado');
+                        }
+                    });
+                });
+
+                $('#submit').click(function () {
+                    //validation of order
+                    $('#submit').attr('disabled', 'disabled');
+                    var isAllValid = true;
+                    if (PurchaseItems.length == 0) {
+                        $('#PurchaseItems').html('<span style="color:red;">Añada Pruebas y Resultados al Formulario</span>');
+                        isAllValid = false;
+                    }
+
+                    if ($('#RealizationDate').val().trim() == '') {
+                        $('#RealizationDate').siblings('span.error').css('visibility', 'visible');
+                        isAllValid = false;
+                    }
+                    else {
+                        $('#RealizationDate').siblings('span.error').css('visibility', 'hidden');
+                    }
+
+                    if ($('#ResultDate').val().trim() == '') {
+                        $('#ResultDate').siblings('span.error').css('visibility', 'visible');
+                        isAllValid = false;
+                    }
+                    else {
+                        $('#ResultDate').siblings('span.error').css('visibility', 'hidden');
+                    }
+
+                    if (isAllValid) {
+                        var data = {
+                            PatientId: $('#PatientId').val(),
+                            AuthorId: $('#AuthorId').val(),
+                            RefNumber: 0,
+                            RealizationDate: $('#RealizationDate').val().trim(),
+                            ResultDate: $('#ResultDate').val().trim(),
+                            MedRef: $('#DoctorName').val().trim(),
+                            Notes: $('#Remarks').val().trim(),
+                            AnalyticalDetails: PurchaseItems
+                        }
+
+                        $(this).val('Espere...');
+
+                        $.ajax({
+                            url: '@Url.Action("SaveOrder", "Patients")',
+                            type: "POST",
+                            data: JSON.stringify(data),
+                            dataType: "JSON",
+                            contentType: "application/json",
+                            success: function (d) {
+                                //check is successfully save to database
+                                if (d.status == true) {
+                                    var baseUrl="@Url.Action("IndexAnalyticals","Patients", new { area = "Medicals", id = Model.PatientId })";
+
+                                    // Now append your query string variables to baseUrl
+                                    // Ex : baseUrl=baseUrl+"?searchString=testing";
+                                    window.location.href=baseUrl;
+
+                                    //will send status from server side
+                                    //alert('Pruebas Registradas con Exito!!!.');
+                                    ////clear form
+                                    //PurchaseItems = [];
+                                    //$('#RealizationDate').val('');
+                                    //$('#ResultDate').val('');
+                                    //$('#Remarks').val('');
+                                    //$('#PurchaseItems').empty();
+                                }
+                                else {
+                                    alert('Error al intentar Guardar');
+                                }
+                                $('#submit').val('Guardar');
+                                $('#submit').removeAttr('disabled');
+                            },
+                            error: function () {
+                                alert('Error. Porfavor intente de nuevo.');
+                                $('#submit').val('Guardar');
+                                $('#submit').removeAttr('disabled');
+                            }
+                        });
+                    }
+                    else { $('#submit').removeAttr('disabled'); }
+
+                });
+
+                //function for show added items in table
+                function GeneratedItemsTable() {
+                    if (PurchaseItems.length > 0) {
+                        var $table = $('<table id="myTable" class="table table-striped table-hover" width="96%"/>');
+                        $table.append('<thead><tr class="success"><th>Prueba (Nomb.)</th> <th>Unds</th><th>Metodo</th><th>Rango (Val. Ref.)</th><th>Resultado</th><th>Acciones</th></tr></thead>');
+
+                        var $tbody = $('<tbody/>');
+                        $.each(PurchaseItems, function (i, val) {
+                            var $row = $('<tr class="active"/>');
+                            $row.append($('<td/>').html(val.ProductName));
+                            //$row.append($('<td/>').html(val.Barcode));
+                            $row.append($('<td/>').html(val.Units));
+                            $row.append($('<td/>').html(val.Method));
+                            $row.append($('<td/>').html(val.Range));
+                            $row.append($('<td/>').html(val.Result));
+                            //$row.append($('<td/>').html(val.Discount));
+                            //   $row.append($('<td/>').html("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></button>"));
+                            $row.append($('<td/>').html("<button type='button' class='btn btn-default' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'><span class='fa fa-close'></span></button>"));
+
+                            $tbody.append($row);
+                        });
+
+                        $table.append($tbody);
+
+                        //$table.append('<thead><tr> <th></th> <th></th><th></th><th></th><th></th><th></th><th><label>Total</label></th><th><input type="text" class="form-control" id="TotalAmount" onblur="doMath();" value="' + TotalAmount.toFixed(2) + '" disabled="true"/> </th></tr></thead>');
+                        //$table.append('<thead><tr> <th></th> <th></th><th></th><th></th><th></th><th></th><th><label>Monto Pagado</label></th><th><input type="text" class="form-control" id="PaidAmount" onblur="doMath();" /></th></tr></thead>');
+                        //$table.append('<thead><tr> <th></th> <th></th><th></th><th></th><th></th><th></th><th><label>Monto Adeudado</label></th><th><input type="text" class="form-control" id="DueAmount" disabled="true" /></th></tr></thead>');
+
+                        $('#PurchaseItems').html($table);
+                    }
+                }
+            });
+
+        </script>
+    }
+
+
+    <script type="text/javascript">
+
+
+        function deleteRow(i) {
+            document.getElementById('myTable').deleteRow(i);
+            PurchaseItems.pop();
+
+            //alert(i);
+            //PurchaseItems.removeNode(i, 1);
+        }
+    </script>
+
+    <style>
+        /*Adding some css for looks good*/
+        span.error {
+            display: block;
+            visibility: hidden;
+            color: red;
+            font-size: 90%;
+        }
+
+
+        /*css for table*/
+        .container td {
+            vertical-align: top;
+        }
+
+        .tablecontainer table {
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid #BFAEAE;
+            border-right: 1px solid #BFAEAE;
+        }
+
+        .tablecontainer th {
+            border-bottom: 1px solid #BFAEAE !important;
+        }
+
+        .tablecontainer th, .tablecontainer td {
+            text-align: left;
+            border-left: 1px solid #BFAEAE;
+            padding: 5px;
+            border-bottom: 1px solid #BFAEAE;
+        }
+
+        .ui-widget {
+            font-size: 12px !important;
+        }
+    </style>
+}
+
+

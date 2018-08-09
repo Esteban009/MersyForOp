@@ -1,0 +1,137 @@
+﻿@model Domain.MED.ObstetricVisit
+
+@{
+    ViewBag.Title = "Editar Visita Pre Natal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ObstetricId)
+        @Html.HiddenFor(model => model.PatientId)
+        @Html.HiddenFor(model => model.ObstetricVisitId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisitDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.VisitDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.VisitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestationalAge, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.GestationalAge, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GestationalAge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tammhg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Tammhg, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tammhg, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Pounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuSem, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.AuSem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AuSem, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Present, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Present, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Present, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fcf, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Fcf, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fcf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Edema, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Edema, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edema, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Varicose, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Varicose, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Varicose, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Symptoms, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Symptoms, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Symptoms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Conclusion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Conclusion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Conclusion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Indications, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Indications, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Indications, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-9">
+                <a class="btn btn-warning" href="@Url.Action("DetailsObstetrics", "Patients", new { area = "Medicals" , id=Model.ObstetricId})">
+                    <span class="fa fa-times "></span> Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o "></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            $('#GestationalAge').attr('disabled', true);
+        });
+    </script>
+}

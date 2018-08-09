@@ -1,0 +1,50 @@
+﻿@model Domain.MED.LaboratoryDetail
+
+@{
+    ViewBag.Title = "Editar Resultado Frecuente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.LaboratoryId)
+    @Html.HiddenFor(model => model.LaboratoryDetailId)
+   
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Result, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Result, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Result, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comentary, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.Comentary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Comentary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <a class="btn btn-warning" href="@Url.Action("Details", "Laboratories", new { area = "Medicals" , id=Model.LaboratoryId })">
+                <span class="fa fa-times "></span> Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-floppy-o "></i> Guardar
+            </button>
+        </div>
+
+    </div>
+</div>
+}
+

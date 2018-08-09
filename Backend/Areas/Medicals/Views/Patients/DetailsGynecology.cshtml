@@ -1,0 +1,300 @@
+﻿@model Domain.MED.Gynecology
+
+@{
+    ViewBag.Title = "Historia Ginecologica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+    
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.GynecologyId)
+    <p>
+        <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals", id = @Model.PatientId })">
+            <span class="fa fa-reply"></span> Volver atras
+        </a>
+        <a class="btn btn-warning" href="@Url.Action("EditGynecology", "Patients", new { area = "Medicals", id = @Model.GynecologyId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+
+
+    </p>
+    <section class="MySection">
+        <h4>Historia</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Menarche, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Menarche, new { htmlAttributes = new { @class = "form-control BigTextArea" } })
+            @Html.ValidationMessageFor(model => model.Menarche, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pubarquia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Pubarquia, new { htmlAttributes = new { @class = "form-control BigTextArea" } })
+            @Html.ValidationMessageFor(model => model.Pubarquia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telarquia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Telarquia, new { htmlAttributes = new { @class = "form-control BigTextArea" } })
+            @Html.ValidationMessageFor(model => model.Telarquia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MenstrualPatron, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.MenstrualPatron, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MenstrualPatron, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Dysmenorrhoea, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Dysmenorrhoea, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dysmenorrhoea, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstSexualRelation, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.FirstSexualRelation, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstSexualRelation, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.SexualRelationPerWeek, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.SexualRelationPerWeek, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SexualRelationPerWeek, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoSexualPartners, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.NoSexualPartners, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NoSexualPartners, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.MarriedTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.MarriedTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MarriedTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <section class="MySection">
+        <h4>Uso Anticonceptivo</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActualUse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.ActualUse, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ActualUse, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.PastUse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.PastUse, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PastUse, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Oral, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Oral, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Oral, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Div, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Div, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Div, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Barrier, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Barrier, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Barrier, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Norplat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Norplat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Norplat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <section class="MySection">
+        <h4>Historia Obstetricia</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gestas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Gestas, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Gestas, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Pregnancies, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Pregnancies, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Pregnancies, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Caesarean, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Caesarean, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Caesarean, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Abortions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Abortions, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Abortions, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AliveChilds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.AliveChilds, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AliveChilds, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.PrematureChilds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.PrematureChilds, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PrematureChilds, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BornedDead, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.BornedDead, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BornedDead, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.LastPregnant, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.LastPregnant, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastPregnant, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Forceps, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Forceps, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Forceps, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4> Otros </h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LabsResult, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.LabsResult, new { htmlAttributes = new { @class = "form-control BigTextArea" } })
+            @Html.ValidationMessageFor(model => model.LabsResult, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observations, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Observations, new { htmlAttributes = new { @class = "form-control BigTextArea" } })
+            @Html.ValidationMessageFor(model => model.Observations, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>Visitas</h4>
+    </section>
+    <div>
+        <a class="btn btn-primary" href="@Url.Action("CreateGynecologyVisits", "Patients", new { area = "Medicals", id = @Model.GynecologyId })"> <span class="fa fa-plus"></span>   Registrar Visita</a>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+
+            @if (Model.GynecologyVisits.Count == 0)
+            {
+            <h2>No existen Visitas registradas aun :'(</h2>
+            }
+            else
+            {
+            <div class="scroller">
+                <table class="table">
+                    <thead>
+                        <tr><th></th>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Razon de la Visita
+                            </th>
+                            <th>
+                                Indicaciones
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.GynecologyVisits)
+                        {
+                        <tr>
+                            <td>
+                                <a class="btn btn-warning" href="@Url.Action("EditGynecologicalVisits", "Patients", new { area = "Medicals", id = @item.GynecologyVisitId })"> <span class="fa fa-pencil-square-o "></span> Editar</a>
+                                <a class="btn btn-danger" href="@Url.Action("DeleteGynecologyVisits", "Patients", new { area = "Medicals", id = @item.GynecologyVisitId })" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitReason)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Indications)
+                            </td>
+                          
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+        </div>
+
+    </div>
+    <hr /><hr />
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    $(function () {
+        
+        $('input,textarea').attr('disabled', true);
+        $('table').DataTable();
+    });
+</script>
+}
+
+
+
+
+
+

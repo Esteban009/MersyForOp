@@ -1,0 +1,145 @@
+﻿@model Backend.Areas.Medicals.Models.RecipeView
+@{
+    Layout = null;
+}
+ 
+<style>
+    @@page {
+        size: A4;
+        margin: 1cm;
+    }
+
+    .print {
+        display: none;
+    }
+
+    @@media print {
+    div.fix-break-print-page {
+        page-break-inside: avoid;
+    }
+
+    .print {
+        display: block;
+    }
+    }
+
+    .print:last-child {
+        page-break-after: auto;
+    }
+</style>
+ 
+<div >
+    <div style="height: 12%; width: 100%">
+        <table id="TableHeader" style="font-size: 12pt; font-family: Times New Roman; font-weight: bold; text-transform: uppercase">
+            <tr>
+                <td rowspan="4" style="width: 15%">
+
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="Image" style="width: auto; height: 85px;" dir="rtl"/>
+                    }
+                </td>
+                <td rowspan="4" style="width: 75%; text-align: center">
+                    @if (!string.IsNullOrEmpty(Model.Header1))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header1)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header2))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header2)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header3))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header3)
+                        </div>
+                    }
+                    <br/><br/>Receta Medica<br />
+                </td>
+                <td rowspan="4" style="width: 0"></td>
+                <td style="width: 10%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="height: 70%; width: 100%">
+        <div>
+            <hr/><br/>
+            <div class="row">
+                Fecha: <b> @Html.DisplayFor(model => model.RecipeDate)</b>
+            </div>
+            <br/><br/>
+            <div class="row">
+                Paciente: <b> @Html.DisplayFor(model => model.PatientName)</b>
+            </div>
+            <br/><br/>
+            <div class="row">
+                @*<u><b>Medicamento(s) e Indicacion(es)</b></u>*@
+                Rx
+            </div>
+            <br/>
+            <div class="row">
+                <pre style="border: 0; background-color: white"> @Html.DisplayFor(model => model.RecipeText) </pre>
+
+            </div>
+            <br/>
+            @if (!string.IsNullOrEmpty(Model.Observations))
+            {
+                <div class="row">
+                    <u><b>Observación(es)</b></u>
+                </div>
+                <div class="row">
+                    @Html.DisplayFor(model => model.Observations)
+                </div>
+            }
+
+            <br/><br/>
+            @*<div class="row">
+                Expido la presente Certificación en: <b> @Html.DisplayFor(model => model.Place)</b>
+            </div>*@
+            <br/><br/><br/><br/><br/>
+            <div class="row" style="text-align: center">
+                <center> Firma del Medico:___________________________________</center>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    @*<div style="position:absolute; bottom: 0; text-align: center">*@
+    @*<div style="position:relative; text-align: center">*@
+    <div style="text-align: center; height: 5%; width: 100%">
+
+
+        @if (!string.IsNullOrEmpty(Model.Footer1))
+        {
+            <div>
+                @Html.DisplayFor(model => model.Footer1)
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Footer2))
+        {
+            <div>
+                @Html.DisplayFor(model => model.Footer2)
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Footer3))
+        {
+            <div>
+                @Html.DisplayFor(model => model.Footer3)
+            </div>
+        }
+
+    </div>
+
+
+</div>
+<script>
+    window.onload = function () {
+
+        window.print();
+    }
+    // window.close();
+</script>

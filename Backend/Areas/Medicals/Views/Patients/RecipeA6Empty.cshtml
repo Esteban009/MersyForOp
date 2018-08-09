@@ -1,0 +1,96 @@
+﻿@model Backend.Areas.Medicals.Models.RecipeView
+@{
+    Layout = null;
+}
+<style type="text/css">
+ 
+    @@media print {
+
+        html, body {
+            height:100vh; 
+            margin: 0 !important; 
+            padding: 0 !important;
+            overflow: hidden;
+        }
+
+    }
+
+</style>
+ 
+<div style="max-width: 8.3in; max-height:5.6in">
+ 
+    <div style="height: 10%; width: 100%">
+        <table id="TableHeader" style="font-size: 10pt; font-family: Times New Roman; font-weight: bold; text-transform: uppercase">
+            <tr>
+                <td rowspan="4" style="width: 15%">
+                    <div>&nbsp;</div>
+                </td>
+                <td rowspan="4" style="width: 75%; text-align: center">
+                    <div>&nbsp;</div> <div>&nbsp;</div> <div>&nbsp;</div>
+
+                    <br /> <div>&nbsp;</div><br />
+                </td>
+                <td rowspan="4" style="width: 0"></td>
+                <td style="width: 10%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="height: 36%; width: 100%">
+        <div  style="font-size: 8pt; font-family: Times New Roman;">
+            <hr/><br/><br />
+            <div class="row">
+                Fecha: <b> @Html.DisplayFor(model => model.RecipeDate)</b>
+            </div>
+            <br/> 
+            <div class="row">
+                Paciente: <b> @Html.DisplayFor(model => model.PatientName)</b>
+            </div>
+            <br/> 
+            <div class="row" >
+                @*<u><b>Medicamento(s) e Indicacion(es)</b></u>*@
+                Rx
+            </div>
+            
+            <div class="row">
+                <pre style="border: 0; background-color: white"> @Html.DisplayFor(model => model.RecipeText) </pre>
+            </div>
+             
+            @if (!string.IsNullOrEmpty(Model.Observations))
+            {
+                <div class="row">
+                    <u><b>Observación(es)</b></u>
+                </div>
+                <div class="row">
+                    @Html.DisplayFor(model => model.Observations)
+                </div>
+            }
+
+            <br/> 
+            @*<div class="row">
+                Expido la presente Certificación en: <b> @Html.DisplayFor(model => model.Place)</b>
+            </div>*@
+            <br/><br/><br/> 
+            <div class="row" style="text-align: center">
+                <center> Firma del Medico:___________________________________</center>
+            </div>
+        </div>
+    </div>
+    <hr/>
+ 
+    <div style="font-size: 9pt; font-family: Times New Roman; text-align: center; height: 2.5%; width: 100%">
+
+
+        <div>&nbsp;</div> <div>&nbsp;</div> <div>&nbsp;</div>
+        
+
+    </div>
+    
+</div>
+<script>
+    window.onload = function () {
+
+        window.print();
+    }
+    // window.close();
+</script>

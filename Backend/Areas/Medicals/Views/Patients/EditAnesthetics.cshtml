@@ -1,0 +1,1080 @@
+﻿@model Domain.MED.Anesthetic
+
+@{
+    ViewBag.Title = "Editar Historia Anestesica ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.AnestheticId)
+    <section class="MySection">
+        <h4>Informacion General</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SurgeryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.SurgeryDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.SurgeryDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SurgeryHour, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.SurgeryHour, new { htmlAttributes = new { @class = "form-control PsTimes" } })
+            @Html.ValidationMessageFor(model => model.SurgeryHour, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Procedure, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Procedure, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Procedure, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Diagnostic, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Diagnostic, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Diagnostic, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SintomasNoCardio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.SintomasNoCardio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SintomasNoCardio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hquirurgica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Hquirurgica, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Hquirurgica, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AntecedentesA, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.AntecedentesA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AntecedentesA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FamilyAlergy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            Si  @Html.RadioButtonFor(m => m.FamilyAlergy, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; No  @Html.RadioButtonFor(m => m.FamilyAlergy, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FamilyAlergy, "", new {@class = "text-danger"})
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>Alergias?</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Latex, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Latex)
+                @Html.ValidationMessageFor(model => model.Latex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Huevos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Huevos)
+                @Html.ValidationMessageFor(model => model.Huevos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>Historia Previa?</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sncsnp, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Sncsnp)
+                @Html.ValidationMessageFor(model => model.Sncsnp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Pulmonar, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Pulmonar)
+                @Html.ValidationMessageFor(model => model.Pulmonar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Cv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Cv)
+                @Html.ValidationMessageFor(model => model.Cv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Hepatica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Hepatica)
+                @Html.ValidationMessageFor(model => model.Hepatica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RenalUrinario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.RenalUrinario)
+                @Html.ValidationMessageFor(model => model.RenalUrinario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Endocrino, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Endocrino)
+                @Html.ValidationMessageFor(model => model.Endocrino, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.Hemorragias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Hemorragias)
+                @Html.ValidationMessageFor(model => model.Hemorragias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Reflujo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Reflujo)
+                @Html.ValidationMessageFor(model => model.Reflujo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tabaquismo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Tabaquismo)
+                @Html.ValidationMessageFor(model => model.Tabaquismo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Embarazo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Embarazo)
+                @Html.ValidationMessageFor(model => model.Embarazo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OtrosHistoria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.OtrosHistoria, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OtrosHistoria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActualMedication, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.ActualMedication, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ActualMedication, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>HISTORIA CARDIOVASCULAR</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Iam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Iam, new { htmlAttributes = new { @class = "form-control" } })*@
+            0-3 Meses  @Html.RadioButtonFor(m => m.Iam, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; 3-6 Meses  @Html.RadioButtonFor(m => m.Iam, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Mas de 6 Meses  @Html.RadioButtonFor(m => m.Iam, 3, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Iam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ObservacionesIam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.ObservacionesIam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ObservacionesIam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Arritmias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Arritmias)
+                @Html.ValidationMessageFor(model => model.Arritmias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.CardiopatiaIsquemica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.CardiopatiaIsquemica)
+                @Html.ValidationMessageFor(model => model.CardiopatiaIsquemica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.CardiopatiaReumatica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.CardiopatiaReumatica)
+                @Html.ValidationMessageFor(model => model.CardiopatiaReumatica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.HtaEsencial, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.HtaEsencial)
+                @Html.ValidationMessageFor(model => model.HtaEsencial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Angina, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Angina)
+                @Html.ValidationMessageFor(model => model.Angina, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Sicc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Sicc)
+                @Html.ValidationMessageFor(model => model.Sicc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Acv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Acv)
+                @Html.ValidationMessageFor(model => model.Acv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Dislipidemia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Dislipidemia)
+                @Html.ValidationMessageFor(model => model.Dislipidemia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Valvulopatia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Valvulopatia)
+                @Html.ValidationMessageFor(model => model.Valvulopatia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Marcapaso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Marcapaso)
+                @Html.ValidationMessageFor(model => model.Marcapaso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.InsufVasc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.InsufVasc)
+                @Html.ValidationMessageFor(model => model.InsufVasc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Obesidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Obesidad)
+                @Html.ValidationMessageFor(model => model.Obesidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CardioOtros, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.CardioOtros, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CardioOtros, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>PATOLOGIAS NO QUIRURGICAS Y OTRAS CONDICIONES ASOCIADAS</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nac, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Nac)
+                @Html.ValidationMessageFor(model => model.Nac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.TbPulmonar, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.TbPulmonar)
+                @Html.ValidationMessageFor(model => model.TbPulmonar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.DerramePleural, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.DerramePleural)
+                @Html.ValidationMessageFor(model => model.DerramePleural, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Ebpoc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Ebpoc)
+                @Html.ValidationMessageFor(model => model.Ebpoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AsmaBronquial, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.AsmaBronquial)
+                @Html.ValidationMessageFor(model => model.AsmaBronquial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Cancer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Cancer)
+                @Html.ValidationMessageFor(model => model.Cancer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Alergias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Alergias)
+                @Html.ValidationMessageFor(model => model.Alergias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Sedentarismo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Sedentarismo)
+                @Html.ValidationMessageFor(model => model.Sedentarismo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Alcohol, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Alcohol)
+                @Html.ValidationMessageFor(model => model.Alcohol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Tabaquismo2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Tabaquismo2)
+                @Html.ValidationMessageFor(model => model.Tabaquismo2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Anticonseptivos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Anticonseptivos)
+                @Html.ValidationMessageFor(model => model.Anticonseptivos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Cafe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Cafe)
+                @Html.ValidationMessageFor(model => model.Cafe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Drogas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Drogas)
+                @Html.ValidationMessageFor(model => model.Drogas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.CirugiasPrevias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.CirugiasPrevias)
+                @Html.ValidationMessageFor(model => model.CirugiasPrevias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.Convulciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Convulciones)
+                @Html.ValidationMessageFor(model => model.Convulciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Angina2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Angina2)
+                @Html.ValidationMessageFor(model => model.Angina2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Palpitaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Palpitaciones)
+                @Html.ValidationMessageFor(model => model.Palpitaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Dismea, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Dismea)
+                @Html.ValidationMessageFor(model => model.Dismea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @Html.LabelFor(model => model.Sincope, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Sincope)
+                @Html.ValidationMessageFor(model => model.Sincope, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Ortopnea, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Ortopnea)
+                @Html.ValidationMessageFor(model => model.Ortopnea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EnfGastrointestinal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.EnfGastrointestinal)
+                @Html.ValidationMessageFor(model => model.EnfGastrointestinal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.EnfHepatica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.EnfHepatica)
+                @Html.ValidationMessageFor(model => model.EnfHepatica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.EnfRenal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.EnfRenal)
+                @Html.ValidationMessageFor(model => model.EnfRenal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.DiabetesMellitus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.DiabetesMellitus)
+                @Html.ValidationMessageFor(model => model.DiabetesMellitus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EnfEmatologica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.EnfEmatologica)
+                @Html.ValidationMessageFor(model => model.EnfEmatologica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        @Html.LabelFor(model => model.Tos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Tos)
+                @Html.ValidationMessageFor(model => model.Tos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Dpn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Dpn)
+                @Html.ValidationMessageFor(model => model.Dpn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Edema, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Edema)
+                @Html.ValidationMessageFor(model => model.Edema, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fatiga, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Fatiga)
+                @Html.ValidationMessageFor(model => model.Fatiga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        @Html.LabelFor(model => model.Cianosis, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Cianosis)
+                @Html.ValidationMessageFor(model => model.Cianosis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>EXPLORACION y EXAMEN FISICO</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })*@
+            Normal  @Html.RadioButtonFor(m => m.Peso, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;   Sobrepeso  @Html.RadioButtonFor(m => m.Peso, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Bajo Peso  @Html.RadioButtonFor(m => m.Peso, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Obesidad Grado 1  @Html.RadioButtonFor(m => m.Peso, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Obesidad Grado 2  @Html.RadioButtonFor(m => m.Peso, 5, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Obesidad Morbida  @Html.RadioButtonFor(m => m.Peso, 6, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cuello, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Cuello, new { htmlAttributes = new { @class = "form-control" } })*@
+            Simetrico  @Html.RadioButtonFor(m => m.Cuello, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  IVY  @Html.RadioButtonFor(m => m.Cuello, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  RHY  @Html.RadioButtonFor(m => m.Cuello, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  PC  @Html.RadioButtonFor(m => m.Cuello, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Masas  @Html.RadioButtonFor(m => m.Cuello, 5, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Ganglios  @Html.RadioButtonFor(m => m.Cuello, 6, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Tiroides Palpaables  @Html.RadioButtonFor(m => m.Cuello, 7, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cuello, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Corazon, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Corazon, new { htmlAttributes = new { @class = "form-control" } })*@
+            Ritmo Regular  @Html.RadioButtonFor(m => m.Corazon, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Ritmo Irregular  @Html.RadioButtonFor(m => m.Corazon, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; R1-R2  @Html.RadioButtonFor(m => m.Corazon, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Soplos  @Html.RadioButtonFor(m => m.Corazon, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  R3  @Html.RadioButtonFor(m => m.Corazon, 5, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; R4  @Html.RadioButtonFor(m => m.Corazon, 6, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Galopes  @Html.RadioButtonFor(m => m.Corazon, 7, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Corazon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Torax, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Torax, new { htmlAttributes = new { @class = "form-control" } })*@
+            &nbsp; &nbsp; Simetrico  @Html.RadioButtonFor(m => m.Torax, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Excavado  @Html.RadioButtonFor(m => m.Torax, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Esn Paloma  @Html.RadioButtonFor(m => m.Torax, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Normodinamico  @Html.RadioButtonFor(m => m.Torax, 4, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Torax, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Abdomen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Abdomen, new { htmlAttributes = new { @class = "form-control" } })*@
+            Plano  @Html.RadioButtonFor(m => m.Abdomen, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Semigloboso  @Html.RadioButtonFor(m => m.Abdomen, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Globoso  @Html.RadioButtonFor(m => m.Abdomen, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Peristalsis Normal  @Html.RadioButtonFor(m => m.Abdomen, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Aumentada  @Html.RadioButtonFor(m => m.Abdomen, 5, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Disminuida  @Html.RadioButtonFor(m => m.Abdomen, 6, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Depresible  @Html.RadioButtonFor(m => m.Abdomen, 7, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Abdomen, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pulmones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Pulmones, new { htmlAttributes = new { @class = "form-control" } })*@
+            Murmullo Vesicular Adecuado  @Html.RadioButtonFor(m => m.Pulmones, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Ruidos Adventicios  @Html.RadioButtonFor(m => m.Pulmones, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Pulmones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExtremSuperiores, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.ExtremSuperiores, new { htmlAttributes = new { @class = "form-control" } })*@
+            Normal  @Html.RadioButtonFor(m => m.ExtremSuperiores, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;   No Normal @Html.RadioButtonFor(m => m.ExtremSuperiores, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExtremSuperiores, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExtremInferiores, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.ExtremInferiores, new { htmlAttributes = new { @class = "form-control" } })*@
+            Normal  @Html.RadioButtonFor(m => m.ExtremInferiores, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  No Normal  @Html.RadioButtonFor(m => m.ExtremInferiores, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExtremInferiores, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ViasRespiratorias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.ViasRespiratorias, new { htmlAttributes = new { @class = "form-control" } })*@
+            Normal  @Html.RadioButtonFor(m => m.ViasRespiratorias, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Anormal  @Html.RadioButtonFor(m => m.ViasRespiratorias, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ViasRespiratorias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AperturaBucal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.AperturaBucal, new { htmlAttributes = new { @class = "form-control" } })*@
+            >= 4 cm  @Html.RadioButtonFor(m => m.AperturaBucal, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; < 4 cm  @Html.RadioButtonFor(m => m.AperturaBucal, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AperturaBucal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mallampati, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.Mallampati, new { htmlAttributes = new { @class = "form-control" } })*@
+            Clase 1  @Html.RadioButtonFor(m => m.Mallampati, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Clase 2  @Html.RadioButtonFor(m => m.Mallampati, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Clase 3  @Html.RadioButtonFor(m => m.Mallampati, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Clase 4  @Html.RadioButtonFor(m => m.Mallampati, 4, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mallampati, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MovTempmandibular, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.MovTempmandibular, new { htmlAttributes = new { @class = "form-control" } })*@
+            I-Incisivos inferiores x delante de superiores  @Html.RadioButtonFor(m => m.MovTempmandibular, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; II-Alineacion incisivos superiores e inferiores  @Html.RadioButtonFor(m => m.MovTempmandibular, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  III-Incisivos inferiores detras de incisivos superiores  @Html.RadioButtonFor(m => m.MovTempmandibular, 3, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MovTempmandibular, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistanciaTiromentoniana, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.DistanciaTiromentoniana, new { htmlAttributes = new { @class = "form-control" } })*@
+            >= 6 cm  @Html.RadioButtonFor(m => m.DistanciaTiromentoniana, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; < 6 cm  @Html.RadioButtonFor(m => m.DistanciaTiromentoniana, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DistanciaTiromentoniana, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistanciaEsternomentoniana, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @*@Html.EditorFor(model => model.DistanciaEsternomentoniana, new { htmlAttributes = new { @class = "form-control" } })*@
+            >= 12 cm  @Html.RadioButtonFor(m => m.DistanciaTiromentoniana, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;   < 12 cm  @Html.RadioButtonFor(m => m.DistanciaTiromentoniana, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DistanciaEsternomentoniana, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArcodeFlexion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            >= 90°  @Html.RadioButtonFor(m => m.ArcodeFlexion, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;< 90°  @Html.RadioButtonFor(m => m.ArcodeFlexion, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ArcodeFlexion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExtencionAtlantoOccipital, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            I (>=35°)  @Html.RadioButtonFor(m => m.ExtencionAtlantoOccipital, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; II (↓1/3)  @Html.RadioButtonFor(m => m.ExtencionAtlantoOccipital, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; III (↓2/3)  @Html.RadioButtonFor(m => m.ExtencionAtlantoOccipital, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; IV (0°)  @Html.RadioButtonFor(m => m.ExtencionAtlantoOccipital, 4, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExtencionAtlantoOccipital, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>Tencion Arterial</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Bd, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Bd, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Bi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Bi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Bi, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Fc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Fc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fc, "", new { @class = "text-danger" })
+        </div>
+         
+        @Html.LabelFor(model => model.Fr, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Fr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PesoArt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.PesoArt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PesoArt, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Talla, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Talla, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Talla, "", new { @class = "text-danger" })
+        </div>
+         
+        @Html.LabelFor(model => model.Imc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Imc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Imc, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Spo2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Spo2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Spo2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <section class="MySection">
+        <h4>ELECTROCARDIOGRAMA</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ritmo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Ritmo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ritmo, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.FcElectro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.FcElectro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FcElectro, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.P, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.P, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.P, "", new { @class = "text-danger" })
+        </div>
+         
+        @Html.LabelFor(model => model.Pr, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Pr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Pr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+        
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Qt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Qt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Qt, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Aqrs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Aqrs, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Aqrs, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.OndasQ, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.OndasQ, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OndasQ, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.OndasT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.OndasT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OndasT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Extrasistoles, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Extrasistoles, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Extrasistoles, "", new { @class = "text-danger" })
+        </div>
+         
+        @Html.LabelFor(model => model.BradicardiaS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.BradicardiaS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BradicardiaS, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.TaquicardiaS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.TaquicardiaS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TaquicardiaS, "", new { @class = "text-danger" })
+        </div>
+        
+        @Html.LabelFor(model => model.Hipertrofia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Hipertrofia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Hipertrofia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BloqueosAv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.BloqueosAv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BloqueosAv, "", new { @class = "text-danger" })
+        </div>
+         
+        @Html.LabelFor(model => model.BloqueosRama, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.BloqueosRama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BloqueosRama, "", new { @class = "text-danger" })
+        </div>
+            
+        @Html.LabelFor(model => model.Qrs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Qrs, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Qrs, "", new { @class = "text-danger" })
+        </div>
+            
+    </div>
+    <section class="MySection">
+        <h4>CONCLUSIONES</h4>
+    </section>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PatologiasCardio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.PatologiasCardio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PatologiasCardio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OtrasPatologias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.OtrasPatologias, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OtrasPatologias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Conclucion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Conclucion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Conclucion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Asa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            1  @Html.RadioButtonFor(m => m.Asa, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;2  @Html.RadioButtonFor(m => m.Asa, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;3  @Html.RadioButtonFor(m => m.Asa, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;4  @Html.RadioButtonFor(m => m.Asa, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;5  @Html.RadioButtonFor(m => m.Asa, 5, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;6  @Html.RadioButtonFor(m => m.Asa, 6, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;E  @Html.RadioButtonFor(m => m.Asa, 7, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Asa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PlanAnestesia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            AG  @Html.RadioButtonFor(m => m.PlanAnestesia, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;   Espinal  @Html.RadioButtonFor(m => m.PlanAnestesia, 2, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  Epidural  @Html.RadioButtonFor(m => m.PlanAnestesia, 3, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; Tiva  @Html.RadioButtonFor(m => m.PlanAnestesia, 4, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp; MAC  @Html.RadioButtonFor(m => m.PlanAnestesia, 5, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PlanAnestesia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnestesiaOtro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.AnestesiaOtro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AnestesiaOtro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discutido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @*@Html.EditorFor(model => model.Discutido, new { htmlAttributes = new { @class = "form-control" } })*@
+            Si  @Html.RadioButtonFor(m => m.Discutido, 1, new { htmlAttributes = new { @class = "form-control" } })
+            &nbsp; &nbsp;  No  @Html.RadioButtonFor(m => m.Discutido, 2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Discutido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Consideraciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Consideraciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Consideraciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Preferencias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Preferencias, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Preferencias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Riesgos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Riesgos, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Riesgos, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Manejo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Manejo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Manejo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Recomendaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Recomendaciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Recomendaciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <a class="btn btn-warning" href="@Url.Action("Details", "Patients", new { area = "Medicals" , id=@Model.PatientId })">
+                <span class="fa fa-times "></span> Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-floppy-o "></i> Guardar
+            </button>
+        </div>
+
+    </div>
+    </div>
+}
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,95 @@
+﻿@model Domain.MED.PediatricGrowth
+
+@{
+    ViewBag.Title = "Editar Crecimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PediatricId)
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.PediatricGrowthId)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MonthCountId, "Mes", new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.DropDownList("MonthCountId", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MonthCountId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Peso, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Estatura, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Estatura, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Estatura, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CircCef, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.CircCef, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CircCef, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Perimetro, new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Perimetro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Perimetro, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-9">
+            <a class="btn btn-warning" href="@Url.Action("DetailsPediatric", "Patients", new { area = "Medicals" , id=@Model.PatientId})">
+                <span class="fa fa-times "></span> Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-floppy-o "></i> Guardar
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

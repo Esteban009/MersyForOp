@@ -72,6 +72,10 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PsTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalLibs\PsTools.dll</HintPath>
+    </Reference>
     <Reference Include="RazorPDF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorPDF.1.0.0\lib\net45\RazorPDF.dll</HintPath>
     </Reference>
@@ -227,6 +231,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PsBaseController.cs" />
+    <Compile Include="Filters\RoleAuthorizationFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -947,16 +953,13 @@
     <Folder Include="Areas\Pos\Models\" />
     <Folder Include="Content\Flags\" />
     <Folder Include="Content\Users\" />
+    <Folder Include="Repository\Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PsCore\PsTools\PsTools.csproj">
-      <Project>{6654312b-5e6f-4c22-b2a1-9665825975ba}</Project>
-      <Name>PsTools</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{757ea5da-63fd-4eaf-9623-3a4373fd8d31}</Project>
       <Name>Domain</Name>

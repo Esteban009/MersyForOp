@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Domain.MED.Obstetric>
+
+@{
+    ViewBag.Title = "Historias Pre Natal (Embarazos) del Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+
+    <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("CreateObstetrics", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })"> <span class="fa fa-user-plus"></span> Registrar Nueva Historia (Nuevo Embarazo)</a>
+
+</p>
+
+<div class="scroller">
+    <table class="table">
+        <thead>
+        <tr><th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Gesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fpp)
+            </th>
+
+               
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("EditObstetrics", "Patients", new {area = "Medicals", id = item.ObstetricId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                    <a class="btn btn-info" href="@Url.Action("DetailsObstetrics", "Patients", new {area = "Medicals", id = item.ObstetricId})"> <span class="fa fa-info"></span> Detalles</a>
+                    <a class="btn btn-danger" href="@Url.Action("DeleteObstetrics", "Patients", new {area = "Medicals", id = item.ObstetricId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gesta)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fpp)
+                </td>
+
+                 
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+
+

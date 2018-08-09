@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Domain.MED.Laboratory>
+
+@{
+    ViewBag.Title = "Pruebas de Laboratorio Realizadas por el Centro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="color: green;font-weight:bold">
+    Estas son las pruebas de laboratorio de las cuales le interesa al Medico, Consultorio o Centro de Salud, almacenar los resultados a los fines de futuras evaluaciones o entrega de resultados.
+    <br />
+  Las pruebas listadas aqui son las que saldran como disponibles para seleccionar valores en hoja clinica de analitica y laboratorio.
+</div>
+<p>
+    <a class="btn btn-success" href="@Url.Action("MedHist", "Patients", new { area = "Medicals" })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Laboratories", new { area = "Medicals" })"> <span class="fa fa-plus"></span> Registrar Nueva Prueba</a>
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Methods)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reference)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Methods)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                <a class="btn btn-warning" href="@Url.Action("Edit", "Laboratories", new { area = "Medicals", id = item.LaboratoryId })"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                <a class="btn btn-info" href="@Url.Action("Details", "Laboratories", new {area = "Medicals", id = item.LaboratoryId})"> <span class="fa fa-info"></span> Detalles</a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Laboratories", new {area = "Medicals", id =item.LaboratoryId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Domain.MED.GeneralAfection>
+
+@{
+    ViewBag.Title = "Historias Diagnosticas del Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("CreateGeneralAfections", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })"> <span class="fa fa-user-plus"></span> Registrar Nueva Historia Diagnostica (Nueva Consulta)</a>
+</p>
+
+<div class="scroller">
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitReason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conclusion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indications)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Observations)
+                </th>*@
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("EditGeneralAfections", "Patients", new {area = "Medicals", id = item.GeneralAfectionId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                    <a class="btn btn-info" href="@Url.Action("DetailsGeneralAfections", "Patients", new {area = "Medicals", id = item.GeneralAfectionId})"> <span class="fa fa-info"></span> Detalles</a>
+                    <a class="btn btn-danger" href="@Url.Action("DeleteGeneralAfections", "Patients", new {area = "Medicals", id =item.GeneralAfectionId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitReason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Conclusion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indications)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Observations)
+                    </td>*@
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+
+

@@ -1,0 +1,92 @@
+﻿@model Domain.MED.AnalyticalDetail
+
+@{
+    ViewBag.Title = "Edicion de Resultados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productList = ViewBag.Products;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AnalyticalDetailId)
+    @Html.HiddenFor(model => model.AnalyticalId)
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> Prueba</label>
+        <div class="col-md-3">
+            @Html.DropDownList("LaboratoryId", null, htmlAttributes: new { @class = "form-control MasterDdl" })
+        </div>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <label class="control-label col-md-2"> Resultado</label>
+        <div class="col-md-3">
+            @Html.DropDownList("LaboratoryDetailId", null, htmlAttributes: new { @class = "form-control DetailDdl" })
+
+            @*@Html.DropDownList("Result", new SelectList(productList, "LaboratoryId", "Name"), "-- Seleccione un Resultado --", new {@class = "form-control DetailDdl"})*@
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <a class="btn btn-warning" href="@Url.Action("DetailsAnalyticals", "Patients", new { area = "Medicals" , id=Model.AnalyticalId })">
+                <span class="fa fa-times "></span> Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-floppy-o "></i> Guardar
+            </button>
+        </div>
+
+    </div>
+    @*<div style="padding: 10px 0; text-align: right">
+         <a style="padding: 10px 20px" class="btn btn-warning" href="@Url.Action("DetailsAnalyticals", "Patients", new { area = "Medicals", id=Model.AnalyticalId })">
+            <span class="fa fa-times "></span> Cancelar
+        </a>
+        <a style="padding: 10px 20px" class="btn btn-primary" id="submit">
+            <span class="fa fa-save "></span> Guardar
+        </a>
+    </div>*@
+
+</div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var Urls = '@Url.Action("GetLabPosibleResults", "Laboratories")';
+        $(document).ready(function () {
+           
+            
+
+        $("#Products").change(function () {
+            $("#Barcode").val($("#Products option:selected").val());
+
+            $.ajax({
+                url: '@Url.Action("GetLaboratoryInfo", "Patients")',
+                type: 'GET',
+                data: 'id= ' + $("#Barcode").val(),
+                success: function (data) {
+                    $("#Barcode").val(data[0]);
+                    $("#Units").val(data[1]);
+                    $("#Method").val(data[2]);
+                    $("#Range").val(data[3]);
+                    $("#Result").val('');
+                },
+                error: function () {
+                    alert('Articulo no encontrado');
+                }
+            });
+        });
+      });
+    </script>
+}

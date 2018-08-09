@@ -1,0 +1,1706 @@
+﻿@model Backend.Areas.Medicals.Models.LaboratoryTestView
+@{
+    Layout = null;
+}
+
+<style>
+    @@page {
+        size: A4;
+        margin: 1cm;
+    }
+
+    .print {
+        display: none;
+    }
+
+    @@media print {
+        div.fix-break-print-page {
+            page-break-inside: avoid;
+        }
+
+        .print {
+            display: block;
+        }
+    }
+
+    .print:last-child {
+        page-break-after: auto;
+    }
+</style>
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-0qnx {
+            font-weight: bold;
+            background-color: #00d2cb;
+            border-color: #3166ff;
+            vertical-align: top
+        }
+
+        .tg .tg-yw4l {
+            vertical-align: top
+        }
+
+        .tg .tg-8m2u {
+            font-weight: bold;
+            border-color: inherit
+        }
+
+        .tg .tg-us36 {
+            border-color: inherit;
+            vertical-align: top
+        }
+
+        .tg .tg-p8bj {
+            font-weight: bold;
+            border-color: inherit;
+            vertical-align: top
+        }
+</style>
+<style type="text/css">
+    .tg2 {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg2 td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg2 th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg2 .tg-88td {
+            border-color: #00009b;
+            vertical-align: top
+        }
+
+        .tg2 .tg-h3l9 {
+            background-color: #96fffb;
+            border-color: #00009b;
+            vertical-align: top
+        }
+
+        .tg2 .tg-z4d3 {
+            font-weight: bold;
+            background-color: #96fffb;
+            border-color: #00009b
+        }
+
+        .tg2 .tg-1lb6 {
+            font-weight: bold;
+            background-color: #96fffb;
+            border-color: #00009b;
+            vertical-align: top
+        }
+</style>
+
+@{
+    int counter = 0;
+}
+<div>
+    <div style="height: 27%; width: 100%">
+        <table id="TableHeader" style="font-size: 12pt; font-family: Times New Roman; font-weight: bold; text-transform: uppercase">
+            <tr>
+                <td rowspan="4" style="width: 15%">
+
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Url.Content(Model.Imagen)" alt="Image" style="width: auto; height: 85px;" dir="rtl" />
+                    }
+                </td>
+                <td rowspan="4" style="width: 75%; text-align: center">
+                    @if (!string.IsNullOrEmpty(Model.Header1))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header1)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header2))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header2)
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Header3))
+                    {
+                        <div>
+                            @Html.DisplayFor(model => model.Header3)
+                        </div>
+                    }
+                    <br />
+                    Informe de Resultado(s)
+                </td>
+                <td rowspan="4" style="width: 0"></td>
+                <td style="width: 10%"></td>
+            </tr>
+        </table>
+        <table class="tg2" style="width:100%">
+            <tr>
+                <th class="tg-z4d3">Id de Resultado</th>
+                <th class="tg-z4d3">Record Paciente</th>
+                <th class="tg-1lb6">Edad</th>
+                <th class="tg-1lb6">Sexo</th>
+                <th class="tg-1lb6" colspan="2">Medico que Refiere</th>
+            </tr>
+            <tr>
+                <td class="tg-88td">@Model.LaboratoryTestId</td>
+                <td class="tg-88td">@Model.Patient.Record2</td>
+                <td class="tg-88td">@Model.Patient.Age</td>
+                <td class="tg-88td">@Model.Patient.Person.Gender.Name</td>
+                <td class="tg-88td" colspan="2">
+                    @if (!string.IsNullOrEmpty(Model.MedRef))
+                    {
+                        @Html.DisplayFor(model => model.MedRef)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="tg-h3l9" colspan="4">Datos del Paciente</td>
+                <td class="tg-h3l9">Fecha Muestra</td>
+                <td class="tg-h3l9">Fecha Resultados</td>
+            </tr>
+            <tr>
+                <td class="tg-88td" colspan="4">
+                    @Model.Patient.Person.Name &nbsp; @Model.Patient.Person.LastName
+                    <br />
+                    @Model.Patient.Person.Address <br />
+                    @Model.Patient.Person.Tel
+                </td>
+                <td class="tg-88td">
+                    @ViewBag.RealizationDate
+                </td>
+                <td class="tg-88td">
+                    @ViewBag.ResultDate
+                </td>
+            </tr>
+            @*<tr>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                </tr>
+                <tr>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                    <td class="tg-88td"></td>
+                </tr>*@
+        </table>
+
+    </div>
+
+    <div style="height: 60%; width: 100%">
+        <table class="tg" id="TableBody2" style="width: 100%;font-size: 12pt; font-family: Times New Roman">
+            <tr style="text-align:left">
+                @*<th class="tg-0qnx"></th>*@
+                <th class="tg-0qnx">Prueba</th>
+                <th class="tg-0qnx">Unidades</th>
+                <th class="tg-0qnx">Resultado</th>
+                <th class="tg-0qnx">Referencia</th>
+            </tr>
+            @if ((Model.Hb != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hb </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hb </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if ((Model.Hto != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> HTO </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hto </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Gb != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> G.B. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Gb </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Gr != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> GR </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Gr </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Tp != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Tp </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tp </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Grs != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Grs </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Grs </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Vcm != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> V.C.M </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Vcm </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Hcm != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> H.C.M </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hcm </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Chcm != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> C.H.C.M </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Chcm </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Tpt != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> TPT </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tpt </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Linfocitos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Linfocitos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Linfocitos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Eosinofilos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Eosinofilos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Eosinofilos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Banda != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Banda </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Banda </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Monocitos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Monocitos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Monocitos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Basofilos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Basofilos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Basofilos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.CelJuveniles != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Celulas Juveniles </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CelJuveniles </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.CelFalciformes != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Celulas Falciformes </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CelFalciformes </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Eritrosedimentacion != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Eritrosedimentación </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Eritrosedimentacion </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.TdeSangria != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Tiempo de Sangria </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.TdeSangria </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if ((Model.TdeCoagulacion != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Tiempo de Coagulacion </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.TdeCoagulacion </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.CdePlaquetas != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Conteo de Plaquetas </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CdePlaquetas </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.CdeEosinofilos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Conteo de Eosinofilos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CdeEosinofilos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.CdeReticulocitos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Conteo de Reticulocitos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CdeReticulocitos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Hematozoarios != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hematozoarios </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hematozoarios </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ExtdeSangPeriferica != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Ext de Sangre Periferica </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ExtdeSangPeriferica </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if (!string.IsNullOrEmpty(Model.ComentariosRecuento))
+            {
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> Comentarios: </td>
+                </tr>
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> @ViewBag.ComentariosRecuento  </td>
+                </tr>
+            }
+
+
+            @if ((Model.Color != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Color </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Color </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Olor != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Olor </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Olor </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Aspecto != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Aspecto </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Aspecto </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Densidad != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Densidad </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Densidad </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ph != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Ph </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ph </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Glucosa != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Glucosa </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Glucosa </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Albumina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Albúmina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Albumina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Acetona != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Acetona </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Acetona </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.SangOculta != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Sangre Oculta </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.SangOculta </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Bilirrubina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Bilirrubina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Bilirrubina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Urobilinogeno != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Urobilinogeno </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Urobilinogeno </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Nitrito != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Nitrito </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Nitrito </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.GBlancos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Globulos Blancos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.GBlancos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.GRojos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Globulos Rojos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.GRojos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.CelEpiteliales != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Celulas Epiteliales </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.CelEpiteliales </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Bacterias != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Bacterias </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Bacterias </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Cristales != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Cristales </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Cristales </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.FibMucosas != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Fibras Mucosas </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.FibMucosas </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Cilindros != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Cilindros </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Cilindros </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Levaduras != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Levaduras </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Levaduras </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Parasitos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Parasitos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Parasitos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if ((Model.Huevos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Huevos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Huevos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.InvdeAmebas != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Investigacion de Amebas </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.InvdeAmebas </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.SangOcultaCop != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Sangre Oculta Coop </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.SangOcultaCop </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.OtrosCop != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Otros </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.OtrosCop </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.ComentOrinaCop))
+            {
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> Comentarios: </td>
+                </tr>
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> @ViewBag.ComentOrinaCop  </td>
+                </tr>
+            }
+
+
+
+            @if ((Model.Hiv != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> H.I.V </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hiv </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Vdrl != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> V.D.R.L. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Vdrl </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.FactorReumatoide != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Factor Reumatoide </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.FactorReumatoide </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Aso != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> A.S.O. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Aso </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.TSanguinea != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Tipificacion Sanguinea </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.TSanguinea </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.FactorRH != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Factor RH </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.FactorRH </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Hvc != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> HVC </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hvc </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Pcr != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> P.C.R. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Pcr </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ToxoIGG != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Toxoplasmosis I.G.G. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ToxoIGG </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ToxoIGM != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Toxoplasmosis I.G.M. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ToxoIGM </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+
+            @if ((Model.HepatitisB != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hepatitis B </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.HepatitisB </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.HepatitisC != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hepatitis C </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.HepatitisC </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.PruebdeEmbarazo != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Prueba de Embarazo </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.PruebdeEmbarazo </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.SalmonelaThupiO != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Salmonela Thupi O </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.SalmonelaThupiO </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.SalmonelaTyphiH != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Salmonela Typhi H </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.SalmonelaTyphiH </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ParatyphiA != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Paratyphi A </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ParatyphiA </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ParatyphiB != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Paratyphi B </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ParatyphiB </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.BrucelaAbortus != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Brucela Abortus </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.BrucelaAbortus </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ProteusOxig != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Proteus Oxig </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ProteusOxig </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.ComentAntigenos))
+            {
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> Comentarios: </td>
+                </tr>
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> @ViewBag.ComentAntigenos  </td>
+                </tr>
+            }
+            @if ((Model.Glicemia != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Glicemia </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Glicemia </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Colesterol != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Colesterol </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Colesterol </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Trigliceridos != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Trigliceridos </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Trigliceridos </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Urea != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Urea </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Urea </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Creatinina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Creatinina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Creatinina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Sgot != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> S.G.O.T. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Sgot </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Sgtp != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> S.G.P.T. </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Sgtp </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.AcUrico != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Acido úrico </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.AcUrico </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Bil != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> BILIRRUBINA </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Bil </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Directa != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Bilirrubina Directa </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Directa </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+
+            @if ((Model.Indirecta != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Bilirrubina Indirecta </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Indirecta </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Total != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Bilirrubina Total </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Total </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.HPilory != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> H. Pilory </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.HPilory </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ck != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> CK </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ck </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Hdl != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> HDL </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Hdl </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ldl != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> LDL </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ldl </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Vldl != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> VLDL </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Vldl </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Amilasa != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Amilasa </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Amilasa </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Lipasa != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Lipasa </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Lipasa </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.FosfatasaAcida != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Fosfatasa Acida </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.FosfatasaAcida </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.FosfatasaAlcalina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Fosfatasa Alcalina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.FosfatasaAlcalina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.HbGlucosilada != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hb Glucosilada </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.HbGlucosilada </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.ProteinaTotal != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Proteína Total </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.ProteinaTotal </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.AlbuminaQ != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Albúmina Q </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.AlbuminaQ </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Globulina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Globulina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Globulina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.RelacionAG != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Relación A/G </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.RelacionAG </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ldh != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> LDH </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ldh </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ckmb != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> CK-MB </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ckmb </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.ComentQuimica))
+            {
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> Comentarios: </td>
+                </tr>
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> @ViewBag.ComentQuimica  </td>
+                </tr>
+            }
+            @if ((Model.RtoGb != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Rto GB </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.RtoGb </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+
+            @if ((Model.Fal != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> FAL </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Fal </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Tgo != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> TGO </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tgo </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+
+
+
+            @if ((Model.Tgp != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> TGP </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tgp </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+            @if ((Model.Proteinas != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Proteínas </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Proteinas </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Glucemia != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Glucemia </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Glucemia </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Insulina != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Insulina </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Insulina </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Homa != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> HOMA </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Homa </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.HbA1C != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Hb A1c </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.HbA1C </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Tg != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> TG </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tg </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Tsh != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> TSH </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Tsh </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Calcio != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Calcio </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Calcio </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Pth != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> PTH </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Pth </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.VitD != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Vit. D </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.VitD </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Magnesio != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Magnesio </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Magnesio </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.AcFolico != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Ac. Fólico </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.AcFolico </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.Ferremia != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Ferremia </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Ferremia </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.B1 != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> B1 </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.B1 </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.B6 != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> B6 </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.B6 </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if ((Model.B12 != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> B12 </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.B12 </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+
+            @if ((Model.Zinc != null))
+            {
+                <tr>
+                    @*<td class="tg-yw4l">xxx</td>*@
+                    <td class="tg-yw4l"> Zinc </td>
+                    <td class="tg-yw4l">        </td>@*unidades*@
+                    <td class="tg-yw4l"> @ViewBag.Zinc </td>
+                    <td class="tg-yw4l">        </td>@*Referencia*@
+                </tr>
+            }
+
+
+            @if (!string.IsNullOrEmpty(Model.Notes))
+            {
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> Notas u Observaciones Generales: </td>
+                </tr>
+                <tr>
+                    <td class="tg-yw4l" colspan="4"> @ViewBag.Notes  </td>
+                </tr>
+            }
+
+
+
+            <tr>
+                @*<td class="tg-yw4l"></td>*@
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+            </tr>
+            <tr>
+                @*<td class="tg-yw4l"></td>*@
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+                <td class="tg-yw4l"></td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+    window.onload = function () {
+
+        window.print();
+    }
+                // window.close();
+</script>

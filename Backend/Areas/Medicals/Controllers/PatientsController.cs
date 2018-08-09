@@ -8,60 +8,40 @@
     using Models;
     using Helpers;
     using CommonTasksLib.Data;
-    using Domain;
     using Domain.GEN;
     using Domain.MED;
     using PsTools;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Backend.Models;
     using System.IO;
-    //using Domain.POS;
-    //using System.Collections.Generic;
-    //using System.Web.Script.Services;
-    //using System.Web.Services;
+    using System.Collections.Generic;
+    using System.Web.Script.Services;
+    using System.Web.Services;
+    using Backend.Controllers;
+    using Backend.ExternalLibs;
 
-    [Authorize(Roles = "User")]
-    public class PatientsController : Controller
+    //[Authorize(Roles = "User")]
+    public class PatientsController : PsBaseController
     {
-        private readonly DataContext _db = new DataContext();
-
-        public async Task<int> GetAuthorId()
-        {
-            if (Session["AuthorId"] != null && Convert.ToInt32(Session["AuthorId"]) != 0) return Convert.ToInt32(Session["AuthorId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["AuthorId"] = await UsersHelper.GetAuthorId(currentUser.Email);
-            return Convert.ToInt32(Session["AuthorId"]);
-        }
-
-        public async Task<int> GetUserId()
-        {
-            if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"]) != 0) return Convert.ToInt32(Session["UserId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["UserId"] = await UsersHelper.GetUserId(currentUser.Email);
-            return Convert.ToInt32(Session["UserId"]);
-        }       
+       
 
         #region PatientController
 
+        //[RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> MedHist()
         {
-            var userId = await GetUserId();
+            //var userId = await GetUserId();
 
-            var user = await _db.Users.FindAsync(userId);
+            //var user = await _db.Users.FindAsync(userId);
 
-            if (user == null)
-            {
-                return View("Error");
-            }
+            //if (user == null)
+            //{
+            //    return View("Error");
+            //}
 
-            return View(user);
+           // return View(user);
+            return View();
         }
 
+        [RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> Index()
         {
             var userId = await GetUserId();
@@ -122,6 +102,7 @@
             return Json(new { Table = result }, JsonRequestBehavior.AllowGet);
         }
 
+        [RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> Details(int? id)
         {
             var userId = await GetUserId();
@@ -172,6 +153,8 @@
             return View(view);
         }
 
+        [RoleAuthorizationFilter(1, "MedHist")]
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             var userId = await GetUserId();
@@ -350,7 +333,8 @@
                 }
 
                 _db.Patients.Add(patient);
-                                
+
+                
                 //var customer = new Customer
                 //{
                 //    CreditAmount=0,DebAmount=0,WastedAmount=0,Name=view.Name,LastName=view.LastName
@@ -392,6 +376,7 @@
             return View(view);
         }
 
+        [RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> Edit(int? id)
         {
             var userId = await GetUserId();
@@ -510,6 +495,7 @@
             return View(view);
         }
 
+        [RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> Delete(int? id)
         {
             var userId = await GetUserId();
@@ -549,16 +535,7 @@
         }
 
         #endregion
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+               
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Metodo utilizado para obtener un ViewResult de una pagina parcial de la aplicacion en formato

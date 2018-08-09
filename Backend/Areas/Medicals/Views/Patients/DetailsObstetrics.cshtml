@@ -1,0 +1,290 @@
+﻿@model Domain.MED.Obstetric
+
+@{
+    ViewBag.Title = "Historia Pre Natal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PatientId)
+    <p>
+        <a class="btn btn-success" href="@Url.Action("IndexObstetrics", "Patients", new { area = "Medicals", id = @Model.PatientId })">
+            <span class="fa fa-reply"></span> Volver atras
+        </a>
+        <a class="btn btn-warning" href="@Url.Action("EditObstetrics", "Patients", new { area = "Medicals", id = @Model.ObstetricId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+            
+    </p>
+        <div class="form-group">
+            <div class="col-md-2">
+                Tipo de Sangre
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("BloodTypeId", null,  new { @class = "form-control" })
+
+            </div>
+            @Html.LabelFor(model => model.CreationDate,   new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+         
+            </div>
+        </div>
+
+        <div class="form-group">
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Allergies,  new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Allergies, new { htmlAttributes = new { @class = "form-control" } })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Coombs,  new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Coombs, new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.App,  new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.App, new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastPregnant,  new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.LastPregnant, new { htmlAttributes = new { @class = "form-control" } })
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hb,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Hb, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Plaq,  new { @class = "control-label col-md-1" })<div class="col-md-2">
+                @Html.EditorFor(model => model.Plaq, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Glycemia,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Glycemia, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Urine,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Urine, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Vdrl,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Vdrl, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.HbsAg,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.HbsAg, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Hvc,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Hvc, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Hiv,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Hiv, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Falcemia,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Falcemia, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Electrophoresis,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Electrophoresis, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Dmg,  new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Dmg, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.InductionLungMaturity,  new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.InductionLungMaturity, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FstTt,  new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.FstTt, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.SndTt,  new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SndTt, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gesta,  new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.P,  new { @class = "control-label col-md-1" })
+            @Html.LabelFor(model => model.C,  new { @class = "control-label col-md-1" })
+            @Html.LabelFor(model => model.A,  new { @class = "control-label col-md-1" })
+            @Html.LabelFor(model => model.E,  new { @class = "control-label col-md-1" })
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Gesta, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.P, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.C, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.A, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.E, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fum,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Fum, new { htmlAttributes = new { @class = "form-control  PsDates" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fpp,  new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Fpp, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sonography,  new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Sonography, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BornObservations,  new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.BornObservations, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+       <hr/>
+
+
+        <section class="MySection">
+            <h4>Visitas</h4>
+        </section>
+    <div>
+     
+        <a class="btn btn-primary" href="@Url.Action("CreateObstetricVisits", "Patients", new { area = "Medicals", id = @Model.ObstetricId })"> <span class="fa fa-plus"></span> Registrar Visita</a>
+
+    </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (Model.ObstetricVisits.Count == 0)
+                {
+                    <h2>No existen Visitas registradas aun :'(</h2>
+                }
+                else
+                {
+
+                    <div class="scroller">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                   
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Edad Gestacional
+                                </th>
+
+                                <th>
+                                    Indicaciones/Observaciones
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ObstetricVisits)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            <a class="btn btn-warning" href="@Url.Action("EditObstetricVisits", "Patients", new {area = "Medicals", id = @item.ObstetricVisitId})"> <span class="fa fa-pencil-square-o "></span> Editar</a>
+                                            <a class="btn btn-danger" href="@Url.Action("DeleteObstetricVisits", "Patients", new {area = "Medicals", id = @item.ObstetricVisitId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VisitDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GestationalAge)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Indications)
+                                        </td>
+                                      
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+        <hr /><hr />
+    </div>
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            $('input,textarea,select').attr('disabled', true);
+            $('table').DataTable();
+        });
+    </script>
+}
+
+

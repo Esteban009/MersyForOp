@@ -1,0 +1,152 @@
+﻿@model Domain.MED.Treatment
+
+@{
+    ViewBag.Title = "Historia Terapeutica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PatientId)
+        @Html.HiddenFor(model => model.TreatmentId)
+        <p>
+            <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals", id = @Model.PatientId })">
+                <span class="fa fa-reply"></span> Volver atras
+            </a>
+            <a class="btn btn-warning" href="@Url.Action("EditTreatments", "Patients", new { area = "Medicals", id = @Model.TreatmentId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+
+
+        </p>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TreatmentDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.TreatmentDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.TreatmentDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Medicaments, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Medicaments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Medicaments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diagnostic, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Diagnostic, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Diagnostic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observations, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Observations, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observations, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <section class="MySection">
+            <h4>Visitas Asociadas</h4>
+        </section>
+
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("CreateTreatmentVisits", "Patients", new { area = "Medicals", id = @Model.TreatmentId })"> <span class="fa fa-plus"></span>   Registrar Visita</a>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (Model.TreatmentVisits.Count == 0)
+                {
+                    <h2>No existen Visitas registradas aun :'(</h2>
+                }
+                else
+                {
+                    <div class="scroller">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Razon de la Visita
+                                </th>
+                                <th>
+                                    Diagnostico
+                                </th>
+                                <th>
+                                    Resumen de Evolucion
+                                </th>
+                                <th>
+                                    Indicaciones
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.TreatmentVisits)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-warning" href="@Url.Action("EditTreatmentVisits", "Patients", new { area = "Medicals", id = @item.TreatmentVisitId })"> <span class="fa fa-pencil-square-o "></span> Editar</a>
+                                        <a class="btn btn-danger" href="@Url.Action("DeleteTreatmentVisits", "Patients", new { area = "Medicals", id = @item.TreatmentVisitId })" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar </a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VisitDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VisitReason)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Diagnostic)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Conclusion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Indications)
+                                    </td>
+
+
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+        </div>
+        <hr /><hr />
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('input,textarea').attr('disabled', true);
+            $('table').DataTable();
+        });
+    </script>
+}

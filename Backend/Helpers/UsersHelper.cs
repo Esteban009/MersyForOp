@@ -13,6 +13,7 @@ namespace Backend.Helpers
     using System.Linq;
     using Domain;
     using Domain.SEG;
+    using System.Web;
 
     public class UsersHelper : IDisposable
     {
@@ -178,48 +179,29 @@ namespace Backend.Helpers
             {
                 foreach (var option in rol.Rol.OptionRols)
                 {
-                    if(option.Option.Name==optionName)
-                {
-                    switch (action)
+                    if (option.Option.Name == optionName)
                     {
-                        case 1:
-                            if (option.Index)
-                            {
-                                return true;
-                            }
-                            break;
-                        case 2:
-                            if (option.Details)
-                            {
-                                return true;
-                            }
-                            break;
-                        case 3:
-                            if (option.Create)
-                            {
-                                return true;
-                            }
-                            break;
-                        case 4:
-                            if (option.Edit)
-                            {
-                                return true;
-                            }
-                            break;
-                        case 5:
-                            if (option.Delete)
-                            {
-                                return true;
-                            }
-                            break;
+                        switch (action)
+                        {
+                            case 1:
+                                return option.Index;
+                            case 2:
+                                return option.Details;
+                            case 3:
+                                return option.Create;
+                            case 4:
+                                return option.Edit;
+                            case 5:
+                                return option.Delete;
 
+                        }
                     }
                 }
             }
+            //TODO: temporalmente se le asigna true para pruebas
+            return true;
         }
-        //TODO: temporalmente se le asigna true para pruebas
-        return true;
-    }
+
 
         /// <summary>
         /// Real this is a min value 0 root, 1 ultra admin (just praysoft) 2, admin, 3 supervisor, 4 user
@@ -245,6 +227,18 @@ namespace Backend.Helpers
             var user = await Db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
 
             return user?.UserId ?? 0;
+        }
+
+        public static async Task<int> GetUserId(HttpContext httpContext)
+        {
+            var Session = httpContext.Session;
+            var User = httpContext.User;
+            if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"]) != 0) return Convert.ToInt32(Session["UserId"]);
+            var manager =
+                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            Session["UserId"] = GetUserId(currentUser.Email).Result;
+            return  Convert.ToInt32(Session["UserId"]);
         }
 
         public static async Task PasswordRecovery(string email)

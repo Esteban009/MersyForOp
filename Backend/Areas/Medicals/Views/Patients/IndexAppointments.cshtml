@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Domain.MED.Appointment>
+
+@{
+    ViewBag.Title = "Historias de Citas del Paciente ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("CreateAppointments", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })"> <span class="fa fa-user-plus"></span> Registrar Nueva Cita</a>
+
+</p>
+
+<div class="scroller">
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VisitDate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.VisitReason)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-warning" href="@Url.Action("EditAppointments", "Patients", new {area = "Medicals", id = item.AppointmentId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                        <a class="btn btn-info" href="@Url.Action("DetailsAppointments", "Patients", new {area = "Medicals", id = item.AppointmentId})"> <span class="fa fa-info"></span> Detalles</a>
+                        @*<a class="btn btn-danger" href="@Url.Action("DeleteAnesthetic", "Patients", new {area = "Medicals", id = item.AnestheticId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar</a>*@
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VisitDate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VisitReason)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+
+

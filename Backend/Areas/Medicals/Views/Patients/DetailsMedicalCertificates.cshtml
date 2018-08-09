@@ -1,0 +1,174 @@
+﻿@model Domain.MED.MedicalCertificate
+@{
+    ViewBag.Title = "Detalle Certificado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PatientId)
+    @Html.HiddenFor(model => model.Place)
+    @Html.HiddenFor(model => model.MedicalCertificateId)
+    <p>
+        <a class="btn btn-success" href="@Url.Action("IndexMedicalCertificates", "Patients", new { area = "Medicals", id = @Model.PatientId })">
+            <span class="fa fa-reply"></span> Volver atras
+        </a>
+        <a class="btn btn-warning" href="@Url.Action("EditMedicalCertificates", "Patients", new { area = "Medicals", id = @Model.MedicalCertificateId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+        @*<a class="btn btn-primary" id="BtnPrint">
+            <span class="fa fa-print"></span> Imprimir
+        </a>*@
+        <a class="btn btn-primary" id="BtnPrintA4">
+            <span class="fa fa-print"></span> Imprimir en A4
+        </a>
+        <a class="btn btn-primary" id="BtnPrintA6">
+            <span class="fa fa-print"></span> Imprimir en Media Pagina
+        </a>
+        <a class="btn btn-primary" id="BtnPrintA4Empty">
+            <span class="fa fa-print"></span> Imprimir Sin Formato en A4
+        </a>
+        <a class="btn btn-primary" id="BtnPrintA6Empty">
+            <span class="fa fa-print"></span> Imprimir Sin Formato en Media Pagina
+        </a>
+    </p>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MedicalCertificateDate, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.MedicalCertificateDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.MedicalCertificateDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DoctorText, new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.DoctorText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DoctorText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Exequartur, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Exequartur, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Exequartur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cmd, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cmd, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cmd, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PatientName, new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Affections, new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Affections, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Affections, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Recomendations, new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Recomendations, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Recomendations, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Place,  new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Areas/Medicals/JS/MedicalCertificate.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+            $('#BtnPrintA4').click(function () {
+
+                var url = '@Url.Action("MedicalCertA4", "Patients",new {area="Medicals"})';
+                url += "/" + $("#MedicalCertificateId").val();
+                
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+                // window.location.href = url;
+            });
+
+            $('#BtnPrintA6').click(function () {
+
+                var url = '@Url.Action("MedicalCertA6", "Patients",new {area="Medicals"})';
+                url += "/" + $("#MedicalCertificateId").val();
+                
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+                // window.location.href = url;
+
+            });
+
+            $('#BtnPrintA4Empty').click(function () {
+
+                var url = '@Url.Action("MedicalCertA4Empty", "Patients",new {area="Medicals"})';
+                url += "/" + $("#MedicalCertificateId").val();
+                
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+                // window.location.href = url;
+            });
+
+            $('#BtnPrintA6Empty').click(function () {
+
+                var url = '@Url.Action("MedicalCertA6Empty", "Patients",new {area="Medicals"})';
+                url += "/" + $("#MedicalCertificateId").val();
+                
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+                // window.location.href = url;
+
+            });
+
+
+
+        });
+    </script>
+}

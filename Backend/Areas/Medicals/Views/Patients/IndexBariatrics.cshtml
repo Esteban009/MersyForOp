@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Domain.MED.Bariatric>
+
+@{
+    ViewBag.Title = "Historias Bariatricas del Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+
+    <a class="btn btn-success" href="@Url.Action("Details", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("CreateBariatric", "Patients", new { area = "Medicals" , id=ViewBag.PatientId })"> <span class="fa fa-user-plus"></span> Registrar Nueva Historia (Nuevo Proceso Quirurgico)</a>
+
+</p>
+
+<div class="scroller">
+    <table class="table">
+        <thead>
+        <tr><th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsultationDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SurgeryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+
+               
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("EditBariatric", "Patients", new {area = "Medicals", id = item.BariatricId})"> <span class="fa fa-pencil-square-o"></span> Editar</a>
+                    <a class="btn btn-info" href="@Url.Action("DetailsBariatric", "Patients", new {area = "Medicals", id = item.BariatricId})"> <span class="fa fa-info"></span> Detalles</a>
+                    @*<a class="btn btn-danger" href="@Url.Action("DeleteBariatric", "Patients", new {area = "Medicals", id = item.BariatricId})" onclick="return confirm('Esta seguro que desea eliminar este registro?')"> <span class="fa fa-trash-o"></span> Eliminar</a>*@
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsultationDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurgeryDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+
+                 
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+}
+
+

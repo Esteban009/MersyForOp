@@ -1,0 +1,1496 @@
+﻿@model Domain.MED.LaboratoryTest
+
+@{
+    ViewBag.Title = "Resultado de Laboratorios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.LaboratoryTestId)
+    @Html.HiddenFor(model => model.PatientId)
+
+    <p>
+        <a class="btn btn-success" href="@Url.Action("IndexLaboratoryResults", "Patients", new { area = "Medicals", id = @Model.PatientId })">
+            <span class="fa fa-reply"></span> Volver atras
+        </a>
+        <a class="btn btn-warning" href="@Url.Action("EditLaboratoryResults", "Patients", new { area = "Medicals", id = @Model.LaboratoryTestId })"> <span class="fa fa-pencil-square-o"></span> Editar Expediente </a>
+        <a class="btn btn-primary" id="BtnPrintA4">
+            <span class="fa fa-print"></span> Imprimir en A4
+        </a>
+        <a class="btn btn-primary" id="BtnPrintA4Empty">
+            <span class="fa fa-print"></span> Imprimir Sin Formato en A4
+        </a>
+
+    </p>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RealizationDate, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.RealizationDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.RealizationDate, "", new { @class = "text-danger" })
+
+        </div>
+
+        @Html.LabelFor(model => model.ResultDate, new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.ResultDate, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.ResultDate, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.MedRef, new { @class = "control-label col-md-1" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.MedRef, new { htmlAttributes = new { @class = "form-control PsDates" } })
+            @Html.ValidationMessageFor(model => model.MedRef, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="pill" href="#home">Hematologia</a></li>
+        <li><a data-toggle="pill" href="#menu1">Orina/Coprologia</a></li>
+        <li><a data-toggle="pill" href="#menu2">Serologia/Virologia</a></li>
+        <li><a data-toggle="pill" href="#menu3">Quimica Sanguinea</a></li>
+        <li><a data-toggle="pill" href="#menu4">Otros</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <br>
+            <section class="MySection">
+                <h4>Hemograma</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hb, "Hb", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hb", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hb, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hb" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hto", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hto, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="HTO" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Gb", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Gb, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="G.B." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gr, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Gr", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Gr, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="GR" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tp", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tp, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TP" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Grs, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Grs", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Grs, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Grs" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vcm, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Vcm", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Vcm, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="V.C.M" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hcm, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hcm", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hcm, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="H.C.M" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Chcm, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Chcm", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Chcm, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="C.H.C.M" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tpt, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tpt", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tpt, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TPT" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <section class="MySection">
+                <h4>Recuento Diferencial</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Segmentados, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Segmentados", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Segmentados, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Segmentados" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Linfocitos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Linfocitos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Linfocitos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Linfocitos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Eosinofilos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Eosinofilos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Eosinofilos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Eosinofilos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Banda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Banda", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Banda, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Banda" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Monocitos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Monocitos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Monocitos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Monocitos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Basofilos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Basofilos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Basofilos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Basofilos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CelJuveniles, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CelJuveniles", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CelJuveniles, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Celulas Juveniles" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CelFalciformes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CelFalciformes", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CelFalciformes, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Celulas Falciformes" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Eritrosedimentacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Eritrosedimentacion", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Eritrosedimentacion, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Eritrosedimentacion" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TdeSangria, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("TdeSangria", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TdeSangria, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Tiempo de Sangria" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TdeCoagulacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("TdeCoagulacion", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TdeCoagulacion, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Tiempo de Coagulacion" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CdePlaquetas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CdePlaquetas", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CdePlaquetas, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Conteo de Plaquetas" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CdeEosinofilos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CdeEosinofilos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CdeEosinofilos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Conteo de Eosinofilos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CdeReticulocitos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CdeReticulocitos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CdeReticulocitos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Conteo de Reticulocitos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hematozoarios, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hematozoarios", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hematozoarios, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hematozoarios" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExtdeSangPeriferica, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ExtdeSangPeriferica", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ExtdeSangPeriferica, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Ext de Sangre Periferica" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ComentariosRecuento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.ComentariosRecuento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ComentariosRecuento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="menu1" class="tab-pane fade">
+            <br>
+            <section class="MySection">
+                <h4>Examen Fisico</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Color", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Color" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Olor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Olor", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Olor, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Olor" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Aspecto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Aspecto", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Aspecto, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Aspecto" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Densidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Densidad", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Densidad, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Densidad" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <section class="MySection">
+                <h4>Examen Quimico</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ph, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ph", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ph, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Ph" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Glucosa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Glucosa", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Glucosa, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Glucosa" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Albumina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Albumina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Albumina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Albúmina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Acetona, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Acetona", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Acetona, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Acetona" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SangOculta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("SangOculta", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SangOculta, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Sangre Oculta" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bilirrubina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Bilirrubina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Bilirrubina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Bilirrubina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Urobilinogeno, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Urobilinogeno", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Urobilinogeno, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Urobilinogeno" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nitrito, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Nitrito", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nitrito, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Nitrito" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <section class="MySection">
+                <h4>Examen Microscopico</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.GBlancos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("GBlancos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GBlancos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Globulos Blancos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.GRojos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("GRojos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GRojos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Globulos Rojos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CelEpiteliales, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("CelEpiteliales", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CelEpiteliales, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Celulas Epiteliales" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bacterias, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Bacterias", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Bacterias, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Bacterias" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cristales, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Cristales", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cristales, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Cristales" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FibMucosas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("FibMucosas", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FibMucosas, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Fibras Mucosas" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cilindros, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Cilindros", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cilindros, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Cilindros" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Levaduras, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Levaduras", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Levaduras, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Levaduras" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Parasitos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Parasitos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Parasitos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Parasitos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <section class="MySection">
+                <h4>Examen Coprologico</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Huevos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Huevos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Huevos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Huevos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.InvdeAmebas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("InvdeAmebas", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.InvdeAmebas, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Investigacion de Amebas" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SangOcultaCop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("SangOcultaCop", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SangOcultaCop, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Sangre Oculta Coop" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.OtrosCop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("OtrosCop", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OtrosCop, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Otros Coop" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ComentOrinaCop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.ComentOrinaCop, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ComentOrinaCop, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="menu2" class="tab-pane fade">
+            <br>
+            <section class="MySection">
+                <h4>SEROLOGIA y VIROLOGIA</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hiv, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HIV", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hiv, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="H.I.V" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vdrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("VDRL", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Vdrl, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="V.D.R.L." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FactorReumatoide, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("FactorReumatoide", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FactorReumatoide, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Factor Reumatoide" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Aso, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Aso", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Aso, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="A.S.O." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSanguinea, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("TSanguinea", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TSanguinea, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Tipificacion Sanguinea" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FactorRH, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("FactorRH", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FactorRH, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Factor RH" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hvc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hvc", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hvc, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="HVC" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pcr, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Pcr", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Pcr, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="P.C.R." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToxoIGG, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ToxoIGG", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ToxoIGG, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Toxoplasmosis I.G.G." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToxoIGM, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ToxoIGM", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ToxoIGM, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Toxoplasmosis I.G.M." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HepatitisB, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HepatitisB", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HepatitisB, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hepatitis B" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HepatitisC, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HepatitisC", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HepatitisC, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hepatitis C" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PruebdeEmbarazo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("PruebdeEmbarazo", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PruebdeEmbarazo, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Prueba de Embarazo" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <section class="MySection">
+                <h4>Antigenos Febriles</h4>
+            </section>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SalmonelaThupiO, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("SalmonelaThupiO", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SalmonelaThupiO, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Salmonela Thupi O" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SalmonelaTyphiH, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("SalmonelaTyphiH", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SalmonelaTyphiH, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Salmonela Typhi H" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ParatyphiA, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ParatyphiA", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ParatyphiA, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Paratyphi A" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ParatyphiB, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ParatyphiB", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ParatyphiB, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Paratyphi B" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrucelaAbortus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("BrucelaAbortus", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BrucelaAbortus, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Brucela Abortus" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProteusOxig, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ProteusOxig", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProteusOxig, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Proteus Oxig" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ComentAntigenos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.ComentAntigenos, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ComentAntigenos, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="menu3" class="tab-pane fade">
+            <br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Glicemia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Glicemia", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Glicemia, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Glicemia" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Colesterol, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Colesterol", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Colesterol, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Colesterol" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Trigliceridos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Trigliceridos", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Trigliceridos, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Trigliceridos" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Urea, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Urea", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Urea, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Urea" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Creatinina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Creatinina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Creatinina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Creatinina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sgot, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Sgot", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Sgot, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="S.G.O.T." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sgtp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Sgtp", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Sgtp, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="S.G.P.T." ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AcUrico, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("AcUrico", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AcUrico, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Acido úrico" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bil, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Bil", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Bil, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="BILIRRUBINA" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Directa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Directa", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Directa, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Bilirrubina Directa" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Indirecta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Indirecta", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Indirecta, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Bilirrubina Indirecta" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Total", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Bilirrubina Total" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HPilory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HPilory", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HPilory, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="H. Pilory" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ck, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ck", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ck, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="CK" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hdl, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Hdl", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hdl, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="HDL" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ldl, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ldl", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ldl, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="LDL" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vldl, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Vldl", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Vldl, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="VLDL" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amilasa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Amilasa", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Amilasa, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Amilasa" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Lipasa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Lipasa", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Lipasa, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Lipasa" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FosfatasaAcida, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("FosfatasaAcida", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FosfatasaAcida, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Fosfatasa Acida" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FosfatasaAlcalina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("FosfatasaAlcalina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FosfatasaAlcalina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Fosfatasa Alcalina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HbGlucosilada, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HbGlucosilada", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HbGlucosilada, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hb Glucosilada" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProteinaTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("ProteinaTotal", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProteinaTotal, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Proteína Total" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AlbuminaQ, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("AlbuminaQ", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AlbuminaQ, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Albúmina Q" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Globulina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Globulina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Globulina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Globulina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RelacionAG, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("RelacionAG", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RelacionAG, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Relacion A/G" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ldh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ldh", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ldh, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="LDH" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ckmb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ckmb", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ckmb, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="CK-MB" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ComentQuimica, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.ComentQuimica, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ComentQuimica, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="menu4" class="tab-pane fade">
+            <br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RtoGb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("RtoGb", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RtoGb, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Rto GB" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Fal", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Fal, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="FAL" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tgo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tgo", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tgo, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TGO" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tgp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tgp", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tgp, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TGP" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Proteinas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Proteinas", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Proteinas, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Proteínas" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Glucemia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Glucemia", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Glucemia, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Glucemia" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Insulina, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Insulina", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Insulina, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Insulina" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Homa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Homa", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Homa, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="HOMA" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HbA1C, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("HbA1C", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HbA1C, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Hb A1c" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tg", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tg, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TG" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tsh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Tsh", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Tsh, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="TSH" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Calcio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Calcio", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Calcio, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Calcio" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pth, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Pth", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Pth, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="PTH" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.VitD, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("VitD", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VitD, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Vit. D" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Magnesio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Magnesio", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Magnesio, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Magnesio" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AcFolico, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("AcFolico", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AcFolico, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Ac. Fólico" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ferremia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Ferremia", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ferremia, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Ferremia" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.B1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("B1", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.B1, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="B1" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.B6, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("B6", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.B6, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="B6" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.B12, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("B12", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.B12, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="B12" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Zinc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("Zinc", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Zinc, "", new { @class = "text-danger" })
+                </div> <div class="col-md-1">
+                    <a class="btn btn-link" href="@Url.Action("AddResult", "Laboratories", new { area = "Medicals" , id="Zinc" ,patientId=Model.PatientId, fromCreate=true})">
+                        <span class="fa fa-plus"></span> Añadir Resultados?
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            $('input,textarea,select').attr('disabled', true);
+
+            $('#BtnPrintA4').click(function () {
+                
+                var url = '@Url.Action("LaboratoryResultsA4", "Patients",new {area="Medicals"})';
+
+                url += "/" + $("#LaboratoryTestId").val();
+               
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+               
+            });
+            $('#BtnPrintA4Empty').click(function () {
+                
+                var url = '@Url.Action("LaboratoryResultsA4Empty", "Patients",new {area="Medicals"})';
+
+                url += "/" + $("#LaboratoryTestId").val();
+               
+                var win = window.open(url);
+
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert("Porfavor, debes permitir que se abran las ventanas emergentes o el reporte no va a salir :'( ");
+                }
+               
+            });
+        });
+
+    </script>
+}
