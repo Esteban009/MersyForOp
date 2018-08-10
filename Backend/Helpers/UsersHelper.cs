@@ -172,31 +172,75 @@ namespace Backend.Helpers
         /// <returns></returns>
         public static async Task<bool> HavePermisionToAction(int userId, string optionName, int action)
         {
+            //var userRols = await Db.UserRols
+            //   .Where(p => p.UserId == userId)
+            //   .ToListAsync();
+            //return userRols;
+            //var userRols = await GetUserRols(userId);
 
-            var userRols = await GetUserRols(userId);
+            //var us = await Db.UserRols.Where(p => p.UserId == userId && p.Rol.OptionRols.Where(x=> x.Option.Name == optionName).FirstOrDefault() !=null).FirstOrDefaultAsync();
 
-            foreach (var rol in userRols)
+            //            select o.Name, r.RolId, u.userid, u.email
+            //              from Users u
+            //              inner join UserRols r on u.UserId = r.UserId
+            //              inner join OptionRols opr on r.RolId = opr.RolId
+            //              inner join Options o on opr.OptionId = o.OptionId
+            //              where o.name = 'Pacientes'
+            //              and u.UserId = 1
+
+            //    var uss =  Db.OptionRols.Where(p => p.Option.Name == optionName &&
+            //p.Rol.UserRols.Where(x => x.UserId == userId).FirstOrDefault() != null).FirstOrDefault();
+
+            //   var uss = Db.Users.Where(p => p.UserId == userId 
+            //   && p.UserRols.Where(x => x.Rol.OptionRols.Where(c=>c.Option.Name==optionName).FirstOrDefault()) != null
+            //).FirstOrDefault();
+            var us = from r in Db.UserRols
+                     join opr in Db.OptionRols on r.RolId equals opr.RolId
+                     where
+                       opr.Option.Name == optionName &&
+                       r.User.UserId == userId
+                     select new
+                     {
+                         opr.Index,
+                         opr.Create,
+                         opr.Delete,
+                         opr.Details,
+                         opr.Edit,
+                         opr.Option.Name,
+                         r.RolId,
+                         r.User.UserId,
+                         r.User.Email
+                     };
+
+            var uss = us.FirstOrDefault();
+            //foreach (var rol in userRols)
+            //{
+            //    foreach (var option in rol.Rol.OptionRols)
+            //    {
+            //if (option.Option.Name == optionName)
+            // if (uss.Rol.Option.Name == optionName)
+            if (uss != null)
             {
-                foreach (var option in rol.Rol.OptionRols)
+                switch (action)
                 {
-                    if (option.Option.Name == optionName)
-                    {
-                        switch (action)
-                        {
-                            case 1:
-                                return option.Index;
-                            case 2:
-                                return option.Details;
-                            case 3:
-                                return option.Create;
-                            case 4:
-                                return option.Edit;
-                            case 5:
-                                return option.Delete;
+                    case 1:
+                        return uss.Index;// option.Index;
+                    case 2:
+                        return uss.Details;
+                    // return option.Details;
+                    case 3:
+                        return uss.Create;
+                    //return option.Create;
+                    case 4:
+                        return uss.Edit;
+                    //return option.Edit;
+                    case 5:
+                        return uss.Delete;
+                        //return option.Delete;
 
-                        }
-                    }
                 }
+                //  }
+                // }
             }
             //TODO: temporalmente se le asigna true para pruebas
             return true;
@@ -237,8 +281,8 @@ namespace Backend.Helpers
             var manager =
                 new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["UserId"] = GetUserId(currentUser.Email).Result;
-            return  Convert.ToInt32(Session["UserId"]);
+            Session["UserId"] = await GetUserId(currentUser.Email);
+            return Convert.ToInt32(Session["UserId"]);
         }
 
         public static async Task PasswordRecovery(string email)
