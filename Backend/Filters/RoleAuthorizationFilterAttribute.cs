@@ -1,4 +1,5 @@
 ﻿using Backend.Helpers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,7 +21,8 @@ namespace Backend.ExternalLibs
         {
             base.AuthorizeCore(filterContext);
             bool Authorized = true;
-            TUserId = UsersHelper.GetUserId(filterContext.ApplicationInstance.Context).Result;
+            var resultid =Task.Run(async()=>await UsersHelper.GetUserId(filterContext.ApplicationInstance.Context));
+            TUserId = resultid.Result;
             if (!UsersHelper.HavePermisionToAction(TUserId, OptionName, Action).Result)
             {
                 // no tiene permisos

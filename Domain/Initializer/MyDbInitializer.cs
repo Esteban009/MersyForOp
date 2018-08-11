@@ -4,7 +4,7 @@ using Domain.GEN;
 
 namespace Domain.Initializer
 {
-    public class MyDbInitializer : DropCreateDatabaseAlways<DataContext>
+    public class MyDbInitializer :CreateDatabaseIfNotExists<DataContext> //DropCreateDatabaseAlways<DataContext>
     {
         protected override void Seed(DataContext context)
         {

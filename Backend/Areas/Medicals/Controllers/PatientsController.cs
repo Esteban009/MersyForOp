@@ -41,7 +41,7 @@
             return View();
         }
 
-        [RoleAuthorizationFilter(1, "MedHist")]
+       [RoleAuthorizationFilter(1, "MedHist")]
         public async Task<ActionResult> Index()
         {
             var userId = await GetUserId();

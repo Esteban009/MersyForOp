@@ -57,17 +57,17 @@ namespace Backend.Migrations
             //
             context.Status.AddOrUpdate(
                 p => p.Name,
-                new Status() { Name = "Activo", Table = "ALL" },
-                new Status() { Name = "Inactivo", Table = "ALL" },
-                new Status() { Name = "Caja Abierta", Table = "Cashier" },
-                new Status() { Name = "Caja Cerrada", Table = "Cashier" },
-                new Status() { Name = "Pagado", Table = "Sales" },
-                new Status() { Name = "Pendiente de Pago", Table = "Sales" },
-                new Status() { Name = "Pendiente de Pago (CxC)", Table = "Sales" },
-                new Status() { Name = "Exonerado", Table = "Sales" },
-                new Status() { Name = "Iniciado", Table = "Analitical" },
-                new Status() { Name = "Listo Para Entrega", Table = "Analitical" },
-                new Status() { Name = "Entregado", Table = "Analitical" }
+                new Status() { StatusId = 1, Name = "Activo", Table = "ALL" },
+                new Status() { StatusId = 2, Name = "Inactivo", Table = "ALL" },
+                new Status() { StatusId = 3, Name = "Caja Abierta", Table = "Cashier" },
+                new Status() { StatusId = 4, Name = "Caja Cerrada", Table = "Cashier" },
+                new Status() { StatusId = 5, Name = "Pagado", Table = "Sales" },
+                new Status() { StatusId = 6, Name = "Pendiente de Pago", Table = "Sales" },
+                new Status() { StatusId = 7, Name = "Pendiente de Pago (CxC)", Table = "Sales" },
+                new Status() { StatusId = 8, Name = "Exonerado", Table = "Sales" },
+                new Status() { StatusId = 9, Name = "Iniciado", Table = "Analitical" },
+                new Status() { StatusId = 10, Name = "Listo Para Entrega", Table = "Analitical" },
+                new Status() { StatusId = 11, Name = "Entregado", Table = "Analitical" }
             );
             //ID CODE    TABLA DESCRIPCION
             //10  A SOCIOS  Activo y al Dia
@@ -276,12 +276,12 @@ namespace Backend.Migrations
                 new AuthorType { Name = "Empresa" },
                 new AuthorType { Name = "Persona" }
             );
-            context.SaveChanges();
+          //  context.SaveChanges();
             context.Currencies.AddOrUpdate(
                 p => p.Code,
-                new Currency { Code = "DOP", Name = "Pesos Dominicanos" },
-                new Currency { Code = "USD", Name = "Dollar" },
-                new Currency { Code = "EUR", Name = "Euro" }
+                new Currency {CurrencyId=1, Code = "DOP", Name = "Pesos Dominicanos" },
+                new Currency {CurrencyId=2, Code = "USD", Name = "Dollar" },
+                new Currency {CurrencyId=3, Code = "EUR", Name = "Euro" }
             );
             context.PaymentTypes.AddOrUpdate(
                 p => p.Code,
@@ -295,7 +295,7 @@ namespace Backend.Migrations
                 new PaymentType { Code = "TE", Name = "Trasnferencia Electronica" }
 
             );
-            context.SaveChanges();
+            //context.SaveChanges();
             context.BloodTypes.AddOrUpdate(
                 p => p.Code,
                 new BloodType { Code = "D", Name = "Desconocido" },
@@ -328,20 +328,20 @@ namespace Backend.Migrations
 
             context.Periodicities.AddOrUpdate(
                 p => p.Code,
-                new Periodicity { Code = "D", Name = "Diario" },
-                new Periodicity { Code = "W", Name = "Semanal" },
-                new Periodicity { Code = "Q", Name = "Quincenal" },
-                new Periodicity { Code = "M", Name = "Mensual" },
-                new Periodicity { Code = "B", Name = "Bimensual" },
-                new Periodicity { Code = "T", Name = "Trimestral" },
-                new Periodicity { Code = "C", Name = "Cuatrimestral" },
-                new Periodicity { Code = "S", Name = "Semestral" },
-                new Periodicity { Code = "A", Name = "Anual" },
-                new Periodicity { Code = "I", Name = "Irregular" },
-                new Periodicity { Code = "U", Name = "Unico" },
-                new Periodicity { Code = "N", Name = "Ninguno" }
+                new Periodicity { PeriodicityId=1, Code = "D", Name = "Diario" },
+                new Periodicity {PeriodicityId=2, Code = "W", Name = "Semanal" },
+                new Periodicity {PeriodicityId=3, Code = "Q", Name = "Quincenal" },
+                new Periodicity {PeriodicityId=4, Code = "M", Name = "Mensual" },
+                new Periodicity {PeriodicityId=5, Code = "B", Name = "Bimensual" },
+                new Periodicity {PeriodicityId=6, Code = "T", Name = "Trimestral" },
+                new Periodicity {PeriodicityId=7, Code = "C", Name = "Cuatrimestral" },
+                new Periodicity {PeriodicityId=8, Code = "S", Name = "Semestral" },
+                new Periodicity {PeriodicityId=9, Code = "A", Name = "Anual" },
+                new Periodicity {PeriodicityId=10, Code = "I", Name = "Irregular" },
+                new Periodicity {PeriodicityId=11, Code = "U", Name = "Unico" },
+                new Periodicity {PeriodicityId = 12, Code = "N", Name = "Ninguno" }
             );
-            context.SaveChanges();
+           // context.SaveChanges();
             context.Insurances.AddOrUpdate(
                 p => p.Code,
                 new Insurance { Code = "N/A", Name = "No Aplica/ Desconocido" },
@@ -361,12 +361,12 @@ namespace Backend.Migrations
                 new AuthorPlan { Code = "All", Name = "Plan All Power", CurrencyId = 2, PeriodicityId = 11, Amount = 0, StatusId = 1 }
             );
 
-            context.AuthorTypes.AddOrUpdate(
-                p => p.Name,
-                new AuthorType { Name = "Empresa" },
-                new AuthorType { Name = "Persona" }
-            );
-            context.SaveChanges();
+            //context.AuthorTypes.AddOrUpdate(
+            //    p => p.Name,
+            //    new AuthorType { Name = "Empresa" },
+            //    new AuthorType { Name = "Persona" }
+            //);
+           // context.SaveChanges();
             context.Genders.AddOrUpdate(
                 p => p.Name,
                 new Gender { Name = "M" },
@@ -428,13 +428,13 @@ namespace Backend.Migrations
                 new UserType { Name = "Microsoft" },
                 new UserType { Name = "Google" }
             );
-            context.SaveChanges();
+            //context.SaveChanges();
             //context.Authors.AddOrUpdate(
             //    p => p.Code,
             //    new Author { Code = "TEST", Name = "Test Empresa", Email = "sgermosen@praysoft.net", Tel = "8492077714", StatusId = 1,AuthorPlanId = 1, AuthorTypeId = 2 },
             //    new Author { Code = "TEST2", Name = "Test Persona", Email = "sgermosen@outlook.com", Tel = "8293495083",StatusId = 1,AuthorPlanId = 1, AuthorTypeId = 1 }
             //);
-            context.SaveChanges();
+            //context.SaveChanges();
             context.BusinessTypes.AddOrUpdate(
                 p => p.Name,
                 new BusinessType { Name = "Comercial" },
@@ -450,7 +450,7 @@ namespace Backend.Migrations
             context.ParentOptions.AddOrUpdate(
                 p => p.Name,
                 new ParentOption
-                {
+                { ParentOptionId=1,
                     Name = "Seguridad",
                     Description = "Seguridad",
                     Link = "#menuSeguridad",
@@ -461,6 +461,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 2,
                     Name = "Configuracion Gen",
                     Description = "Configuracion Gen",
                     Link = "~/Manage",
@@ -471,6 +472,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 3,
                     Name = "Pacientes",
                     Description = "Pacientes",
                     Link = "~/Medicals/Patients",
@@ -481,6 +483,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 4,
                     Name = "Control de Gastos",
                     Description = "Control de Gastos",
                     Link = "~/Expenses/Clasifications/Resume",
@@ -491,6 +494,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 5,
                     Name = "Administracion",
                     Description = "Administracion",
                     Link = "#menuconfigPos",
@@ -501,6 +505,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 6,
                     Name = "Operaciones",
                     Description = "Operaciones",
                     Link = "#menuconfig",
@@ -511,6 +516,7 @@ namespace Backend.Migrations
                 },
                 new ParentOption
                 {
+                    ParentOptionId = 7,
                     Name = "Configuracion Iguala",
                     Description = "Configuracion Iguala",
                     Link = "#menuconfig2",
@@ -520,7 +526,7 @@ namespace Backend.Migrations
                     StatusId = 1
                 });
 
-            context.SaveChanges();
+          //  context.SaveChanges();
 
             
 
@@ -959,6 +965,7 @@ namespace Backend.Migrations
                     StatusId = 1
                 }
             );
+            context.SaveChanges();
         }
 
     }
