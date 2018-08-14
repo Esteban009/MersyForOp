@@ -3,10 +3,7 @@ namespace Domain.Migrations
     using Domain.GEN;
     using Domain.MED;
     using Domain.SEG;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Domain.DataContext>
     {
@@ -17,45 +14,6 @@ namespace Domain.Migrations
 
         protected override void Seed(Domain.DataContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
-            //IList<Gender> defaultGenderList = new List<Gender>();
-
-            //defaultGenderList.Add(new Gender() { Name = "M" });
-            //defaultGenderList.Add(new Gender() { Name = "F" });
-            //defaultGenderList.Add(new Gender() { Name = "I" });
-            //foreach (var dtl in defaultGenderList)
-            //    context.Genders.Add(dtl);
-
-            ////Initializing the Gender list
-            //IList<Currency> defaultCurrencyList = new List<Currency>();
-
-            //defaultCurrencyList.Add(new Currency() { Code = "USD", Name = "Dollar" });
-            //defaultCurrencyList.Add(new Currency() { Code = "DOP", Name = "Pesos Dominicanos" });
-            //defaultCurrencyList.Add(new Currency() { Code = "EUR", Name = "Euro" });
-            //foreach (var dtl in defaultCurrencyList)
-            //    context.Currencies.Add(dtl);
-
-
-
-            //base.Seed(context);
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
             context.Status.AddOrUpdate(
                 p => p.Name,
                 new Status() { StatusId = 1, Name = "Activo", Table = "ALL" },

@@ -1,49 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Backend.Helpers;
-using Domain;
-using Domain.SEG;
-using Backend.Models; 
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using PsTools;
-
-namespace Backend.Areas.Pos.Controllers
+﻿namespace Backend.Areas.Pos.Controllers
 {
-    public class UsersController : Controller
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Backend.Helpers;
+    using Domain.SEG;
+    using Backend.Models;
+   // using Domain.POS;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using PsTools;
+    using Backend.Controllers;
+
+    public class UsersController : PsBaseController
     {
-        private readonly DataContext _db = new DataContext();
-        public async Task<int> GetAuthorId()
-        {
-             if (Session["AuthorId"] != null && Convert.ToInt32(Session["AuthorId"])!=0 ) return Convert.ToInt32(Session["AuthorId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["AuthorId"] = await UsersHelper.GetAuthorId(currentUser.Email);
-            return Convert.ToInt32(Session["AuthorId"]);
-        }
 
-        public async Task<int> GetUserId()
-        {
-            if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"])!=0) return Convert.ToInt32(Session["UserId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["UserId"] = await UsersHelper.GetUserId(currentUser.Email);
-            return Convert.ToInt32(Session["UserId"]);
-        }
-
-        public async Task<int> UserIdByEmail(string email)
-        {
-            // var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            //  var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            return await UsersHelper.GetUserId(email);
-        }
         public async Task<ActionResult> OptionsList()
         {
             var userId = await GetUserId();
@@ -230,7 +204,7 @@ namespace Backend.Areas.Pos.Controllers
 
             if (!await UsersHelper.IsAdmin(conectedUserid))
             {
-               // var user = new List<User>();
+                // var user = new List<User>();
                 ViewBag.StatusMessage = "Esta opcion esta Reservada para los Administradores de Sistema!!!";
                 return View(user.ToList());
             }
@@ -259,11 +233,7 @@ namespace Backend.Areas.Pos.Controllers
         public async Task<ActionResult> Create()
         {
             var userid = await GetUserId();
-            //ViewBag.FavoriteLeagueId = new SelectList(db.Leagues.OrderBy(l => l.Name), "LeagueId", "Name");
-            //ViewBag.FavoriteTeamId = new SelectList(db.Teams.Where(t => t.LeagueId == db.Leagues.FirstOrDefaultAsync).LeagueId).OrderBy(t => t.Name), "TeamId", "Name");        
-            //ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
-            // var user = _db.Users.FirstOrDefaultAsync(p=>p.UserId==userid);
-            // var user = _db.Users.FindAsync( userid);
+           
             var user = await _db.Users.FirstOrDefaultAsync(u => u.UserId == userid);
 
             if (user == null)
@@ -291,14 +261,7 @@ namespace Backend.Areas.Pos.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var pic = string.Empty;
-                //var folder = "~/Content/Users";
-
-                //if (view.PictureFile != null)
-                //{
-                //    pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
-                //    pic = string.Format("{0}/{1}", folder, pic);
-                //}
+               
                 var emailExist = await UserIdByEmail(view.Email);
                 if (emailExist != 0)
                 {
@@ -308,14 +271,13 @@ namespace Backend.Areas.Pos.Controllers
                 else
                 {
 
-                    // var stream = new MemoryStream(request.ImageArray);
+                 
                     var guid = Guid.NewGuid().ToString();
                     var file = string.Format("{0}.jpg", guid);
                     var folder = "~/Content/Users";
-                    // var fullPath = string.Format("{0}/{1}", folder, file);
-                    // var response = FilesHelper.UploadPhoto(stream, folder, file);
+                   
                     var pic = string.Empty;
-                    //  const string folder = "~/Content/Patients";
+               
 
                     if (view.PictureFile != null)
                     {
@@ -323,7 +285,7 @@ namespace Backend.Areas.Pos.Controllers
                         pic = string.Format("{0}/{1}", folder, pic);
                     }
 
-                    // var people = ToPeople(view);
+                 
 
 
                     var user = ToUser(view);
@@ -348,9 +310,7 @@ namespace Backend.Areas.Pos.Controllers
 
             }
 
-            //  ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name"); ViewBag.StatusId = new SelectList(_db.Status.OrderBy(ut => ut.Name), "StatusId", "Name", view.StatusId);
-            // ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name"); ViewBag.AuthorId = new SelectList(_db.Authors.OrderBy(ut => ut.Name), "AuthorId", "Name", view.AuthorId);
-            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name"); ViewBag.UserTypeId = new SelectList(_db.UserTypes.OrderBy(ut => ut.Name), "UserTypeId", "Name", view.UserTypeId);
+               ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name"); ViewBag.UserTypeId = new SelectList(_db.UserTypes.OrderBy(ut => ut.Name), "UserTypeId", "Name", view.UserTypeId);
 
             return View(view);
 
@@ -412,11 +372,9 @@ namespace Backend.Areas.Pos.Controllers
             }
 
             var authorid = await GetAuthorId();
-            // ViewBag.FavoriteTeamId = new SelectList(db.Teams, "TeamId", "Name", user.FavoriteTeamId);
-            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
-            //   ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
-            //var shop = await _db.ShopUsers.FirstOrDefaultAsync(p => p.UserId == id);
-            //var shopid = shop?.ShopId ?? 0;
+           ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
+             var shop = await _db.ShopUsers.FirstOrDefaultAsync(p => p.UserId == id);
+            var shopid = shop?.ShopId ?? 0;
 
             //ViewBag.ShopId = new SelectList(_db.Shops.Where(p => p.AuthorId == authorid), "ShopId", "Name", shopid);
 
@@ -425,9 +383,9 @@ namespace Backend.Areas.Pos.Controllers
             var view = ToView(user);
             view.Password = "123456";
             view.PasswordConfirm = "123456";
-            //  view.AuthorId = authorid;
+        
             return View(view);
-            // return View(user);
+         
         }
 
         [HttpPost]
@@ -442,13 +400,11 @@ namespace Backend.Areas.Pos.Controllers
 
                 if (view.PictureFile != null)
                 {
-                    // var stream = new MemoryStream(request.ImageArray);
+                 
                     var guid = Guid.NewGuid().ToString();
                     var file = string.Format("{0}.jpg", guid);
 
-                    // var fullPath = string.Format("{0}/{1}", folder, file);
-                    // var response = FilesHelper.UploadPhoto(stream, folder, file);
-                    //  const string folder = "~/Content/Patients";
+                   
 
                     pic = Files.UploadPhoto(view.PictureFile, folder, file);
                     pic = string.Format("{0}/{1}", folder, pic);
@@ -475,11 +431,10 @@ namespace Backend.Areas.Pos.Controllers
                 //    _db.ShopUsers.Add(shopUser);
                 //    await _db.SaveChangesAsync();
                 //}
-               
+
                 return RedirectToAction("Index");
             }
-            // ViewBag.FavoriteTeamId = new SelectList(db.Teams, "TeamId", "Name", user.FavoriteTeamId);
-            ViewBag.StatusId = new SelectList(_db.Status.Where(p => p.StatusId == 1 || p.StatusId == 2), "StatusId", "Name", view.StatusId);
+             ViewBag.StatusId = new SelectList(_db.Status.Where(p => p.StatusId == 1 || p.StatusId == 2), "StatusId", "Name", view.StatusId);
 
             ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", view.UserTypeId);
             return View(view);
@@ -501,18 +456,7 @@ namespace Backend.Areas.Pos.Controllers
             }
             try
             {
-                // string email;
-                // dynamic jsonObject = form;
-
-                //try
-                //{
-                //    email = jsonObject.Email.Value;
-                //}
-                //catch
-                //{
-                //    return View("Error");
-                //    return BadRequest("Incorrect call");
-                //}
+                
 
 
                 var user = await _db.Users.FindAsync(id);
@@ -522,14 +466,7 @@ namespace Backend.Areas.Pos.Controllers
                     return View("Error");
                 }
 
-                //var user = await _db.Users
-                //    .Where(u => u.Email.ToLower() == email.ToLower())
-                //    .FirstOrDefaultAsync();
-                //if (user == null)
-                //{
-                //    return View("Error");
-                //    return NotFound();
-                //}
+               
 
                 var userContext = new ApplicationDbContext();
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
@@ -539,63 +476,27 @@ namespace Backend.Areas.Pos.Controllers
                     return View("Error");
                 }
 
-                //var random = new Random();
-                //var newPassword = string.Format("{0}", random.Next(100000, 999999));
-                // var newPassword = string.Format("{0}", random.Next(100000, 999999));
+              
                 var response1 = userManager.RemovePassword(userAsp.Id);
                 var response2 = await userManager.AddPasswordAsync(userAsp.Id, "824455");
                 if (response2.Succeeded)
                 {
-                    //        var subject = "Torneo Predicciones - Password Recovery";
-                    //        var body = string.Format(@"
-                    //<h1>Torneo Predicciones - Password Recovery</h1>
-                    //<p>Your new password is: <strong>{0}</strong></p>
-                    //<p>Please, don't forget change it for one easy remember for you.",
-                    //            newPassword);
-
-                    //        await MailHelper.SendMail(email, subject, body);
-                    //        return Ok(true);
+                    
 
                     return RedirectToAction("Index", "Users", new { area = "Pos", message = "Contraseña Cambiada Satisfactoriamente a: 824455" });
                 }
                 return View("Error");
-                //return BadRequest("The password can't be changed.");
+               
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return View("Error");
-                // return BadRequest(ex.Message);
+              
             }
         }
 
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return View("Error");
-        //    }
-
-        //    var user = await _db.Users.FindAsync(id);
-
-        //    if (user == null)
-        //    {
-        //        return View("Error");
-        //    }
-
-        //    _db.Users.Remove(user);
-        //    await _db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
 
     }
 }

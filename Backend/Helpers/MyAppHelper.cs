@@ -17,10 +17,10 @@ namespace Backend.Helpers
                 switch (other)
                 {
                     case 1:
-                        maxAge = 0;
+                        maxAge = Db.Analyticals.Where(u => u.Patient.Person.AuthorId == authorId).Max(p => p.RefNumber);
                         break;
                     case 2:
-                        maxAge = 0;
+                        maxAge = Db.Customers.Where(u => u.Person.AuthorId == authorId).Max(p => p.Code);
                         break;
                     default:
                         maxAge = Db.Patients.Where(u => u.Person.AuthorId == authorId).Max(p => p.Record);

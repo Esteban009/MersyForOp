@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Backend.Areas.Medicals.Models
 {
-    public class AnalyticalsView 
+    public class AnalyticalsView : Analytical
     {
         [MaxLength(1000, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [Display(Name = "Cabecera")]

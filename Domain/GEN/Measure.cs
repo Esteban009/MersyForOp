@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
- 
+//using Domain.CPO;
+//using Domain.POS;
 using Newtonsoft.Json;
 
 namespace Domain.GEN
@@ -31,6 +32,9 @@ namespace Domain.GEN
         public virtual ICollection<MeasureEquivalence> MeasureMasters { get; set; }
         [JsonIgnore]
         public virtual ICollection<MeasureEquivalence> MeasureSlaves { get; set; }
-         
+        //[JsonIgnore]
+        //public virtual ICollection<BusinessInventory> Inventories { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<SalesDetail> SalesDetails { get; set; }
     }
 }

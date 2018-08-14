@@ -1,15 +1,14 @@
-﻿using Backend.Repository.Contracts;
-using Domain;
-using Domain.POS;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace Backend.Repository
+﻿namespace Backend.Repository
 {
+    using Contracts;
+    using Domain;
+    using Domain.POS;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class ProductRepository : IProduct
     {
         private readonly DataContext context;
@@ -39,7 +38,7 @@ namespace Backend.Repository
         {
             var models = context.Products
                 .Where(Selector ?? (s => true));
-                
+
             return Task.Run(() => models.ToList());
         }
 

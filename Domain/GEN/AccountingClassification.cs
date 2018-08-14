@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema; 
+using System.ComponentModel.DataAnnotations.Schema;
+//using Domain.CPO;
 using Newtonsoft.Json;
 
 namespace Domain.GEN
@@ -28,5 +29,7 @@ namespace Domain.GEN
 
         [JsonIgnore]
         public virtual ICollection<AccountingSubClassification> AccountingSubClassifications { get; set; }
-           }
+        //[JsonIgnore]
+        //public virtual ICollection<BusinessSubClassification> BusinessSubClassifications { get; set; }
+    }
 }

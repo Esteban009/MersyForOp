@@ -26,6 +26,14 @@
                 @Html.ValidationMessageFor(model => model.ShopId, "", new { @class = "text-danger" })
             </div>
         </div>*@
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceTypeId,  new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("ServiceTypeId", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ServiceTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })

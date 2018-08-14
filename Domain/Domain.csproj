@@ -109,6 +109,7 @@
     <Compile Include="GEN\SchoolLevel.cs" />
     <Compile Include="GEN\Religion.cs" />
     <Compile Include="Initializer\MyDbInitializer.cs" />
+    <Compile Include="MED\Analytical.cs" />
     <Compile Include="MED\BloodType.cs" />
     <Compile Include="MED\DoctorSpeciality.cs" />
     <Compile Include="MED\General.cs" />
@@ -122,6 +123,9 @@
       <DependentUpon>201808141139067_MigracionInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="POS\Customer.cs" />
+    <Compile Include="POS\Shop.cs" />
+    <Compile Include="POS\ShopUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GEN\Status.cs" />
     <Compile Include="SEG\Option.cs" />
@@ -139,7 +143,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CPO\" />
     <Folder Include="Helper\" />
+    <Folder Include="TRK\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ScriptInicial.sql" />

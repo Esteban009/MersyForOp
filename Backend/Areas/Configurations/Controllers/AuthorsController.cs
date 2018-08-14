@@ -9,31 +9,29 @@
     using Domain.SEG;
     using Helpers;
     using System.Linq;
-    using Domain;
     using Domain.MED;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Backend.Controllers;
 
     [Authorize(Roles = "Admin")]
-    public class AuthorsController : Controller
+    public class AuthorsController : PsBaseController
     {
-        public readonly DataContext Db = new DataContext();
-
         public async Task<ActionResult> CreateDoctorInformation(int id)
         {
-            if (id == null)
-            {
-                return View("Error");
-            }
+            //if (id == null)
+            //{
+            //     return View("Error");
+            //}
 
-            var user = await Db.Users.FindAsync(id);
+            var user = await _db.Users.FindAsync(id);
 
             if (user == null)
             {
                 return View("Error");
             }
 
-            var hasHistory = await Db.Doctors.FirstOrDefaultAsync(p => p.UserId == id);
+            var hasHistory = await _db.Doctors.FirstOrDefaultAsync(p => p.UserId == id);
 
             if (hasHistory == null)
             {
@@ -63,9 +61,9 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Doctors.Add(doctor);
+                _db.Doctors.Add(doctor);
                 //doctor.PersonId=doctor.Users.
-                await Db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsUser/{doctor.UserId}");
             }
 
@@ -82,14 +80,14 @@
             {
                 return View("Error");
             }
-            var doctor = await Db.Doctors.FindAsync(id);
+            var doctor = await _db.Doctors.FindAsync(id);
             if (doctor == null)
             {
                 return View("Error");
             }
 
             //   ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", doctor.StatusId);
-            ViewBag.UserId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", doctor.UserId);
+            ViewBag.UserId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", doctor.UserId);
             //  ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == doctor.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", doctor.UserId);
 
 
@@ -102,12 +100,12 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(doctor).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(doctor).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsUser/{doctor.UserId}");
             }
             //ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", doctor.StatusId);
-            ViewBag.UserId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", doctor.UserId);
+            ViewBag.UserId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", doctor.UserId);
             // ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == doctor.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", doctor.UserId);
 
             return View(doctor);
@@ -122,7 +120,7 @@
                 return View("Error");
             }
 
-            var user = await Db.Users.FindAsync(id);
+            var user = await _db.Users.FindAsync(id);
 
             if (user == null)
             {
@@ -130,10 +128,10 @@
             }
 
 
-            ViewBag.UserId = new SelectList(Db.Users, "UserId", "FirstName");
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name");
+            ViewBag.UserId = new SelectList(_db.Users, "UserId", "FirstName");
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
 
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == user.AuthorId), "RolId", "Name");
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == user.AuthorId), "RolId", "Name");
             var view = new UserRol { UserId = user.UserId, };
 
             return View(view);
@@ -145,15 +143,15 @@
         {
             if (ModelState.IsValid)
             {
-                Db.UserRols.Add(userRol);
-                await Db.SaveChangesAsync();
+                _db.UserRols.Add(userRol);
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsUser/{userRol.UserId}");
             }
 
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", userRol.StatusId);
-            ViewBag.UserId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", userRol.StatusId);
+            ViewBag.UserId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
             return View(userRol);
         }
 
@@ -163,15 +161,15 @@
             {
                 return View("Error");
             }
-            var userRol = await Db.UserRols.FindAsync(id);
+            var userRol = await _db.UserRols.FindAsync(id);
             if (userRol == null)
             {
                 return View("Error");
             }
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", userRol.StatusId);
-            ViewBag.UserId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", userRol.StatusId);
+            ViewBag.UserId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
 
 
             return View(userRol);
@@ -183,13 +181,13 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(userRol).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(userRol).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsUser/{userRol.UserId}");
             }
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", userRol.StatusId);
-            ViewBag.UserId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", userRol.StatusId);
+            ViewBag.UserId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", userRol.UserId);
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == userRol.User.AuthorId).OrderBy(t => t.Name), "RolId", "Name", userRol.UserId);
 
             return View(userRol);
         }
@@ -200,13 +198,13 @@
             {
                 return View("Error");
             }
-            var userRol = await Db.UserRols.FindAsync(id);
+            var userRol = await _db.UserRols.FindAsync(id);
             if (userRol == null)
             {
                 return View("Error");
             }
-            Db.UserRols.Remove(userRol);
-            await Db.SaveChangesAsync();
+            _db.UserRols.Remove(userRol);
+            await _db.SaveChangesAsync();
             return RedirectToAction($"DetailsUser/{userRol.UserId}");
         }
 
@@ -221,7 +219,7 @@
                 return View("Error");
             }
 
-            var rol = await Db.Rols.FindAsync(id);
+            var rol = await _db.Rols.FindAsync(id);
 
             if (rol == null)
             {
@@ -229,10 +227,10 @@
             }
 
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name");
-            ViewBag.OptionId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Description");
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
+            ViewBag.OptionId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Description");
 
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == Db.Authors.FirstOrDefault().AuthorId).OrderBy(t => t.Name), "RolId", "Name");
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == _db.Authors.FirstOrDefault().AuthorId).OrderBy(t => t.Name), "RolId", "Name");
             var view = new OptionRol
             {
                 RolId = rol.RolId,
@@ -255,8 +253,8 @@
         {
             if (ModelState.IsValid)
             {
-                Db.OptionRols.Add(optionRol);
-                await Db.SaveChangesAsync();
+                _db.OptionRols.Add(optionRol);
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsRol/{optionRol.RolId}");
             }
 
@@ -264,9 +262,9 @@
             //ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name", rol.AuthorId);
             //ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", rol.StatusId);
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", optionRol.StatusId);
-            ViewBag.OptionId = new SelectList(Db.Options.OrderBy(t => t.Name), "OptionId", "Name", optionRol.OptionId);
-            ViewBag.RolId = new SelectList(Db.Rols.Where(t => t.AuthorId == Db.Authors.FirstOrDefault().AuthorId).OrderBy(t => t.Name), "RolId", "Name", optionRol.RolId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", optionRol.StatusId);
+            ViewBag.OptionId = new SelectList(_db.Options.OrderBy(t => t.Name), "OptionId", "Name", optionRol.OptionId);
+            ViewBag.RolId = new SelectList(_db.Rols.Where(t => t.AuthorId == _db.Authors.FirstOrDefault().AuthorId).OrderBy(t => t.Name), "RolId", "Name", optionRol.RolId);
 
             //ViewBag.OptionId = new SelectList(Db.Options, "OptionId", "Name", optionRol.OptionId);
             //ViewBag.RolId = new SelectList(Db.Rols, "RolId", "Name", optionRol.RolId);
@@ -279,14 +277,14 @@
             {
                 return View("Error");
             }
-            var optionRol = await Db.OptionRols.FindAsync(id);
+            var optionRol = await _db.OptionRols.FindAsync(id);
             if (optionRol == null)
             {
                 return View("Error");
             }
-            ViewBag.OptionId = new SelectList(Db.Options, "OptionId", "Name", optionRol.OptionId);
-            ViewBag.RolId = new SelectList(Db.Rols, "RolId", "Name", optionRol.RolId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", optionRol.StatusId);
+            ViewBag.OptionId = new SelectList(_db.Options, "OptionId", "Name", optionRol.OptionId);
+            ViewBag.RolId = new SelectList(_db.Rols, "RolId", "Name", optionRol.RolId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", optionRol.StatusId);
             return View(optionRol);
         }
 
@@ -296,13 +294,13 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(optionRol).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(optionRol).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"DetailsRol/{optionRol.RolId}");
             }
-            ViewBag.OptionId = new SelectList(Db.Options, "OptionId", "Name", optionRol.OptionId);
-            ViewBag.RolId = new SelectList(Db.Rols, "RolId", "Name", optionRol.RolId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", optionRol.StatusId);
+            ViewBag.OptionId = new SelectList(_db.Options, "OptionId", "Name", optionRol.OptionId);
+            ViewBag.RolId = new SelectList(_db.Rols, "RolId", "Name", optionRol.RolId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", optionRol.StatusId);
             return View(optionRol);
         }
 
@@ -312,13 +310,13 @@
             {
                 return View("Error");
             }
-            var optionRol = await Db.OptionRols.FindAsync(id);
+            var optionRol = await _db.OptionRols.FindAsync(id);
             if (optionRol == null)
             {
                 return View("Error");
             }
-            Db.OptionRols.Remove(optionRol);
-            await Db.SaveChangesAsync();
+            _db.OptionRols.Remove(optionRol);
+            await _db.SaveChangesAsync();
             return RedirectToAction($"DetailsRol/{optionRol.RolId}");
         }
 
@@ -333,7 +331,7 @@
                 return View("Error");
             }
 
-            var user = await Db.Users.FindAsync(id);
+            var user = await _db.Users.FindAsync(id);
 
             if (user == null)
             {
@@ -350,7 +348,7 @@
                 return View("Error");
             }
 
-            var rol = await Db.Rols.FindAsync(id);
+            var rol = await _db.Rols.FindAsync(id);
 
             if (rol == null)
             {
@@ -367,15 +365,15 @@
                 return View("Error");
             }
 
-            var author = await Db.Authors.FindAsync(id);
+            var author = await _db.Authors.FindAsync(id);
 
             if (author == null)
             {
                 return View("Error");
             }
 
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name");
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name");
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
             var view = new Rol { AuthorId = author.AuthorId, };
             return View(view);
         }
@@ -386,13 +384,13 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Rols.Add(rol);
-                await Db.SaveChangesAsync();
+                _db.Rols.Add(rol);
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"Details/{rol.AuthorId}");
             }
 
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name", rol.AuthorId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", rol.StatusId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name", rol.AuthorId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", rol.StatusId);
             return View(rol);
         }
 
@@ -402,13 +400,13 @@
             {
                 return View("Error");
             }
-            var rol = await Db.Rols.FindAsync(id);
+            var rol = await _db.Rols.FindAsync(id);
             if (rol == null)
             {
                 return View("Error");
             }
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name", rol.AuthorId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", rol.StatusId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name", rol.AuthorId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", rol.StatusId);
             return View(rol);
         }
 
@@ -418,13 +416,13 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(rol).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(rol).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"Details/{rol.AuthorId}");
             }
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name"); ViewBag.StatusId = new SelectList(Db.Status.OrderBy(ut => ut.Name), "StatusId", "Name", rol.StatusId);
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name"); ViewBag.AuthorId = new SelectList(Db.Authors.OrderBy(ut => ut.Name), "AuthorId", "Name", rol.AuthorId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name"); ViewBag.StatusId = new SelectList(_db.Status.OrderBy(ut => ut.Name), "StatusId", "Name", rol.StatusId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name"); ViewBag.AuthorId = new SelectList(_db.Authors.OrderBy(ut => ut.Name), "AuthorId", "Name", rol.AuthorId);
 
             return View(rol);
         }
@@ -435,13 +433,13 @@
             {
                 return View("Error");
             }
-            var rol = await Db.Rols.FindAsync(id);
+            var rol = await _db.Rols.FindAsync(id);
             if (rol == null)
             {
                 return View("Error");
             }
-            Db.Rols.Remove(rol);
-            await Db.SaveChangesAsync();
+            _db.Rols.Remove(rol);
+            await _db.SaveChangesAsync();
             return RedirectToAction($"Details/{rol.AuthorId}");
         }
 
@@ -471,7 +469,7 @@
                 return View("Error");
             }
 
-            var author = await Db.Authors.FindAsync(id);
+            var author = await _db.Authors.FindAsync(id);
 
             if (author == null)
             {
@@ -480,9 +478,9 @@
 
             //ViewBag.FavoriteLeagueId = new SelectList(db.Leagues.OrderBy(l => l.Name), "LeagueId", "Name");
             //ViewBag.FavoriteTeamId = new SelectList(db.Teams.Where(t => t.LeagueId == db.Leagues.FirstOrDefaultAsync).LeagueId).OrderBy(t => t.Name), "TeamId", "Name");
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name");
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name");
-            ViewBag.UserTypeId = new SelectList(Db.UserTypes, "UserTypeId", "Name");
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
+            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name");
 
             var view = new UserView { AuthorId = author.AuthorId, };
             return View(view);
@@ -506,15 +504,15 @@
                 var user = ToUser(view);
                 // user.Picture = pic;
                 user.StatusId = 1;
-                Db.Users.Add(user);
-                await Db.SaveChangesAsync();
+                _db.Users.Add(user);
+                await _db.SaveChangesAsync();
                 UsersHelper.CreateUserAsp(view.Email, "User", view.Password);
                 return RedirectToAction($"Details/{user.AuthorId}");
             }
 
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name"); ViewBag.StatusId = new SelectList(Db.Status.OrderBy(ut => ut.Name), "StatusId", "Name", view.StatusId);
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name"); ViewBag.AuthorId = new SelectList(Db.Authors.OrderBy(ut => ut.Name), "AuthorId", "Name", view.AuthorId);
-            ViewBag.UserTypeId = new SelectList(Db.UserTypes, "UserTypeId", "Name"); ViewBag.UserTypeId = new SelectList(Db.UserTypes.OrderBy(ut => ut.Name), "UserTypeId", "Name", view.UserTypeId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name"); ViewBag.StatusId = new SelectList(_db.Status.OrderBy(ut => ut.Name), "StatusId", "Name", view.StatusId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name"); ViewBag.AuthorId = new SelectList(_db.Authors.OrderBy(ut => ut.Name), "AuthorId", "Name", view.AuthorId);
+            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name"); ViewBag.UserTypeId = new SelectList(_db.UserTypes.OrderBy(ut => ut.Name), "UserTypeId", "Name", view.UserTypeId);
 
             return View(view);
 
@@ -545,15 +543,15 @@
             {
                 return View("Error");
             }
-            var user = await Db.Users.FindAsync(id);
+            var user = await _db.Users.FindAsync(id);
             if (user == null)
             {
                 return View("Error");
             }
             // ViewBag.FavoriteTeamId = new SelectList(db.Teams, "TeamId", "Name", user.FavoriteTeamId);
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name", user.AuthorId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", user.StatusId);
-            ViewBag.UserTypeId = new SelectList(Db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name", user.AuthorId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", user.StatusId);
+            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
 
             return View(user);
         }
@@ -564,14 +562,14 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(user).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(user).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction($"Details/{user.AuthorId}");
             }
             // ViewBag.FavoriteTeamId = new SelectList(db.Teams, "TeamId", "Name", user.FavoriteTeamId);
-            ViewBag.AuthorId = new SelectList(Db.Authors, "AuthorId", "Name", user.AuthorId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", user.StatusId);
-            ViewBag.UserTypeId = new SelectList(Db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name", user.AuthorId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", user.StatusId);
+            ViewBag.UserTypeId = new SelectList(_db.UserTypes, "UserTypeId", "Name", user.UserTypeId);
 
             return View(user);
         }
@@ -583,15 +581,15 @@
                 return View("Error");
             }
 
-            var user = await Db.Users.FindAsync(id);
+            var user = await _db.Users.FindAsync(id);
 
             if (user == null)
             {
                 return View("Error");
             }
 
-            Db.Users.Remove(user);
-            await Db.SaveChangesAsync();
+            _db.Users.Remove(user);
+            await _db.SaveChangesAsync();
             return RedirectToAction($"Details/{user.AuthorId}");
         }
 
@@ -599,7 +597,7 @@
 
         public async Task<ActionResult> Index()
         {
-            var authors = Db.Authors.Include(a => a.Plan).Include(a => a.Status).Include(a => a.Type).OrderByDescending(p => p.AuthorId);
+            var authors = _db.Authors.Include(a => a.Plan).Include(a => a.Status).Include(a => a.Type).OrderByDescending(p => p.AuthorId);
             return View(await authors.ToListAsync());
         }
 
@@ -610,7 +608,7 @@
                 return View("Error");
             }
 
-            var author = await Db.Authors.FindAsync(id);
+            var author = await _db.Authors.FindAsync(id);
 
             if (author == null)
             {
@@ -621,9 +619,9 @@
 
         public ActionResult Create()
         {
-            ViewBag.AuthorPlanId = new SelectList(Db.AuthorPlans, "AuthorPlanId", "Code");
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name");
-            ViewBag.AuthorTypeId = new SelectList(Db.AuthorTypes, "AuthorTypeId", "Name");
+            ViewBag.AuthorPlanId = new SelectList(_db.AuthorPlans, "AuthorPlanId", "Code");
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
+            ViewBag.AuthorTypeId = new SelectList(_db.AuthorTypes, "AuthorTypeId", "Name");
             return View();
         }
 
@@ -633,8 +631,8 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Authors.Add(author);
-                await Db.SaveChangesAsync();
+                _db.Authors.Add(author);
+                await _db.SaveChangesAsync();
                 var user = new User
                 {
                     AuthorId = author.AuthorId,
@@ -645,7 +643,7 @@
                     StatusId = 1
                 };
 
-                Db.Users.Add(user);
+                _db.Users.Add(user);
 
                 var rol = new Rol
                 {
@@ -656,9 +654,9 @@
                     StatusId = 1
                 };
 
-                Db.Rols.Add(rol);
+                _db.Rols.Add(rol);
 
-                await Db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 UsersHelper.CreateUserAsp(author.Email, "User", "824455");
 
                 var rolForUser = new UserRol
@@ -671,7 +669,7 @@
                     StatusId = 1
                 };
 
-                Db.UserRols.Add(rolForUser);
+                _db.UserRols.Add(rolForUser);
 
                 var doctorInf = new Doctor
                 {
@@ -684,15 +682,15 @@
                     Prefix = "SG"
                 };
 
-                Db.Doctors.Add(doctorInf);
+                _db.Doctors.Add(doctorInf);
 
-                await Db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorPlanId = new SelectList(Db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", author.StatusId);
-            ViewBag.AuthorTypeId = new SelectList(Db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
+            ViewBag.AuthorPlanId = new SelectList(_db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", author.StatusId);
+            ViewBag.AuthorTypeId = new SelectList(_db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
             return View(author);
         }
 
@@ -702,14 +700,14 @@
             {
                 return View("Error");
             }
-            var author = await Db.Authors.FindAsync(id);
+            var author = await _db.Authors.FindAsync(id);
             if (author == null)
             {
                 return View("Error");
             }
-            ViewBag.AuthorPlanId = new SelectList(Db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", author.StatusId);
-            ViewBag.AuthorTypeId = new SelectList(Db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
+            ViewBag.AuthorPlanId = new SelectList(_db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", author.StatusId);
+            ViewBag.AuthorTypeId = new SelectList(_db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
             return View(author);
         }
 
@@ -719,13 +717,13 @@
         {
             if (ModelState.IsValid)
             {
-                Db.Entry(author).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
+                _db.Entry(author).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorPlanId = new SelectList(Db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
-            ViewBag.StatusId = new SelectList(Db.Status, "StatusId", "Name", author.StatusId);
-            ViewBag.AuthorTypeId = new SelectList(Db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
+            ViewBag.AuthorPlanId = new SelectList(_db.AuthorPlans, "AuthorPlanId", "Code", author.AuthorPlanId);
+            ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", author.StatusId);
+            ViewBag.AuthorTypeId = new SelectList(_db.AuthorTypes, "AuthorTypeId", "Name", author.AuthorTypeId);
             return View(author);
         }
 
@@ -734,7 +732,7 @@
             try
             {
 
-                var user = await Db.Users.FindAsync(id);
+                var user = await _db.Users.FindAsync(id);
 
                 if (user == null)
                 {
@@ -777,14 +775,6 @@
                 return View("Error");
             }
         }
-        
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+              
     }
 }

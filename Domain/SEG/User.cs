@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Domain.GEN;
 using Domain.MED;
- 
+//using Domain.POS;
+//using Domain.TRK;
 using Newtonsoft.Json;
 
 namespace Domain.SEG
@@ -44,16 +45,10 @@ namespace Domain.SEG
         public int AuthorId { get; set; }
 
 
-
         [JsonIgnore]
         public virtual UserType UserType { get; set; }
-      //  [JsonIgnore]
-      //public virtual ICollection<Group> UserGroups { get; set; }
-      //  [JsonIgnore]
-      //  public virtual ICollection<GroupUser> GroupUsers { get; set; }
         [JsonIgnore]
         public virtual Status Status { get; set; }
-
         [JsonIgnore]
         public virtual Author Author { get; set; }
         [JsonIgnore]
@@ -62,9 +57,19 @@ namespace Domain.SEG
         public virtual ICollection<Report> Reports { get; set; }
         [JsonIgnore]
         public virtual ICollection<Doctor> Doctors { get; set; }
-        
         [JsonIgnore]
         public virtual ICollection<UserEmailSetting> UserEmailSettings { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Sale> Sales { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<ShopUser> ShopUsers { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<CashierDetail> CashierDetails { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Tag> Tags { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Budget> Budgets { get; set; }
+
     }
 
 }

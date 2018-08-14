@@ -6,13 +6,11 @@
     using System.Web.Mvc;
     using Domain;
     using Domain.SEG;
+    using Backend.Controllers;
 
     [Authorize(Roles = "Admin")]
-    public class ParentOptionsController : Controller
-    {
-        private readonly DataContext _db = new DataContext();
-
-        // GET: Configurations/ParentOptions
+    public class ParentOptionsController : PsBaseController
+    {       
         public async Task<ActionResult> Index()
         {
             var parentOptions = _db.ParentOptions.Include(p => p.Status);
@@ -24,7 +22,6 @@
             ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name");
             return View();
         }
-
      
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -70,14 +67,6 @@
             ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", parentOption.StatusId);
             return View(parentOption);
         }
-        
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+               
     }
 }

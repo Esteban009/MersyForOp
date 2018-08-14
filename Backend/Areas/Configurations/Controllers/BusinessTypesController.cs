@@ -3,19 +3,17 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Domain;
+    using Backend.Controllers;
     using Domain.GEN;
 
     [Authorize(Roles = "Admin")]
-    public class BusinessTypesController : Controller
-    {
-        private readonly DataContext _db = new DataContext();
-
-        // GET: Configurations/BusinessTypes
+    public class BusinessTypesController : PsBaseController
+    {     
         public async Task<ActionResult> Index()
         {
             return View(await _db.BusinessTypes.ToListAsync());
         }
+
         public ActionResult Create()
         {
             return View();
@@ -63,14 +61,6 @@
             }
             return View(businessType);
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+               
     }
 }

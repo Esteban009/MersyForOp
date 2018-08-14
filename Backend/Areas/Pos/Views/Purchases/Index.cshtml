@@ -6,7 +6,10 @@
 }
 
 <p>
-    <a class="btn btn-primary" href="@Url.Action("Create", "Purchases", new { area = "Pos"   })"> <span class="fa fa-plus"></span> Registrar Nueva Compra </a>
+    <a class="btn btn-success" href="@Url.Action("OptionsList", "Users", new { area = "Pos" , id=@ViewBag.PatientId })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Purchases", new {area = "Pos"})"> <span class="fa fa-plus"></span> Registrar Nueva Compra </a>
 
 
 </p>

@@ -1,16 +1,14 @@
-﻿using System.Data.Entity;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Domain;
-using Domain.MED;
-
-namespace Backend.Areas.Medicals.Controllers
+﻿namespace Backend.Areas.Medicals.Controllers
 {
-    public class InsurancesController : Controller
-    {
-        private readonly DataContext _db = new DataContext();
+    using System.Data.Entity;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Domain.MED;
+    using Backend.Controllers;
 
-        // GET: Medicals/Insurances
+    public class InsurancesController : PsBaseController
+    {
+               // GET: Medicals/Insurances
         public async Task<ActionResult> Index()
         {
             return View(await _db.Insurances.ToListAsync());
@@ -91,14 +89,6 @@ namespace Backend.Areas.Medicals.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+               
     }
 }

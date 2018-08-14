@@ -3,21 +3,17 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Domain;
+    using Backend.Controllers;
     using Domain.GEN;
 
     [Authorize(Roles = "Admin")]
-    public class StatusController : Controller
+    public class StatusController : PsBaseController
     {
-        private readonly DataContext _db = new DataContext();
-
-        // GET: Configurations/Status
         public async Task<ActionResult> Index()
         {
             return View(await _db.Status.ToListAsync());
-        }
-        
-        // GET: Configurations/Status/Create
+        }        
+       
         public  ActionResult  Create()
         {
             return View();
@@ -63,14 +59,6 @@
             }
             return View(status);
         }
-        
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+               
     }
 }

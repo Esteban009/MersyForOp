@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Domain.MED; 
+using Domain.MED;
+//using Domain.POS;
 using Newtonsoft.Json;
 
 //using Domain.MED;
@@ -12,8 +13,7 @@ namespace Domain.GEN
     {
         [Key]
         public int PersonId { get; set; }
-
-        //[Required(ErrorMessage = "El Campo es requerido")]
+           
         [MaxLength(15, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [Display(Name = "RNC/Cedula")]
         public string Rnc { get; set; }
@@ -29,9 +29,7 @@ namespace Domain.GEN
         public string LastName { get; set; }
 
         [Display(Name = "Fecha de Nacimiento")]
-        ////[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime? BornDate { get; set; }
 
         [Display(Name = "Género")]
@@ -45,19 +43,16 @@ namespace Domain.GEN
 
         [MaxLength(50, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [DataType(DataType.EmailAddress)]
-        // [Index("Person_Email_Index", IsUnique = true)]
         [Display(Name = "Correo")]
         public string Email { get; set; }
 
         [MaxLength(15, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [DataType(DataType.PhoneNumber)]
-        // [Index("Person_Tel_Index", IsUnique = true)]
         [Display(Name = "Telefono")]
         public string Tel { get; set; }
 
         [MaxLength(15, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [DataType(DataType.PhoneNumber)]
-        //    [Index("Person_Cel_Index", IsUnique = true)]
         [Display(Name = "Celular")]
         public string Cel { get; set; }
 
@@ -70,8 +65,7 @@ namespace Domain.GEN
         [Display(Name = "Religión")]
         public int ReligionId { get; set; }
 
-        // [Required(ErrorMessage = "El Campo es requerido")]
-        [MaxLength(200, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
+            [MaxLength(200, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Direccion")]
         public string Address { get; set; }
@@ -105,6 +99,7 @@ namespace Domain.GEN
         [JsonIgnore]
         public virtual ICollection<Patient> Patients { get; set; }
 
-       
+        //[JsonIgnore]
+        //public virtual ICollection<Customer> Customers { get; set; }
     }
 }

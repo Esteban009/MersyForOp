@@ -6,7 +6,9 @@
 }
 @*@using (Html.BeginForm("ExportToExcel", "Inventories", FormMethod.Post))
 {*@
-    <p>
+    <p> <a class="btn btn-success" href="@Url.Action("OptionsList", "Users", new { area = "Pos" , id=@ViewBag.PatientId })">
+            <span class="fa fa-reply"> Volver a Atras</span>
+        </a>
         <a class="btn btn-primary" href="@Url.Action("Create", "Purchases", new {area = "Pos"})"> <span class="fa fa-plus"></span> Registrar Nuevo Inventario </a>
         <a class="btn btn-success" href="@Url.Action("ExportToExcel", "Inventories", new {area = "Pos"})"> <span class="fa fa-file-excel-o"></span> Exportar a Excel </a>
         @*<a class="btn btn-info" id="BtnPrintA4">

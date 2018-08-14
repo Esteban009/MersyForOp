@@ -3,15 +3,12 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Domain;
+    using Backend.Controllers;
     using Domain.GEN;
 
     [Authorize(Roles = "Admin")]
-    public class OcupationsController : Controller
+    public class OcupationsController : PsBaseController
     {
-        private readonly DataContext _db = new DataContext();
-
-        // GET: Configurations/Ocupations
         public async Task<ActionResult> Index()
         {
             return View(await _db.Ocupations.ToListAsync());
@@ -62,14 +59,6 @@
             }
             return View(ocupation);
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

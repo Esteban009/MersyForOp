@@ -1,8 +1,7 @@
-﻿using Domain;
-
-namespace Backend.Models
+﻿namespace Backend.Models
 {
+    using Domain;
     public class DataContextLocal : DataContext
     {
-     }
+    }
 }

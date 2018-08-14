@@ -1,44 +1,18 @@
 ﻿namespace Backend.Areas.Medicals.Controllers
 {
-    using System.Collections.Generic;
     using Domain.GEN;
     using System.Data.Entity;
     using System.Threading.Tasks;
     using System.Net;
     using System.Web.Mvc;
-    using Backend.Models;
     using Domain.MED;
-    using Microsoft.AspNet.Identity;
     using System;
-    using Helpers;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Domain;
     using System.Linq;
+    using Backend.Controllers;
 
     [Authorize(Roles = "User")]
-    public class LaboratoriesController : Controller
+    public class LaboratoriesController : PsBaseController
     {
-        private readonly DataContext _db = new DataContext();
-
-        public async Task<int> GetAuthorId()
-        {
-            if (Session["AuthorId"] != null && Convert.ToInt32(Session["AuthorId"]) != 0) return Convert.ToInt32(Session["AuthorId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["AuthorId"] = await UsersHelper.GetAuthorId(currentUser.Email);
-            return Convert.ToInt32(Session["AuthorId"]);
-        }
-
-        public async Task<int> GetUserId()
-        {
-            if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"]) != 0) return Convert.ToInt32(Session["UserId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["UserId"] = await UsersHelper.GetUserId(currentUser.Email);
-            return Convert.ToInt32(Session["UserId"]);
-        }
 
         public async Task<JsonResult> GetLabTests(int id)
         {
@@ -273,16 +247,7 @@
 
             return RedirectToAction("Index");
 
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        }       
 
     }
 }

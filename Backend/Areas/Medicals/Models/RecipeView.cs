@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Backend.Areas.Medicals.Models
 {
     [NotMapped]
-    public class RecipeView
+    public class RecipeView: Recipe // Person 
     {
 
         [MaxLength(1000, ErrorMessage = "La longitud maxima del campo es {1} caracteres")]

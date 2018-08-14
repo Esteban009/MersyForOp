@@ -1,31 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Backend.Helpers;
-using Backend.Models;
-using Domain;
-using Domain.SEG;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace Backend.Areas.Pos.Controllers
+﻿namespace Backend.Areas.Pos.Controllers
 {
-    public class RolsController : Controller
-    {
-        private readonly DataContext _db = new DataContext();
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Helpers;
+    using Domain.SEG;
+    using Backend.Controllers;
 
-        public async Task<int> GetAuthorId()
-        {
-            if (Session["AuthorId"] != null && Convert.ToInt32(Session["AuthorId"]) != 0) return Convert.ToInt32(Session["AuthorId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            Session["AuthorId"] = await UsersHelper.GetAuthorId(currentUser.Email);
-            return Convert.ToInt32(Session["AuthorId"]);
-        }
+    public class RolsController : PsBaseController
+    {
         public async Task<ActionResult> Index(string message = "")
         {
             var conectedUserid = await GetUserId();
@@ -49,16 +34,6 @@ namespace Backend.Areas.Pos.Controllers
             ViewBag.StatusMessage = message;
             var rols = _db.Rols.Where(p => p.AuthorId == authorid).Include(r => r.Author).Include(r => r.Status).OrderBy(p => p.StatusId);
             return View(await rols.ToListAsync());
-        }
-        public async Task<int> GetUserId()
-        {
-            //if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"]) != 0) return Convert.ToInt32(Session["UserId"]);
-            var manager =
-                new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            // Session["UserId"] = await UsersHelper.GetUserId(currentUser.Email);
-            return await UsersHelper.GetUserId(currentUser.Email);
-            //return Convert.ToInt32(Session["UserId"]);
         }
 
         public async Task<ActionResult> Create()
@@ -171,13 +146,6 @@ namespace Backend.Areas.Pos.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }

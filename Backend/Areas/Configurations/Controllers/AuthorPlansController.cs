@@ -1,19 +1,16 @@
-﻿using System.Linq;
-
-namespace Backend.Areas.Configurations.Controllers
+﻿namespace Backend.Areas.Configurations.Controllers
 {
+    using System.Linq;
     using System.Data.Entity;
     using System.Threading.Tasks;
     using System.Net;
     using System.Web.Mvc;
-    using Backend.Models;
     using Domain.GEN;
+    using Backend.Controllers;
 
     [Authorize(Roles = "Admin")]
-    public class AuthorPlansController : Controller
+    public class AuthorPlansController : PsBaseController
     {
-        private readonly DataContextLocal _db = new DataContextLocal();
-
         #region Option
 
         public async Task<ActionResult> DetailsOption(int? id)
@@ -208,14 +205,6 @@ namespace Backend.Areas.Configurations.Controllers
         }
 
         #endregion
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+              
     }
 }

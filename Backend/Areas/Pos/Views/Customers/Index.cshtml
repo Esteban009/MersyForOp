@@ -19,21 +19,21 @@
         <thead>
             <tr>
                 <th>
-                   Nombre
+                    Nombre
                 </th>
-                
+
                 <th>
-                 Tel
-                </th>
-                <th>
-                  Adeudado
+                    Tel
                 </th>
                 <th>
-                   Credito (Saldo a Favor)
+                    Adeudado
                 </th>
-                
                 <th>
-                    
+                    Credito (Saldo a Favor)
+                </th>
+
+                <th>
+
                 </th>
             </tr>
         </thead>
@@ -41,11 +41,11 @@
             @foreach (var item in Model)
             {
                 <tr>
-                     
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Person.Name) &nbsp; @Html.DisplayFor(modelItem => item.Person.LastName)
                     </td>
-                   
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Person.Tel)
                     </td>
@@ -55,7 +55,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CreditAmount)
                     </td>
-                     
+
                     <td>
                         @if (@item.DebAmount > 0)
                         {

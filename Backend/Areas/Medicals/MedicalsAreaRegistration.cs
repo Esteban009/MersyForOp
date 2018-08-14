@@ -1,18 +1,17 @@
-﻿using System.Web.Mvc;
-
-namespace Backend.Areas.Medicals
+﻿namespace Backend.Areas.Medicals
 {
-    public class MedicalsAreaRegistration : AreaRegistration 
+    using System.Web.Mvc;
+
+    public class MedicalsAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
-            {
+            get {
                 return "Medicals";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Medicals_default",

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
- 
+//using Domain.POS;
+//using Domain.TRK;
 using Newtonsoft.Json;
 
 
@@ -24,7 +25,10 @@ namespace Domain.GEN
         [Display(Name = "Nombre")]
         public string Name { get; set; }
 
-     
+        //[JsonIgnore]
+        //public virtual ICollection<Sale> Sales { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<SaleAsosiation> SaleAsosiations { get; set; }
 
     }
 }

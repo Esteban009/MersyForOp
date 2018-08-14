@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Domain.MED;
- 
 using Domain.SEG;
- 
+//using Domain.TRK;
+//using Domain.MED;
+//using Domain.POS;
 using Newtonsoft.Json;
 
 namespace Domain.GEN
@@ -65,12 +65,29 @@ namespace Domain.GEN
         [JsonIgnore]
         public virtual ICollection<Rol> Rols { get; set; }
         [JsonIgnore]
-        public virtual ICollection<User> Users { get; set; }
-  
+        public virtual ICollection<User> Users { get; set; }       
         [JsonIgnore]
         public virtual ICollection<Measure> Measures { get; set; }
         [JsonIgnore]
         public virtual ICollection<MeasureEquivalence> MeasureEquivalences { get; set; }
-        
+
+        //[JsonIgnore]
+        //public virtual ICollection<Product> Products { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Brand> Brands { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Shop> Shops { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Supplier> Suppliers { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Wallet> Wallets { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<SaleAsosiation> SaleAsosiations { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Laboratory> Laboratories { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Area> Areas { get; set; }
+
+       
     }
 }

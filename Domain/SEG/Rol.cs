@@ -41,5 +41,7 @@ namespace Domain.SEG
 
         [JsonIgnore]
         public virtual ICollection<OptionRol> OptionRols { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<UserRol> UserRols { get; set; }
     }
 }

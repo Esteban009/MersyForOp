@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema; 
+using System.ComponentModel.DataAnnotations.Schema;
+//using Domain.TRK;
 using Newtonsoft.Json;
 
 
@@ -25,6 +26,11 @@ namespace Domain.GEN
 
         [JsonIgnore]
         public virtual ICollection<AuthorPlan> AuthorPlans { get; set; }
-      
+
+        //[JsonIgnore]
+        //public virtual ICollection<Account> Accounts { get; set; }
+
+        //[JsonIgnore]
+        //public virtual ICollection<BudgetDetail> BudgetDetails { get; set; }
     }
 }

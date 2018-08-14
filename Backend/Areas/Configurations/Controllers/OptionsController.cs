@@ -4,20 +4,17 @@
     using System.Threading.Tasks;
     using System.Net;
     using System.Web.Mvc;
-    using Domain;
     using Domain.SEG;
+    using Backend.Controllers;
 
     [Authorize(Roles = "Admin")]
-    public class OptionsController : Controller
-    {
-        private readonly DataContext _db = new DataContext();
-        
+    public class OptionsController : PsBaseController
+    {        
         public async Task<ActionResult> Index()
         {
             var options = _db.Options.Include(o => o.ParentOption).Include(o => o.Status);
             return View(await options.ToListAsync());
         }
-
         
         public ActionResult Create()
         {
@@ -71,15 +68,7 @@
             ViewBag.ParentOptionId = new SelectList(_db.ParentOptions, "ParentOptionId", "Name", option.ParentOptionId);
             ViewBag.StatusId = new SelectList(_db.Status, "StatusId", "Name", option.StatusId);
             return View(option);
-        }
-        
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        }        
+       
     }
 }

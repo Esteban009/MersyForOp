@@ -52,6 +52,7 @@ namespace Domain.MED
         //public virtual ICollection<PediatricVisit> PediatricVisits { get; set; }
         //public virtual ICollection<Inmunization> Inmunizations { get; set; }
         //public virtual ICollection<Bariatric> Bariatrics { get; set; }
-        //public virtual ICollection<BariatricVisit> BariatricVisits { get; set; } 
+        //public virtual ICollection<BariatricVisit> BariatricVisits { get; set; }
+         //public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }
