@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Domain.MED.Area>
+
+@{
+    ViewBag.Title = "Administracion de Areas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("MedHist", "Patients", new { area = "Medicals" })">
+        <span class="fa fa-reply"> Volver a Atras</span>
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Areas", new { area = "Medicals"   })"> <span class="fa fa-plus"></span> Registrar Area </a>
+</p>
+
+<p style="color:green;  font-weight: bold">
+    Solo se muestran los ultimos 50 registros, si desea ver mas, 
+    debe de utilizar un criterio de busqueda, escribir una palabra clave en 
+    el campo de texto y presionar el boton buscar.
+</p>
+<div>
+    <label for="option0"> Buscar:  &nbsp; &nbsp;</label>
+    <input type="text" id="option0" placeholder="Criterio de Busqueda"> &nbsp;
+
+    <input type="radio" id="option5" name="ddd" value="5" checked="checked">
+    <label for="option5"> por Nombre  &nbsp; &nbsp;</label>
+
+    @*<input type="radio" id="option4" name="ddd" value="4">
+    <label for="option4"> por Cedula  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option1" name="ddd" value="1">
+    <label for="option1"> por Nombre  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option2" name="ddd" value="2">
+    <label for="option2"> por Apellido  &nbsp; &nbsp;</label>
+
+    <input type="radio" id="option3" name="ddd" value="3">
+    <label for="option3"> por Correo  &nbsp; &nbsp;</label>*@
+
+    <a class="btn btn-primary" id="BtnSearch" href="@Url.Action("IndexFilter", "Areas",new {area="Medicals"})">
+        <span class="fa fa-search"></span> Buscar
+    </a>
+
+</div>
+
+<div id="tableHolder">
+    @Html.Partial("_ModelTablePartial", Model)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            //$('table').DataTable({ "sSearch": "Filtrar por: " });
+            $('table').DataTable({
+                "searching": false
+            });
+           
+            $('#BtnSearch').click(function (e) {
+                e.preventDefault();
+                $.get($(this).attr('href'),
+                    {
+                        opParam: $("input[type=radio]:checked").val(),
+                        param: $('#option0').val()
+                    },
+                    function (result) {
+                        // console.log(result);
+                        $('#tableHolder').html(result.Table);
+                        $('table').DataTable({
+                            "searching": false
+                        });
+                    },
+                    'json');
+            });
+        });
+    </script>
+
+}
+
+
+
+
+
