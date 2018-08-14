@@ -117,6 +117,11 @@
     <Compile Include="MED\Doctor.cs" />
     <Compile Include="MED\Insurance.cs" />
     <Compile Include="MED\Patient.cs" />
+    <Compile Include="Migrations\201808141139067_MigracionInicial.cs" />
+    <Compile Include="Migrations\201808141139067_MigracionInicial.Designer.cs">
+      <DependentUpon>201808141139067_MigracionInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GEN\Status.cs" />
     <Compile Include="SEG\Option.cs" />
@@ -138,6 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ScriptInicial.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808141139067_MigracionInicial.resx">
+      <DependentUpon>201808141139067_MigracionInicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

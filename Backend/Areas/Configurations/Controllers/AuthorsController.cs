@@ -21,10 +21,10 @@
 
         public async Task<ActionResult> CreateDoctorInformation(int id)
         {
-            //if (id == null)
-            //{
-            //     return View("Error");
-            //}
+            if (id == null)
+            {
+                return View("Error");
+            }
 
             var user = await Db.Users.FindAsync(id);
 

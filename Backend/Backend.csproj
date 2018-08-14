@@ -242,6 +242,10 @@
     <Compile Include="Helpers\ReportThings.cs" />
     <Compile Include="Helpers\TablaCrecimiento.cs" />
     <Compile Include="Helpers\UsersHelper.cs" />
+    <Compile Include="Migrations\201808141203512_MigracionInicial.cs" />
+    <Compile Include="Migrations\201808141203512_MigracionInicial.Designer.cs">
+      <DependentUpon>201808141203512_MigracionInicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataContextLocal.cs" />
@@ -964,6 +968,11 @@
       <Project>{757ea5da-63fd-4eaf-9623-3a4373fd8d31}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808141203512_MigracionInicial.resx">
+      <DependentUpon>201808141203512_MigracionInicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
